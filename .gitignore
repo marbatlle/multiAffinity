@@ -3,5 +3,5 @@ Matrices_HB/*
 !Outputs_HB/.gitkeep
 Metadata_HB/*.tsv
 !Metadata_HB/HB_joint_METADATA.tsv
-.ipynb_checkpoints/*
-.ipynb_checkpoints/
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
