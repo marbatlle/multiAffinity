@@ -1,7 +1,7 @@
 Matrices_HB/*
 !Matrices_HB/.gitkeep
 Output_HB/*
-!Output/.gitkeep
+!Output_HB/.gitkeep
 Metadata_HB/*.tsv
 !Metadata_HB/HB_joint_METADATA.tsv
 
