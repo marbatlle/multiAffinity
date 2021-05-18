@@ -75,19 +75,46 @@ data_stats = data[["t-statistic","adj_p-value","effect size"]]
 data_stats = data_stats.dropna(axis=0, subset=["effect size"])
 data_stats = data_stats.sort_values(by="effect size")
 
-# Select desregulated genes
-DEG = data_stats[data_stats['adj_p-value'] < 0.05]
-DEG = DEG[DEG["effect size"] > 0.8]
-
-# export obtained stats 
-data.to_csv("Outputs_HB/HB_db_DEG.csv", index=True)
-
 print('higher effect-size:\n',
       data_stats.tail(10),
       '\n\nlower effect-size:\n',
       data_stats.head(10))
 
-print('\ntotal num. of genes:',len(data_stats))
-print('num. of DEG:',len(DEG))
 
+print('Filter DEG by adj p-value < 0.05 and Cohens effect size d > 0.8 (large)')
+
+# Select desregulated genes
+DEG_large = data_stats[data_stats['adj_p-value'] < 0.05]
+DEG_large = DEG_large[DEG_large["effect size"] > 0.8]
+
+print('\ntotal num. of genes:',len(data_stats))
+print('num. of DEG:',len(DEG_large))
+
+# export obtained stats 
+DEG_large.to_csv("Outputs_HB/HB_db_DEG_large.csv", index=True)
+
+print('\n\nFilter DEG by adj p-value < 0.05 and Cohens effect size d > 1.2 (very large)')
+
+# Select desregulated genes
+DEG_vlarge = data_stats[data_stats['adj_p-value'] < 0.05]
+DEG_vlarge = DEG_vlarge[DEG_vlarge["effect size"] > 1.2]
+
+print('\ntotal num. of genes:',len(data_stats))
+print('num. of DEG:',len(DEG_vlarge))
+
+# export obtained stats 
+DEG_vlarge.to_csv("Outputs_HB/HB_db_DEG_verylarge.csv", index=True)
+
+
+print('\n\nFilter DEG by adj p-value < 0.05 and Cohens effect size d > 2 (huge)')
+
+# Select desregulated genes
+DEG_huge = data_stats[data_stats['adj_p-value'] < 0.05]
+DEG_huge = DEG_huge[DEG_huge["effect size"] > 1.2]
+
+print('\ntotal num. of genes:',len(data_stats))
+print('num. of DEG:',len(DEG_huge))
+
+# export obtained stats 
+DEG_huge.to_csv("Outputs_HB/HB_db_DEG_huge.csv", index=True)
 
