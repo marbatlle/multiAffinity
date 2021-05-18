@@ -56,7 +56,7 @@ data['std_control'] = std_control
 data['t-statistic'] = tstatistic
 data['p-value'] = pvalue
 data['effect size'] = effsize
-data['adj_p-value'] = list(multi.multipletests(pvalue, method='fdr_bh')[1])
+data['adj_p-value'] = np.nan
 
 
 # debug adj-pvalue
@@ -67,15 +67,27 @@ for idx in tqdm(data.index):
     adj_pvalue = list(multi.multipletests(pvalue, method='fdr_bh')[1])
     data.at[idx,'adj_p-value'] = adj_pvalue
 
+# export obtained stats 
+data.to_csv("Outputs_HB/HB_db_stats.csv", index=True)
+
+# create df with only stats
 data_stats = data[["t-statistic","adj_p-value","effect size"]]
 data_stats = data_stats.dropna(axis=0, subset=["effect size"])
 data_stats = data_stats.sort_values(by="effect size")
 
+# Select desregulated genes
+DEG = data_stats[data_stats['adj_p-value'] < 0.05]
+DEG = DEG[DEG["effect size"] > 0.8]
+
+# export obtained stats 
+data.to_csv("Outputs_HB/HB_db_DEG.csv", index=True)
 
 print('higher effect-size:\n',
       data_stats.tail(10),
       '\n\nlower effect-size:\n',
       data_stats.head(10))
 
-data_stats.to_csv("Outputs_HB/HB_db_DEG.csv", index=True)
+print('\ntotal num. of genes:',len(data_stats))
+print('num. of DEG:',len(DEG))
+
 
