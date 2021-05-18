@@ -19,14 +19,11 @@
 
 * GSE151347_Raw_gene_counts_matrix.xlsx
 
-*outputs: (at /Matrices_HB)*
-
-* Each of these matrices
-* One matrix with all three datasets merged
+*output: (at /Matrices_HB)*
+One matrix with all three datasets merged
 
 ## Obtain_Stats.ipynb
-Two approaches where taken to run the stats code:
-*outputs: (at /Outputs_HB)*
+Merge the three datasets (done in previous script) and run the code for all three of them to obtain differentially expressed genes and its stats 
 
-* Run the code for each dataset and then merge the resulting outputs (*separate_data.statistics.csv*)
-* Merge the three datasets (done in previous script) and run the code for all three of them (*join_data.statistics.csv*)
+
+*output: (at /Outputs_HB) : join_data.statistics.csv*
