@@ -118,3 +118,14 @@ print('num. of DEG:',len(DEG_huge))
 # export obtained stats 
 DEG_huge.to_csv("Outputs_HB/HB_db_DEG_huge.csv", index=True)
 
+print('\n\nFilter DEG by adj p-value < 0.05 and Cohens effect size d > 0.5 (medium)')
+
+# Select desregulated genes
+DEG_med = data_stats[data_stats['adj_p-value'] < 0.05]
+DEG_med = DEG_med[DEG_med["effect size"] > 0.5]
+
+print('\ntotal num. of genes:',len(data_stats))
+print('num. of DEG:',len(DEG_med))
+
+# export obtained stats 
+DEG_med.to_csv("Outputs_HB/HB_db_DEG_med.csv", index=True)

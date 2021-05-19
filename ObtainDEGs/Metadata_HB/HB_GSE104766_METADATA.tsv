@@ -1,0 +1,63 @@
+sample	type	series
+HepG2	Hepatoblastoma cell line	GSE104766
+HuH6	Hepatoblastoma cell line	GSE104766
+P02_NT	Normal liver	GSE104766
+P02_T	Hepatoblastoma	GSE104766
+P04_a_NT	Normal liver	GSE104766
+P04_a_T	Hepatoblastoma	GSE104766
+P04_c_NT_rep1	Normal liver	GSE104766
+P04_c_NT_rep2	Normal liver	GSE104766
+P04_c_NT_rep3	Normal liver	GSE104766
+P04_c_T_rep1	Hepatoblastoma	GSE104766
+P04_c_T_rep2	Hepatoblastoma	GSE104766
+P04_c_T_rep3	Hepatoblastoma	GSE104766
+P05_NT	Normal liver	GSE104766
+P05_T	Hepatoblastoma	GSE104766
+P09_NT	Normal liver	GSE104766
+P09_T	Hepatoblastoma	GSE104766
+P10_NT	Normal liver	GSE104766
+P10_T	Hepatoblastoma	GSE104766
+P11_NT	Normal liver	GSE104766
+P11_T	Hepatoblastoma	GSE104766
+P15_NT	Normal liver	GSE104766
+P15_T	Hepatoblastoma	GSE104766
+P16_NT	Normal liver	GSE104766
+P16_T	Hepatoblastoma	GSE104766
+P17_NT	Normal liver	GSE104766
+P17_T	Hepatoblastoma	GSE104766
+P19_NT	Normal liver	GSE104766
+P19_T	Hepatoblastoma	GSE104766
+P20_NT	Normal liver	GSE104766
+P20_T	Hepatoblastoma	GSE104766
+P22_NT	Normal liver	GSE104766
+P22_T	Hepatoblastoma	GSE104766
+P23_NT_rep1	Normal liver	GSE104766
+P23_NT_rep2	Normal liver	GSE104766
+P23_NT_rep3	Normal liver	GSE104766
+P23_T_rep1	Hepatoblastoma	GSE104766
+P23_T_rep2	Hepatoblastoma	GSE104766
+P23_T_rep3	Hepatoblastoma	GSE104766
+P24_NT	Normal liver	GSE104766
+P24_T	Hepatoblastoma	GSE104766
+P26_b_NT	Normal liver	GSE104766
+P26_b_T	Hepatoblastoma	GSE104766
+P27_NT	Normal liver	GSE104766
+P27_T	Hepatoblastoma	GSE104766
+P28_NT	Normal liver	GSE104766
+P28_T	Hepatoblastoma	GSE104766
+P29_NT	Normal liver	GSE104766
+P29_T	Hepatoblastoma	GSE104766
+P32_NT_rep1	Normal liver	GSE104766
+P32_NT_rep2	Normal liver	GSE104766
+P32_T_rep1	Hepatoblastoma	GSE104766
+P32_T_rep2	Hepatoblastoma	GSE104766
+P33_NT	Normal liver	GSE104766
+P33_T	Hepatoblastoma	GSE104766
+P34_NT	Normal liver	GSE104766
+P34_T	Hepatoblastoma	GSE104766
+P35_NT	Normal liver	GSE104766
+P35_T	Hepatoblastoma	GSE104766
+P36_NT	Normal liver	GSE104766
+P36_T	Hepatoblastoma	GSE104766
+P38_NT	Normal liver	GSE104766
+P38_T	Hepatoblastoma	GSE104766
