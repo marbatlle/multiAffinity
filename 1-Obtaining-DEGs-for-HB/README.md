@@ -1,6 +1,12 @@
-**Goal:** Statistical approach to HB public databases
+**Goal:** Obtain deregulated genes for HB from public databases
 
 # Scripts
+
+## GEO_metadata.R
+Obtain metadata from desired matrices *(at /Metadata_HB)*
+
+*output: (at /Metadata_HB) : GEO_metadata.R*
+
 ## Prep_Matrices.ipynb
 *inputs: (at /Originals_HB)*
 
@@ -22,8 +28,10 @@
 *output: (at /Matrices_HB)*
 One matrix with all three datasets merged
 
-## Obtain_Stats.ipynb
-Merge the three datasets (done in previous script) and run the code for all three of them to obtain differentially expressed genes and its stats 
+## Obtain_DEG.py
+Once we have the matrix and its metadata, when running this script we will obtain:
 
+* Statistics of all genes: t-statistic, adj. p-value and Cohen's effect size
+* Filter DEG by adj p-value < 0.05 and Cohens effect size d > 0.8 (large) - num. of DEG: 227
 
-*output: (at /Outputs_HB) : join_data.statistics.csv*
+*output: (at /Outputs_HB) : HB_db_DEG.csv*

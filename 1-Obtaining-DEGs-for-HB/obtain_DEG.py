@@ -6,7 +6,7 @@ from tqdm import tqdm
 from tabulate import tabulate
 
 metadata_dict = {}
-metadata = pd.read_csv('Metadata_HB/HB_joint_METADATA.tsv',sep='\t')
+metadata = pd.read_csv('1-Obtaining-DEGs-for-HB/Metadata_HB/HB_joint_METADATA.tsv',sep='\t')
 lst = []
 for i in metadata['type']:
     if str(i).startswith('Hepatoblastoma'):
@@ -18,7 +18,7 @@ for i in metadata['type']:
 metadata['class'] = lst
 metadata_dict = pd.Series(metadata['class'].values,index=metadata['sample']).to_dict()
 
-data = pd.read_csv('Matrices_HB/Joint_matrix.txt', sep=';', index_col=0)
+data = pd.read_csv('1-Obtaining-DEGs-for-HB/Matrices_HB/Joint_matrix.txt', sep=';', index_col=0)
 data.columns = data.columns.map(metadata_dict)
 data = data.rename_axis('gene')
 
@@ -68,7 +68,7 @@ for idx in tqdm(data.index):
     data.at[idx,'adj_p-value'] = adj_pvalue
 
 # export obtained stats 
-data.to_csv("Outputs_HB/HB_db_stats.csv", index=True)
+#data.to_csv("Outputs_HB/HB_db_stats.csv", index=True)
 
 # create df with only stats
 data_stats = data[["t-statistic","adj_p-value","effect size"]]
@@ -91,41 +91,4 @@ print('\ntotal num. of genes:',len(data_stats))
 print('num. of DEG:',len(DEG_large))
 
 # export obtained stats 
-DEG_large.to_csv("Outputs_HB/HB_db_DEG_large.csv", index=True)
-
-print('\n\nFilter DEG by adj p-value < 0.05 and Cohens effect size d > 1.2 (very large)')
-
-# Select desregulated genes
-DEG_vlarge = data_stats[data_stats['adj_p-value'] < 0.05]
-DEG_vlarge = DEG_vlarge[DEG_vlarge["effect size"] > 1.2]
-
-print('\ntotal num. of genes:',len(data_stats))
-print('num. of DEG:',len(DEG_vlarge))
-
-# export obtained stats 
-DEG_vlarge.to_csv("Outputs_HB/HB_db_DEG_verylarge.csv", index=True)
-
-
-print('\n\nFilter DEG by adj p-value < 0.05 and Cohens effect size d > 2 (huge)')
-
-# Select desregulated genes
-DEG_huge = data_stats[data_stats['adj_p-value'] < 0.05]
-DEG_huge = DEG_huge[DEG_huge["effect size"] > 1.2]
-
-print('\ntotal num. of genes:',len(data_stats))
-print('num. of DEG:',len(DEG_huge))
-
-# export obtained stats 
-DEG_huge.to_csv("Outputs_HB/HB_db_DEG_huge.csv", index=True)
-
-print('\n\nFilter DEG by adj p-value < 0.05 and Cohens effect size d > 0.5 (medium)')
-
-# Select desregulated genes
-DEG_med = data_stats[data_stats['adj_p-value'] < 0.05]
-DEG_med = DEG_med[DEG_med["effect size"] > 0.5]
-
-print('\ntotal num. of genes:',len(data_stats))
-print('num. of DEG:',len(DEG_med))
-
-# export obtained stats 
-DEG_med.to_csv("Outputs_HB/HB_db_DEG_med.csv", index=True)
+DEG_large.to_csv("1-Obtaining-DEGs-for-HB/Outputs_HB/HB_db_DEG.csv", index=True)

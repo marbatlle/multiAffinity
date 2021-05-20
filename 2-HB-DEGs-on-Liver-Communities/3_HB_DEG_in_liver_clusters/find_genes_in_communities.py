@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-DEG = pd.read_csv('3_HB_DEG_in_liver_clusters/HB_db_DEG_large.csv',sep=',')
+DEG = pd.read_csv('3_HB_DEG_in_liver_clusters/HB_db_DEG.csv',sep=',')
 DEG_list = DEG.gene.tolist()
 
 community = pd.read_csv('3_HB_DEG_in_liver_clusters/clusters/cluster_genes.txt', header=None)
