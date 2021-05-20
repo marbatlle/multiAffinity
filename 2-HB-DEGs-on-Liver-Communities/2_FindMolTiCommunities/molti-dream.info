@@ -1,0 +1,5 @@
+terminal from molti src folder:
+./molti-console -o liver_ppi /home/mar/Documents/TFM/May/Task2_DEGonCommunityDetection/liver_PPI.txt 
+
+output saved in same folder
+

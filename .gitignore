@@ -1,7 +1,0 @@
-!Matrices_HB/Joint_matrix.txt
-!Matrices_HB/.gitkeep
-!Outputs_HB/.gitkeep
-Metadata_HB/*.tsv
-!Metadata_HB/HB_joint_METADATA.tsv
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
