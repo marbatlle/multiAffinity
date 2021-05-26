@@ -1,0 +1,1522 @@
+ClusterID:1	
+0	 NaN
+ClusterID:2	
+0	 NaN
+ClusterID:3	
+0	 NaN
+ClusterID:4	
+0	 NaN
+ClusterID:5	
+0	 NaN
+ClusterID:6	
+0	 NaN
+ClusterID:7	
+0	 NaN
+ClusterID:8	
+0	 NaN
+ClusterID:9	
+0	 NaN
+ClusterID:10	
+0	 NaN
+ClusterID:11	
+0	 NaN
+ClusterID:12	
+0	 NaN
+ClusterID:13	
+0	 NaN
+ClusterID:14	
+0	 NaN
+ClusterID:15	
+0	 NaN
+ClusterID:16	
+0	 NaN
+ClusterID:17	
+0	 NaN
+ClusterID:18	
+0	 NaN
+ClusterID:19	
+0	 NaN
+ClusterID:20	
+0	 NaN
+ClusterID:21	
+0	 NaN
+ClusterID:22	
+0	 NaN
+ClusterID:23	
+0	 NaN
+ClusterID:24	
+0	 NaN
+ClusterID:25	
+0	 NaN
+ClusterID:26	
+0	 NaN
+ClusterID:27	
+0	 NaN
+ClusterID:28	
+0	 NaN
+ClusterID:29	
+0	 NaN
+ClusterID:30	
+0	 NaN
+ClusterID:31	
+0	 NaN
+ClusterID:32	
+0	 NaN
+ClusterID:33	
+0	 NaN
+ClusterID:34	
+0	 NaN
+ClusterID:35	
+0	 NaN
+ClusterID:36	
+0	 NaN
+ClusterID:37	
+0	 NaN
+ClusterID:38	
+0	 NaN
+ClusterID:39	
+0	 NaN
+ClusterID:40	
+1 	 ['EHMT2']
+ClusterID:41	
+0	 NaN
+ClusterID:42	
+0	 NaN
+ClusterID:43	
+0	 NaN
+ClusterID:44	
+0	 NaN
+ClusterID:45	
+0	 NaN
+ClusterID:46	
+0	 NaN
+ClusterID:47	
+0	 NaN
+ClusterID:48	
+0	 NaN
+ClusterID:49	
+0	 NaN
+ClusterID:50	
+0	 NaN
+ClusterID:51	
+0	 NaN
+ClusterID:52	
+0	 NaN
+ClusterID:53	
+0	 NaN
+ClusterID:54	
+0	 NaN
+ClusterID:55	
+0	 NaN
+ClusterID:56	
+1 	 ['SPAG8']
+ClusterID:57	
+0	 NaN
+ClusterID:58	
+0	 NaN
+ClusterID:59	
+0	 NaN
+ClusterID:60	
+0	 NaN
+ClusterID:61	
+0	 NaN
+ClusterID:62	
+0	 NaN
+ClusterID:63	
+1 	 ['ZBTB46']
+ClusterID:64	
+0	 NaN
+ClusterID:65	
+0	 NaN
+ClusterID:66	
+1 	 ['BCAM']
+ClusterID:67	
+0	 NaN
+ClusterID:68	
+0	 NaN
+ClusterID:69	
+0	 NaN
+ClusterID:70	
+0	 NaN
+ClusterID:71	
+0	 NaN
+ClusterID:72	
+0	 NaN
+ClusterID:73	
+3 	 ['ASAP3', 'ASAP2', 'ARHGEF3']
+ClusterID:74	
+0	 NaN
+ClusterID:75	
+0	 NaN
+ClusterID:76	
+0	 NaN
+ClusterID:77	
+1 	 ['OSBPL7']
+ClusterID:78	
+0	 NaN
+ClusterID:79	
+0	 NaN
+ClusterID:80	
+0	 NaN
+ClusterID:81	
+0	 NaN
+ClusterID:82	
+0	 NaN
+ClusterID:83	
+0	 NaN
+ClusterID:84	
+0	 NaN
+ClusterID:85	
+0	 NaN
+ClusterID:86	
+0	 NaN
+ClusterID:87	
+1 	 ['SOGA1']
+ClusterID:88	
+0	 NaN
+ClusterID:89	
+1 	 ['TBX2']
+ClusterID:90	
+1 	 ['ARHGEF28']
+ClusterID:91	
+0	 NaN
+ClusterID:92	
+0	 NaN
+ClusterID:93	
+0	 NaN
+ClusterID:94	
+0	 NaN
+ClusterID:95	
+0	 NaN
+ClusterID:96	
+0	 NaN
+ClusterID:97	
+1 	 ['PIGZ']
+ClusterID:98	
+0	 NaN
+ClusterID:99	
+0	 NaN
+ClusterID:100	
+0	 NaN
+ClusterID:101	
+0	 NaN
+ClusterID:102	
+0	 NaN
+ClusterID:103	
+0	 NaN
+ClusterID:104	
+0	 NaN
+ClusterID:105	
+0	 NaN
+ClusterID:106	
+1 	 ['MVB12B']
+ClusterID:107	
+0	 NaN
+ClusterID:108	
+0	 NaN
+ClusterID:109	
+0	 NaN
+ClusterID:110	
+0	 NaN
+ClusterID:111	
+0	 NaN
+ClusterID:112	
+1 	 ['ZMYM3']
+ClusterID:113	
+0	 NaN
+ClusterID:114	
+0	 NaN
+ClusterID:115	
+0	 NaN
+ClusterID:116	
+0	 NaN
+ClusterID:117	
+0	 NaN
+ClusterID:118	
+0	 NaN
+ClusterID:119	
+0	 NaN
+ClusterID:120	
+0	 NaN
+ClusterID:121	
+0	 NaN
+ClusterID:122	
+0	 NaN
+ClusterID:123	
+0	 NaN
+ClusterID:124	
+0	 NaN
+ClusterID:125	
+0	 NaN
+ClusterID:126	
+0	 NaN
+ClusterID:127	
+0	 NaN
+ClusterID:128	
+0	 NaN
+ClusterID:129	
+0	 NaN
+ClusterID:130	
+0	 NaN
+ClusterID:131	
+0	 NaN
+ClusterID:132	
+0	 NaN
+ClusterID:133	
+0	 NaN
+ClusterID:134	
+0	 NaN
+ClusterID:135	
+0	 NaN
+ClusterID:136	
+0	 NaN
+ClusterID:137	
+0	 NaN
+ClusterID:138	
+0	 NaN
+ClusterID:139	
+0	 NaN
+ClusterID:140	
+0	 NaN
+ClusterID:141	
+0	 NaN
+ClusterID:142	
+0	 NaN
+ClusterID:143	
+0	 NaN
+ClusterID:144	
+0	 NaN
+ClusterID:145	
+0	 NaN
+ClusterID:146	
+0	 NaN
+ClusterID:147	
+1 	 ['FBXO31']
+ClusterID:148	
+0	 NaN
+ClusterID:149	
+0	 NaN
+ClusterID:150	
+0	 NaN
+ClusterID:151	
+0	 NaN
+ClusterID:152	
+0	 NaN
+ClusterID:153	
+0	 NaN
+ClusterID:154	
+0	 NaN
+ClusterID:155	
+0	 NaN
+ClusterID:156	
+0	 NaN
+ClusterID:157	
+0	 NaN
+ClusterID:158	
+3 	 ['RGS12', 'GNA12', 'GNG4']
+ClusterID:159	
+0	 NaN
+ClusterID:160	
+0	 NaN
+ClusterID:161	
+0	 NaN
+ClusterID:162	
+1 	 ['SLC7A6']
+ClusterID:163	
+0	 NaN
+ClusterID:164	
+1 	 ['TCF7']
+ClusterID:165	
+0	 NaN
+ClusterID:166	
+1 	 ['TBC1D13']
+ClusterID:167	
+0	 NaN
+ClusterID:168	
+0	 NaN
+ClusterID:169	
+0	 NaN
+ClusterID:170	
+0	 NaN
+ClusterID:171	
+0	 NaN
+ClusterID:172	
+0	 NaN
+ClusterID:173	
+0	 NaN
+ClusterID:174	
+0	 NaN
+ClusterID:175	
+0	 NaN
+ClusterID:176	
+2 	 ['ZNF286A', 'ZNF14']
+ClusterID:177	
+0	 NaN
+ClusterID:178	
+0	 NaN
+ClusterID:179	
+0	 NaN
+ClusterID:180	
+2 	 ['AXIN2', 'ZNRF3']
+ClusterID:181	
+0	 NaN
+ClusterID:182	
+1 	 ['STK36']
+ClusterID:183	
+0	 NaN
+ClusterID:184	
+0	 NaN
+ClusterID:185	
+0	 NaN
+ClusterID:186	
+0	 NaN
+ClusterID:187	
+0	 NaN
+ClusterID:188	
+0	 NaN
+ClusterID:189	
+0	 NaN
+ClusterID:190	
+0	 NaN
+ClusterID:191	
+0	 NaN
+ClusterID:192	
+0	 NaN
+ClusterID:193	
+0	 NaN
+ClusterID:194	
+0	 NaN
+ClusterID:195	
+2 	 ['DYNC1I1', 'TSPYL4']
+ClusterID:196	
+1 	 ['SOX13']
+ClusterID:197	
+0	 NaN
+ClusterID:198	
+0	 NaN
+ClusterID:199	
+0	 NaN
+ClusterID:200	
+0	 NaN
+ClusterID:201	
+1 	 ['PAQR7']
+ClusterID:202	
+0	 NaN
+ClusterID:203	
+0	 NaN
+ClusterID:204	
+0	 NaN
+ClusterID:205	
+0	 NaN
+ClusterID:206	
+1 	 ['WFS1']
+ClusterID:207	
+0	 NaN
+ClusterID:208	
+1 	 ['TMEM98']
+ClusterID:209	
+0	 NaN
+ClusterID:210	
+0	 NaN
+ClusterID:211	
+0	 NaN
+ClusterID:212	
+0	 NaN
+ClusterID:213	
+0	 NaN
+ClusterID:214	
+0	 NaN
+ClusterID:215	
+0	 NaN
+ClusterID:216	
+0	 NaN
+ClusterID:217	
+0	 NaN
+ClusterID:218	
+0	 NaN
+ClusterID:219	
+0	 NaN
+ClusterID:220	
+0	 NaN
+ClusterID:221	
+0	 NaN
+ClusterID:222	
+0	 NaN
+ClusterID:223	
+0	 NaN
+ClusterID:224	
+0	 NaN
+ClusterID:225	
+0	 NaN
+ClusterID:226	
+0	 NaN
+ClusterID:227	
+0	 NaN
+ClusterID:228	
+0	 NaN
+ClusterID:229	
+0	 NaN
+ClusterID:230	
+0	 NaN
+ClusterID:231	
+0	 NaN
+ClusterID:232	
+0	 NaN
+ClusterID:233	
+0	 NaN
+ClusterID:234	
+0	 NaN
+ClusterID:235	
+1 	 ['TAF6']
+ClusterID:236	
+0	 NaN
+ClusterID:237	
+0	 NaN
+ClusterID:238	
+0	 NaN
+ClusterID:239	
+0	 NaN
+ClusterID:240	
+0	 NaN
+ClusterID:241	
+0	 NaN
+ClusterID:242	
+0	 NaN
+ClusterID:243	
+0	 NaN
+ClusterID:244	
+0	 NaN
+ClusterID:245	
+0	 NaN
+ClusterID:246	
+0	 NaN
+ClusterID:247	
+0	 NaN
+ClusterID:248	
+0	 NaN
+ClusterID:249	
+0	 NaN
+ClusterID:250	
+0	 NaN
+ClusterID:251	
+0	 NaN
+ClusterID:252	
+1 	 ['CHST15']
+ClusterID:253	
+0	 NaN
+ClusterID:254	
+1 	 ['TBX3']
+ClusterID:255	
+0	 NaN
+ClusterID:256	
+0	 NaN
+ClusterID:257	
+0	 NaN
+ClusterID:258	
+0	 NaN
+ClusterID:259	
+0	 NaN
+ClusterID:260	
+0	 NaN
+ClusterID:261	
+0	 NaN
+ClusterID:262	
+0	 NaN
+ClusterID:263	
+0	 NaN
+ClusterID:264	
+0	 NaN
+ClusterID:265	
+0	 NaN
+ClusterID:266	
+0	 NaN
+ClusterID:267	
+1 	 ['DVL2']
+ClusterID:268	
+0	 NaN
+ClusterID:269	
+0	 NaN
+ClusterID:270	
+3 	 ['PARD3B', 'DLG5', 'DLG3']
+ClusterID:271	
+0	 NaN
+ClusterID:272	
+0	 NaN
+ClusterID:273	
+0	 NaN
+ClusterID:274	
+0	 NaN
+ClusterID:275	
+0	 NaN
+ClusterID:276	
+0	 NaN
+ClusterID:277	
+0	 NaN
+ClusterID:278	
+0	 NaN
+ClusterID:279	
+0	 NaN
+ClusterID:280	
+0	 NaN
+ClusterID:281	
+0	 NaN
+ClusterID:282	
+0	 NaN
+ClusterID:283	
+0	 NaN
+ClusterID:284	
+0	 NaN
+ClusterID:285	
+0	 NaN
+ClusterID:286	
+0	 NaN
+ClusterID:287	
+0	 NaN
+ClusterID:288	
+0	 NaN
+ClusterID:289	
+0	 NaN
+ClusterID:290	
+0	 NaN
+ClusterID:291	
+0	 NaN
+ClusterID:292	
+0	 NaN
+ClusterID:293	
+2 	 ['SLC26A11', 'SLC26A2']
+ClusterID:294	
+0	 NaN
+ClusterID:295	
+0	 NaN
+ClusterID:296	
+0	 NaN
+ClusterID:297	
+0	 NaN
+ClusterID:298	
+0	 NaN
+ClusterID:299	
+0	 NaN
+ClusterID:300	
+0	 NaN
+ClusterID:301	
+0	 NaN
+ClusterID:302	
+0	 NaN
+ClusterID:303	
+0	 NaN
+ClusterID:304	
+0	 NaN
+ClusterID:305	
+0	 NaN
+ClusterID:306	
+1 	 ['ZNF646']
+ClusterID:307	
+0	 NaN
+ClusterID:308	
+0	 NaN
+ClusterID:309	
+1 	 ['MAGEE1']
+ClusterID:310	
+0	 NaN
+ClusterID:311	
+0	 NaN
+ClusterID:312	
+1 	 ['RNF43']
+ClusterID:313	
+0	 NaN
+ClusterID:314	
+0	 NaN
+ClusterID:315	
+0	 NaN
+ClusterID:316	
+0	 NaN
+ClusterID:317	
+0	 NaN
+ClusterID:318	
+0	 NaN
+ClusterID:319	
+0	 NaN
+ClusterID:320	
+1 	 ['ABCC5']
+ClusterID:321	
+0	 NaN
+ClusterID:322	
+0	 NaN
+ClusterID:323	
+0	 NaN
+ClusterID:324	
+0	 NaN
+ClusterID:325	
+0	 NaN
+ClusterID:326	
+1 	 ['MTR']
+ClusterID:327	
+1 	 ['ATP8B2']
+ClusterID:328	
+0	 NaN
+ClusterID:329	
+1 	 ['IGF2BP2']
+ClusterID:330	
+0	 NaN
+ClusterID:331	
+0	 NaN
+ClusterID:332	
+0	 NaN
+ClusterID:333	
+1 	 ['ZBTB40']
+ClusterID:334	
+0	 NaN
+ClusterID:335	
+0	 NaN
+ClusterID:336	
+0	 NaN
+ClusterID:337	
+0	 NaN
+ClusterID:338	
+0	 NaN
+ClusterID:339	
+1 	 ['AATK']
+ClusterID:340	
+0	 NaN
+ClusterID:341	
+3 	 ['SALL2', 'NDN', 'MAGED1']
+ClusterID:342	
+0	 NaN
+ClusterID:343	
+0	 NaN
+ClusterID:344	
+0	 NaN
+ClusterID:345	
+0	 NaN
+ClusterID:346	
+0	 NaN
+ClusterID:347	
+0	 NaN
+ClusterID:348	
+0	 NaN
+ClusterID:349	
+0	 NaN
+ClusterID:350	
+1 	 ['TRIB2']
+ClusterID:351	
+0	 NaN
+ClusterID:352	
+0	 NaN
+ClusterID:353	
+0	 NaN
+ClusterID:354	
+0	 NaN
+ClusterID:355	
+2 	 ['ITGA6', 'CD36']
+ClusterID:356	
+0	 NaN
+ClusterID:357	
+0	 NaN
+ClusterID:358	
+0	 NaN
+ClusterID:359	
+0	 NaN
+ClusterID:360	
+0	 NaN
+ClusterID:361	
+2 	 ['VPS33A', 'STXBP6']
+ClusterID:362	
+0	 NaN
+ClusterID:363	
+0	 NaN
+ClusterID:364	
+0	 NaN
+ClusterID:365	
+1 	 ['PHYHIPL']
+ClusterID:366	
+1 	 ['MIER2']
+ClusterID:367	
+0	 NaN
+ClusterID:368	
+0	 NaN
+ClusterID:369	
+1 	 ['NAGPA']
+ClusterID:370	
+0	 NaN
+ClusterID:371	
+0	 NaN
+ClusterID:372	
+0	 NaN
+ClusterID:373	
+0	 NaN
+ClusterID:374	
+0	 NaN
+ClusterID:375	
+1 	 ['ZNF704']
+ClusterID:376	
+0	 NaN
+ClusterID:377	
+0	 NaN
+ClusterID:378	
+0	 NaN
+ClusterID:379	
+0	 NaN
+ClusterID:380	
+0	 NaN
+ClusterID:381	
+0	 NaN
+ClusterID:382	
+0	 NaN
+ClusterID:383	
+0	 NaN
+ClusterID:384	
+0	 NaN
+ClusterID:385	
+0	 NaN
+ClusterID:386	
+0	 NaN
+ClusterID:387	
+0	 NaN
+ClusterID:388	
+0	 NaN
+ClusterID:389	
+0	 NaN
+ClusterID:390	
+0	 NaN
+ClusterID:391	
+0	 NaN
+ClusterID:392	
+0	 NaN
+ClusterID:393	
+0	 NaN
+ClusterID:394	
+0	 NaN
+ClusterID:395	
+0	 NaN
+ClusterID:396	
+0	 NaN
+ClusterID:397	
+0	 NaN
+ClusterID:398	
+0	 NaN
+ClusterID:399	
+0	 NaN
+ClusterID:400	
+0	 NaN
+ClusterID:401	
+0	 NaN
+ClusterID:402	
+0	 NaN
+ClusterID:403	
+0	 NaN
+ClusterID:404	
+0	 NaN
+ClusterID:405	
+0	 NaN
+ClusterID:406	
+0	 NaN
+ClusterID:407	
+0	 NaN
+ClusterID:408	
+0	 NaN
+ClusterID:409	
+0	 NaN
+ClusterID:410	
+0	 NaN
+ClusterID:411	
+0	 NaN
+ClusterID:412	
+0	 NaN
+ClusterID:413	
+0	 NaN
+ClusterID:414	
+0	 NaN
+ClusterID:415	
+1 	 ['HHIPL2']
+ClusterID:416	
+2 	 ['PPOX', 'UGGT1']
+ClusterID:417	
+0	 NaN
+ClusterID:418	
+0	 NaN
+ClusterID:419	
+0	 NaN
+ClusterID:420	
+0	 NaN
+ClusterID:421	
+0	 NaN
+ClusterID:422	
+0	 NaN
+ClusterID:423	
+1 	 ['MAP4K4']
+ClusterID:424	
+0	 NaN
+ClusterID:425	
+1 	 ['SRC']
+ClusterID:426	
+0	 NaN
+ClusterID:427	
+1 	 ['SLC25A36']
+ClusterID:428	
+0	 NaN
+ClusterID:429	
+0	 NaN
+ClusterID:430	
+0	 NaN
+ClusterID:431	
+0	 NaN
+ClusterID:432	
+0	 NaN
+ClusterID:433	
+0	 NaN
+ClusterID:434	
+0	 NaN
+ClusterID:435	
+1 	 ['FATE1']
+ClusterID:436	
+0	 NaN
+ClusterID:437	
+0	 NaN
+ClusterID:438	
+2 	 ['GPC3', 'HS6ST1']
+ClusterID:439	
+0	 NaN
+ClusterID:440	
+0	 NaN
+ClusterID:441	
+0	 NaN
+ClusterID:442	
+0	 NaN
+ClusterID:443	
+0	 NaN
+ClusterID:444	
+0	 NaN
+ClusterID:445	
+0	 NaN
+ClusterID:446	
+0	 NaN
+ClusterID:447	
+0	 NaN
+ClusterID:448	
+1 	 ['PLCG1']
+ClusterID:449	
+1 	 ['RBP7']
+ClusterID:450	
+0	 NaN
+ClusterID:451	
+0	 NaN
+ClusterID:452	
+0	 NaN
+ClusterID:453	
+0	 NaN
+ClusterID:454	
+0	 NaN
+ClusterID:455	
+0	 NaN
+ClusterID:456	
+0	 NaN
+ClusterID:457	
+1 	 ['HSF2BP']
+ClusterID:458	
+0	 NaN
+ClusterID:459	
+0	 NaN
+ClusterID:460	
+0	 NaN
+ClusterID:461	
+0	 NaN
+ClusterID:462	
+1 	 ['SH2B1']
+ClusterID:463	
+0	 NaN
+ClusterID:464	
+0	 NaN
+ClusterID:465	
+1 	 ['FAM217B']
+ClusterID:466	
+0	 NaN
+ClusterID:467	
+0	 NaN
+ClusterID:468	
+0	 NaN
+ClusterID:469	
+1 	 ['PRR12']
+ClusterID:470	
+1 	 ['MAPK13']
+ClusterID:471	
+0	 NaN
+ClusterID:472	
+1 	 ['CD34']
+ClusterID:473	
+0	 NaN
+ClusterID:474	
+0	 NaN
+ClusterID:475	
+0	 NaN
+ClusterID:476	
+0	 NaN
+ClusterID:477	
+0	 NaN
+ClusterID:478	
+0	 NaN
+ClusterID:479	
+1 	 ['DKK3']
+ClusterID:480	
+0	 NaN
+ClusterID:481	
+0	 NaN
+ClusterID:482	
+0	 NaN
+ClusterID:483	
+0	 NaN
+ClusterID:484	
+0	 NaN
+ClusterID:485	
+0	 NaN
+ClusterID:486	
+0	 NaN
+ClusterID:487	
+0	 NaN
+ClusterID:488	
+0	 NaN
+ClusterID:489	
+0	 NaN
+ClusterID:490	
+0	 NaN
+ClusterID:491	
+0	 NaN
+ClusterID:492	
+0	 NaN
+ClusterID:493	
+0	 NaN
+ClusterID:494	
+0	 NaN
+ClusterID:495	
+0	 NaN
+ClusterID:496	
+0	 NaN
+ClusterID:497	
+0	 NaN
+ClusterID:498	
+1 	 ['HIF1AN']
+ClusterID:499	
+0	 NaN
+ClusterID:500	
+0	 NaN
+ClusterID:501	
+0	 NaN
+ClusterID:502	
+0	 NaN
+ClusterID:503	
+0	 NaN
+ClusterID:504	
+0	 NaN
+ClusterID:505	
+0	 NaN
+ClusterID:506	
+0	 NaN
+ClusterID:507	
+0	 NaN
+ClusterID:508	
+0	 NaN
+ClusterID:509	
+0	 NaN
+ClusterID:510	
+0	 NaN
+ClusterID:511	
+0	 NaN
+ClusterID:512	
+0	 NaN
+ClusterID:513	
+0	 NaN
+ClusterID:514	
+0	 NaN
+ClusterID:515	
+0	 NaN
+ClusterID:516	
+0	 NaN
+ClusterID:517	
+0	 NaN
+ClusterID:518	
+0	 NaN
+ClusterID:519	
+0	 NaN
+ClusterID:520	
+0	 NaN
+ClusterID:521	
+2 	 ['CAP2', 'FMNL2']
+ClusterID:522	
+0	 NaN
+ClusterID:523	
+0	 NaN
+ClusterID:524	
+0	 NaN
+ClusterID:525	
+0	 NaN
+ClusterID:526	
+1 	 ['AP1G2']
+ClusterID:527	
+0	 NaN
+ClusterID:528	
+0	 NaN
+ClusterID:529	
+0	 NaN
+ClusterID:530	
+0	 NaN
+ClusterID:531	
+0	 NaN
+ClusterID:532	
+0	 NaN
+ClusterID:533	
+0	 NaN
+ClusterID:534	
+0	 NaN
+ClusterID:535	
+0	 NaN
+ClusterID:536	
+0	 NaN
+ClusterID:537	
+0	 NaN
+ClusterID:538	
+0	 NaN
+ClusterID:539	
+0	 NaN
+ClusterID:540	
+3 	 ['RUSC1', 'CUEDC1', 'ASPSCR1']
+ClusterID:541	
+1 	 ['PARVB']
+ClusterID:542	
+0	 NaN
+ClusterID:543	
+0	 NaN
+ClusterID:544	
+2 	 ['CRTAP', 'ARMC9']
+ClusterID:545	
+0	 NaN
+ClusterID:546	
+0	 NaN
+ClusterID:547	
+0	 NaN
+ClusterID:548	
+0	 NaN
+ClusterID:549	
+0	 NaN
+ClusterID:550	
+0	 NaN
+ClusterID:551	
+0	 NaN
+ClusterID:552	
+0	 NaN
+ClusterID:553	
+0	 NaN
+ClusterID:554	
+0	 NaN
+ClusterID:555	
+0	 NaN
+ClusterID:556	
+0	 NaN
+ClusterID:557	
+0	 NaN
+ClusterID:558	
+0	 NaN
+ClusterID:559	
+0	 NaN
+ClusterID:560	
+0	 NaN
+ClusterID:561	
+1 	 ['RHOBTB1']
+ClusterID:562	
+0	 NaN
+ClusterID:563	
+0	 NaN
+ClusterID:564	
+0	 NaN
+ClusterID:565	
+0	 NaN
+ClusterID:566	
+0	 NaN
+ClusterID:567	
+0	 NaN
+ClusterID:568	
+0	 NaN
+ClusterID:569	
+1 	 ['RHBG']
+ClusterID:570	
+1 	 ['HDAC11']
+ClusterID:571	
+1 	 ['ZSWIM5']
+ClusterID:572	
+0	 NaN
+ClusterID:573	
+0	 NaN
+ClusterID:574	
+2 	 ['PLXNC1', 'SEMA3G']
+ClusterID:575	
+0	 NaN
+ClusterID:576	
+0	 NaN
+ClusterID:577	
+0	 NaN
+ClusterID:578	
+0	 NaN
+ClusterID:579	
+0	 NaN
+ClusterID:580	
+0	 NaN
+ClusterID:581	
+0	 NaN
+ClusterID:582	
+0	 NaN
+ClusterID:583	
+0	 NaN
+ClusterID:584	
+0	 NaN
+ClusterID:585	
+0	 NaN
+ClusterID:586	
+0	 NaN
+ClusterID:587	
+0	 NaN
+ClusterID:588	
+0	 NaN
+ClusterID:589	
+0	 NaN
+ClusterID:590	
+0	 NaN
+ClusterID:591	
+0	 NaN
+ClusterID:592	
+0	 NaN
+ClusterID:593	
+0	 NaN
+ClusterID:594	
+0	 NaN
+ClusterID:595	
+0	 NaN
+ClusterID:596	
+0	 NaN
+ClusterID:597	
+0	 NaN
+ClusterID:598	
+0	 NaN
+ClusterID:599	
+0	 NaN
+ClusterID:600	
+0	 NaN
+ClusterID:601	
+0	 NaN
+ClusterID:602	
+0	 NaN
+ClusterID:603	
+0	 NaN
+ClusterID:604	
+0	 NaN
+ClusterID:605	
+0	 NaN
+ClusterID:606	
+0	 NaN
+ClusterID:607	
+0	 NaN
+ClusterID:608	
+0	 NaN
+ClusterID:609	
+0	 NaN
+ClusterID:610	
+0	 NaN
+ClusterID:611	
+0	 NaN
+ClusterID:612	
+0	 NaN
+ClusterID:613	
+0	 NaN
+ClusterID:614	
+0	 NaN
+ClusterID:615	
+1 	 ['TRIM65']
+ClusterID:616	
+0	 NaN
+ClusterID:617	
+0	 NaN
+ClusterID:618	
+0	 NaN
+ClusterID:619	
+0	 NaN
+ClusterID:620	
+0	 NaN
+ClusterID:621	
+0	 NaN
+ClusterID:622	
+0	 NaN
+ClusterID:623	
+0	 NaN
+ClusterID:624	
+0	 NaN
+ClusterID:625	
+0	 NaN
+ClusterID:626	
+0	 NaN
+ClusterID:627	
+0	 NaN
+ClusterID:628	
+0	 NaN
+ClusterID:629	
+5 	 ['CEP250', 'LZTS2', 'CEP68', 'TACC1', 'LUZP1']
+ClusterID:630	
+0	 NaN
+ClusterID:631	
+0	 NaN
+ClusterID:632	
+1 	 ['SEMA7A']
+ClusterID:633	
+0	 NaN
+ClusterID:634	
+0	 NaN
+ClusterID:635	
+1 	 ['SMYD2']
+ClusterID:636	
+0	 NaN
+ClusterID:637	
+1 	 ['ZNF503']
+ClusterID:638	
+0	 NaN
+ClusterID:639	
+0	 NaN
+ClusterID:640	
+0	 NaN
+ClusterID:641	
+0	 NaN
+ClusterID:642	
+0	 NaN
+ClusterID:643	
+0	 NaN
+ClusterID:644	
+0	 NaN
+ClusterID:645	
+0	 NaN
+ClusterID:646	
+0	 NaN
+ClusterID:647	
+0	 NaN
+ClusterID:648	
+0	 NaN
+ClusterID:649	
+0	 NaN
+ClusterID:650	
+0	 NaN
+ClusterID:651	
+0	 NaN
+ClusterID:652	
+0	 NaN
+ClusterID:653	
+0	 NaN
+ClusterID:654	
+0	 NaN
+ClusterID:655	
+0	 NaN
+ClusterID:656	
+0	 NaN
+ClusterID:657	
+0	 NaN
+ClusterID:658	
+0	 NaN
+ClusterID:659	
+0	 NaN
+ClusterID:660	
+0	 NaN
+ClusterID:661	
+0	 NaN
+ClusterID:662	
+0	 NaN
+ClusterID:663	
+0	 NaN
+ClusterID:664	
+0	 NaN
+ClusterID:665	
+0	 NaN
+ClusterID:666	
+0	 NaN
+ClusterID:667	
+0	 NaN
+ClusterID:668	
+0	 NaN
+ClusterID:669	
+0	 NaN
+ClusterID:670	
+0	 NaN
+ClusterID:671	
+0	 NaN
+ClusterID:672	
+0	 NaN
+ClusterID:673	
+0	 NaN
+ClusterID:674	
+0	 NaN
+ClusterID:675	
+0	 NaN
+ClusterID:676	
+0	 NaN
+ClusterID:677	
+0	 NaN
+ClusterID:678	
+0	 NaN
+ClusterID:679	
+0	 NaN
+ClusterID:680	
+0	 NaN
+ClusterID:681	
+0	 NaN
+ClusterID:682	
+0	 NaN
+ClusterID:683	
+0	 NaN
+ClusterID:684	
+0	 NaN
+ClusterID:685	
+0	 NaN
+ClusterID:686	
+0	 NaN
+ClusterID:687	
+0	 NaN
+ClusterID:688	
+0	 NaN
+ClusterID:689	
+0	 NaN
+ClusterID:690	
+0	 NaN
+ClusterID:691	
+0	 NaN
+ClusterID:692	
+0	 NaN
+ClusterID:693	
+0	 NaN
+ClusterID:694	
+0	 NaN
+ClusterID:695	
+0	 NaN
+ClusterID:696	
+0	 NaN
+ClusterID:697	
+0	 NaN
+ClusterID:698	
+0	 NaN
+ClusterID:699	
+0	 NaN
+ClusterID:700	
+0	 NaN
+ClusterID:701	
+0	 NaN
+ClusterID:702	
+1 	 ['NOTUM']
+ClusterID:703	
+0	 NaN
+ClusterID:704	
+0	 NaN
+ClusterID:705	
+0	 NaN
+ClusterID:706	
+0	 NaN
+ClusterID:707	
+0	 NaN
+ClusterID:708	
+3 	 ['FAM189B', 'HSDL1', 'SLC26A6']
+ClusterID:709	
+0	 NaN
+ClusterID:710	
+0	 NaN
+ClusterID:711	
+1 	 ['SLC25A35']
+ClusterID:712	
+0	 NaN
+ClusterID:713	
+0	 NaN
+ClusterID:714	
+0	 NaN
+ClusterID:715	
+0	 NaN
+ClusterID:716	
+0	 NaN
+ClusterID:717	
+0	 NaN
+ClusterID:718	
+1 	 ['ZNF610']
+ClusterID:719	
+1 	 ['MAPK3']
+ClusterID:720	
+1 	 ['INPP5D']
+ClusterID:721	
+0	 NaN
+ClusterID:722	
+0	 NaN
+ClusterID:723	
+1 	 ['FUT2']
+ClusterID:724	
+0	 NaN
+ClusterID:725	
+0 	 NaN
+ClusterID:726	
+0 	 NaN
+ClusterID:727	
+0 	 NaN
+ClusterID:728	
+0 	 NaN
+ClusterID:729	
+0 	 NaN
+ClusterID:730	
+1 	 ['FOXRED2']
+ClusterID:731	
+0 	 NaN
+ClusterID:732	
+0 	 NaN
+ClusterID:733	
+0 	 NaN
+ClusterID:734	
+0 	 NaN
+ClusterID:735	
+0 	 NaN
+ClusterID:736	
+0 	 NaN
+ClusterID:737	
+0 	 NaN
+ClusterID:738	
+0 	 NaN
+ClusterID:739	
+0 	 NaN
+ClusterID:740	
+0 	 NaN
+ClusterID:741	
+0 	 NaN
+ClusterID:742	
+0 	 NaN
+ClusterID:743	
+0 	 NaN
+ClusterID:744	
+0 	 NaN
+ClusterID:745	
+0 	 NaN
+ClusterID:746	
+0 	 NaN
+ClusterID:747	
+0 	 NaN
+ClusterID:748	
+0 	 NaN
+ClusterID:749	
+2  	 ['SQLE', 'AACS']
+ClusterID:750	
+0 	 NaN
+ClusterID:751	
+0 	 NaN
+ClusterID:752	
+0 	 NaN
+ClusterID:753	
+1  	 ['ZNF775']
+ClusterID:754	
+0 	 NaN
+ClusterID:755	
+0 	 NaN
+ClusterID:756	
+0 	 NaN
+ClusterID:757	
+0 	 NaN
+ClusterID:758	
+0 	 NaN
+ClusterID:759	
+1  	 ['EML6']
+ClusterID:760	
+0 	 NaN
+ClusterID:761	
+0 	 NaN

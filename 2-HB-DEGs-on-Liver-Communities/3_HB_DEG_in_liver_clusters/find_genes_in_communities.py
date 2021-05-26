@@ -10,6 +10,6 @@ community_list = community[0].tolist()
 matches = list(set(DEG_list ).intersection(set(community_list)))
 
 if len(matches) == 0:
-    print('No gene matches')
+    print('0 	','NaN')
 else:
-    print(len(matches),'genes match: ',matches)
+    print(len(matches),' 	',matches)

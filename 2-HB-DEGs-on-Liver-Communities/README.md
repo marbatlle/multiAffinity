@@ -23,3 +23,5 @@ In this last step, the scripts are able to find matches between the DEGs found i
 
 * *command bash 3_HB_DEG_in_liver_clusters/diff_communities_gene_list.sh *
 * *output: /output/DEG_in_clusters.txt*
+
+sed '/^C/d' /home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_liver_clusters/output/DEG_in_clusters.txt > matches.csv
