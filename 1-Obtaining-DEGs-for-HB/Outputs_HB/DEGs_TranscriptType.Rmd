@@ -46,3 +46,14 @@ import pandas as pd
 trans_type = pd.read_csv('DEGs_transcript_type.csv')
 trans_type.transcript_biotype.value_counts()
 ```
+```{python}
+import pandas as pd
+trans_type = pd.read_csv('DEGs_transcript_type.csv', index_col=0)
+only_coding_lst = trans_type.loc[trans_type['transcript_biotype'].isin(['protein_coding'])].index.tolist()
+```
+
+```{python}
+non_coding = trans_type[~trans_type.index.isin(only_coding_lst)]
+non_coding.to_csv("DEGs_non_coding_transcript.csv")
+print(len(set(non_coding.index.tolist())))
+```

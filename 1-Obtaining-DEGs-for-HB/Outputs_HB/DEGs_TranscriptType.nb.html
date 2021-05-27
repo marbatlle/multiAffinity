@@ -280,7 +280,7 @@ Reticulate 1.20 REPL -- A Python interpreter in R.</code></pre>
 trans_type = pd.read_csv(&#39;DEGs_transcript_type.csv&#39;)
 trans_type.transcript_biotype.value_counts()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicHJvdGVpbl9jb2RpbmcgICAgICAgICAgICAgICAgICAgICAgICAyMDVcbnByb2Nlc3NlZF90cmFuc2NyaXB0ICAgICAgICAgICAgICAgICAgMTI3XG5yZXRhaW5lZF9pbnRyb24gICAgICAgICAgICAgICAgICAgICAgIDEwOVxubm9uc2Vuc2VfbWVkaWF0ZWRfZGVjYXkgICAgICAgICAgICAgICAgNzlcbmxuY1JOQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEzXG5zbm9STkEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM1xudHJhbnNjcmliZWRfdW5pdGFyeV9wc2V1ZG9nZW5lICAgICAgICAgIDJcbnRyYW5zY3JpYmVkX3VucHJvY2Vzc2VkX3BzZXVkb2dlbmUgICAgICAyXG51bnByb2Nlc3NlZF9wc2V1ZG9nZW5lICAgICAgICAgICAgICAgICAgMVxubm9uX3N0b3BfZGVjYXkgICAgICAgICAgICAgICAgICAgICAgICAgIDFcbm1pUk5BICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxXG5OYW1lOiB0cmFuc2NyaXB0X2Jpb3R5cGUsIGR0eXBlOiBpbnQ2NFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoicHJvdGVpbl9jb2RpbmcgICAgICAgICAgICAgICAgICAgICAgICAyMDVcbnByb2Nlc3NlZF90cmFuc2NyaXB0ICAgICAgICAgICAgICAgICAgMTI3XG5yZXRhaW5lZF9pbnRyb24gICAgICAgICAgICAgICAgICAgICAgIDEwOVxubm9uc2Vuc2VfbWVkaWF0ZWRfZGVjYXkgICAgICAgICAgICAgICAgNzlcbmxuY1JOQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEzXG5zbm9STkEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM1xudHJhbnNjcmliZWRfdW5pdGFyeV9wc2V1ZG9nZW5lICAgICAgICAgIDJcbnRyYW5zY3JpYmVkX3VucHJvY2Vzc2VkX3BzZXVkb2dlbmUgICAgICAyXG51bnByb2Nlc3NlZF9wc2V1ZG9nZW5lICAgICAgICAgICAgICAgICAgMVxubWlSTkEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDFcbm5vbl9zdG9wX2RlY2F5ICAgICAgICAgICAgICAgICAgICAgICAgICAxXG5OYW1lOiB0cmFuc2NyaXB0X2Jpb3R5cGUsIGR0eXBlOiBpbnQ2NFxuIn0= -->
 <pre><code>protein_coding                        205
 processed_transcript                  127
 retained_intron                       109
@@ -290,13 +290,46 @@ snoRNA                                  3
 transcribed_unitary_pseudogene          2
 transcribed_unprocessed_pseudogene      2
 unprocessed_pseudogene                  1
-non_stop_decay                          1
 miRNA                                   1
+non_stop_decay                          1
 Name: transcript_biotype, dtype: int64</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5yZXRpY3VsYXRlOjpyZXBsX3B5dGhvbigpXG5gYGAifQ== -->
+<pre class="python"><code>reticulate::repl_python()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUHl0aG9uIDMuOC41ICgvaG9tZS9tYXIvbWluaWNvbmRhMy9iaW4vcHl0aG9uMylcblJldGljdWxhdGUgMS4yMCBSRVBMIC0tIEEgUHl0aG9uIGludGVycHJldGVyIGluIFIuXG4ifQ== -->
+<pre><code>Python 3.8.5 (/home/mar/miniconda3/bin/python3)
+Reticulate 1.20 REPL -- A Python interpreter in R.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5pbXBvcnQgcGFuZGFzIGFzIHBkXG50cmFuc190eXBlID0gcGQucmVhZF9jc3YoJ0RFR3NfdHJhbnNjcmlwdF90eXBlLmNzdicsIGluZGV4X2NvbD0wKVxub25seV9jb2RpbmdfbHN0ID0gdHJhbnNfdHlwZS5sb2NbdHJhbnNfdHlwZVsndHJhbnNjcmlwdF9iaW90eXBlJ10uaXNpbihbJ3Byb3RlaW5fY29kaW5nJ10pXS5pbmRleC50b2xpc3QoKVxuYGBgIn0= -->
+<pre class="python"><code>import pandas as pd
+trans_type = pd.read_csv(&#39;DEGs_transcript_type.csv&#39;, index_col=0)
+only_coding_lst = trans_type.loc[trans_type[&#39;transcript_biotype&#39;].isin([&#39;protein_coding&#39;])].index.tolist()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5yZXRpY3VsYXRlOjpyZXBsX3B5dGhvbigpXG5gYGAifQ== -->
+<pre class="python"><code>reticulate::repl_python()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUHl0aG9uIDMuOC41ICgvaG9tZS9tYXIvbWluaWNvbmRhMy9iaW4vcHl0aG9uMylcblJldGljdWxhdGUgMS4yMCBSRVBMIC0tIEEgUHl0aG9uIGludGVycHJldGVyIGluIFIuXG4ifQ== -->
+<pre><code>Python 3.8.5 (/home/mar/miniconda3/bin/python3)
+Reticulate 1.20 REPL -- A Python interpreter in R.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ub25fY29kaW5nID0gdHJhbnNfdHlwZVt+dHJhbnNfdHlwZS5pbmRleC5pc2luKG9ubHlfY29kaW5nX2xzdCldXG5ub25fY29kaW5nLnRvX2NzdihcIkRFR3Nfbm9uX2NvZGluZ190cmFuc2NyaXB0LmNzdlwiKVxucHJpbnQobGVuKHNldChub25fY29kaW5nLmluZGV4LnRvbGlzdCgpKSkpXG5gYGAifQ== -->
+<pre class="python"><code>non_coding = trans_type[~trans_type.index.isin(only_coding_lst)]
+non_coding.to_csv(&quot;DEGs_non_coding_transcript.csv&quot;)
+print(len(set(non_coding.index.tolist())))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiMjJcbiJ9 -->
+<pre><code>22</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiREVHc19UcmFuc2NyaXB0VHlwZSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCmBgYHtyfQojIExvYWRpbmcgcGFja2FnZXMKbGlicmFyeShCaW9jTWFuYWdlcikKbGlicmFyeShiaW9tYVJ0KQpsaWJyYXJ5IChwbHlyKTsKYGBgCgpgYGB7ciB3YXJuaW5nPUZBTFNFfQojIGxvYWRpbmcgZGF0YQpzZXR3ZCgifi9Eb2N1bWVudHMvVEZNL0dpdEh1Yi9IQl9QdWJsaWNEYXRhLzEtT2J0YWluaW5nLURFR3MtZm9yLUhCL091dHB1dHNfSEIvIikKREVHcyA8LSByZWFkLmNzdigiSEJfZGJfREVHLmNzdiIpCmBgYAoKCioqQWNjZXNzaW5nIEVuc2VtYmwgYW5ub3RhdGlvbiB3aXRoIGJpb21hUnQ6KioKaHR0cHM6Ly93d3cuYmlvY29uZHVjdG9yLm9yZy9wYWNrYWdlcy9kZXZlbC9iaW9jL3ZpZ25ldHRlcy9iaW9tYVJ0L2luc3QvZG9jL2FjY2Vzc2luZ19lbnNlbWJsLmh0bWwKCiogRGF0YWJhc2U6IEVuc2VtYmwgR2VuZXMgMTA0CiogRGF0YXNldDogSHVtYW4gZ2VuZXMgKEdSQ2gzOCkKKiBGaWx0ZXJzOiBHZW5lIC0gR2VuZSBOYW1lKHMpIC0gaGduY19zeW1ib2wKKiBBdHRyaWJ1dGVzIC0gVHJhbnNjcmlwdCBUeXBlcyAtIHRyYW5zY3JpcHQtYmlvdHlwZQpgYGB7ciB3YXJuaW5nPUZBTFNFfQojIGRlc2NyaWJlIGRhdGFzZXQKZW5zZW1ibCA8LSB1c2VFbnNlbWJsKGJpb21hcnQgPSAiZ2VuZXMiLCBkYXRhc2V0ID0gImhzYXBpZW5zX2dlbmVfZW5zZW1ibCIpCmBgYAoKYGBge3Igd2FybmluZz1GQUxTRX0KIyBhZGQgdHJhbnNjcmlwdCB0eXBlIApnZW5lcyA8LSBsaXN0KERFR3MkZ2VuZSkKdHJhbnNfdHlwZSA8LSBnZXRCTShhdHRyaWJ1dGVzIDwtIGMoJ2hnbmNfc3ltYm9sJywndHJhbnNjcmlwdF9iaW90eXBlJyksIGZpbHRlcnMgPC0gJ2hnbmNfc3ltYm9sJywgdmFsdWVzIDwtIGdlbmVzLCBtYXJ0IDwtIGVuc2VtYmwpCmBgYAoKYGBge3J9CiNleHBvcnQgdHlwZXMKd3JpdGUuY3N2KHRyYW5zX3R5cGUsICJERUdzX3RyYW5zY3JpcHRfdHlwZS5jc3YiLCByb3cubmFtZXMgPSBGQUxTRSkKYGBgCgpgYGB7cHl0aG9ufQppbXBvcnQgcGFuZGFzIGFzIHBkCnRyYW5zX3R5cGUgPSBwZC5yZWFkX2NzdignREVHc190cmFuc2NyaXB0X3R5cGUuY3N2JykKdHJhbnNfdHlwZS50cmFuc2NyaXB0X2Jpb3R5cGUudmFsdWVfY291bnRzKCkKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiREVHc19UcmFuc2NyaXB0VHlwZSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCmBgYHtyfQojIExvYWRpbmcgcGFja2FnZXMKbGlicmFyeShCaW9jTWFuYWdlcikKbGlicmFyeShiaW9tYVJ0KQpsaWJyYXJ5IChwbHlyKTsKYGBgCgpgYGB7ciB3YXJuaW5nPUZBTFNFfQojIGxvYWRpbmcgZGF0YQpzZXR3ZCgifi9Eb2N1bWVudHMvVEZNL0dpdEh1Yi9IQl9QdWJsaWNEYXRhLzEtT2J0YWluaW5nLURFR3MtZm9yLUhCL091dHB1dHNfSEIvIikKREVHcyA8LSByZWFkLmNzdigiSEJfZGJfREVHLmNzdiIpCmBgYAoKCioqQWNjZXNzaW5nIEVuc2VtYmwgYW5ub3RhdGlvbiB3aXRoIGJpb21hUnQ6KioKaHR0cHM6Ly93d3cuYmlvY29uZHVjdG9yLm9yZy9wYWNrYWdlcy9kZXZlbC9iaW9jL3ZpZ25ldHRlcy9iaW9tYVJ0L2luc3QvZG9jL2FjY2Vzc2luZ19lbnNlbWJsLmh0bWwKCiogRGF0YWJhc2U6IEVuc2VtYmwgR2VuZXMgMTA0CiogRGF0YXNldDogSHVtYW4gZ2VuZXMgKEdSQ2gzOCkKKiBGaWx0ZXJzOiBHZW5lIC0gR2VuZSBOYW1lKHMpIC0gaGduY19zeW1ib2wKKiBBdHRyaWJ1dGVzIC0gVHJhbnNjcmlwdCBUeXBlcyAtIHRyYW5zY3JpcHQtYmlvdHlwZQpgYGB7ciB3YXJuaW5nPUZBTFNFfQojIGRlc2NyaWJlIGRhdGFzZXQKZW5zZW1ibCA8LSB1c2VFbnNlbWJsKGJpb21hcnQgPSAiZ2VuZXMiLCBkYXRhc2V0ID0gImhzYXBpZW5zX2dlbmVfZW5zZW1ibCIpCmBgYAoKYGBge3Igd2FybmluZz1GQUxTRX0KIyBhZGQgdHJhbnNjcmlwdCB0eXBlIApnZW5lcyA8LSBsaXN0KERFR3MkZ2VuZSkKdHJhbnNfdHlwZSA8LSBnZXRCTShhdHRyaWJ1dGVzIDwtIGMoJ2hnbmNfc3ltYm9sJywndHJhbnNjcmlwdF9iaW90eXBlJyksIGZpbHRlcnMgPC0gJ2hnbmNfc3ltYm9sJywgdmFsdWVzIDwtIGdlbmVzLCBtYXJ0IDwtIGVuc2VtYmwpCmBgYAoKYGBge3J9CiNleHBvcnQgdHlwZXMKd3JpdGUuY3N2KHRyYW5zX3R5cGUsICJERUdzX3RyYW5zY3JpcHRfdHlwZS5jc3YiLCByb3cubmFtZXMgPSBGQUxTRSkKYGBgCgpgYGB7cHl0aG9ufQppbXBvcnQgcGFuZGFzIGFzIHBkCnRyYW5zX3R5cGUgPSBwZC5yZWFkX2NzdignREVHc190cmFuc2NyaXB0X3R5cGUuY3N2JykKdHJhbnNfdHlwZS50cmFuc2NyaXB0X2Jpb3R5cGUudmFsdWVfY291bnRzKCkKYGBgCmBgYHtweXRob259CmltcG9ydCBwYW5kYXMgYXMgcGQKdHJhbnNfdHlwZSA9IHBkLnJlYWRfY3N2KCdERUdzX3RyYW5zY3JpcHRfdHlwZS5jc3YnLCBpbmRleF9jb2w9MCkKb25seV9jb2RpbmdfbHN0ID0gdHJhbnNfdHlwZS5sb2NbdHJhbnNfdHlwZVsndHJhbnNjcmlwdF9iaW90eXBlJ10uaXNpbihbJ3Byb3RlaW5fY29kaW5nJ10pXS5pbmRleC50b2xpc3QoKQpgYGAKCmBgYHtweXRob259Cm5vbl9jb2RpbmcgPSB0cmFuc190eXBlW350cmFuc190eXBlLmluZGV4LmlzaW4ob25seV9jb2RpbmdfbHN0KV0Kbm9uX2NvZGluZy50b19jc3YoIkRFR3Nfbm9uX2NvZGluZ190cmFuc2NyaXB0LmNzdiIpCnByaW50KGxlbihzZXQobm9uX2NvZGluZy5pbmRleC50b2xpc3QoKSkpKQpgYGAK</div>
 
 
 
