@@ -1,0 +1,41 @@
+---
+title: "DEGs_TranscriptType"
+output: html_notebook
+---
+
+
+```{r}
+# Loading packages
+library(BiocManager)
+library(biomaRt);
+```
+
+```{r warning=FALSE}
+# loading data
+setwd("~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB/Outputs_HB/")
+DEGs <- read.csv("HB_db_DEG.csv")
+```
+
+
+**Accessing Ensembl annotation with biomaRt:**
+https://www.bioconductor.org/packages/devel/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html
+
+* Database: Ensembl Genes 104
+* Dataset: Human genes (GRCh38)
+* Filters: Gene - Gene Name(s) - hgnc_symbol
+* Attributes - Transcript Types - transcript-biotype
+```{r warning=FALSE}
+# describe dataset
+ensembl <- useEnsembl(biomart = "genes", dataset = "hsapiens_gene_ensembl")
+```
+
+```{r warning=FALSE}
+# add transcript type 
+genes <- list(DEGs$gene)
+trans_type <- getBM(attributes <- c('hgnc_symbol','transcript_biotype'), filters <- 'hgnc_symbol', values <- genes, mart <- ensembl)
+```
+
+```{r}
+write.csv(trans_type, "DEGs_transcript_type.csv", row.names = FALSE)
+```
+
