@@ -7,7 +7,8 @@ output: html_notebook
 ```{r}
 # Loading packages
 library(BiocManager)
-library(biomaRt);
+library(biomaRt)
+library (plyr);
 ```
 
 ```{r warning=FALSE}
@@ -36,6 +37,12 @@ trans_type <- getBM(attributes <- c('hgnc_symbol','transcript_biotype'), filters
 ```
 
 ```{r}
+#export types
 write.csv(trans_type, "DEGs_transcript_type.csv", row.names = FALSE)
 ```
 
+```{python}
+import pandas as pd
+trans_type = pd.read_csv('DEGs_transcript_type.csv')
+trans_type.transcript_biotype.value_counts()
+```
