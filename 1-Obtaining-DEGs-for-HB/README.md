@@ -44,6 +44,15 @@ Once we have the matrix and its metadata, when running this script we will obtai
 
 *output: (at /DEGs_HB) : HB_db_DEG.csv*
 
+### >> Transcript_Types
+
+**DEGs_TranscriptType.Rmd**
+*output: DEGs_non_coding.csv*
+
+### >> ES_Visualitzation
+
+**ES_Visualization.ipynb**
+
 ## > Distributions_HB
 
 **distributions_test.ipynb**

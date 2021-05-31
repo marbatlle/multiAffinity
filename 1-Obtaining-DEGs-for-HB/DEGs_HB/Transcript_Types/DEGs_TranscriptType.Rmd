@@ -54,6 +54,6 @@ only_coding_lst = trans_type.loc[trans_type['transcript_biotype'].isin(['protein
 
 ```{python}
 non_coding = trans_type[~trans_type.index.isin(only_coding_lst)]
-non_coding.to_csv("DEGs_non_coding_transcript.csv")
+non_coding.to_csv("DEGs_non_coding.csv")
 print(len(set(non_coding.index.tolist())))
 ```
