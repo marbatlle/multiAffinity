@@ -2,7 +2,7 @@
 
 # Folders
 
-## Matrices_HB
+## > Matrices_HB
 
 *Prep_Matrices.ipynb*
 *inputs: (at /Originals_HB)*
@@ -10,7 +10,7 @@
 *output: (at /Matrices_HB)*
 One matrix with all three datasets merged
 
-### Originals_HB
+### >> Originals_HB
 
 **Ranganathan (2016)**
 
@@ -27,14 +27,14 @@ One matrix with all three datasets merged
 
 * GSE151347_Raw_gene_counts_matrix.xlsx
 
-## Metadata_HB
+## > Metadata_HB
 
 **GEO_metadata.R**
 Obtain metadata from desired matrices *(at /Metadata_HB)*
 
 *output: (at /Metadata_HB) -> HB_joint_METADATA.tsv*
 
-## DEGs_HB
+## > DEGs_HB
 
 **Obtain_DEG.py**
 Once we have the matrix and its metadata, when running this script we will obtain:
