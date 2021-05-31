@@ -6,7 +6,7 @@ from tqdm import tqdm
 from tabulate import tabulate
 
 metadata_dict = {}
-metadata = pd.read_csv('1-Obtaining-DEGs-for-HB/Metadata_HB/HB_joint_METADATA.tsv',sep='\t')
+metadata = pd.read_csv('HB_PublicData/1-Obtaining-DEGs-for-HB/Metadata_HB/HB_joint_METADATA.tsv',sep='\t')
 lst = []
 for i in metadata['type']:
     if str(i).startswith('Hepatoblastoma'):
@@ -18,7 +18,7 @@ for i in metadata['type']:
 metadata['class'] = lst
 metadata_dict = pd.Series(metadata['class'].values,index=metadata['sample']).to_dict()
 
-data = pd.read_csv('1-Obtaining-DEGs-for-HB/Matrices_HB/Joint_matrix.txt', sep=';', index_col=0)
+data = pd.read_csv('HB_PublicData/1-Obtaining-DEGs-for-HB/Matrices_HB/Joint_matrix.txt', sep=';', index_col=0)
 data.columns = data.columns.map(metadata_dict)
 data = data.rename_axis('gene')
 
@@ -91,4 +91,4 @@ print('\ntotal num. of genes:',len(data_stats))
 print('num. of DEG:',len(DEG_large))
 
 # export obtained stats 
-DEG_large.to_csv("1-Obtaining-DEGs-for-HB/Outputs_HB/HB_db_DEG.csv", index=True)
+DEG_large.to_csv('HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG.csv', index=True)
