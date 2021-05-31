@@ -43,3 +43,10 @@ Once we have the matrix and its metadata, when running this script we will obtai
 * Filter DEG by adj p-value < 0.05 and Cohens effect size d > 0.8 (large) - num. of DEG: 227
 
 *output: (at /DEGs_HB) : HB_db_DEG.csv*
+
+## > Distributions_HB
+
+**distributions_test.ipynb**
+
+* Studies EDA
+* Independence t-test
