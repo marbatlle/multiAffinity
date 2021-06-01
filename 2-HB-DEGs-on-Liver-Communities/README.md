@@ -3,7 +3,7 @@
 
 # Folders
 
-## > 1_ObtainLiverGeneNetworks
+## > 1_LiverNetwork
 Obtain human annotated PPIs from http://iid.ophid.utoronto.ca/ and subset interactions related to liver tissues.
 
 * *script: obtain-liver-interactions.ipynb*
