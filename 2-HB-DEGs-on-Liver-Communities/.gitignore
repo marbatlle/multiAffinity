@@ -1,2 +1,4 @@
 1_ObtainLiverGeneNetworks/human_annotated_PPIs.txt
 .vscode
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
