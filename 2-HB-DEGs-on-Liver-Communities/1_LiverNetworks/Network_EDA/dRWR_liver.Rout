@@ -1,0 +1,120 @@
+/usr/lib/R/bin/R: line 248: /usr/lib/R/etc/ldpaths: No such file or directory
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.1.2     ✔ dplyr   1.0.6
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+> library(igraph)
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:dplyr’:
+
+    as_data_frame, groups, union
+
+The following objects are masked from ‘package:purrr’:
+
+    compose, simplify
+
+The following object is masked from ‘package:tidyr’:
+
+    crossing
+
+The following object is masked from ‘package:tibble’:
+
+    as_data_frame
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+> library(dnet)
+Loading required package: supraHex
+Loading required package: hexbin
+> library(network)
+network: Classes for Relational Data
+Version 1.16.1 created on 2020-10-06.
+copyright (c) 2005, Carter T. Butts, University of California-Irvine
+                    Mark S. Handcock, University of California -- Los Angeles
+                    David R. Hunter, Penn State University
+                    Martina Morris, University of Washington
+                    Skye Bender-deMoll, University of Washington
+ For citation information, type citation("network").
+ Type help("network-package") to get started.
+
+
+Attaching package: ‘network’
+
+The following objects are masked from ‘package:igraph’:
+
+    %c%, %s%, add.edges, add.vertices, delete.edges, delete.vertices,
+    get.edge.attribute, get.edges, get.vertex.attribute, is.bipartite,
+    is.directed, list.edge.attributes, list.vertex.attributes,
+    set.edge.attribute, set.vertex.attribute
+
+> 
+> #https://www.jessesadler.com/post/network-analysis-with-r/
+> # https://eehh-stanford.github.io/SNA-workshop/data-import.html#importing-an-edgelist
+> 
+> setwd("~/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/1_LiverNetworks")
+> 
+> # importing the edgelist
+> liver.edges <- read_tsv('liver_PPI.txt', col_names = FALSE )
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_character(),
+  X2 = col_character()
+)
+
+> 
+> ## subsetting first 1000 edges
+> liver.edges = head(liver.edges, 100000)
+> 
+> ## convert to an igraph network
+> liver.edges.mat <- as.matrix(liver.edges)
+> liver.net <- graph_from_edgelist(liver.edges.mat, directed=FALSE)
+> 
+> 
+> #extract first names from list of names to make nicer labels. 
+> firsts <- unlist(lapply(strsplit(V(liver.net )$name,  " "), '[[', 1))
+> 
+> 
+> 
+> #let's take a look
+> # plot(liver.net, vertex.shape="none", vertex.label.cex=0.6, edge.arrow.size=0.4, vertex.label=firsts, layout=layout.kamada.kawai)
+> 
+> PTmatrix <- dRWR(liver.net, normalise='laplacian', restart=0.75, normalise.affinity.matrix='quantile')
+Start at 2021-06-02 12:58:43
+
+First, get the adjacency matrix of the input graph (2021-06-02 12:58:43) ...
+	Notes: using unweighted graph!
+Then, normalise the adjacency matrix using laplacian normalisation (2021-06-02 12:58:43) ...
+Killed
