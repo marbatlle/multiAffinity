@@ -22,7 +22,7 @@ To determine the amount of Louvain randomizations, we try 1, 5, 10, 15 ... 100 a
 ## > 3_HB_DEG_in_liver_clusters
 In this last step, the scripts are able to find matches between the DEGs found in Public HB databases for each of the communities detected in the previous step
 
-* *command bash 3_HB_DEG_in_liver_clusters/diff_communities_gene_list.sh *
+* *command bash 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/diff_communities_gene_list.sh *
 * *output: /output/DEG_in_clusters.txt*
 
 sed '/^C/d' /home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_liver_clusters/output/DEG_in_clusters.txt > matches.csv
