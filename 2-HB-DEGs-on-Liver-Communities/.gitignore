@@ -1,6 +1,5 @@
 1_LiverNetworks/*.txt
 .vscode
-.ipynb_checkpoints
 */.ipynb_checkpoints/*
 1_LiverNetworks/Network_EDA/*.txt
 2-HB-DEGs-on-Liver-Communities/1_LiverNetworks/Network_EDA/*.txt
