@@ -19,7 +19,7 @@ metadata <- data.frame(pd$"title", pd$"tissue:ch1") %>%
                    sample = pd.title,
                    type = pd..tissue.ch1.)
 ### export metadata
-export(metadata,"HB_GSE89775_METADATA.tsv")
+#export(metadata,"HB_GSE89775_METADATA.tsv")
 
 
 # GSE104766
@@ -34,7 +34,7 @@ metadata.2 <- data.frame(pd.2$"title", pd.2$"tissue:ch1") %>%
                       sample = pd.2.title,
                       type = pd.2..tissue.ch1.)
 ## export metadata
-export(metadata.2,"HB_GSE104766_METADATA.tsv")
+#export(metadata.2,"HB_GSE104766_METADATA.tsv")
 
 
 # GSE151347
@@ -50,10 +50,26 @@ metadata.3 <- data.frame(pd.3$"title", pd.3$"tissue type:ch1") %>%
                       type = pd.3..tissue.type.ch1.)
 
 ## export metadata
-export(metadata.3,"HB_GSE151347_METADATA.tsv")
+#export(metadata.3,"HB_GSE151347_METADATA.tsv")
+
+# GSE133039
+## download geo data
+gse.4 <- getGEO('GSE133039')
+gse.4 <- gse.4$GSE133039_series_matrix.txt.gz
+## create metadata df
+pd.4<- pData(gse.4)
+metadata.4 <- data.frame(pd.4$"title", pd.4$"tissue:ch1") %>% 
+  mutate(series = 'GSE133039') %>%
+  rename(
+    sample = pd.4.title,
+    type = pd.4..tissue.ch1.)
+metadata.4[metadata.4 == 'Tumor liver tissue'] <- 'Hepatoblastoma'
+
+## export metadata
+#export(metadata.3,"HB_GSE151347_METADATA.tsv")
 
 # join all 3 metadata df
-metadata.final <- rbind(metadata, metadata.2, metadata.3)
+metadata.final <- rbind(metadata, metadata.2, metadata.3, metadata.4)
 export(metadata.final,"HB_joint_METADATA.tsv")
 
 
