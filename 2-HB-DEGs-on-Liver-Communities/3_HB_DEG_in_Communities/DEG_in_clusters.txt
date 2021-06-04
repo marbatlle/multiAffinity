@@ -313,7 +313,7 @@ ClusterID:156
 ClusterID:157 	
 0 	 NaN
 ClusterID:158 	
-3  	 ['GNA12', 'GNG4', 'RGS12']
+3  	 ['GNG4', 'GNA12', 'RGS12']
 ClusterID:159 	
 0 	 NaN
 ClusterID:160 	
@@ -537,7 +537,7 @@ ClusterID:268
 ClusterID:269 	
 0 	 NaN
 ClusterID:270 	
-3  	 ['DLG3', 'DLG5', 'PARD3B']
+3  	 ['PARD3B', 'DLG3', 'DLG5']
 ClusterID:271 	
 0 	 NaN
 ClusterID:272 	
@@ -679,7 +679,7 @@ ClusterID:339
 ClusterID:340 	
 0 	 NaN
 ClusterID:341 	
-3  	 ['SALL2', 'NDN', 'MAGED1']
+3  	 ['MAGED1', 'NDN', 'SALL2']
 ClusterID:342 	
 0 	 NaN
 ClusterID:343 	
@@ -1085,7 +1085,7 @@ ClusterID:542
 ClusterID:543 	
 0 	 NaN
 ClusterID:544 	
-2  	 ['CRTAP', 'ARMC9']
+2  	 ['ARMC9', 'CRTAP']
 ClusterID:545 	
 0 	 NaN
 ClusterID:546 	
@@ -1255,7 +1255,7 @@ ClusterID:627
 ClusterID:628 	
 0 	 NaN
 ClusterID:629 	
-5  	 ['LZTS2', 'TACC1', 'CEP68', 'CEP250', 'LUZP1']
+5  	 ['LZTS2', 'CEP250', 'LUZP1', 'CEP68', 'TACC1']
 ClusterID:630 	
 0 	 NaN
 ClusterID:631 	
@@ -1413,7 +1413,7 @@ ClusterID:706
 ClusterID:707 	
 0 	 NaN
 ClusterID:708 	
-3  	 ['HSDL1', 'FAM189B', 'SLC26A6']
+3  	 ['HSDL1', 'SLC26A6', 'FAM189B']
 ClusterID:709 	
 0 	 NaN
 ClusterID:710 	
@@ -1495,7 +1495,7 @@ ClusterID:747
 ClusterID:748 	
 0 	 NaN
 ClusterID:749 	
-2  	 ['SQLE', 'AACS']
+2  	 ['AACS', 'SQLE']
 ClusterID:750 	
 0 	 NaN
 ClusterID:751 	

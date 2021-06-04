@@ -9,12 +9,12 @@ df_concat = pd.concat([ppi_communities,matches], axis=1)
 
 df_concat.set_index('Unnamed: 0', inplace=True)
 
-df_concat.to_csv('communities_genes_matches.csv')
+df_concat.to_csv('2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/communities_genes_matches.csv')
 
 df_sorted = df_concat.sort_values('num_matches', ascending=False)
 matches_2 = df_sorted.head(19)
 
-matches_2.to_csv('table_2_matches.csv')
+matches_2.to_csv('2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/table_2_matches.csv')
 
 
-python 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/join_tables.py
+#python 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/join_tables.py
