@@ -1,5 +1,4 @@
 mkdir -p 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/clusters/
-mkdir -p 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/output/
 rm -f 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/DEG_in_clusters.txt
 for clusterid in $(cat 2-HB-DEGs-on-Liver-Communities/2_Communities/liver_ppi_clusters | grep "ClusterID:" | cut -d"|" -f1 | sed "s:ClusterID\:::")
 do
@@ -10,4 +9,5 @@ done
 
 rm -r 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/clusters
 
-sed '/^C/d' /home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_liver_clusters/output/DEG_in_clusters.txt > matches.csv
+sed '/^C/d' 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/DEG_in_clusters.txt > 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_liver_clusters/matches.csv
+
