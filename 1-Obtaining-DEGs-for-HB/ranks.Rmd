@@ -1,0 +1,98 @@
+---
+title: "ranks"
+author: "Mar Batlle"
+date: "6/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+setwd("~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB")
+library(miRNAtap)
+library('biomaRt')
+mart <- useDataset("hsapiens_gene_ensembl", useMart("ensembl"))
+```
+
+
+```{r}
+GSE89775 <- read.csv("Matrices_HB/Ranks_HB/GSE89775_ranks.txt", sep="\t")
+genes_GSE89775 <- GSE89775$genes
+genes_GSE89775 <- getBM(filters= "ensembl_gene_id", attributes= c("ensembl_gene_id","hgnc_symbol"),values=genes_GSE89775 ,mart= mart)
+GSE89775 <- merge(GSE89775,G_list,by.x="genes",by.y="ensembl_gene_id")
+GSE89775  <- subset(GSE89775 , select = -genes)
+GSE89775<- aggregate(GSE89775[, 1], list(GSE89775$hgnc_symbol), mean)
+GSE89775[!(is.na(GSE89775$hgnc_symbol) | GSE89775$hgnc_symbol==""), ]
+```
+
+```{r}
+GSE104766 <- read.csv("Matrices_HB/Ranks_HB/GSE104766_upregulated.txt", sep="\t")
+genes_GSE104766 <- GSE104766$genes
+genes_GSE104766 <- getBM(filters= "ensembl_gene_id", attributes= c("ensembl_gene_id","hgnc_symbol"),values=genes_GSE104766 ,mart= mart)
+GSE104766 <- merge(GSE104766,genes_GSE104766,by.x="genes",by.y="ensembl_gene_id")
+GSE104766  <- subset(GSE104766, select = -genes)
+GSE104766 <- GSE104766[!(is.na(GSE104766$hgnc_symbol) | GSE104766$hgnc_symbol==""), ]
+GSE104766 <- aggregate(GSE104766[, 1], list(GSE104766$hgnc_symbol), mean)
+GSE104766 <- GSE104766[ order( GSE104766$x ), ]
+```
+
+```{r}
+GSE133039 <- read.csv("Matrices_HB/Ranks_HB/GSE133039_ranks.txt", sep="\t")
+```
+
+```{r}
+GSE151347 <- read.csv("Matrices_HB/Ranks_HB/GSE151347_ranks.txt", sep="\t")
+```
+
+```{r}
+GSE89775_upregulated <- subset(GSE89775, GSE89775 > 1)
+GSE104766_upregulated <- subset(GSE104766, GSE89775 > 1)
+GSE133039_upregulated <- subset(GSE133039, GSE89775 > 1)
+GSE151347_upregulated <- subset(GSE151347, GSE89775 > 1)
+```
+
+
+```{r}
+upregulated <-merge(x = GSE89775_upregulated, y = GSE104766_upregulated, by= 'hgnc_symbol' , all = TRUE)
+upregulated <-merge(x = upregulated, y = GSE133039_upregulated, by= 'hgnc_symbol' , all = TRUE)
+upregulated <-merge(x = upregulated, y = GSE151347_upregulated, by= 'hgnc_symbol' , all = TRUE)
+```
+
+```{r}
+glist = (list(upregulated[['genes']],upregulated[['GSE89775']],upregulated[['GSE104766']],upregulated[['GSE133039']],upregulated[['GSE151347']]))
+```
+
+
+
+```{r}
+library(miRNAtap)
+miRNAtap::aggregateRanks(upregulated, n_valid_srcs=4, min_src=1, method='geom')
+```
+```{r}
+r = rankMatrix(glist)
+aggregateRanks(rmat = r)
+```
+```{r}
+# Aggregate the inputs
+aggregateRanks(glist = glist, N = length(upregulated))
+
+# Use the rank matrix instead of the gene lists as the input
+r = rankMatrix(glist)
+aggregateRanks(rmat = r)
+# Example, when the input lists represent full rankings but the domains do not match
+glist <- list(sample(letters[4:24]), sample(letters[2:22]), sample(letters[1:20]))
+r = rankMatrix(glist, full = TRUE)
+head(r)
+aggregateRanks(rmat = r, method = "RRA")
+# Dataset representing significantly changed genes after knockouts
+# of cell cycle specific trancription factors
+data(cellCycleKO)
+r = rankMatrix(cellCycleKO$gl, N = cellCycleKO$N)
+ar = aggregateRanks(rmat = r)
+head(ar)
+```
+
+
+
+
+
+
+

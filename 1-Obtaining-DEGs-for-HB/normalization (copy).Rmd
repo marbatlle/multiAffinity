@@ -1,0 +1,349 @@
+---
+title: "Normalization of the different studies"
+author: "Mar Batlle"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(readr)
+library(DESeq2)
+library(apeglm)
+library(RobustRankAggreg)
+library(BiocParallel)
+register(MulticoreParam(2))
+setwd("~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB")
+```
+
+# GSE104766 
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE89775
+
+## Count matrix input
+```{r}
+# Import Data
+cts_GSE104766_path <- "Matrices_HB/Originals_HB/GSE104766_GeneLevel_Raw_data.csv"
+cts_GSE104766 <- read.csv(cts_GSE104766_path, row.names=1)
+cts_GSE104766[,]<- lapply(lapply(cts_GSE104766[,-1],round),as.integer)
+```
+
+```{r}
+# Import Metadata
+Meta_GSE104766_path <- 'Metadata_HB/GSE104766_filtered_metadata.csv'
+coldata_GSE104766 <- read.csv(Meta_GSE104766_path, row.names=1)
+coldata_GSE104766$tissue[coldata_GSE104766$tissue == "Normal liver"] <- "Normal"
+coldata_GSE104766$tissue <- factor(coldata_GSE104766$tissue)
+```
+
+```{r}
+# Convert data to matrix
+cts_GSE104766 <- as.matrix(cts_GSE104766)
+```
+
+Check that data and metadata are consistent and in the same order
+```{r}
+all(rownames(coldata_GSE104766) %in% colnames(cts_GSE104766))
+all(rownames(coldata_GSE104766) == colnames(cts_GSE104766))
+#cts_GSE133039 <- cts_GSE133039[, rownames(coldata_GSE133039)]
+#all(rownames(coldata_GSE133039) == colnames(cts_GSE133039))
+```
+
+## Normalization
+Create DSeq2 object
+```{r}
+dds_GSE104766 <- DESeqDataSetFromMatrix(countData = cts_GSE104766,
+                              colData = coldata_GSE104766,
+                              design = ~ tissue)
+```
+
+### Pre-filtering
+While it is not necessary to pre-filter low count genes before running the DESeq2 functions, there are two reasons which make pre-filtering useful: by removing rows in which there are very few reads, we reduce the memory size of the dds data object, and we increase the speed of the transformation and testing functions within DESeq2. Here we perform a minimal pre-filtering to keep only rows that have at least 10 reads total.
+```{r}
+keep <- rowSums(counts(dds_GSE104766)) >= 10
+dds_GSE104766 <- dds_GSE104766[keep,]
+```
+
+### Factor Level
+```{r}
+dds_GSE104766$tissue <- relevel(dds_GSE104766$tissue, ref = "Normal")
+```
+
+### Median of ratios Normalization
+https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html
+```{r}
+dds_GSE104766 <- estimateSizeFactors(dds_GSE104766)
+#normalized_counts_GSE104766 <- counts(dds_GSE104766, normalized=TRUE)
+#write.table(normalized_counts_GSE104766, file="Matrices_HB/GSE104766_normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+```
+
+## Find DEGs
+```{r}
+dds_GSE104766 <- DESeq(dds_GSE104766, parallel=TRUE)
+res_GSE104766 <- results(dds_GSE104766, parallel=TRUE)
+```
+```{r}
+resSig_GSE104766 <- subset(res_GSE104766, padj < 0.05)
+resSig_GSE104766 <- subset(resSig_GSE104766, abs(log2FoldChange) > 1)
+nrow(resSig_GSE104766)
+resSig_GSE104766 <- as.data.frame(resSig_GSE104766)
+```
+```{r}
+#resSig_GSE104766[, !c("baseMean","lfcSE","stat","pvalue")]
+resSig_GSE104766 <- resSig_GSE104766[ order( -resSig_GSE104766$log2FoldChange ), ]
+cols<-!(colnames(resSig_GSE104766) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
+resSig_GSE104766_subset <-subset(resSig_GSE104766,,cols)
+ 
+write.table(resSig_GSE104766_subset, file="Matrices_HB/Ranks_HB/GSE104766_ranks.txt", sep="\t", quote=F, col.names=TRUE)
+```
+
+
+# GSE133039
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133039
+
+## Count matrix input
+```{r}
+# Import Data
+cts_GSE133039_path <- "Matrices_HB/Originals_HB/GSE133039_GeneLevel_Raw_data.csv"
+cts_GSE133039 <- read.csv(cts_GSE133039_path, row.names=1)
+cts_GSE133039[,]<- lapply(lapply(cts_GSE133039[,-1],round),as.integer)
+```
+
+```{r}
+# Import Metadata
+Meta_GSE133039_path <- 'Metadata_HB/GSE133039_filtered_metadata.csv'
+coldata_GSE133039 <- read.csv(Meta_GSE133039_path, row.names=1)
+coldata_GSE133039$tissue[coldata_GSE133039$tissue == "Tumor liver tissue"] <- "Hepatoblastoma"
+coldata_GSE133039$tissue[coldata_GSE133039$tissue == "Normal liver tissue"] <- "Normal"
+coldata_GSE133039$tissue <- factor(coldata_GSE133039$tissue)
+```
+
+```{r}
+# Convert data to matrix
+cts_GSE133039 <- as.matrix(cts_GSE133039)
+```
+
+Check that data and metadata are consistent and in the same order
+```{r}
+all(rownames(coldata_GSE133039) %in% colnames(cts_GSE133039))
+all(rownames(coldata_GSE133039) == colnames(cts_GSE133039))
+cts_GSE133039 <- cts_GSE133039[, rownames(coldata_GSE133039)]
+all(rownames(coldata_GSE133039) == colnames(cts_GSE133039))
+```
+
+## Normalization
+Create DSeq2 object
+```{r}
+dds_GSE133039 <- DESeqDataSetFromMatrix(countData = cts_GSE133039,
+                              colData = coldata_GSE133039,
+                              design = ~ tissue)
+```
+
+### Pre-filtering
+While it is not necessary to pre-filter low count genes before running the DESeq2 functions, there are two reasons which make pre-filtering useful: by removing rows in which there are very few reads, we reduce the memory size of the dds data object, and we increase the speed of the transformation and testing functions within DESeq2. Here we perform a minimal pre-filtering to keep only rows that have at least 10 reads total.
+```{r}
+keep <- rowSums(counts(dds_GSE133039)) >= 10
+dds_GSE133039 <- dds_GSE133039[keep,]
+```
+
+### Factor Level
+```{r}
+dds_GSE133039$tissue <- relevel(dds_GSE133039$tissue, ref = "Normal")
+```
+
+### Median of ratios Normalization
+https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html
+```{r}
+dds_GSE133039 <- estimateSizeFactors(dds_GSE133039)
+#normalized_counts_GSE133039 <- counts(dds_GSE133039, normalized=TRUE)
+#write.table(normalized_counts_GSE133039, file="Matrices_HB/GSE133039_normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+```
+
+
+## Find DEGs
+```{r}
+dds_GSE133039 <- DESeq(dds_GSE133039, parallel=TRUE)
+res_GSE133039 <- results(dds_GSE133039, parallel=TRUE)
+```
+```{r}
+resSig_GSE133039 <- subset(res_GSE133039, padj < 0.05)
+resSig_GSE133039 <- subset(resSig_GSE133039, abs(log2FoldChange) > 1)
+nrow(resSig_GSE133039)
+resSig_GSE133039 <- as.data.frame(resSig_GSE133039)
+```
+```{r}
+#resSig_GSE104766[, !c("baseMean","lfcSE","stat","pvalue")]
+resSig_GSE133039 <- resSig_GSE133039[ order( -resSig_GSE133039$log2FoldChange ), ]
+cols<-!(colnames(resSig_GSE133039) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
+resSig_GSE133039_subset <-subset(resSig_GSE133039,,cols)
+ 
+write.table(resSig_GSE133039_subset, file="Matrices_HB/Ranks_HB/GSE133039_ranks.txt", sep="\t", quote=F, col.names=TRUE)
+```
+
+
+# GSE89775
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133039
+
+## Count matrix input
+```{r}
+# Import Data
+cts_GSE89775_path <- "Matrices_HB/Originals_HB/GSE89775_GeneLevel_Raw_data.csv"
+cts_GSE89775 <- read.csv(cts_GSE89775_path,sep=",", quote="", row.names=1)
+cts_GSE89775[,]<- lapply(lapply(cts_GSE89775[,-1],round),as.integer)
+```
+
+```{r}
+# Import Metadata
+Meta_GSE89775_path <- 'Metadata_HB/GSE89775_filtered_metadata.csv'
+coldata_GSE89775 <- read.csv(Meta_GSE89775_path, row.names=1)
+
+coldata_GSE89775$tissue[coldata_GSE89775$tissue == "Hepatoblastoma liver"] <- "Hepatoblastoma"
+coldata_GSE89775$tissue[coldata_GSE89775$tissue == "Normal liver"] <- "Normal"
+coldata_GSE89775$tissue <- factor(coldata_GSE89775$tissue)
+```
+
+
+```{r}
+# Convert data to matrix
+cts_GSE89775 <- as.matrix(cts_GSE89775)
+```
+
+Check that data and metadata are consistent and in the same order
+```{r}
+all(rownames(coldata_GSE89775) %in% colnames(cts_GSE89775))
+all(rownames(coldata_GSE89775) == colnames(cts_GSE89775))
+cts_GSE89775<- cts_GSE89775[, rownames(coldata_GSE89775)]
+all(rownames(coldata_GSE89775) == colnames(cts_GSE89775))
+```
+
+## Normalization
+Create DSeq2 object
+```{r}
+dds_GSE89775 <- DESeqDataSetFromMatrix(countData = cts_GSE89775,
+                              colData = coldata_GSE89775,
+                              design = ~ tissue)
+```
+
+### Pre-filtering
+While it is not necessary to pre-filter low count genes before running the DESeq2 functions, there are two reasons which make pre-filtering useful: by removing rows in which there are very few reads, we reduce the memory size of the dds data object, and we increase the speed of the transformation and testing functions within DESeq2. Here we perform a minimal pre-filtering to keep only rows that have at least 10 reads total.
+```{r}
+keep <- rowSums(counts(dds_GSE89775)) >= 10
+dds_GSE89775 <- dds_GSE89775[keep,]
+```
+
+### Factor Level
+```{r}
+dds_GSE89775$tissue <- relevel(dds_GSE89775$tissue, ref = "Normal")
+```
+
+### Median of ratios Normalization
+https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html
+```{r}
+dds_GSE89775 <- estimateSizeFactors(dds_GSE89775)
+#normalized_counts_GSE89775 <- counts(dds_GSE89775, normalized=TRUE)
+#write.table(normalized_counts_GSE89775, file="Matrices_HB/GSE89775_normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+```
+
+## Find DEGs
+```{r}
+dds_GSE89775 <- DESeq(dds_GSE89775, parallel=TRUE)
+res_GSE89775 <- results(dds_GSE89775, parallel=TRUE)
+```
+```{r}
+resSig_GSE89775 <- subset(res_GSE89775, padj < 0.05)
+resSig_GSE89775 <- subset(resSig_GSE89775, abs(log2FoldChange) > 1)
+nrow(resSig_GSE89775)
+resSig_GSE89775 <- as.data.frame(resSig_GSE89775)
+```
+```{r}
+resSig_GSE89775 <- resSig_GSE89775[ order( -resSig_GSE89775$log2FoldChange ), ]
+cols<-!(colnames(resSig_GSE89775) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
+resSig_GSE89775_subset <-subset(resSig_GSE89775,,cols)
+ 
+write.table(resSig_GSE89775_subset, file="Matrices_HB/Ranks_HB/GSE89775_ranks.txt", sep="\t", quote=F, col.names=TRUE)
+```
+
+# GSE151347
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133039
+
+## Count matrix input
+```{r}
+# Import Data
+cts_GSE151347_path <- "Matrices_HB/Originals_HB/GSE151347_GeneLevel_Raw_data.csv"
+cts_GSE151347 <- read.csv(cts_GSE151347_path,sep=",", quote="", row.names=1)
+cts_GSE151347[,]<- lapply(lapply(cts_GSE151347[,-1],round),as.integer)
+```
+
+```{r}
+# Import Metadata
+Meta_GSE151347_path <- 'Metadata_HB/GSE151347_filtered_metadata.csv'
+coldata_GSE151347 <- read.csv(Meta_GSE151347_path, row.names=1)
+names(coldata_GSE151347)[names(coldata_GSE151347) == "tissue.type"] <- "tissue"
+coldata_GSE151347$tissue[coldata_GSE151347$tissue == "Normal liver"] <- "Normal"
+coldata_GSE151347$tissue <- factor(coldata_GSE151347$tissue)
+```
+
+```{r}
+# Convert data to matrix
+cts_GSE89775 <- as.matrix(cts_GSE151347)
+```
+
+Check that data and metadata are consistent and in the same order
+```{r}
+all(rownames(coldata_GSE151347) %in% colnames(cts_GSE151347))
+all(rownames(coldata_GSE151347) == colnames(cts_GSE151347))
+cts_GSE151347 <- cts_GSE151347[, rownames(coldata_GSE151347)]
+all(rownames(coldata_GSE151347) == colnames(cts_GSE151347))
+```
+## Normalization
+Create DSeq2 object
+```{r}
+dds_GSE151347 <- DESeqDataSetFromMatrix(countData = cts_GSE151347,
+                              colData = coldata_GSE151347,
+                              design = ~ tissue)
+```
+
+### Pre-filtering
+While it is not necessary to pre-filter low count genes before running the DESeq2 functions, there are two reasons which make pre-filtering useful: by removing rows in which there are very few reads, we reduce the memory size of the dds data object, and we increase the speed of the transformation and testing functions within DESeq2. Here we perform a minimal pre-filtering to keep only rows that have at least 10 reads total.
+```{r}
+keep <- rowSums(counts(dds_GSE151347)) >= 10
+dds_GSE151347 <- dds_GSE151347[keep,]
+```
+
+### Factor Level
+```{r}
+dds_GSE151347$tissue <- relevel(dds_GSE151347$tissue, ref = "Normal")
+```
+
+### Median of ratios Normalization
+https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html
+```{r}
+dds_GSE151347 <- estimateSizeFactors(dds_GSE151347)
+normalized_counts_GSE151347 <- counts(dds_GSE151347, normalized=TRUE)
+write.table(normalized_counts_GSE151347, file="Matrices_HB/Ranks_HB/GSE151347_normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+```
+
+## Find DEGs
+```{r}
+dds_GSE151347 <- DESeq(dds_GSE151347, parallel=TRUE)
+res_GSE151347 <- results(dds_GSE151347, parallel=TRUE)
+```
+```{r}
+resSig_GSE151347 <- subset(res_GSE151347, padj < 0.05)
+resSig_GSE151347 <- subset(resSig_GSE151347, abs(log2FoldChange) > 1)
+nrow(resSig_GSE151347)
+resSig_GSE151347 <- as.data.frame(resSig_GSE151347)
+```
+```{r}
+resSig_GSE151347 <- resSig_GSE151347[ order( -resSig_GSE151347$log2FoldChange ), ]
+cols<-!(colnames(resSig_GSE151347) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
+resSig_GSE151347_subset <-subset(resSig_GSE151347,,cols)
+ 
+write.table(resSig_GSE151347_subset, file="Matrices_HB/GSE151347_ranks.txt", sep="\t", quote=F, col.names=TRUE)
+```
+
+
+
