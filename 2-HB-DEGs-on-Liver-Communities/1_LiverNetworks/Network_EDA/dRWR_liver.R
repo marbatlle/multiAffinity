@@ -15,10 +15,8 @@ liver.edges <- read.table('liver_PPI.txt')
 liver.edges.mat <- as.matrix(liver.edges)
 liver.net <- graph_from_edgelist(liver.edges.mat, directed=FALSE)
 
-#let's take a look
-# plot(liver.net)
 
-PTmatrix <- dRWR(liver.net, normalise='laplacian', restart=0.75, normalise.affinity.matrix='quantile')
+PTmatrix <- dRWR(liver.net, normalise='laplacian', setSeeds=setSeeds, restart=0.75, normalise.affinity.matrix='none')
 
 print(PTmatrix[1:5,1:5])
 write.table(as.matrix(PTmatrix),'PTmatrix_liver.txt',  sep="\t")
