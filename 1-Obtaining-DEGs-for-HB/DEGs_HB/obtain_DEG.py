@@ -6,7 +6,7 @@ from tqdm import tqdm
 from tabulate import tabulate
 
 metadata_dict = {}
-metadata = pd.read_csv('HB_PublicData/1-Obtaining-DEGs-for-HB/Metadata_HB/HB_joint_METADATA.tsv',sep='\t')
+metadata = pd.read_csv('/home/mar/Documents/TFM/June/Task1_v4/Metadata_HB/metadata_joined.csv')
 lst = []
 for i in metadata['type']:
     if str(i).startswith('Hepatoblastoma'):
@@ -18,7 +18,7 @@ for i in metadata['type']:
 metadata['class'] = lst
 metadata_dict = pd.Series(metadata['class'].values,index=metadata['sample']).to_dict()
 
-data = pd.read_csv('HB_PublicData/1-Obtaining-DEGs-for-HB/Matrices_HB/Joint_matrix.txt', sep=';', index_col=0)
+data = pd.read_csv('/home/mar/Documents/TFM/June/Task1_v4/Matrices_HB/Joint_matrix.txt', sep=';', index_col=0)
 data.columns = data.columns.map(metadata_dict)
 data = data.rename_axis('gene')
 
@@ -60,35 +60,36 @@ data['adj_p-value'] = np.nan
 
 
 # debug adj-pvalue
-
 for idx in tqdm(data.index):
-
     pvalue = data.at[idx,'p-value']
-    adj_pvalue = list(multi.multipletests(pvalue, method='fdr_bh')[1])
-    data.at[idx,'adj_p-value'] = adj_pvalue
+    adj_pvalue = float((multi.multipletests(pvalue, method='fdr_bh')[1]))
+    data.loc[idx,'adj_p-value'] = adj_pvalue
+    
 
 # export obtained stats 
 #data.to_csv("Outputs_HB/HB_db_stats.csv", index=True)
 
 # create df with only stats
-data_stats = data[["t-statistic","adj_p-value","effect size"]]
+data_stats = data[["adj_p-value","effect size"]]
 data_stats = data_stats.dropna(axis=0, subset=["effect size"])
-data_stats = data_stats.sort_values(by="effect size")
-
-print('higher effect-size:\n',
-      data_stats.tail(10),
-      '\n\nlower effect-size:\n',
-      data_stats.head(10))
 
 
-print('Filter DEG by adj p-value < 0.05 and Cohens effect size d > 0.8 (large)')
+print('Filter DEG by adj p-value < 0.05 and Cohens effect size d > 1.2 (large)')
 
 # Select desregulated genes
-DEG_large = data_stats[data_stats['adj_p-value'] < 0.05]
-DEG_large = DEG_large[DEG_large["effect size"] > 0.8]
+DEGS = data_stats[data_stats['adj_p-value'] < 0.05]
+DEGS = DEGS[abs(DEGS["effect size"]) > 1.2]
+
+DEGS = DEGS.sort_values(by="effect size", ascending=False)
+
+print('higher effect-size:\n',
+      DEGS.head(10),
+      '\n\nlower effect-size:\n',
+      DEGS.tail(10))
+
 
 print('\ntotal num. of genes:',len(data_stats))
-print('num. of DEG:',len(DEG_large))
+print('num. of DEG:',len(DEGS))
 
 # export obtained stats 
-DEG_large.to_csv('HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG.csv', index=True)
+DEGS.to_csv('/home/mar/Documents/TFM/June/Task1_v4/HB_db_DEG.csv', index=True)
