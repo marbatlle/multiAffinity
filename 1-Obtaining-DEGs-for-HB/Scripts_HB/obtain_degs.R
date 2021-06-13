@@ -8,16 +8,35 @@ library(BiocParallel)
 register(MulticoreParam(2))
 
 # Import data
-Count matrix should not be normalized and should be uniquely using hgnc gene symbols.
+### Count matrix should not be normalized and should be uniquely using hgnc gene symbols.
 
 ## Import Raw counts matrix
-cts_path <- "~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Temp/raw_data.csv"
+cts_path <- "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/raw_data.csv"
 cts <- read.csv(cts_path, row.names=1)
 
 ## Import Metadata
-meta_path <- '~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Temp/metadata.csv'
+meta_path <- '1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/metadata.csv'
 coldata <- read.csv(meta_path, row.names=1)
 coldata$tissue <- factor(coldata$tissue)
+
+
+# Normalized
+## Create DSeq2 object
+dds <- DESeqDataSetFromMatrix(countData = cts,
+                              colData = coldata,
+                              design = ~ tissue)
+
+## Filter out all genes with <10 reads total across all samples
+dds <- dds[rowSums(counts(dds)) >= 10,]
+
+# Factor Level
+dds$tissue <- relevel(dds$tissue, ref = "Normal")
+
+# Median of ratios Normalization
+dds <- estimateSizeFactors(dds)
+#normalized_counts <- counts(dds, normalized=TRUE)
+#write.table(normalized_counts, file="Matrices_HB/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+
 
 # Find DEGs
 ## Run differential expression analysis
@@ -38,10 +57,9 @@ res_subset <-subset(res,,cols)
 ## Extract genes upregulated
 res_up <- res_subset %>% 
   filter(log2FoldChange > 0)
-write.table(res_up, file="~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Temp/Temp_up", sep="\t", quote=F, col.names=TRUE)
+write.csv(res_up, "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_up.csv")
 
 ## Extract genes downregulated
 res_down <- res_subset %>% 
   filter(log2FoldChange < 0)
-write.table(res_down, file="~/Documents/TFM/GitHub/HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Temp/Temp_down", sep="\t", quote=F, col.names=TRUE)
-```
+write.csv(res_down, "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_down.csv")
