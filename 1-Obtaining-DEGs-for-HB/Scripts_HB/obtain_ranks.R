@@ -3,12 +3,8 @@ library(dplyr)
 library(stringr)
 library(RobustRankAggreg)
 
-setwd("HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/")
-mydir = "Rank_HB"
-myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)
-
 # Read DEGs files 
-filenames <- list.files(path="HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB",
+filenames <- list.files(path="1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB",
                         pattern="*.csv")
 
 ## Create list of data frame names without the ".csv" part 
@@ -16,7 +12,7 @@ names <-substr(filenames,1,str_length(filenames)-4)
 
 ## Load all files
 for(i in names){
-  filepath <- file.path("HB_PublicData/1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB",paste(i,".csv",sep=""))
+  filepath <- file.path("1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB",paste(i,".csv",sep=""))
   assign(i, read.csv(filepath,colClasses=c("character","double","double"))) 
 }
 
@@ -81,5 +77,5 @@ r_up = rankMatrix(glist_up, full = TRUE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
 
 # Convert results into csv files
-write.csv(agg_down, file = "Aggregated_Downregulated.csv")
-write.csv(agg_up, file = "Aggregated_Upregulated.csv")
+write.csv(agg_down, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Aggregated_Downregulated.csv", row.names=FALSE)
+write.csv(agg_up, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Aggregated_Upregulated.csv", row.names=FALSE)
