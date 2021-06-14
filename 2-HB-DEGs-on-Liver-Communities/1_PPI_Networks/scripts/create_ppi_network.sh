@@ -23,10 +23,9 @@ do
     rm 2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/PTmatrix_tmp_PPI.txt
 
     echo "Find correlation between node affinity and ranks"
-    
+    #python HB-DEGs-on-Liver-Communities/1_PPI_Networks/scripts/Difussion_Analysis.py > 2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/${id}_Difussion_Correlation.txt
 
 done
-
 
 
 
