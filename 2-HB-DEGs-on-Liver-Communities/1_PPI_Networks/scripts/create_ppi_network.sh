@@ -1,5 +1,5 @@
 ## download human_annotated_PPIs.txt
-wget -P 2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/ http://iid.ophid.utoronto.ca/static/download/human_annotated_PPIs.txt.gz
+# wget -P 2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/ http://iid.ophid.utoronto.ca/static/download/human_annotated_PPIs.txt.gz
 gzip -d 2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/human_annotated_PPIs.txt.gz
 
 ## obtain liver interactions
