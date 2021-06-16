@@ -45,6 +45,8 @@ GSE89775_DEGs_down <- GSE89775_DEGs_down %>%
 glist_down <- list(GSE133039_DEGs_down, GSE151347_DEGs_down, GSE104766_DEGs_down)
 r_down = rankMatrix(glist_down, full = TRUE)
 agg_down <- aggregateRanks(rmat = r_down, method = "RRA")
+agg_down <- subset(agg_down, agg_down$Score < 0.05)
+agg_down <- as.data.frame(agg_down)
 
 # Rank upregulated
 ## Rename column
@@ -75,32 +77,21 @@ GSE89775_DEGs_up <- GSE89775_DEGs_up %>%
 glist_up <- list(GSE133039_DEGs_up, GSE151347_DEGs_up, GSE104766_DEGs_up)
 r_up = rankMatrix(glist_up, full = TRUE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
-
-# Combine both lists
-genes_down <- list(agg_down$Name)
-genes_up <- list(agg_up$Name)
-combineListsAsOne <-function(list1, list2){
-  n <- c()
-  for(x in list1){
-    n<-c(n, x)
-  }
-  for(y in list2){
-    n<-c(n, y)
-  }
-  return(n)
-}
-onlygenes <- combineListsAsOne(genes_down, genes_up)
+agg_up <- subset(agg_up, agg_up$Score < 0.05)
+agg_up <- as.data.frame(agg_up)
 
 # Create unique DEGs list
-genes <- rbind(agg_down,agg_up)
-genes <- genes[order(genes$Score)]
+#rownames(agg_down) <- NULL
+#rownames(agg_up) <- NULL
+#genes <- rbind(agg_down,agg_up)
+#colnames(genes) <- c("Name","Score")
+#genes <- as.data.frame(genes)
+#genes <- genes[order(genes$Score)]
 
 
 # Convert results into csv files
 write.csv(agg_down, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Aggregated_Downregulated.csv", row.names=FALSE)
 write.csv(agg_up, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Aggregated_Upregulated.csv", row.names=FALSE)
 
-
-
-write.table(onlygenes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_only.csv",sep=",", row.names=FALSE, col.names=FALSE)
-write.table(genes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG.csv",sep=",", row.names=FALSE, col.names=FALSE)
+#write.table(onlygenes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_names.csv",sep=",", row.names=FALSE, col.names=FALSE)
+#write.table(genes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_score.csv",sep=",", row.names=FALSE)

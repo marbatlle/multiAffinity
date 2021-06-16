@@ -41,7 +41,7 @@ dds <- estimateSizeFactors(dds)
 # Find DEGs
 ## Run differential expression analysis
 dds <- DESeq(dds, parallel=TRUE)
-res <- results(dds, lfcThreshold = 1, parallel=TRUE)
+res <- results(dds, lfcThreshold = 0.5, parallel=TRUE)
 
 ## Extract all differentially expressed genes
 res <- res[order(res$padj),]

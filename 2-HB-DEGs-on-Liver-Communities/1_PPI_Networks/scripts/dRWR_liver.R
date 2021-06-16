@@ -18,4 +18,4 @@ liver.net <- graph_from_edgelist(liver.edges.mat, directed=FALSE)
 
 PTmatrix <- dRWR(liver.net, normalise='laplacian', restart=0.5, normalise.affinity.matrix='none')
 
-write.table(as.matrix(PTmatrix),'2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/PTmatrix_tmp_PPI.txt',  sep="\t")
+write.table(as.matrix(PTmatrix),'2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/PTmatrix_tmp_PPI.txt', sep="\t")
