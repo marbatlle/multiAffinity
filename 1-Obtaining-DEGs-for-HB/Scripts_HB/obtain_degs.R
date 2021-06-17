@@ -63,3 +63,9 @@ write.csv(res_up, "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_up.csv")
 res_down <- res_subset %>% 
   filter(log2FoldChange < 0)
 write.csv(res_down, "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_down.csv")
+
+print('num. of upregulated DEGs:')
+print(nrow(res_up))
+print('num. of downregulated DEGs:')
+print(nrow(res_down))
+

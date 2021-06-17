@@ -4,6 +4,7 @@
 # Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/clean_grein_data.R
 
 # Obtainig DEGs lists from each study
+rm -f 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
 for sid in $(ls 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/*.csv | sed "s:1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/::" | cut -d"_" -f1)
 do
     # create temp files
@@ -12,7 +13,8 @@ do
     cp 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/${sid}_raw_data.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/raw_data.csv
     cp 1-Obtaining-DEGs-for-HB/Metadata_HB/${sid}_metadata.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/metadata.csv
     # obtain degs
-    Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_degs.R
+    echo "*${sid}*" >> 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
+    Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_degs.R >> 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
     # move degs files to permanent location
     cp 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_up.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_up.csv
     cp 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_down.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_down.csv
