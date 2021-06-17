@@ -1,3 +1,6 @@
+1_Networks/2_Metabolic_Network/networks/*.gr
+1_Networks/1_PPI_Networks/*.txt
+
 1_LiverNetworks/*.txt
 1_PPI_Networks/*.txt
 .vscode
