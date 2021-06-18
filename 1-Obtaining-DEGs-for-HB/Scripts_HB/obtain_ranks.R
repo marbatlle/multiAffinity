@@ -4,8 +4,7 @@ library(stringr)
 library(RobustRankAggreg)
 
 # Read DEGs files 
-filenames <- list.files(path="1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB",
-                        pattern="*.csv")
+filenames <- list.files(path="1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB", pattern="*.csv")
 
 ## Create list of data frame names without the ".csv" part 
 names <-substr(filenames,1,str_length(filenames)-4)
@@ -83,15 +82,18 @@ agg_up <- as.data.frame(agg_up)
 # Create unique DEGs list
 #rownames(agg_down) <- NULL
 #rownames(agg_up) <- NULL
-#genes <- rbind(agg_down,agg_up)
-#colnames(genes) <- c("Name","Score")
+genes <- rbind(agg_down,agg_up)
+colnames(genes) <- c("Name","Score")
+class(genes)
 #genes <- as.data.frame(genes)
-#genes <- genes[order(genes$Score)]
+genes <- genes[order(genes$Score),]
 
 
 # Convert results into csv files
-write.csv(agg_down, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Aggregated_Downregulated.csv", row.names=FALSE)
-write.csv(agg_up, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Aggregated_Upregulated.csv", row.names=FALSE)
+write.csv(agg_down, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_Downregulated.csv", row.names=FALSE)
+write.csv(agg_up, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_Upregulated.csv", row.names=FALSE)
+
+
 
 #write.table(onlygenes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_names.csv",sep=",", row.names=FALSE, col.names=FALSE)
-#write.table(genes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_score.csv",sep=",", row.names=FALSE)
+write.table(genes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG.csv",sep=",", row.names=FALSE)

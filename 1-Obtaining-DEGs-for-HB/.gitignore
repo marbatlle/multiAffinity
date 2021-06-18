@@ -1,12 +1,5 @@
-Matrices_HB/*.txt
-Matrices_HB/Originals_HB/*.csv
 
-!Matrices_HB/Joint_matrix.txt
-!Matrices_HB/.gitkeep
-!Outputs_HB/.gitkeep
-Outputs_HB/*.csv
-!Metadata_HB/.gitkeep
-!Originals_HB/.gitkeep
-Originals_HB/*
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
+*.csv
+*.txt
+
+

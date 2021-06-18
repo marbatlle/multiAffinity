@@ -5,6 +5,7 @@
 
 # Obtainig DEGs lists from each study
 rm -f 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
+mkdir 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/
 for sid in $(ls 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/*.csv | sed "s:1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/::" | cut -d"_" -f1)
 do
     # create temp files
@@ -26,9 +27,11 @@ done
 echo "** Obtain ranks and aggregate **"
 Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_ranks.R 
 
-for sid in $(ls 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/*.csv | sed "s:1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/::" | cut -d"_" -f1)
-do
+rm -r 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB
+
+#for sid in $(ls 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/*.csv | sed "s:1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/::" | cut -d"_" -f1)
+#do
     #delete temp files
-    rm 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_down.csv
-    rm 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_up.csv
-done
+ #   rm 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_down.csv
+  #  rm 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_up.csv
+#done

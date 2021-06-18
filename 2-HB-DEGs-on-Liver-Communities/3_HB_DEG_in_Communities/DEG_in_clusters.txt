@@ -15,7 +15,7 @@ ClusterID:7
 ClusterID:8 	
 0 	 NaN
 ClusterID:9 	
-1  	 ['CMIP']
+0 	 NaN
 ClusterID:10 	
 0 	 NaN
 ClusterID:11 	
@@ -33,15 +33,15 @@ ClusterID:16
 ClusterID:17 	
 0 	 NaN
 ClusterID:18 	
-1  	 ['NAP1L1']
+0 	 NaN
 ClusterID:19 	
 0 	 NaN
 ClusterID:20 	
-6  	 ['CYP2A6', 'XDH', 'DHODH', 'GLYAT', 'FETUB', 'GSTA1']
+2  	 ['CYP2A6', 'EDDM3A']
 ClusterID:21 	
 0 	 NaN
 ClusterID:22 	
-2  	 ['HEATR6', 'PIP4K2B']
+0 	 NaN
 ClusterID:23 	
 0 	 NaN
 ClusterID:24 	
@@ -49,7 +49,7 @@ ClusterID:24
 ClusterID:25 	
 0 	 NaN
 ClusterID:26 	
-4  	 ['AAAS', 'UXS1', 'TNPO2', 'TPR']
+0 	 NaN
 ClusterID:27 	
 0 	 NaN
 ClusterID:28 	
@@ -65,7 +65,7 @@ ClusterID:32
 ClusterID:33 	
 0 	 NaN
 ClusterID:34 	
-0 	 NaN
+1  	 ['TINAG']
 ClusterID:35 	
 0 	 NaN
 ClusterID:36 	
@@ -81,15 +81,15 @@ ClusterID:40
 ClusterID:41 	
 0 	 NaN
 ClusterID:42 	
-1  	 ['LSM11']
+0 	 NaN
 ClusterID:43 	
-3  	 ['EXOSC10', 'EXOSC7', 'MAP7']
+0 	 NaN
 ClusterID:44 	
-1  	 ['ACTR8']
+0 	 NaN
 ClusterID:45 	
-1  	 ['OCIAD2']
+0 	 NaN
 ClusterID:46 	
-1  	 ['ASPG']
+0 	 NaN
 ClusterID:47 	
 0 	 NaN
 ClusterID:48 	
@@ -97,13 +97,13 @@ ClusterID:48
 ClusterID:49 	
 0 	 NaN
 ClusterID:50 	
-4  	 ['BTN2A1', 'OAF', 'BTN2A2', 'AZGP1']
+1  	 ['FCAMR']
 ClusterID:51 	
 0 	 NaN
 ClusterID:52 	
 0 	 NaN
 ClusterID:53 	
-1  	 ['MARCKS']
+0 	 NaN
 ClusterID:54 	
 0 	 NaN
 ClusterID:55 	
@@ -111,19 +111,19 @@ ClusterID:55
 ClusterID:56 	
 0 	 NaN
 ClusterID:57 	
-1  	 ['RBMX2']
+0 	 NaN
 ClusterID:58 	
 0 	 NaN
 ClusterID:59 	
-1  	 ['NPEPPS']
+0 	 NaN
 ClusterID:60 	
 0 	 NaN
 ClusterID:61 	
 0 	 NaN
 ClusterID:62 	
-2  	 ['GDA', 'EXOC4']
+0 	 NaN
 ClusterID:63 	
-1  	 ['ZBTB34']
+0 	 NaN
 ClusterID:64 	
 0 	 NaN
 ClusterID:65 	
@@ -131,25 +131,25 @@ ClusterID:65
 ClusterID:66 	
 0 	 NaN
 ClusterID:67 	
-1  	 ['CFHR4']
+1  	 ['CRP']
 ClusterID:68 	
-1  	 ['LARP1']
-ClusterID:69 	
-1  	 ['LPIN2']
-ClusterID:70 	
 0 	 NaN
+ClusterID:69 	
+0 	 NaN
+ClusterID:70 	
+1  	 ['MUCL1']
 ClusterID:71 	
 0 	 NaN
 ClusterID:72 	
-1  	 ['GFRA1']
+0 	 NaN
 ClusterID:73 	
-2  	 ['ASAP2', 'ARHGEF26']
+0 	 NaN
 ClusterID:74 	
-2  	 ['CASC3', 'CIR1']
+0 	 NaN
 ClusterID:75 	
 0 	 NaN
 ClusterID:76 	
-4  	 ['DPF2', 'DPF3', 'TDO2', 'ARID2']
+0 	 NaN
 ClusterID:77 	
 0 	 NaN
 ClusterID:78 	
@@ -157,7 +157,7 @@ ClusterID:78
 ClusterID:79 	
 0 	 NaN
 ClusterID:80 	
-2  	 ['SDS', 'SDSL']
+1  	 ['SDS']
 ClusterID:81 	
 0 	 NaN
 ClusterID:82 	
@@ -171,17 +171,17 @@ ClusterID:85
 ClusterID:86 	
 0 	 NaN
 ClusterID:87 	
-1  	 ['LDHD']
+0 	 NaN
 ClusterID:88 	
-2  	 ['MAP3K4', 'TAOK2']
+0 	 NaN
 ClusterID:89 	
 0 	 NaN
 ClusterID:90 	
 0 	 NaN
 ClusterID:91 	
-2  	 ['GNPDA1', 'GNE']
+0 	 NaN
 ClusterID:92 	
-5  	 ['ACO1', 'OGDHL', 'BCKDHB', 'CS', 'DHTKD1']
+0 	 NaN
 ClusterID:93 	
 0 	 NaN
 ClusterID:94 	
@@ -199,17 +199,17 @@ ClusterID:99
 ClusterID:100 	
 0 	 NaN
 ClusterID:101 	
-1  	 ['PIGR']
+0 	 NaN
 ClusterID:102 	
-1  	 ['PPARGC1A']
+0 	 NaN
 ClusterID:103 	
-1  	 ['MTERF4']
+0 	 NaN
 ClusterID:104 	
 0 	 NaN
 ClusterID:105 	
-1  	 ['IPO9']
+0 	 NaN
 ClusterID:106 	
-2  	 ['ANKRD27', 'WDFY1']
+0 	 NaN
 ClusterID:107 	
 0 	 NaN
 ClusterID:108 	
@@ -217,13 +217,13 @@ ClusterID:108
 ClusterID:109 	
 0 	 NaN
 ClusterID:110 	
-2  	 ['PWWP2A', 'RBBP7']
-ClusterID:111 	
 0 	 NaN
+ClusterID:111 	
+1  	 ['BCO2']
 ClusterID:112 	
 0 	 NaN
 ClusterID:113 	
-1  	 ['RNMT']
+0 	 NaN
 ClusterID:114 	
 0 	 NaN
 ClusterID:115 	
@@ -247,21 +247,21 @@ ClusterID:123
 ClusterID:124 	
 0 	 NaN
 ClusterID:125 	
-1  	 ['SOCS2']
+0 	 NaN
 ClusterID:126 	
-1  	 ['PVALB']
+0 	 NaN
 ClusterID:127 	
-5  	 ['JARID2', 'CTCF', 'NSD3', 'JADE2', 'PHF20']
+0 	 NaN
 ClusterID:128 	
 0 	 NaN
 ClusterID:129 	
-1  	 ['CSNK2A2']
+0 	 NaN
 ClusterID:130 	
 0 	 NaN
 ClusterID:131 	
 0 	 NaN
 ClusterID:132 	
-2  	 ['ZSCAN26', 'RCOR3']
+0 	 NaN
 ClusterID:133 	
 0 	 NaN
 ClusterID:134 	
@@ -271,7 +271,7 @@ ClusterID:135
 ClusterID:136 	
 0 	 NaN
 ClusterID:137 	
-1  	 ['INTS9']
+0 	 NaN
 ClusterID:138 	
 0 	 NaN
 ClusterID:139 	
@@ -279,7 +279,7 @@ ClusterID:139
 ClusterID:140 	
 0 	 NaN
 ClusterID:141 	
-24  	 ['SERPINC1', 'FGA', 'MARCO', 'HABP2', 'CP', 'CFI', 'FGG', 'C1S', 'TMPRSS2', 'MASP1', 'HPX', 'KNG1', 'C4BPB', 'HRG', 'C8A', 'C8B', 'KLKB1', 'PLG', 'C8G', 'CFHR5', 'HP', 'C4BPA', 'C1R', 'F9']
+2  	 ['PRSS22', 'PRSS2']
 ClusterID:142 	
 0 	 NaN
 ClusterID:143 	
@@ -289,7 +289,7 @@ ClusterID:144
 ClusterID:145 	
 0 	 NaN
 ClusterID:146 	
-1  	 ['RNASE4']
+0 	 NaN
 ClusterID:147 	
 0 	 NaN
 ClusterID:148 	
@@ -299,7 +299,7 @@ ClusterID:149
 ClusterID:150 	
 0 	 NaN
 ClusterID:151 	
-1  	 ['PXMP2']
+0 	 NaN
 ClusterID:152 	
 0 	 NaN
 ClusterID:153 	
@@ -309,27 +309,27 @@ ClusterID:154
 ClusterID:155 	
 0 	 NaN
 ClusterID:156 	
-3  	 ['ENO3', 'FBP1', 'ALDOB']
+0 	 NaN
 ClusterID:157 	
 0 	 NaN
 ClusterID:158 	
-2  	 ['ADCY6', 'GDE1']
+1  	 ['GRPR']
 ClusterID:159 	
-1  	 ['SSB']
+0 	 NaN
 ClusterID:160 	
 0 	 NaN
 ClusterID:161 	
 0 	 NaN
 ClusterID:162 	
-5  	 ['SLC7A2', 'ITIH4', 'SLC7A6', 'SLC1A1', 'SLC46A3']
+1  	 ['SLC1A1']
 ClusterID:163 	
 0 	 NaN
 ClusterID:164 	
-2  	 ['ZFHX3', 'PBX2']
+2  	 ['HOXA11', 'EVX1']
 ClusterID:165 	
 0 	 NaN
 ClusterID:166 	
-2  	 ['TBC1D20', 'TBCK']
+0 	 NaN
 ClusterID:167 	
 0 	 NaN
 ClusterID:168 	
@@ -343,33 +343,33 @@ ClusterID:171
 ClusterID:172 	
 0 	 NaN
 ClusterID:173 	
-1  	 ['TP53BP1']
+0 	 NaN
 ClusterID:174 	
 0 	 NaN
 ClusterID:175 	
-3  	 ['ATP6V1C1', 'NNT', 'CCDC115']
+0 	 NaN
 ClusterID:176 	
-7  	 ['ZKSCAN4', 'ZFP90', 'ZNF189', 'ZNF14', 'ZFP14', 'ZNF174', 'ZNF419']
+0 	 NaN
 ClusterID:177 	
-1  	 ['HAAO']
+0 	 NaN
 ClusterID:178 	
 0 	 NaN
 ClusterID:179 	
 0 	 NaN
 ClusterID:180 	
-1  	 ['CHD8']
+0 	 NaN
 ClusterID:181 	
 0 	 NaN
 ClusterID:182 	
 0 	 NaN
 ClusterID:183 	
-1  	 ['PPP1R1A']
+0 	 NaN
 ClusterID:184 	
 0 	 NaN
 ClusterID:185 	
-2  	 ['COPS7B', 'IP6K1']
+0 	 NaN
 ClusterID:186 	
-1  	 ['MPC1']
+0 	 NaN
 ClusterID:187 	
 0 	 NaN
 ClusterID:188 	
@@ -383,23 +383,23 @@ ClusterID:191
 ClusterID:192 	
 0 	 NaN
 ClusterID:193 	
-1  	 ['EIF2B1']
+1  	 ['THRSP']
 ClusterID:194 	
 0 	 NaN
 ClusterID:195 	
-3  	 ['SLC9A6', 'GNAO1', 'NDRG3']
+0 	 NaN
 ClusterID:196 	
-1  	 ['SOX13']
+0 	 NaN
 ClusterID:197 	
-1  	 ['LDB1']
+0 	 NaN
 ClusterID:198 	
-1  	 ['RFX7']
+0 	 NaN
 ClusterID:199 	
 0 	 NaN
 ClusterID:200 	
 0 	 NaN
 ClusterID:201 	
-4  	 ['PAQR7', 'SDHB', 'SDHD', 'ETFDH']
+0 	 NaN
 ClusterID:202 	
 0 	 NaN
 ClusterID:203 	
@@ -407,13 +407,13 @@ ClusterID:203
 ClusterID:204 	
 0 	 NaN
 ClusterID:205 	
-4  	 ['SLC51A', 'ATXN2', 'ATXN1L', 'GPATCH8']
+0 	 NaN
 ClusterID:206 	
-1  	 ['ATP6AP1']
+0 	 NaN
 ClusterID:207 	
 0 	 NaN
 ClusterID:208 	
-2  	 ['TMEM98', 'ADRA1A']
+2  	 ['SST', 'HTR1F']
 ClusterID:209 	
 0 	 NaN
 ClusterID:210 	
@@ -421,19 +421,19 @@ ClusterID:210
 ClusterID:211 	
 0 	 NaN
 ClusterID:212 	
-1  	 ['FXR1']
+0 	 NaN
 ClusterID:213 	
-1  	 ['GPR107']
+0 	 NaN
 ClusterID:214 	
 0 	 NaN
 ClusterID:215 	
-0 	 NaN
+1  	 ['ZIC4']
 ClusterID:216 	
 0 	 NaN
 ClusterID:217 	
-1  	 ['C12orf65']
+0 	 NaN
 ClusterID:218 	
-1  	 ['CDC23']
+1  	 ['PENK']
 ClusterID:219 	
 0 	 NaN
 ClusterID:220 	
@@ -453,7 +453,7 @@ ClusterID:226
 ClusterID:227 	
 0 	 NaN
 ClusterID:228 	
-1  	 ['ADNP']
+0 	 NaN
 ClusterID:229 	
 0 	 NaN
 ClusterID:230 	
@@ -461,17 +461,17 @@ ClusterID:230
 ClusterID:231 	
 0 	 NaN
 ClusterID:232 	
-0 	 NaN
+1  	 ['TBX5']
 ClusterID:233 	
-1  	 ['CREB3L2']
+0 	 NaN
 ClusterID:234 	
 0 	 NaN
 ClusterID:235 	
-1  	 ['SUPT20H']
+0 	 NaN
 ClusterID:236 	
 0 	 NaN
 ClusterID:237 	
-4  	 ['HSD11B1', 'RDH16', 'DECR1', 'HSD17B6']
+1  	 ['HSD11B1']
 ClusterID:238 	
 0 	 NaN
 ClusterID:239 	
@@ -485,17 +485,17 @@ ClusterID:242
 ClusterID:243 	
 0 	 NaN
 ClusterID:244 	
-1  	 ['WIPF2']
+0 	 NaN
 ClusterID:245 	
 0 	 NaN
 ClusterID:246 	
-1  	 ['MTF2']
+0 	 NaN
 ClusterID:247 	
 0 	 NaN
 ClusterID:248 	
-1  	 ['SLC31A1']
-ClusterID:249 	
 0 	 NaN
+ClusterID:249 	
+1  	 ['CST4']
 ClusterID:250 	
 0 	 NaN
 ClusterID:251 	
@@ -511,13 +511,13 @@ ClusterID:255
 ClusterID:256 	
 0 	 NaN
 ClusterID:257 	
-1  	 ['VPS35']
+1  	 ['CSN2']
 ClusterID:258 	
 0 	 NaN
 ClusterID:259 	
 0 	 NaN
 ClusterID:260 	
-1  	 ['PGLYRP2']
+0 	 NaN
 ClusterID:261 	
 0 	 NaN
 ClusterID:262 	
@@ -525,33 +525,33 @@ ClusterID:262
 ClusterID:263 	
 0 	 NaN
 ClusterID:264 	
-1  	 ['HARS2']
+0 	 NaN
 ClusterID:265 	
-2  	 ['DNAJC13', 'EDRF1']
+0 	 NaN
 ClusterID:266 	
 0 	 NaN
 ClusterID:267 	
-1  	 ['DVL2']
+0 	 NaN
 ClusterID:268 	
 0 	 NaN
 ClusterID:269 	
 0 	 NaN
 ClusterID:270 	
-4  	 ['DLG3', 'GLS2', 'GPAT3', 'SNX27']
+1  	 ['GPAT3']
 ClusterID:271 	
-1  	 ['SLC37A4']
+0 	 NaN
 ClusterID:272 	
 0 	 NaN
 ClusterID:273 	
 0 	 NaN
 ClusterID:274 	
-1  	 ['PIK3C2G']
+0 	 NaN
 ClusterID:275 	
 0 	 NaN
 ClusterID:276 	
 0 	 NaN
 ClusterID:277 	
-1  	 ['GHR']
+0 	 NaN
 ClusterID:278 	
 0 	 NaN
 ClusterID:279 	
@@ -569,11 +569,11 @@ ClusterID:284
 ClusterID:285 	
 0 	 NaN
 ClusterID:286 	
-2  	 ['RNF214', 'TP53RK']
+1  	 ['PRAME']
 ClusterID:287 	
 0 	 NaN
 ClusterID:288 	
-1  	 ['NEK9']
+0 	 NaN
 ClusterID:289 	
 0 	 NaN
 ClusterID:290 	
@@ -583,17 +583,17 @@ ClusterID:291
 ClusterID:292 	
 0 	 NaN
 ClusterID:293 	
-13  	 ['GOT1', 'ADH1C', 'ALDH6A1', 'ALDH8A1', 'ASS1', 'CLYBL', 'AKR1D1', 'ABAT', 'ETNPPL', 'ALDH2', 'AKR7A3', 'SLC26A2', 'ADH4']
+2  	 ['ADH1C', 'AKR7A3']
 ClusterID:294 	
 0 	 NaN
 ClusterID:295 	
-1  	 ['CLUAP1']
+0 	 NaN
 ClusterID:296 	
 0 	 NaN
 ClusterID:297 	
-2  	 ['ZNF512', 'VPS39']
+0 	 NaN
 ClusterID:298 	
-1  	 ['NACA']
+0 	 NaN
 ClusterID:299 	
 0 	 NaN
 ClusterID:300 	
@@ -603,29 +603,29 @@ ClusterID:301
 ClusterID:302 	
 0 	 NaN
 ClusterID:303 	
-1  	 ['BTRC']
+0 	 NaN
 ClusterID:304 	
 0 	 NaN
 ClusterID:305 	
 0 	 NaN
 ClusterID:306 	
-2  	 ['ZNF740', 'UBN1']
+0 	 NaN
 ClusterID:307 	
 0 	 NaN
 ClusterID:308 	
 0 	 NaN
 ClusterID:309 	
-1  	 ['MAGEE1']
+0 	 NaN
 ClusterID:310 	
 0 	 NaN
 ClusterID:311 	
-1  	 ['PCCB']
+0 	 NaN
 ClusterID:312 	
-7  	 ['RNF38', 'RNF8', 'RNF165', 'HACE1', 'UBE2R2', 'UBE2Q2', 'WDSUB1']
+0 	 NaN
 ClusterID:313 	
 0 	 NaN
 ClusterID:314 	
-1  	 ['RASA1']
+0 	 NaN
 ClusterID:315 	
 0 	 NaN
 ClusterID:316 	
@@ -637,35 +637,35 @@ ClusterID:318
 ClusterID:319 	
 0 	 NaN
 ClusterID:320 	
-1  	 ['ABCC5']
+0 	 NaN
 ClusterID:321 	
 0 	 NaN
 ClusterID:322 	
-7  	 ['AMDHD1', 'TTC36', 'HAL', 'UROC1', 'HPD', 'GCH1', 'ARG1']
+1  	 ['TTC36']
 ClusterID:323 	
-1  	 ['ROCK2']
+0 	 NaN
 ClusterID:324 	
 0 	 NaN
 ClusterID:325 	
-1  	 ['PLEKHA8']
+0 	 NaN
 ClusterID:326 	
-3  	 ['UGP2', 'MAT1A', 'CMBL']
+0 	 NaN
 ClusterID:327 	
-1  	 ['DIP2A']
+0 	 NaN
 ClusterID:328 	
 0 	 NaN
 ClusterID:329 	
-3  	 ['POLDIP3', 'IGF2BP2', 'OIT3']
+0 	 NaN
 ClusterID:330 	
-1  	 ['MKRN1']
+0 	 NaN
 ClusterID:331 	
 0 	 NaN
 ClusterID:332 	
 0 	 NaN
 ClusterID:333 	
-2  	 ['SLC25A47', 'ZBTB40']
+0 	 NaN
 ClusterID:334 	
-1  	 ['RALA']
+0 	 NaN
 ClusterID:335 	
 0 	 NaN
 ClusterID:336 	
@@ -673,17 +673,17 @@ ClusterID:336
 ClusterID:337 	
 0 	 NaN
 ClusterID:338 	
-1  	 ['KSR1']
+0 	 NaN
 ClusterID:339 	
-3  	 ['PTPRG', 'DUSP12', 'DUSP22']
+0 	 NaN
 ClusterID:340 	
 0 	 NaN
 ClusterID:341 	
-1  	 ['MAGED2']
+0 	 NaN
 ClusterID:342 	
-2  	 ['MBTPS1', 'ORMDL1']
+0 	 NaN
 ClusterID:343 	
-2  	 ['TMEM176B', 'CD14']
+0 	 NaN
 ClusterID:344 	
 0 	 NaN
 ClusterID:345 	
@@ -691,15 +691,15 @@ ClusterID:345
 ClusterID:346 	
 0 	 NaN
 ClusterID:347 	
-1  	 ['SLC38A4']
+0 	 NaN
 ClusterID:348 	
 0 	 NaN
 ClusterID:349 	
 0 	 NaN
 ClusterID:350 	
-3  	 ['NRBP1', 'PRKD3', 'TRIB2']
+0 	 NaN
 ClusterID:351 	
-1  	 ['SOD1']
+0 	 NaN
 ClusterID:352 	
 0 	 NaN
 ClusterID:353 	
@@ -707,7 +707,7 @@ ClusterID:353
 ClusterID:354 	
 0 	 NaN
 ClusterID:355 	
-3  	 ['ITGA6', 'ITGAE', 'TSPAN3']
+0 	 NaN
 ClusterID:356 	
 0 	 NaN
 ClusterID:357 	
@@ -719,7 +719,7 @@ ClusterID:359
 ClusterID:360 	
 0 	 NaN
 ClusterID:361 	
-6  	 ['SEC24C', 'COG2', 'VPS16', 'EXOC7', 'NAPB', 'STX6']
+0 	 NaN
 ClusterID:362 	
 0 	 NaN
 ClusterID:363 	
@@ -727,9 +727,9 @@ ClusterID:363
 ClusterID:364 	
 0 	 NaN
 ClusterID:365 	
-4  	 ['SPRYD4', 'ADCK2', 'LYRM4', 'HOGA1']
+0 	 NaN
 ClusterID:366 	
-1  	 ['KDM2B']
+0 	 NaN
 ClusterID:367 	
 0 	 NaN
 ClusterID:368 	
@@ -747,7 +747,7 @@ ClusterID:373
 ClusterID:374 	
 0 	 NaN
 ClusterID:375 	
-4  	 ['BCAS3', 'CNOT8', 'SAP130', 'CNOT6']
+0 	 NaN
 ClusterID:376 	
 0 	 NaN
 ClusterID:377 	
@@ -761,21 +761,21 @@ ClusterID:380
 ClusterID:381 	
 0 	 NaN
 ClusterID:382 	
-0 	 NaN
+1  	 ['ODAM']
 ClusterID:383 	
 0 	 NaN
 ClusterID:384 	
-2  	 ['FAM149A', 'CFHR3']
+0 	 NaN
 ClusterID:385 	
 0 	 NaN
 ClusterID:386 	
-0 	 NaN
+1  	 ['HMGA2']
 ClusterID:387 	
 0 	 NaN
 ClusterID:388 	
 0 	 NaN
 ClusterID:389 	
-3  	 ['GNPTAB', 'ADK', 'TPMT']
+0 	 NaN
 ClusterID:390 	
 0 	 NaN
 ClusterID:391 	
@@ -785,9 +785,9 @@ ClusterID:392
 ClusterID:393 	
 0 	 NaN
 ClusterID:394 	
-1  	 ['APBA1']
-ClusterID:395 	
 0 	 NaN
+ClusterID:395 	
+1  	 ['BBOX1']
 ClusterID:396 	
 0 	 NaN
 ClusterID:397 	
@@ -799,23 +799,23 @@ ClusterID:399
 ClusterID:400 	
 0 	 NaN
 ClusterID:401 	
-1  	 ['TFCP2']
+0 	 NaN
 ClusterID:402 	
 0 	 NaN
 ClusterID:403 	
 0 	 NaN
 ClusterID:404 	
-2  	 ['VIPAS39', 'SLC41A3']
+0 	 NaN
 ClusterID:405 	
-1  	 ['ANXA10']
+0 	 NaN
 ClusterID:406 	
-1  	 ['STT3B']
+0 	 NaN
 ClusterID:407 	
 0 	 NaN
 ClusterID:408 	
 0 	 NaN
 ClusterID:409 	
-8  	 ['SLC22A1', 'FCN2', 'MBL2', 'C9', 'CLEC4G', 'STAB2', 'CLEC1B', 'FCN3']
+2  	 ['REG3A', 'REG3G']
 ClusterID:410 	
 0 	 NaN
 ClusterID:411 	
@@ -841,17 +841,17 @@ ClusterID:420
 ClusterID:421 	
 0 	 NaN
 ClusterID:422 	
-0 	 NaN
+1  	 ['SLC28A1']
 ClusterID:423 	
-2  	 ['MAP4K4', 'CA2']
+0 	 NaN
 ClusterID:424 	
-15  	 ['CYP1A2', 'PEMT', 'CYP4A11', 'RUNDC1', 'CYP2A13', 'CYP2C19', 'CYP4A22', 'CYP4F11', 'NAT2', 'CYP2C8', 'MGST1', 'CYP39A1', 'CYP2B6', 'CYB5A', 'ACSL1']
+5  	 ['CYP2B6', 'CYP26A1', 'CYP2A7', 'CYP1A2', 'CYP2C19']
 ClusterID:425 	
-1  	 ['SRC']
+0 	 NaN
 ClusterID:426 	
-1  	 ['IK']
+0 	 NaN
 ClusterID:427 	
-1  	 ['SLC25A36']
+0 	 NaN
 ClusterID:428 	
 0 	 NaN
 ClusterID:429 	
@@ -861,19 +861,19 @@ ClusterID:430
 ClusterID:431 	
 0 	 NaN
 ClusterID:432 	
-2  	 ['USP2', 'GLT1D1']
+0 	 NaN
 ClusterID:433 	
 0 	 NaN
 ClusterID:434 	
 0 	 NaN
 ClusterID:435 	
-5  	 ['RSRC2', 'SMIM14', 'SLC41A2', 'ADGRG7', 'CYB5B']
+0 	 NaN
 ClusterID:436 	
-2  	 ['TUBG2', 'TTC5']
+0 	 NaN
 ClusterID:437 	
-2  	 ['FAM219B', 'MSL1']
+0 	 NaN
 ClusterID:438 	
-1  	 ['PON3']
+1  	 ['NRG1']
 ClusterID:439 	
 0 	 NaN
 ClusterID:440 	
@@ -895,7 +895,7 @@ ClusterID:447
 ClusterID:448 	
 0 	 NaN
 ClusterID:449 	
-1  	 ['RBP4']
+0 	 NaN
 ClusterID:450 	
 0 	 NaN
 ClusterID:451 	
@@ -903,13 +903,13 @@ ClusterID:451
 ClusterID:452 	
 0 	 NaN
 ClusterID:453 	
-1  	 ['MT1E']
+5  	 ['MT1H', 'MT1E', 'MT2A', 'MT1G', 'MT1X']
 ClusterID:454 	
 0 	 NaN
 ClusterID:455 	
-0 	 NaN
+1  	 ['IL1RAPL2']
 ClusterID:456 	
-0 	 NaN
+1  	 ['PGC']
 ClusterID:457 	
 0 	 NaN
 ClusterID:458 	
@@ -919,13 +919,13 @@ ClusterID:459
 ClusterID:460 	
 0 	 NaN
 ClusterID:461 	
-1  	 ['PXYLP1']
+0 	 NaN
 ClusterID:462 	
 0 	 NaN
 ClusterID:463 	
 0 	 NaN
 ClusterID:464 	
-1  	 ['ISOC1']
+0 	 NaN
 ClusterID:465 	
 0 	 NaN
 ClusterID:466 	
@@ -935,11 +935,11 @@ ClusterID:467
 ClusterID:468 	
 0 	 NaN
 ClusterID:469 	
-1  	 ['LURAP1L']
+0 	 NaN
 ClusterID:470 	
-1  	 ['MAPK13']
+0 	 NaN
 ClusterID:471 	
-1  	 ['ZNF7']
+0 	 NaN
 ClusterID:472 	
 0 	 NaN
 ClusterID:473 	
@@ -955,7 +955,7 @@ ClusterID:477
 ClusterID:478 	
 0 	 NaN
 ClusterID:479 	
-4  	 ['UGT2B15', 'SRD5A2', 'SULT1A2', 'PAPSS2']
+1  	 ['SRD5A2']
 ClusterID:480 	
 0 	 NaN
 ClusterID:481 	
@@ -973,7 +973,7 @@ ClusterID:486
 ClusterID:487 	
 0 	 NaN
 ClusterID:488 	
-2  	 ['HNRNPUL1', 'PCK2']
+0 	 NaN
 ClusterID:489 	
 0 	 NaN
 ClusterID:490 	
@@ -983,7 +983,7 @@ ClusterID:491
 ClusterID:492 	
 0 	 NaN
 ClusterID:493 	
-6  	 ['MOGAT2', 'TTR', 'ALB', 'PON1', 'APOA1', 'APOF']
+1  	 ['APOF']
 ClusterID:494 	
 0 	 NaN
 ClusterID:495 	
@@ -993,27 +993,27 @@ ClusterID:496
 ClusterID:497 	
 0 	 NaN
 ClusterID:498 	
-3  	 ['HIF1AN', 'ANKRD52', 'ZCCHC4']
+0 	 NaN
 ClusterID:499 	
 0 	 NaN
 ClusterID:500 	
 0 	 NaN
 ClusterID:501 	
-2  	 ['CCDC93', 'VPS54']
+0 	 NaN
 ClusterID:502 	
 0 	 NaN
 ClusterID:503 	
-1  	 ['RUFY2']
+0 	 NaN
 ClusterID:504 	
 0 	 NaN
 ClusterID:505 	
-2  	 ['KCND3', 'KCNK1']
+0 	 NaN
 ClusterID:506 	
 0 	 NaN
 ClusterID:507 	
-2  	 ['SLC10A1', 'TULP3']
+1  	 ['SLN']
 ClusterID:508 	
-3  	 ['DCTN4', 'DYNC1I2', 'DYNLL1']
+0 	 NaN
 ClusterID:509 	
 0 	 NaN
 ClusterID:510 	
@@ -1029,17 +1029,17 @@ ClusterID:514
 ClusterID:515 	
 0 	 NaN
 ClusterID:516 	
-3  	 ['IGBP1', 'ZNF550', 'STRIP1']
+0 	 NaN
 ClusterID:517 	
-3  	 ['AGO1', 'EIF4ENIF1', 'DROSHA']
+0 	 NaN
 ClusterID:518 	
 0 	 NaN
 ClusterID:519 	
 0 	 NaN
 ClusterID:520 	
-2  	 ['SLC27A5', 'CIDEB']
+0 	 NaN
 ClusterID:521 	
-2  	 ['GC', 'FMNL2']
+0 	 NaN
 ClusterID:522 	
 0 	 NaN
 ClusterID:523 	
@@ -1047,13 +1047,13 @@ ClusterID:523
 ClusterID:524 	
 0 	 NaN
 ClusterID:525 	
-1  	 ['CHD4']
+0 	 NaN
 ClusterID:526 	
-2  	 ['AP2B1', 'AP3B1']
+0 	 NaN
 ClusterID:527 	
 0 	 NaN
 ClusterID:528 	
-1  	 ['COMMD7']
+0 	 NaN
 ClusterID:529 	
 0 	 NaN
 ClusterID:530 	
@@ -1061,11 +1061,11 @@ ClusterID:530
 ClusterID:531 	
 0 	 NaN
 ClusterID:532 	
-2  	 ['XRCC1', 'TDP1']
+1  	 ['CCNO']
 ClusterID:533 	
 0 	 NaN
 ClusterID:534 	
-1  	 ['THOC5']
+0 	 NaN
 ClusterID:535 	
 0 	 NaN
 ClusterID:536 	
@@ -1079,17 +1079,17 @@ ClusterID:539
 ClusterID:540 	
 0 	 NaN
 ClusterID:541 	
-1  	 ['SLC4A1AP']
+0 	 NaN
 ClusterID:542 	
 0 	 NaN
 ClusterID:543 	
 0 	 NaN
 ClusterID:544 	
-1  	 ['CRTAP']
+0 	 NaN
 ClusterID:545 	
 0 	 NaN
 ClusterID:546 	
-4  	 ['ECHS1', 'CYP4V2', 'ACSM5', 'RARS2']
+0 	 NaN
 ClusterID:547 	
 0 	 NaN
 ClusterID:548 	
@@ -1097,7 +1097,7 @@ ClusterID:548
 ClusterID:549 	
 0 	 NaN
 ClusterID:550 	
-2  	 ['KDM3B', 'WASHC2C']
+0 	 NaN
 ClusterID:551 	
 0 	 NaN
 ClusterID:552 	
@@ -1105,7 +1105,7 @@ ClusterID:552
 ClusterID:553 	
 0 	 NaN
 ClusterID:554 	
-1  	 ['PMS1']
+0 	 NaN
 ClusterID:555 	
 0 	 NaN
 ClusterID:556 	
@@ -1113,7 +1113,7 @@ ClusterID:556
 ClusterID:557 	
 0 	 NaN
 ClusterID:558 	
-1  	 ['TRIM55']
+0 	 NaN
 ClusterID:559 	
 0 	 NaN
 ClusterID:560 	
@@ -1135,7 +1135,7 @@ ClusterID:567
 ClusterID:568 	
 0 	 NaN
 ClusterID:569 	
-4  	 ['DMGDH', 'SHMT1', 'AGXT', 'ALAS1']
+0 	 NaN
 ClusterID:570 	
 0 	 NaN
 ClusterID:571 	
@@ -1145,11 +1145,11 @@ ClusterID:572
 ClusterID:573 	
 0 	 NaN
 ClusterID:574 	
-2  	 ['PLXNC1', 'DPYS']
+0 	 NaN
 ClusterID:575 	
 0 	 NaN
 ClusterID:576 	
-1  	 ['RIDA']
+0 	 NaN
 ClusterID:577 	
 0 	 NaN
 ClusterID:578 	
@@ -1163,13 +1163,13 @@ ClusterID:581
 ClusterID:582 	
 0 	 NaN
 ClusterID:583 	
-1  	 ['CDA']
+0 	 NaN
 ClusterID:584 	
 0 	 NaN
 ClusterID:585 	
 0 	 NaN
 ClusterID:586 	
-1  	 ['TTC13']
+0 	 NaN
 ClusterID:587 	
 0 	 NaN
 ClusterID:588 	
@@ -1179,19 +1179,19 @@ ClusterID:589
 ClusterID:590 	
 0 	 NaN
 ClusterID:591 	
-1  	 ['FAM110C']
+0 	 NaN
 ClusterID:592 	
 0 	 NaN
 ClusterID:593 	
-1  	 ['BMF']
+1  	 ['AFP']
 ClusterID:594 	
-1  	 ['SUCLG2']
+0 	 NaN
 ClusterID:595 	
 0 	 NaN
 ClusterID:596 	
 0 	 NaN
 ClusterID:597 	
-3  	 ['RABIF', 'RHOT1', 'RAB5B']
+0 	 NaN
 ClusterID:598 	
 0 	 NaN
 ClusterID:599 	
@@ -1235,7 +1235,7 @@ ClusterID:617
 ClusterID:618 	
 0 	 NaN
 ClusterID:619 	
-0 	 NaN
+1  	 ['NNMT']
 ClusterID:620 	
 0 	 NaN
 ClusterID:621 	
@@ -1251,19 +1251,19 @@ ClusterID:625
 ClusterID:626 	
 0 	 NaN
 ClusterID:627 	
-1  	 ['SELENOP']
+0 	 NaN
 ClusterID:628 	
-1  	 ['MED23']
+0 	 NaN
 ClusterID:629 	
-3  	 ['TACC1', 'CEP68', 'CEP290']
+0 	 NaN
 ClusterID:630 	
 0 	 NaN
 ClusterID:631 	
 0 	 NaN
 ClusterID:632 	
-3  	 ['GSTZ1', 'PIK3C2B', 'CYP4F2']
+0 	 NaN
 ClusterID:633 	
-1  	 ['RGP1']
+0 	 NaN
 ClusterID:634 	
 0 	 NaN
 ClusterID:635 	
@@ -1293,15 +1293,15 @@ ClusterID:646
 ClusterID:647 	
 0 	 NaN
 ClusterID:648 	
-1  	 ['LEMD2']
+1  	 ['GABRA4']
 ClusterID:649 	
 0 	 NaN
 ClusterID:650 	
-0 	 NaN
+1  	 ['DEFA5']
 ClusterID:651 	
 0 	 NaN
 ClusterID:652 	
-1  	 ['PBXIP1']
+1  	 ['DKK1']
 ClusterID:653 	
 0 	 NaN
 ClusterID:654 	
@@ -1323,7 +1323,7 @@ ClusterID:661
 ClusterID:662 	
 0 	 NaN
 ClusterID:663 	
-0 	 NaN
+1  	 ['STRA6']
 ClusterID:664 	
 0 	 NaN
 ClusterID:665 	
@@ -1339,7 +1339,7 @@ ClusterID:669
 ClusterID:670 	
 0 	 NaN
 ClusterID:671 	
-1  	 ['AR']
+0 	 NaN
 ClusterID:672 	
 0 	 NaN
 ClusterID:673 	
@@ -1349,9 +1349,9 @@ ClusterID:674
 ClusterID:675 	
 0 	 NaN
 ClusterID:676 	
-1  	 ['CFHR2']
+0 	 NaN
 ClusterID:677 	
-1  	 ['SENP1']
+0 	 NaN
 ClusterID:678 	
 0 	 NaN
 ClusterID:679 	
@@ -1365,7 +1365,7 @@ ClusterID:682
 ClusterID:683 	
 1  	 ['VNN1']
 ClusterID:684 	
-1  	 ['GBA3']
+0 	 NaN
 ClusterID:685 	
 0 	 NaN
 ClusterID:686 	
@@ -1395,15 +1395,15 @@ ClusterID:697
 ClusterID:698 	
 0 	 NaN
 ClusterID:699 	
-14  	 ['LONP2', 'HMGCS2', 'EXD2', 'ACAA2', 'SCP2', 'GNPAT', 'ACADL', 'HAO1', 'SLC27A2', 'SEC14L2', 'FKTN', 'HAO2', 'PHYH', 'PIPOX']
+0 	 NaN
 ClusterID:700 	
 0 	 NaN
 ClusterID:701 	
 0 	 NaN
 ClusterID:702 	
-1  	 ['CTNNB1']
+0 	 NaN
 ClusterID:703 	
-2  	 ['GGA3', 'SORT1']
+0 	 NaN
 ClusterID:704 	
 0 	 NaN
 ClusterID:705 	
@@ -1413,37 +1413,37 @@ ClusterID:706
 ClusterID:707 	
 0 	 NaN
 ClusterID:708 	
-2  	 ['SAMM50', 'PRG4']
+0 	 NaN
 ClusterID:709 	
 0 	 NaN
 ClusterID:710 	
-2  	 ['ZG16', 'MANBAL']
+0 	 NaN
 ClusterID:711 	
 0 	 NaN
 ClusterID:712 	
 0 	 NaN
 ClusterID:713 	
-0 	 NaN
+1  	 ['DLK1']
 ClusterID:714 	
 0 	 NaN
 ClusterID:715 	
-1  	 ['KMO']
+0 	 NaN
 ClusterID:716 	
 0 	 NaN
 ClusterID:717 	
-1  	 ['ABHD2']
+0 	 NaN
 ClusterID:718 	
-2  	 ['ZNF610', 'CDC37L1']
+0 	 NaN
 ClusterID:719 	
 0 	 NaN
 ClusterID:720 	
 0 	 NaN
 ClusterID:721 	
-1  	 ['PRUNE1']
+0 	 NaN
 ClusterID:722 	
 0 	 NaN
 ClusterID:723 	
-0 	 NaN
+1  	 ['CLRN3']
 ClusterID:724 	
 0 	 NaN
 ClusterID:725 	
@@ -1455,7 +1455,7 @@ ClusterID:727
 ClusterID:728 	
 0 	 NaN
 ClusterID:729 	
-0 	 NaN
+1  	 ['FGF4']
 ClusterID:730 	
 0 	 NaN
 ClusterID:731 	
@@ -1467,11 +1467,11 @@ ClusterID:733
 ClusterID:734 	
 0 	 NaN
 ClusterID:735 	
-1  	 ['GYS2']
+0 	 NaN
 ClusterID:736 	
-1  	 ['SRD5A1']
+0 	 NaN
 ClusterID:737 	
-1  	 ['BCHE']
+0 	 NaN
 ClusterID:738 	
 0 	 NaN
 ClusterID:739 	
@@ -1493,13 +1493,13 @@ ClusterID:746
 ClusterID:747 	
 0 	 NaN
 ClusterID:748 	
-1  	 ['PRPF38A']
+0 	 NaN
 ClusterID:749 	
-2  	 ['GGPS1', 'TTC39C']
+0 	 NaN
 ClusterID:750 	
-2  	 ['MGLL', 'ACMSD']
+0 	 NaN
 ClusterID:751 	
-2  	 ['TIGD2', 'SMYD4']
+0 	 NaN
 ClusterID:752 	
 0 	 NaN
 ClusterID:753 	
@@ -1515,8 +1515,8 @@ ClusterID:757
 ClusterID:758 	
 0 	 NaN
 ClusterID:759 	
-1  	 ['ATXN7L3B']
+0 	 NaN
 ClusterID:760 	
-1  	 ['ZNF322']
+0 	 NaN
 ClusterID:761 	
 0 	 NaN
