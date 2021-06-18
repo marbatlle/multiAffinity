@@ -28,10 +28,3 @@ echo "** Obtain ranks and aggregate **"
 Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_ranks.R 
 
 rm -r 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB
-
-#for sid in $(ls 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/*.csv | sed "s:1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/::" | cut -d"_" -f1)
-#do
-    #delete temp files
- #   rm 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_down.csv
-  #  rm 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_up.csv
-#done
