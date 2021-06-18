@@ -1,65 +1,31 @@
 **Goal:** Obtain and study deregulated genes for HB from public databases
 
+# The input
+
+The GSE133039, GSE89775, GSE104766, GSE151347 and  GSE81928 gene expression count matrix and metadata were downloaded from the GREIN Interactive Navigator and their formats were unified using the *Scripts_HB/clean_grein_data.R* script, if other studies need to be added in the future, the same format guidelines should be followed, and added to:
+
+* Raw count matrix to *Matrices_HB/Originals_HB/*
+* Filtered metadata to *Metadata_HB*
 
 
-# 
+| Reference                      | GEO ID    | Platform | Patients |
+|--------------------------------|-----------|----------|----------|
+| Carrillo-Reixach et al. (2020) | GSE133039 | GPL16791 | 32       |
+| Ranganathan et al. (2016)      | GSE89775  | GPL16791 | 10       |
+| Hooks et al. (2018)            | GSE104766 | GPL16791 | 39       |
+| Wagner et al. (2020)           | GSE151347 | GPL11154 | 11       |
+| Valanejad et al. (2018)        | GSE81928  | GPL16791 | 23       |
 
-# Folders
+# The scripts
 
-## > Matrices_HB
+To obtain the DEGs, it's only needed to run:
+* Scripts_HB/DEGs-pipeline.sh*
 
-*Prep_Matrices.ipynb*
-*inputs: (at /Originals_HB)*
+# The output
 
-*output: (at /Matrices_HB)*
-One matrix with all three datasets merged
+Once the script is run, the following outputs will be obtained:
+* *DEGs_HB/degs_by_dataset.txt* - indicates the number of DEGs obtained in each individual GEO obtained study
+* *DEGs_HB/HB_db_DEG_Downregulated.csv*
+* *DEGs_HB/HB_db_DEG_Upregulated.csv*
+* *DEGs_HB/HB_db_DEG.csv* - joint dataframe with up and downregulated genes
 
-### >> Originals_HB
-
-**Ranganathan (2016)**
-
-* GSE89775_hepato_norm_counts.txt
-* Group inputs with the same gene symbol to avoid duplicates
-* Translate gene labels with month names to original symbols
-
-**Hooks (2018)**
-
-* GSE104766_counts_mapped2GR38.txt
-* Translate ensembl id to gene symbols using mygene
-
-**Wagner (2020)**
-
-* GSE151347_Raw_gene_counts_matrix.xlsx
-
-## > Metadata_HB
-
-**GEO_metadata.R**
-Obtain metadata from desired matrices *(at /Metadata_HB)*
-
-*output: (at /Metadata_HB) -> HB_joint_METADATA.tsv*
-
-## > DEGs_HB
-
-**Obtain_DEG.py**
-Once we have the matrix and its metadata, when running this script we will obtain:
-
-* Statistics of all genes: t-statistic, adj. p-value and Cohen's effect size
-* Filter DEG by adj p-value < 0.05 and Cohens effect size d > 0.8 (large) - num. of DEG: 227
-
-*output: (at /DEGs_HB) : HB_db_DEG.csv*
-
-### >> Transcript_Types
-
-**DEGs_TranscriptType.Rmd**
-*output: DEGs_non_coding.csv*
-
-### >> ES_Visualitzation
-
-**ES_Visualization.ipynb**
-
-## > Distributions_HB
-
-**distributions_test.ipynb**
-
-* Studies EDA
-* Independence t-test
