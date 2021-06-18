@@ -19,7 +19,7 @@ The GSE133039, GSE89775, GSE104766, GSE151347 and  GSE81928 gene expression coun
 # The scripts
 
 To obtain the DEGs, it's only needed to run:
-* Scripts_HB/DEGs-pipeline.sh*
+* *Scripts_HB/DEGs-pipeline.sh*
 
 To better comprehend the workflow, take a look at *Find_DEGs_Flowchart.png*
 
