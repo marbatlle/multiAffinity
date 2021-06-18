@@ -1,6 +1,6 @@
+# Ignore .csv and .txt files
 *.csv
-/**/*.csv
 *.txt
-/**/*.txt
+
 
 
