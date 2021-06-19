@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 #loading the human annotated PPIs database from http://iid.ophid.utoronto.ca/
-data = pd.read_csv('2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/source/human_annotated_PPIs.txt', sep='\t')
+data = pd.read_csv('2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/src/human_annotated_PPIs.txt', sep='\t')
 
 #liver interactions
 
