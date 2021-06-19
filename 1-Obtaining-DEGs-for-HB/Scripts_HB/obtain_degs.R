@@ -27,7 +27,7 @@ dds <- DESeqDataSetFromMatrix(countData = cts,
                               design = ~ tissue)
 
 ## Filter out all genes with <10 reads total across all samples
-dds <- dds[rowSums(counts(dds)) >= 10,]
+#dds <- dds[rowSums(counts(dds)) >= 5]
 
 # Factor Level
 dds$tissue <- relevel(dds$tissue, ref = "Normal")
@@ -42,6 +42,7 @@ dds <- estimateSizeFactors(dds)
 ## Run differential expression analysis
 dds <- DESeq(dds, parallel=TRUE)
 res <- results(dds, lfcThreshold = 0.5, parallel=TRUE)
+#res <- lfcShrink(dds, lfcThreshold= 0.5, coef=2, parallel = TRUE, type= "ageglm")
 
 ## Extract all differentially expressed genes
 res <- res[order(res$padj),]
