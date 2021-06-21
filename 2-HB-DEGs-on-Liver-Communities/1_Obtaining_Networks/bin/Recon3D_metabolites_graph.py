@@ -1,4 +1,4 @@
-# Code obtained from https://github.com/cirillodavide/gene_multilayer_network
+# Code obtained from https://github.com/cirillodavide/gene_multilayer_network - edit to obtain nodes as gene names and not gene_id
 
 import cobra
 import os
