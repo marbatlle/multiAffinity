@@ -4,7 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 
-df_path = '2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/tmp_PPI.txt'
+df_path = '2-HB-DEGs-on-Liver-Communities/1_PPI_Networks/tmp_PPI.gr'
 df = pd.read_csv(df_path, sep='\t',names=['node1','node2'])
 
 G=nx.from_pandas_edgelist(df, "node1", "node2")
@@ -49,27 +49,3 @@ sorted_degree = sorted(degree_dict.items(), key=itemgetter(1), reverse=True)
 print("Top 20 nodes by degree:")
 for d in sorted_degree[:20]:
     print(d)
-
-
-# Betweenness centrality
-betweenness_dict = nx.betweenness_centrality(G) # Run betweenness centrality
-
-# Assign each to an attribute in your network
-nx.set_node_attributes(G, betweenness_dict, 'betweenness')
-
-# sort
-sorted_betweenness = sorted(betweenness_dict.items(), key=itemgetter(1), reverse=True)
-
-print("Top 20 nodes by betweenness centrality:")
-for b in sorted_betweenness[:20]:
-    print(b)
-
-print('Which high-betweenness centrality nodes had low degree - which nodes are unexpected?')
-
-#First get the top 20 nodes by betweenness as a list
-top_betweenness = sorted_betweenness[:20]
-
-#Then find and print their degree
-for tb in top_betweenness: # Loop through top_betweenness
-    degree = degree_dict[tb[0]] # Use degree_dict to access a node's degree, see footnote 2
-    print("Name:", tb[0], "| Betweenness Centrality:", tb[1], "| Degree:", degree)
