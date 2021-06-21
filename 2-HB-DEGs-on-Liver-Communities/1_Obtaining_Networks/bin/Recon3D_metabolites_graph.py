@@ -49,15 +49,16 @@ reactants_dict = defaultdict(list)
 for r in model.reactions:
     for g in r.genes:
         gene_id = g.id.split('_')[0] # remove isoform info
+        gene_name = g.name #include gene name
         if gene_id != "0":
             for m in r.products:
                 metabo_id = re.sub(r'_[clmerginx]$', '', m.id) # remove compartment info; _hs means homo sapiens
                 if gene_id not in products_dict[m.id]:
-                    products_dict[metabo_id].append(gene_id)
+                    products_dict[metabo_id].append(gene_name)
             for m in r.reactants:
                 metabo_id = re.sub(r'_[clmerginx]$', '', m.id)
                 if gene_id not in reactants_dict[m.id]:
-                    reactants_dict[metabo_id].append(gene_id)
+                    reactants_dict[metabo_id].append(gene_name)
 
 metabolites_dict = defaultdict(list)
 for p_m, p_g in products_dict.items():
