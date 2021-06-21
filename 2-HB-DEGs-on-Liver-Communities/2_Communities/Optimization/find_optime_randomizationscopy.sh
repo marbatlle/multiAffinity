@@ -1,8 +1,3 @@
-#for (( COUNTER=0; COUNTER<=100; COUNTER+=5 )); do
- #   echo Processing $COUNTER randomizations
- #   2-HB-DEGs-on-Liver-Communities/2_Communities/MolTi-DREAM-master/src/molti-console -p $COUNTER -o 2-HB-DEGs-on-Liver-Communities/2_Communities/Optimization/liver_ppi_clusters_$COUNTER 2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/networks/liver_PPI.gr
-#done
-
 # Procesing number of randomizations
 rm -f 2-HB-DEGs-on-Liver-Communities/2_Communities/Optimization/output_num_randomizations.txt
 for (( COUNTER=0; COUNTER<=100; COUNTER+=5 )); do
@@ -34,4 +29,3 @@ rm -f ls 2-HB-DEGs-on-Liver-Communities/2_Communities/Optimization/*clusters*
 # Create definitive files with optimal randomizations
 2-HB-DEGs-on-Liver-Communities/2_Communities/MolTi-DREAM-master/src/molti-console -p $optimal_rands -o 2-HB-DEGs-on-Liver-Communities/2_Communities/liver_ppi_clusters 2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/networks/liver_PPI.gr
 
-rm 2-HB-DEGs-on-Liver-Communities/2_Communities/Optimization/*.txt
