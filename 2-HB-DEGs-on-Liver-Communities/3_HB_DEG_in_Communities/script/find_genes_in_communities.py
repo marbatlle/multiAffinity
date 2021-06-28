@@ -13,3 +13,7 @@ if len(matches) == 0:
     print('0 	','NaN')
 else:
     print(len(matches),' 	',matches)
+
+with open('2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/output/matches_list.txt', 'a') as f:
+    for item in matches:
+        f.write("%s\n" % item)
