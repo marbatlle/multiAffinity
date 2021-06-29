@@ -1,17 +1,6 @@
+# ignore larger files
 *.txt
 *.gr
 *.xml
 2_Communities/MolTi-DREAM-master/*
 *clusters*
-
-
-
-1_Networks/2_Metabolic_Network/networks/*.gr
-1_Networks/1_PPI_Networks/*.txt
-
-1_LiverNetworks/*.txt
-1_PPI_Networks/*.txt
-.vscode
-*/.ipynb_checkpoints/*
-1_LiverNetworks/Network_EDA/*.txt
-2-HB-DEGs-on-Liver-Communities/1_LiverNetworks/Network_EDA/*.txt
