@@ -1,4 +1,4 @@
-**Goal:** How many of the DEGs fall in the same communities?
+**Goal:** How many of the DEGs fall in the same communities? And further analysis...
 
 
 # Folders
@@ -6,23 +6,22 @@
 ## > 1_LiverNetwork
 Obtain human annotated PPIs from http://iid.ophid.utoronto.ca/ and subset interactions related to liver tissues.
 
-* *script: obtain-liver-interactions.ipynb*
-* *output: liver_PPI.txt*
+* *command: bash 2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/generate_layers.sh*
 
 ## > 2_FindMolTiCommunities
-Using the MolTi-DREAM software (*https://github.com/gilles-didier/MolTi-DREAM*), obtained communities/clusters from the liver PPIs.
+Using the MolTi-DREAM software (*https://github.com/gilles-didier/MolTi-DREAM*), download to correspondend folder, obtain communities/clusters from the liver and liver cancer PPIs (+ metabolic).
 
+This step includes the verification of the best number of randomizations to use in each case, as can be seen in *2-HB-DEGs-on-Liver-Communities/2_Communities/output*.
 
-*./molti-console -o liver_ppi_clusters /home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/1_ObtainLiverGeneNetworks/liver_PPI.txt*
-
-To determine the amount of Louvain randomizations, we try 1, 5, 10, 15 ... 100 and determine which works better
-
-*./molti-console -p 1 -o liver_ppi_clusters_1 /home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/1_ObtainLiverGeneNetworks/liver_PPI.txt*
+* *command bash 2-HB-DEGs-on-Liver-Communities/2_Communities/scripts/find_optimal_randomizations.sh (or find_optimal_randomizations_metabs.sh)*
 
 ## > 3_HB_DEG_in_liver_clusters
 In this last step, the scripts are able to find matches between the DEGs found in Public HB databases for each of the communities detected in the previous step
 
-* *command bash 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/diff_communities_gene_list.sh *
+* *command bash 2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_Communities/diff_communities_gene_list.sh*
 * *output: /output/DEG_in_clusters.txt*
 
-sed '/^C/d' /home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/3_HB_DEG_in_liver_clusters/output/DEG_in_clusters.txt > matches.csv
+## > 4_NodeAffinity
+Obtain correlation values between RWR matrix of liver and liver cancer networks and DEGs score values.
+
+* *command: bash 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/script/affinity.sh*
