@@ -1,7 +1,7 @@
 mkdir -p 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N1/
 mkdir -p 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N2/
 
-for (( COUNTER=0; COUNTER<=1000; COUNTER+=100 )); do
+for (( COUNTER=0; COUNTER<=10000; COUNTER+=500 )); do
     if [ $COUNTER != 0 ]; then
         echo ${COUNTER}
         Rscript 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/scripts/synthetic_model.R ${COUNTER}
@@ -9,7 +9,7 @@ for (( COUNTER=0; COUNTER<=1000; COUNTER+=100 )); do
     fi
 done
 
-for (( COUNTER=0; COUNTER<=1000; COUNTER+=100 )); do
+for (( COUNTER=0; COUNTER<=10000; COUNTER+=500 )); do
     if [ $COUNTER != 0 ]; then
         echo ${COUNTER}
         Rscript 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/scripts/synthetic_model.R ${COUNTER}
