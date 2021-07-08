@@ -76,4 +76,8 @@ for layer1 in $(ls 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output
     done
 done
 
+# Clean intermediate files
+rm 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/*_clusters
+rm 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/*_effectif.csv
 
+rm -r 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N*
