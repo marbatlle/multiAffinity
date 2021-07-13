@@ -5,6 +5,7 @@ library(DESeq2)
 library(apeglm)
 library(RobustRankAggreg)
 library(BiocParallel)
+library(data.table)
 register(MulticoreParam(2))
 
 # Import data
@@ -26,7 +27,7 @@ dds <- DESeqDataSetFromMatrix(countData = cts,
                               colData = coldata,
                               design = ~ tissue)
 
-## Filter out all genes with <10 reads total across all samples
+## Filter out all genes with <5 reads total across all samples
 #dds <- dds[rowSums(counts(dds)) >= 5]
 
 # Factor Level
@@ -35,6 +36,19 @@ dds$tissue <- relevel(dds$tissue, ref = "Normal")
 # Median of ratios Normalization
 dds <- estimateSizeFactors(dds)
 normalized_counts <- counts(dds, normalized=TRUE)
+
+# transpose coldata
+t_coldata <- transpose(coldata)
+## get row and colnames in order
+colnames(t_coldata) <- rownames(coldata)
+rownames(t_coldata) <- colnames(coldata)
+# to list
+levels.list <- as.list(as.data.frame(t(t_coldata)))
+
+# rename columns
+colnames(normalized_counts) <- levels.list$tissue
+
+#save normalized counts table
 write.table(normalized_counts, file="1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
 
 

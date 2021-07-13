@@ -1,7 +1,17 @@
+import os
 import pandas as pd
 import numpy as np
 from scipy import stats
 from scipy.stats import spearmanr
+
+#Load expression matrices and join
+# load all table files
+path_to_files = '1-Obtaining-DEGs-for-HB/Matrices_HB/Normalized_HB/'
+lst_expmat = []
+for filen in [x for x in os.listdir(path_to_files) if '.txt' in x]:
+    lst_expmat.append(pd.read_csv(path_to_files+filen, delimiter= "\t"))
+expression_mats = pd.concat(lst_expmat, ignore_index=True)
+expression_mats = expression_mats.groupby(['Unnamed: 0']).mean().reset_index()
 
 #Load degs
 degs_path = '1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG.csv'
@@ -17,7 +27,7 @@ mat_names = mat.index.tolist()
 matches = list(set(degs_names).intersection(set(mat_names)))
 
 # create joined matrice
-mat_degs = mat.filter(matches)
+mat_degs = mat.filter(matches, axis=1) # filter only DEGs in column
 mat_degs = mat_degs[mat_degs.index.isin(matches)]
 mat_degs = mat_degs.rename_axis('Name')
 result = pd.merge(degs, mat_degs,on='Name', how='right')
