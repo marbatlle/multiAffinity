@@ -16,6 +16,8 @@ do
     # obtain degs
     echo "*${sid}*" >> 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
     Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_degs.R >> 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
+    # move normalized count matrices to permanent location
+    cp 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/normalized_counts.txt 1-Obtaining-DEGs-for-HB/Matrices_HB/Normalized_HB/normalized_${sid}.txt
     # move degs files to permanent location
     cp 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_up.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_up.csv
     cp 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/Tmp_down.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/${sid}_DEGs_down.csv

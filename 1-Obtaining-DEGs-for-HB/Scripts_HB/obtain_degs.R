@@ -34,8 +34,8 @@ dds$tissue <- relevel(dds$tissue, ref = "Normal")
 
 # Median of ratios Normalization
 dds <- estimateSizeFactors(dds)
-#normalized_counts <- counts(dds, normalized=TRUE)
-#write.table(normalized_counts, file="Matrices_HB/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+normalized_counts <- counts(dds, normalized=TRUE)
+write.table(normalized_counts, file="1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tmp/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
 
 
 # Find DEGs
