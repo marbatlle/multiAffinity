@@ -28,7 +28,7 @@ for layer1 in $(ls 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output
 
         for (( COUNTER=0; COUNTER<=100; COUNTER+=5 )); do
             echo Processing ${COUNTER} randomizations
-            2-HB-DEGs-on-Liver-Communities/2_Communities/MolTi-DREAM-master/src/molti-console -p ${COUNTER} -o 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/temp/${layer1}_${layer2}_clusters_${COUNTER} 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N1/${layer1}.gr 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N2/${layer2}.gr 
+            2-HB-DEGs-on-Liver-Communities/2_Communities/MolTi-DREAM-master/src-support/molti-console -p ${COUNTER} -o 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/temp/${layer1}_${layer2}_clusters_${COUNTER} 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N1/${layer1}.gr 2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/N2/${layer2}.gr 
         done
 
         # Processing number of randomizations
