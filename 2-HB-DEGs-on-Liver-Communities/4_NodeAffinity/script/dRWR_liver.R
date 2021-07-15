@@ -13,9 +13,8 @@ liver.edges <- read.table('2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/n
 
 ## convert to an igraph network
 liver.edges.mat <- as.matrix(liver.edges)
-liver.net <- graph_from_edgelist(liver.edges.mat, directed=FALSE)
+g <- graph_from_edgelist(liver.edges.mat, directed=FALSE)
 
-
-PTmatrix <- dRWR(liver.net, normalise='laplacian', restart=0.5, normalise.affinity.matrix='none')
+PTmatrix <- dRWR(g, normalise='laplacian', restart=0.5, normalise.affinity.matrix='none')
 
 write.table(as.matrix(PTmatrix),'2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/PTmatrix_tmp_PPI.txt',  sep="\t")
