@@ -45,5 +45,5 @@ plt.figure(figsize=(14,8))
 sns.barplot(x='Count',y='Term',data=down_kegg_filtered, palette='Set1')
 plt.title('Kegg Analysis of Downregulated DEGs')
 plt.tight_layout()
-plt.savefig('1-Obtaining-DEGs-for-HB/DEGs_HB/Functional_Analysis/output/downregulated_Kegg')
+plt.savefig('1-Obtaining-DEGs-for-HB/DEGs_HB/Functional_Analysis/output/downregulated_KEGG')
 
