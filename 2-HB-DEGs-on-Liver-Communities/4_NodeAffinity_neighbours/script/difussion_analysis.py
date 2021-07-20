@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+import sys
 import os
 import pandas as pd
 import numpy as np
@@ -31,7 +34,7 @@ mat = pd.read_csv(mat_path, sep='\t', index_col=0)
 
 #Find gene matches 
 mat_names = mat.index.tolist()
-matches = list(set(degs_names).intersection(set(mat_names)))
+matches = [sys.argv[1]]
 
 # create joined matrice
 mat_degs = mat.filter(matches, axis=1) # filter only DEGs in column
@@ -39,6 +42,7 @@ mat_degs.index.names = ['genes']
 
 result = expression_genes.merge(mat_degs, left_index=True, right_index=True)
 
-corr_df = result[['expression',i]]
-corr_df.corr(method='spearman')
-print(i,'\t',spearmanr(corr_df)[0],'\t',spearmanr(corr_df)[1])
+result.corr(method='spearman')
+
+print('gene','\t','corr','\t','pval')
+print(result.columns[1],'\t',spearmanr(result)[0],'\t',spearmanr(result)[1])

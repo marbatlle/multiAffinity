@@ -32,9 +32,8 @@ for(i in 1:length(nodes_of_interest)){
   if (!is.null(g_nodes[[nodes_of_interest[[i]]]]) ) {
     deg_name=nodes_of_interest[[i]]
     # subset neighbourhood of graph vertices (https://igraph.org/r/doc/ego.html)
-    g_neighbours = ego(g, order = 1, nodes = nodes_of_interest[[i]])
+    g_neighbours = ego(g, order = 3, nodes = nodes_of_interest[[i]])
     g_neigh_network <- induced_subgraph(g,unlist(g_neighbours))
-    plot(g_neigh_network,vertex.label=V(g_neigh_network)$name)
     # obtain dRWR matrix
     PTmatrix <- dRWR(g_neigh_network, normalise='laplacian', restart=0.5, normalise.affinity.matrix='none')
     write.table(as.matrix(PTmatrix),file=paste("2-HB-DEGs-on-Liver-Communities/4_NodeAffinity_neighbours/output/PTmatrix_",database,"_",deg_name,".txt", sep=""),  sep="\t")
