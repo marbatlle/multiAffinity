@@ -1,16 +1,14 @@
+
 #!/usr/bin/env Rscript
 args = commandArgs(trailingOnly=TRUE)
 
 database = args[1]
-
 
 library(tidyverse)
 library(igraph)
 library(dnet)
 library(network)
 
-#https://www.jessesadler.com/post/network-analysis-with-r/
-# https://eehh-stanford.github.io/SNA-workshop/data-import.html#importing-an-edgelist
 
 # Getting the path of your current open file
 
@@ -29,12 +27,7 @@ nodes_of_interest <- as.list(unique(unlist(HB_db_DEG[,1], use.names = FALSE)))
 for(i in 1:length(nodes_of_interest)){
   if (!is.null(g_nodes[[nodes_of_interest[[i]]]]) ) {
     deg_name=nodes_of_interest[[i]]
-    # subset neighbourhood of graph vertices (https://igraph.org/r/doc/ego.html)
-    g_neighbours = ego(g, order = 2, nodes = nodes_of_interest[[i]])
-    g_neigh_network <- induced_subgraph(g,unlist(g_neighbours))
-    # obtain dRWR matrix
-    PTmatrix <- dRWR(g_neigh_network, normalise='laplacian', restart=0.5, normalise.affinity.matrix='none')
-    write.table(as.matrix(PTmatrix),file=paste("2-HB-DEGs-on-Liver-Communities/4_NodeAffinity_neighbours/output/PTmatrix_",database,"_",deg_name,".txt", sep=""),  sep="\t")
+    betweenness <- estimate_betweenness(g,deg_name,cutoff=2)
+    print(betweenness)
   }
 }
-
