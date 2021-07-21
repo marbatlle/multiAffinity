@@ -22,4 +22,3 @@ do
 done
 
 rm -r -f 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity_neighbours/PTmatrix_tmp_PPI.txt
-rm 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity_neighbours/output/PTmatrix_*.txt

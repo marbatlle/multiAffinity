@@ -13,5 +13,6 @@ do
 
 done
 
+rm 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/PTmatrix_tmp_PPI.txt
 
 
