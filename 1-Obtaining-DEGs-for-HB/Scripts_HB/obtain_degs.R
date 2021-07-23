@@ -55,7 +55,7 @@ write.table(normalized_counts, file="1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/Tm
 # Find DEGs
 ## Run differential expression analysis
 dds <- DESeq(dds, parallel=TRUE)
-res <- results(dds, lfcThreshold = 1, parallel=TRUE)
+res <- results(dds, lfcThreshold = 0.5, parallel=TRUE)
 #res <- lfcShrink(dds, lfcThreshold= 0.5, coef=2, parallel = TRUE, type= "ageglm")
 
 ## Extract all differentially expressed genes
