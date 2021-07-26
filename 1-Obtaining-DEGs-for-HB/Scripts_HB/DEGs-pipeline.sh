@@ -4,6 +4,7 @@
 # Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/clean_grein_data.R
 
 # Obtainig DEGs lists from each study
+rm -r -f 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB
 rm -f 1-Obtaining-DEGs-for-HB/DEGs_HB/degs_by_dataset.txt
 mkdir 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB/
 for sid in $(ls 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/*.csv | sed "s:1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/::" | cut -d"_" -f1)
@@ -29,4 +30,4 @@ done
 echo "** Obtain ranks and aggregate **"
 Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_ranks.R 
 
-rm -r 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB
+#rm -r 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB
