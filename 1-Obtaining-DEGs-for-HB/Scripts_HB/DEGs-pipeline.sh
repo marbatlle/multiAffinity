@@ -30,4 +30,4 @@ done
 echo "** Obtain ranks and aggregate **"
 Rscript 1-Obtaining-DEGs-for-HB/Scripts_HB/obtain_ranks.R 
 
-#rm -r 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB
+rm -r 1-Obtaining-DEGs-for-HB/DEGs_HB/Ranks_HB

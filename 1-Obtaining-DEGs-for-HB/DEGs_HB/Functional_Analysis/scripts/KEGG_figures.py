@@ -19,12 +19,12 @@ up_kegg_filtered = up_kegg_filtered.sort_values(by=['Adj.p-val'])
 
 up_kegg_filtered
 
-#sns.set_theme(style="whitegrid")
-#plt.figure(figsize=(14,8))
-#sns.barplot(x='Count',y='Term',data=up_kegg_filtered, palette='Set1')
-#plt.title('Kegg Analysis of Upregulated DEGs')
-#plt.tight_layout()
-#plt.savefig('1-Obtaining-DEGs-for-HB/DEGs_HB/Functional_Analysis/output/upregulated_Kegg')
+sns.set_theme(style="whitegrid")
+plt.figure(figsize=(14,8))
+sns.barplot(x='Count',y='Term',data=up_kegg_filtered, palette='Set1')
+plt.title('Kegg Analysis of Upregulated DEGs')
+plt.tight_layout()
+plt.savefig('1-Obtaining-DEGs-for-HB/DEGs_HB/Functional_Analysis/output/upregulated_Kegg')
 
 down_kegg_path = '1-Obtaining-DEGs-for-HB/DEGs_HB/Functional_Analysis/output/downregulated_KEGG.txt'
 down_kegg = pd.read_csv(down_kegg_path, sep='\t')
