@@ -46,14 +46,6 @@ corr_list = []
 for i in genes:
     corr_df = result[['expression',i]]
     corr_df.corr(method='spearman')
-    if spearmanr(corr_df)[1] <= 0.05:
-        corr_list.append(spearmanr(corr_df)[0])
-
-top_list = sorted(corr_list, key=abs, reverse=True)[:10]
-
-for i in genes:
-    corr_df = result[['expression',i]]
-    corr_df.corr(method='spearman')
     corr = spearmanr(corr_df)[0]
-    if corr in top_list:
+    if spearmanr(corr_df)[1] <= 0.05:
         print(i,'\t',spearmanr(corr_df)[0],'\t',spearmanr(corr_df)[1])

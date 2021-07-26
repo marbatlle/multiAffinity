@@ -8,11 +8,8 @@ do
     python 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/script/difussion_analysis.py > 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/${id}_Corr.txt
 
     # remove temp files
-    rm 2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/networks/tmp_PPI.txt
+    rm -f 2-HB-DEGs-on-Liver-Communities/1_Obtaining_Networks/networks/tmp_PPI.txt
     mv 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/PTmatrix_tmp_PPI.txt 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/PTmatrix_${id}_PPI.txt
 
 done
-
-rm 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/PTmatrix_tmp_PPI.txt
-
 
