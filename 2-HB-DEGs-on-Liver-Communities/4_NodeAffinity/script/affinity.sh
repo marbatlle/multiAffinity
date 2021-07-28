@@ -32,12 +32,12 @@ do
         python 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/script/difussion_analysis_neighbours.py ${genes} > 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/temp/${id}_${genes}_Corr.txt
     done
 
-    python 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/script/join_corr_neighbours.py
-    cp 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/temp/corr.txt 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/corr_${id}.txt
-    rm -r -f 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/temp/
+python 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/script/join_corr_neighbours.py
+cp 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/temp/corr.txt 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/corr_${id}.txt
+rm -r -f 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/temp/
+rm -f 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/PTmatrix_${id}_PPI.txt
+rm -f 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/PTmatrix_${id}_*.txt
 done
 
 rm -r -f 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/PTmatrix_tmp_PPI.txt
 
-mkdir -p 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/gene_matrices
-mv 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/PTmatrix_livercancer_*.txt 2-HB-DEGs-on-Liver-Communities/4_NodeAffinity/output/neighbours/gene_matrices/
