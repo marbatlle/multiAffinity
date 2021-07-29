@@ -10,7 +10,7 @@ do
     # Obtain degs and mean expression
     Rscript 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/scripts/obtain_degs.R
     python 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/scripts/join_matrices.py
-    mv 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/study_expression.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/output/${id}_expression.csv
+    mv 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/study_expression.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/output/${id}.csv
 
     # Remove temp files
     rm -f 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/*
