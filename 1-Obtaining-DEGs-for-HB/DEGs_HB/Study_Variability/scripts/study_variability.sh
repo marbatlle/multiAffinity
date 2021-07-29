@@ -6,7 +6,6 @@ do
     cp 1-Obtaining-DEGs-for-HB/Matrices_HB/Originals_HB/${id}_raw_data.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/raw_data.csv
     cp 1-Obtaining-DEGs-for-HB/Metadata_HB/${id}_metadata.csv 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/metadata.csv
 
-
     # Obtain degs and mean expression
     Rscript 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/scripts/obtain_degs.R
     python 1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/scripts/join_matrices.py

@@ -25,19 +25,19 @@ coldata$tissue <- factor(coldata$tissue)
 dds <- DESeqDataSetFromMatrix(countData = cts, colData = coldata, design = ~ tissue) %>% DESeq
 
 # Filter out all genes with <5 reads total across all samples
-dds <- dds[rowSums(counts(dds)) >= 5]
+#dds <- dds[rowSums(counts(dds)) >= 5]
 
 # Specify Reference level
 dds$tissue <- relevel(dds$tissue, ref = "Normal")
 dds <- DESeq(dds)
 
 # Find DEGs
-res <- results(dds, alpha=0.05, filterFun=ihw)
+res <- results(dds, filterFun=ihw)
 
 # Set thresholds
-res <- subset(res, res$padj < 0.05)
+#res <- subset(res, res$padj < 0.05)
 
-res <- subset(res, abs(res$log2FoldChange) > 1)
+#res <- subset(res, abs(res$log2FoldChange) > 1)
 
 
 
@@ -48,7 +48,7 @@ cols<-!(colnames(res) %in% c("baseMean","lfcSE","stat","pvalue"))
 res_subset <- subset(res,,cols)
 
 # Extract data
-write.csv(res_subset, "1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/degs.csv")
+write.csv(res_subset, "1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/lfc.csv")
 
 
 # Obtain normalized matrices
@@ -68,5 +68,5 @@ levels.list <- as.list(as.data.frame(t(t_coldata)))
 colnames(normalized_counts) <- levels.list$tissue
 
 #save normalized counts table
-write.table(normalized_counts, file="1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(normalized_counts, file="1-Obtaining-DEGs-for-HB/DEGs_HB/Study_Variability/tmp/normalized_counts.csv", sep=",", quote=F, col.names=NA)
 
