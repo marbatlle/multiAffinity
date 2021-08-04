@@ -1,0 +1,153 @@
+---
+title: Uniform Manifold Approximation and Projection in R
+output:
+  rmarkdown::html_vignette:
+    mathjax: null
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Uniform Manifold Approximate and Projection in R}
+  %\usepackage[UTF-8]{inputenc}
+---
+
+
+
+```{r, echo=FALSE}
+## block with some startup/background objects functions
+library(umap)
+
+plot.HB = function(x, labels,
+         main="A UMAP visualization of the HB datasets",
+         colors=c("orange", "darkolivegreen","paleturquoise","khaki","plum2"),
+         pad=0.1, cex=0.6, pch=19, add=FALSE, legend.suffix="",
+         cex.main=1, cex.legend=0.85) {
+
+  layout = x
+  if (is(x, "umap")) {
+    layout = x$layout
+  } 
+  
+  xylim = range(layout)
+  xylim = xylim + ((xylim[2]-xylim[1])*pad)*c(-0.5, 0.5)
+  if (!add) {
+    par(mar=c(0.2,0.7,1.2,0.7), ps=10)
+    plot(xylim, xylim, type="n", axes=F, frame=F)
+    rect(xylim[1], xylim[1], xylim[2], xylim[2], border="#aaaaaa", lwd=0.25)  
+  }
+  points(layout[,1], layout[,2], col=colors[as.integer(labels)],
+         cex=cex, pch=pch)
+  mtext(side=3, main, cex=cex.main)
+
+  labels.u = unique(labels)
+  legend.pos = "topleft"
+  legend.text = as.character(labels.u)
+  if (add) {
+    legend.pos = "bottomleft"
+    legend.text = paste(as.character(labels.u), legend.suffix)
+  }
+
+  legend(legend.pos, legend=legend.text, inset=0.03,
+         col=colors[as.integer(labels.u)],
+         bty="n", pch=pch, cex=cex.legend)
+}
+
+#set.seed(123456)
+```
+
+
+
+## NT
+
+## Import data
+```{r}
+setwd("~/Documents/TFM/GitHub/HB_PublicData")
+library(readr)
+NT <- as.data.frame(read_csv("1-Obtaining-DEGs-for-HB/Study_Variability/Normalization_Comparison/NT_deseq.csv", col_types = cols(Study = col_factor(levels = c("Study A", "Study B","Study C","Study D","Study E")))))
+head(NT, 3)
+tail(NT,3)
+```
+
+The first four columns contain data and the last column contains a label. It will be useful to separate those components.
+
+```{r}
+NT.data = as.matrix(NT[, grep("Expression", colnames(NT))])
+NT.labels = NT[, "Study"]
+```
+
+### Creating a projection
+
+Let's load the `umap` package and apply the UMAP transformation.
+```{r}
+library(umap)
+NT.umap = umap(NT.data)
+```
+
+
+The output is an object and we can get a summary of its contents by printing it.
+
+```{r umap.print}
+NT.umap
+```
+
+The main component of the object is 'layout', which holds a matrix with coordinates.
+
+```{r umap.layout}
+head(NT.umap$layout, 3)
+```
+
+These coordinates can be used to visualize the dataset. 
+
+```{r, fig.width=3.2, fig.height=3.2, dpi=150}
+plot.HB(NT.umap, NT.labels)
+```
+
+
+## T
+
+## Import data
+```{r}
+setwd("~/Documents/TFM/GitHub/HB_PublicData")
+library(readr)
+T <- as.data.frame(read_csv("1-Obtaining-DEGs-for-HB/Study_Variability/Normalization_Comparison/T_deseq.csv", col_types = cols(Study = col_factor(levels = c("Study A", "Study B","Study C","Study D","Study E")))))
+head(T, 3)
+```
+
+The first four columns contain data and the last column contains a label. It will be useful to separate those components.
+
+```{r}
+T.data = as.matrix(T[, grep("Expression", colnames(T))])
+T.labels = T[, "Study"]
+```
+
+### Creating a projection
+
+Let's load the `umap` package and apply the UMAP transformation.
+```{r}
+library(umap)
+T.umap = umap(T.data)
+```
+
+
+The output is an object and we can get a summary of its contents by printing it.
+
+```{r umap.print}
+T.umap
+```
+
+The main component of the object is 'layout', which holds a matrix with coordinates.
+
+```{r umap.layout}
+head(T.umap$layout, 3)
+```
+
+These coordinates can be used to visualize the dataset. 
+
+```{r, fig.width=3.2, fig.height=3.2, dpi=150}
+plot.HB(T.umap, T.labels)
+```
+
+
+```{r}
+
+```
+
