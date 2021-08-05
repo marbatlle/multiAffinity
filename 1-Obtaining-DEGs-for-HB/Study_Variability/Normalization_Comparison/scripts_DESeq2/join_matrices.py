@@ -14,7 +14,7 @@ StudyA_T.drop(StudyA_T.loc[StudyA_T['Expression']==0].index, inplace=True)
 StudyA_T['Study'] = 'Study A'
 
 StudyA_T.index = [x for x in range(1, len(StudyA_T.values)+1)]
-#StudyA_T = StudyA_T.sample(500)
+StudyA_T = StudyA_T.sample(500)
 
 
 StudyA_NT = StudyA.loc[:, ~StudyA.columns.str.startswith('Hepatoblastoma')]
@@ -25,7 +25,7 @@ StudyA_NT.drop(StudyA_NT.loc[StudyA_NT['Expression']==0].index, inplace=True)
 StudyA_NT['Study'] = 'Study A'
 
 StudyA_NT.index = [x for x in range(1, len(StudyA_NT.values)+1)]
-#StudyA_NT = StudyA_NT.sample(500)
+StudyA_NT = StudyA_NT.sample(500)
 
 
 # Study B
@@ -40,7 +40,7 @@ StudyB_T.drop(StudyB_T.loc[StudyB_T['Expression']==0].index, inplace=True)
 StudyB_T['Study'] = 'Study B'
 
 StudyB_T.index = [x for x in range(1, len(StudyB_T.values)+1)]
-#StudyB_T = StudyB_T.sample(500)
+StudyB_T = StudyB_T.sample(500)
 
 StudyB_NT = StudyB.loc[:, ~StudyB.columns.str.startswith('Hepatoblastoma')]
 StudyB_NT = StudyB.mean(axis=1)
@@ -50,7 +50,7 @@ StudyB_NT.drop(StudyB_NT.loc[StudyB_NT['Expression']==0].index, inplace=True)
 StudyB_NT['Study'] = 'Study B'
 
 StudyB_NT.index = [x for x in range(1, len(StudyB_NT.values)+1)]
-#StudyB_NT = StudyB_NT.sample(500)
+StudyB_NT = StudyB_NT.sample(500)
 
 # Study c
 StudyC = pd.read_csv('1-Obtaining-DEGs-for-HB/Matrices_HB/Normalized_HB/normalized_GSE104766.txt',sep='\t')

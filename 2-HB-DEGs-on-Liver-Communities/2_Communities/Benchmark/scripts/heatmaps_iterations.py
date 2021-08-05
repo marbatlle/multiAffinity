@@ -13,16 +13,18 @@ df = pd.concat(lst, ignore_index=True)
 
 grouped_df = df.groupby(['N1','N2'])[['optimal_rands','num_comm','avg_size_comm']].mean().reset_index()
 
+grouped_df = grouped_df.round(decimals=2)
+
 # num rands
 num_rands_df = grouped_df.reset_index().pivot(index='N1', columns='N2', values='optimal_rands')
 num_rands_df.sort_index(axis=0, ascending=False, inplace=True)
 
 plt.figure(figsize=(10, 10))
-num_rands_hm = sns.heatmap(num_rands_df, linewidths=.5, annot=True, annot_kws={'fontsize':8}, fmt='2g').set(title='Optimal Number Randomizations')
+num_rands_hm = sns.heatmap(num_rands_df, linewidths=.5, annot=True, annot_kws={'fontsize':12}, fmt='2g').set(title='Optimal Number Randomizations')
 
 plt.savefig('/home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/heatmap_randomizations.png')
 
-# num rands
+# num communities
 num_comm_df = grouped_df.reset_index().pivot(index='N1', columns='N2', values='num_comm')
 num_comm_df.sort_index(axis=0, ascending=False, inplace=True)
 
@@ -36,6 +38,6 @@ avg_size_comm_df = grouped_df.reset_index().pivot(index='N1', columns='N2', valu
 avg_size_comm_df.sort_index(axis=0, ascending=False, inplace=True)
 
 plt.figure(figsize=(10, 10))
-avg_size_comm_hm = sns.heatmap(avg_size_comm_df, linewidths=.5, annot=True, annot_kws={'fontsize':8}).set(title='Average Size of Communities')
+avg_size_comm_hm = sns.heatmap(avg_size_comm_df, linewidths=.5, annot=True, annot_kws={'fontsize':12}).set(title='Average Size of Communities')
 
 plt.savefig('/home/mar/Documents/TFM/GitHub/HB_PublicData/2-HB-DEGs-on-Liver-Communities/2_Communities/Benchmark/output/heatmap_size_communities.png')
