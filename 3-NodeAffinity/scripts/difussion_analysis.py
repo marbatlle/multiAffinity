@@ -11,7 +11,6 @@ lst_expmat = []
 for filen in [x for x in os.listdir(path_to_files) if '.txt' in x]:
     lst_expmat.append(pd.read_csv(path_to_files+filen, delimiter= ","))
 expression_mats = pd.concat(lst_expmat, ignore_index=True)
-
 expression_mats = expression_mats.groupby(['Unnamed: 0']).mean().reset_index()
 
 expression_mats = expression_mats.set_index(['Unnamed: 0'])
