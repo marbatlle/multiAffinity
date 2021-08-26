@@ -1,0 +1,3 @@
+optimal number of randomizations: 0
+   >> number of communities: 447
+   >> average community size: 27.3304
