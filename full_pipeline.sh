@@ -9,4 +9,4 @@ bash 1-metaDEGs/obtain_metaDEGs.sh
 bash 2-COMMgenes/obtain_COMMgenes.sh
 
 # 3-Node Affinity
-bash 3-NodeAffinity/affinity.sh
+bash 3-MultiAffinity/multiAffinity.sh
