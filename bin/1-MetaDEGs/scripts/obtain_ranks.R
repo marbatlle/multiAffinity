@@ -1,0 +1,66 @@
+Load <- function(packages) {
+  for(package_name in packages)
+  {suppressMessages(suppressWarnings(library(package_name,character.only=TRUE, quietly = TRUE)));}
+}
+Load(c("tidyverse","dplyr","stringr","RobustRankAggreg","data.table"))
+
+# Downregulated
+##Read DEGs files 
+filenames <- list.files(path="src/tmp/degs", pattern="*down.txt")
+
+## Create list of data frame names without the ".txt" part 
+names <-substr(filenames,1,str_length(filenames)-4)
+
+## Load all files
+for(i in names){
+  filepath <- file.path("src/tmp/degs",paste(i,".txt",sep=""))
+  assign(i, as.matrix(fread(filepath, select = 1), byrow = TRUE))
+}
+
+## Aggregate Ranks
+glist_down <- Filter(function(x) is(x, "matrix"), mget(ls()))
+r_down = rankMatrix(glist_down, full = TRUE)
+agg_down <- aggregateRanks(rmat = r_down, method = "RRA")
+agg_down <- subset(agg_down, agg_down$Score < 0.05)
+agg_down <- as.data.frame(agg_down)
+
+rm(list = ls(pattern="DEGs_down"))
+rm(list = ls(pattern="r_down"))
+
+# Upregulated
+##Read DEGs files 
+filenames <- list.files(path="src/tmp/degs", pattern="*up.txt")
+
+## Create list of data frame names without the ".txt" part 
+names <-substr(filenames,1,str_length(filenames)-4)
+
+## Load all files
+for(i in names){
+  filepath <- file.path("src/tmp/degs",paste(i,".txt",sep=""))
+  assign(i, as.matrix(fread(filepath, select = 1), byrow = TRUE))
+}
+
+## Aggregate Ranks
+glist_up <- Filter(function(x) is(x, "matrix"), mget(ls()))
+r_up = rankMatrix(glist_up, full = TRUE)
+agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
+agg_up <- subset(agg_up, agg_up$Score < 0.05)
+agg_up <- as.data.frame(agg_up)
+
+rm(list = ls(pattern="DEGs_up"))
+rm(list = ls(pattern="r_up"))
+
+# Create unique DEGs list
+#rownames(agg_down) <- NULL
+#rownames(agg_up) <- NULL
+genes <- rbind(agg_down,agg_up)
+colnames(genes) <- c("Name","Score")
+#genes <- as.data.frame(genes)
+genes <- genes[order(genes$Score),]
+
+# Convert results into csv files
+write.table(agg_down, "output/metaDEGs/MetaDEGs_down.txt",sep=",", row.names=FALSE)
+write.table(agg_up, "output/metaDEGs/MetaDEGs_up.txt", sep=",",row.names=FALSE)
+
+#write.table(onlygenes, file = "1-Obtaining-DEGs-for-HB/DEGs_HB/HB_db_DEG_names.csv",sep=",", row.names=FALSE, col.names=FALSE)
+write.table(genes, "output/metaDEGs/metaDEGs.txt", sep=",", row.names=FALSE)
