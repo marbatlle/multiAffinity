@@ -1,0 +1,6 @@
+multiplex:
+    1:
+        layers:
+            - multiplex/layer1.tsv
+seed:
+    seeds.txt

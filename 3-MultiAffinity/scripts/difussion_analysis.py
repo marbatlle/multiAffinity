@@ -25,15 +25,15 @@ degs_path = '1-metaDEGs/output/metaDEGs/metaDEGs.txt'
 degs = pd.read_csv(degs_path, index_col=0)
 degs_names = degs.index.tolist()
 
-#Load rwr matrice
-mat_path = '3-NodeAffinity/output/tmp/PTmatrix_tmp_PPI.txt'
+#Load rwr matrix
+mat_path = '3-MultiAffinity/output/dRWR_matrix.txt'
 mat = pd.read_csv(mat_path, sep='\t', index_col=0)
 
 #Find gene matches 
 mat_names = mat.index.tolist()
 matches = list(set(degs_names).intersection(set(mat_names)))
 
-# create joined matrice
+# create joined matrix
 mat_degs = mat.filter(matches, axis=1) # filter only DEGs in column
 mat_degs.index.names = ['genes']
 
