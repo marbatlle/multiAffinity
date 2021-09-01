@@ -6,7 +6,7 @@ from scipy.stats import spearmanr
 
 #Load expression matrices and join
 # load all table files
-path_to_files = '1-metaDEGs/output/normalized_counts/'
+path_to_files = '3-MultiAffinity/src/1-metaDEGs/normalized_counts/'
 lst_expmat = []
 for filen in [x for x in os.listdir(path_to_files) if '.txt' in x]:
     lst_expmat.append(pd.read_csv(path_to_files+filen, delimiter= ","))
@@ -21,7 +21,7 @@ expression_genes.index.names = ['genes']
 expression_genes.drop(expression_genes.loc[expression_genes['expression']==0].index, inplace=True)
 
 #Load degs
-degs_path = '1-metaDEGs/output/metaDEGs/metaDEGs.txt'
+degs_path = '3-MultiAffinity/src/1-metaDEGs/metaDEGs/metaDEGs.txt'
 degs = pd.read_csv(degs_path, index_col=0)
 degs_names = degs.index.tolist()
 
