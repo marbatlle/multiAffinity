@@ -48,4 +48,4 @@ for i in genes:
     corr_df.corr(method='spearman')
     corr = spearmanr(corr_df)[0]
     if spearmanr(corr_df)[1] <= 0.05:
-        print(i+','+spearmanr(corr_df)[0]+','+spearmanr(corr_df)[1])
+        print(i+','+str(spearmanr(corr_df)[0])+','+str(spearmanr(corr_df)[1]))

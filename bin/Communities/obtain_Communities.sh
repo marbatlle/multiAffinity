@@ -22,19 +22,27 @@ echo '  2/2 - Finding genes in COMM'
 
 ## check genes input name
 mv src/genes/*.txt src/genes/input_genes.txt 2>/dev/null
+cp src/genes/input_genes.txt output/tmp/degs.txt; sed -i 's/$/;/g' output/tmp/degs.txt
 
 ## Obtain matches
 for clusterid in $(cat output/tmp/communities | grep "ClusterID:" | cut -d"|" -f1 | sed "s:ClusterID\:::"); do
-    cat output/tmp/communities | sed -n -e "/ClusterID:${clusterid}||/,/ClusterID*/ p" | sed -e '1d;$d' > output/tmp/cluster_genes.txt
-    echo "ClusterID:${clusterid} 	" >> output/tmp/DEGs_in_COMM.txt
-    python scripts/find_genes_COMM.py >> output/tmp/DEGs_in_COMM.txt
+    cat output/tmp/communities | sed -n -e "/ClusterID:$clusterid||/,/ClusterID*/ p" | sed -e '1d;$d' > output/tmp/cluster_${clusterid}.txt
+    sed -i '/^$/d' output/tmp/cluster_${clusterid}.txt
 done
 
-## Join table
-sed '/^C/d' output/tmp/DEGs_in_COMM.txt > output/tmp/matches.csv
-python scripts/join_COMM_genes.py
+
+for clusterid in $(ls output/tmp/cluster_*.txt | cut -d"_" -f2 | cut -d"." -f1); do
+    while read -r match; do
+        if [[ $match = *[!\ ]* ]]; then
+            sed -i "/^$match/ s/$/$clusterid,/" output/tmp/degs.txt
+        fi
+    done <output/tmp/cluster_${clusterid}.txt
+done
+
+sed -i 's/\,$//' output/tmp/degs.txt # remove end of line commas
+
 
 ## Clean result
-mv output/tmp/communities_genes_matches.csv output/Communities.txt; mv output/tmp/top_matches.csv output/Communities_topmatches.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp
+mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp
 
 
