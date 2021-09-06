@@ -1,0 +1,7 @@
+additional_out/
+output/
+input/data/*
+input/layers/*
+*.csv
+*.tsv
+!input/sample_data/*
