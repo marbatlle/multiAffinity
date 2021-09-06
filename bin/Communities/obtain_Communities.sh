@@ -44,5 +44,3 @@ sed -i 's/\,$//' output/tmp/degs.txt # remove end of line commas
 
 ## Clean result
 mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp
-
-
