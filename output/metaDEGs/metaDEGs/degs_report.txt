@@ -1,0 +1,25 @@
+GSE104766
+[1] "num. of upregulated DEGs:"
+[1] 607
+[1] "num. of downregulated DEGs:"
+[1] 918
+GSE133039
+[1] "num. of upregulated DEGs:"
+[1] 2990
+[1] "num. of downregulated DEGs:"
+[1] 1709
+GSE151347
+[1] "num. of upregulated DEGs:"
+[1] 1350
+[1] "num. of downregulated DEGs:"
+[1] 1155
+GSE81928
+[1] "num. of upregulated DEGs:"
+[1] 191
+[1] "num. of downregulated DEGs:"
+[1] 26
+GSE89775
+[1] "num. of upregulated DEGs:"
+[1] 153
+[1] "num. of downregulated DEGs:"
+[1] 4
