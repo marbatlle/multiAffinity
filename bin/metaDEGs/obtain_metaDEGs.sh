@@ -47,7 +47,7 @@ do
 done
 
 # Step 3 - check input QC - Confounders
-echo '  3/4 - Analysing input QC'
+echo "  3/4 - Comparing studies' distributions"
 # Obtain mean values for NT samples for each study
 mkdir -p output/means
 for sid in $(ls output/normalized_counts | cut -d"." -f1)
@@ -58,8 +58,7 @@ do
 done
 rm -f output/normalized_counts/normalized.txt; rm -f output/means/mean.txt
 
-
-
+touch output/wasserstein.txt
 for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1)
 do
     for Study2 in $(ls output/normalized_counts | cut -d"." -f1)
@@ -69,14 +68,11 @@ do
             cp output/means/${Study2}_mean.txt output/means/Study2_mean.txt
             Rscript scripts/wasserstein.R > output/means/wass_out.txt 2> /dev/null
             if grep -q TRUE "output/means/wass_out.txt"; then
-                echo "Wasserstein test shows difference between studies"
-                exit 1
+                echo "${Study1} and ${Study2}" >> output/wasserstein.txt
             fi
         fi
     done
-done
-
-rm -f -r output/means
+done; rm -f -r output/means
 
 echo '  4/4 - Obtaining metaDEGs'
-#Rscript scripts/obtain_ranks.R >& /dev/null; Rscript scripts/degs_names.R  >& /dev/null;  rm -r -f src/tmp # Clean folders
+Rscript scripts/obtain_ranks.R >& /dev/null; Rscript scripts/degs_names.R  >& /dev/null;  rm -r -f src/tmp # Clean folders
