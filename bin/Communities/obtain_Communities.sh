@@ -21,7 +21,7 @@ fi
 echo '  2/2 - Finding genes in COMM'
 
 ## check genes input name
-mv src/genes/*.txt src/genes/input_genes.txt 2>/dev/null
+#mv src/genes/*.txt src/genes/input_genes.txt 2>/dev/null
 cp src/genes/input_genes.txt output/tmp/degs.txt; sed -i 's/$/;/g' output/tmp/degs.txt
 
 ## Obtain matches
@@ -34,13 +34,12 @@ done
 for clusterid in $(ls output/tmp/cluster_*.txt | cut -d"_" -f2 | cut -d"." -f1); do
     while read -r match; do
         if [[ $match = *[!\ ]* ]]; then
-            sed -i "/^$match/ s/$/$clusterid,/" output/tmp/degs.txt
+            sed -i "/^\"$match/ s/$/$clusterid,/" output/tmp/degs.txt
         fi
     done <output/tmp/cluster_${clusterid}.txt
 done
 
 sed -i 's/\,$//' output/tmp/degs.txt # remove end of line commas
-
 
 ## Clean result
 mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp

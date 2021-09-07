@@ -39,7 +39,6 @@ mat_degs.index.names = ['genes']
 
 result = expression_genes.merge(mat_degs, left_index=True, right_index=True)
 
-# Find larger correlations (top 10)
 genes = (result.columns[1:])
 
 corr_list = []

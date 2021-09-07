@@ -15,4 +15,5 @@ mkdir -p bin/Communities/src/genes; mkdir -p bin/Communities/src/networks; cp in
 mkdir -p output/Communities; mv bin/Communities/output/* output/Communities; rm -r bin/Communities/src/genes; rm -r bin/Communities/src/networks; rm -r bin/Communities/output
 
 find . -type d -empty -delete
+python bin/join_output.py
 echo 'multiAffinity completed. Check out the output folder'
