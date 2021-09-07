@@ -47,3 +47,4 @@ python Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.t
 
 # remove temp files
 rm -r -f Affinity/tmp
+rm -f Affinity/src/multiplex/*.tsv
