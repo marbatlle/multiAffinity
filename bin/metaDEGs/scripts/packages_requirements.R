@@ -14,4 +14,4 @@ Install_Bio <- function(packages) {
   if(length(k))
   {BiocManager::install(k);}
 }
-Install_Bio(c("DESeq2","RobustRankAggreg","IHW"))
+Install_Bio(c("DESeq2","RobustRankAggreg","IHW","waddR"))

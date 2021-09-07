@@ -1,12 +1,12 @@
 #!/bin/bash
-echo '  0/3 - Preparing environment'
+echo '  0/4 - Preparing environment'
 Rscript scripts/packages_requirements.R >& /dev/null
 rm -r -f src/tmp; mkdir src/tmp; mkdir src/tmp/counts; mkdir src/tmp/metadata; mkdir src/tmp/degs
 rm -r -f output; mkdir output; mkdir output/metaDEGs; mkdir output/normalized_counts
 
 # extra - download Filtered Metadata and Raw Counts Matrix
 
-echo '  1/3 - Processing GREIN files'
+echo '  1/4 - Processing GREIN files'
 ## Step 1.1 - clean files
 for sid in $(ls src/grein/*.csv | sed "s:src/grein/::" | cut -d"_" -f1 | sort | uniq)
 do
@@ -35,7 +35,7 @@ done
 rm -f src/tmp/cts.txt; rm -f src/tmp/gene_list.txt
 
 # Step 2 - obtain DEGs list for each study with DESeq2
-echo '  2/3 - Obtaining DEGs list for each study'
+echo '  2/4 - Obtaining DEGs list for each study'
 for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1)
 do
     # create temp files
@@ -46,5 +46,37 @@ do
     cp src/tmp/normalized_counts.txt output/normalized_counts/${sid}.txt; cp src/tmp/tmp_up.txt src/tmp/degs/${sid}_DEGs_up.txt; cp src/tmp/tmp_down.txt src/tmp/degs/${sid}_DEGs_down.txt
 done
 
-echo '  3/3 - Obtaining metaDEGs'
-Rscript scripts/obtain_ranks.R >& /dev/null; Rscript scripts/degs_names.R  >& /dev/null;  rm -r -f src/tmp # Clean folders
+# Step 3 - check input QC - Confounders
+echo '  3/4 - Analysing input QC'
+# Obtain mean values for NT samples for each study
+mkdir -p output/means
+for sid in $(ls output/normalized_counts | cut -d"." -f1)
+do
+   cp output/normalized_counts/${sid}.txt output/normalized_counts/normalized.txt
+   python scripts/cts_to_mean.py
+   cp output/means/mean.txt output/means/${sid}_mean.txt
+done
+rm -f output/normalized_counts/normalized.txt; rm -f output/means/mean.txt
+
+
+
+for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1)
+do
+    for Study2 in $(ls output/normalized_counts | cut -d"." -f1)
+    do
+        if [ "$Study1" != "$Study2" ]; then
+            cp output/means/${Study1}_mean.txt output/means/Study1_mean.txt
+            cp output/means/${Study2}_mean.txt output/means/Study2_mean.txt
+            Rscript scripts/wasserstein.R > output/means/wass_out.txt 2> /dev/null
+            if grep -q TRUE "output/means/wass_out.txt"; then
+                echo "Wasserstein test shows difference between studies"
+                exit 1
+            fi
+        fi
+    done
+done
+
+rm -f -r output/means
+
+echo '  4/4 - Obtaining metaDEGs'
+#Rscript scripts/obtain_ranks.R >& /dev/null; Rscript scripts/degs_names.R  >& /dev/null;  rm -r -f src/tmp # Clean folders
