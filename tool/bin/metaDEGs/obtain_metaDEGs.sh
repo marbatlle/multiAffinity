@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 echo '  0/4 - Preparing environment'
-Rscript scripts/packages_requirements.R >& /dev/null
+mkdir -p bin/metaDEGs/src; mkdir -p bin/metaDEGs/src/grein; cp input/data/* bin/metaDEGs/src/grein/
+pushd bin/metaDEGs/ >& /dev/null
 rm -r -f src/tmp; mkdir src/tmp; mkdir src/tmp/counts; mkdir src/tmp/metadata; mkdir src/tmp/degs
 rm -r -f output; mkdir output; mkdir output/metaDEGs; mkdir output/normalized_counts
-
-# extra - download Filtered Metadata and Raw Counts Matrix
 
 echo '  1/4 - Processing GREIN files'
 ## Step 1.1 - clean files
@@ -77,3 +77,8 @@ done; rm -f -r output/means
 
 echo '  4/4 - Obtaining metaDEGs'
 Rscript scripts/obtain_ranks.R >& /dev/null; Rscript scripts/degs_names.R  >& /dev/null;  rm -r -f src/tmp # Clean folders
+
+# Closing script
+popd >& /dev/null
+[ "$(ls -A bin/metaDEGs/output/)" ] && : || (echo "metaDEGs processes NOT COMPLETED, please check the README.md to find a solution"; exit 1) #STEP1 check
+mkdir -p output; rm -r -f output/*; mkdir -p output/metaDEGs; mv bin/metaDEGs/output/* output/metaDEGs; rm -r -f bin/metaDEGs/src; rm -r -f bin/metaDEGs/output
