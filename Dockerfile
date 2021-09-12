@@ -14,11 +14,11 @@ SHELL ["/bin/bash", "--login", "-c"]
 RUN conda update -n base conda
 RUN conda install -c anaconda libcurl
 
-ADD app ./app
-WORKDIR /app
+ADD tool ./tool
+WORKDIR /tool
 
 # Install MolTI-DREAM
-ADD app/bin/Communities/src/MolTi-DREAM-master ./bin/Communities/src/MolTi-DREAM-master
+ADD tool/bin/Communities/src/MolTi-DREAM-master ./bin/Communities/src/MolTi-DREAM-master
 RUN apt-get update && apt-get install -y \
     build-essential*
 RUN make -C bin/Communities/src/MolTi-DREAM-master/src
