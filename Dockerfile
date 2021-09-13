@@ -24,4 +24,4 @@ RUN apt-get update && apt-get install -y \
 RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # The code to run when container is started:
-CMD echo 'The following environment running:' $CONDA_DEFAULT_ENV
+CMD bash run.sh

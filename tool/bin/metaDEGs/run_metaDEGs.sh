@@ -2,23 +2,30 @@
 set -euo pipefail
 
 echo '  0/4 - Preparing environment'
+## Check presence of required files
+if find -- "input/data/counts" -prune -type d -empty | grep -q '^'; then echo 'Add all required input files' | exit 1;fi
+if find -- "input/data/metadata" -prune -type d -empty | grep -q '^'; then echo 'Add all required input files' | exit 1;fi
+if find -- "input/layers" -prune -type d -empty | grep -q '^'; then echo 'Add all required input files' | exit 1;fi
+# prepare directories and files
 mkdir -p bin/metaDEGs/src; mkdir -p bin/metaDEGs/src/grein; cp -r input/data/* bin/metaDEGs/src/grein/
 pushd bin/metaDEGs/ >& /dev/null
 rm -r -f src/tmp; mkdir src/tmp; mkdir src/tmp/counts; mkdir src/tmp/metadata; mkdir src/tmp/degs
 rm -r -f output; mkdir output; mkdir output/metaDEGs; mkdir output/normalized_counts
 
 echo '  1/4 - Processing input files'
-## Step 1.1 - clean files
-for sid in $(ls src/grein/*.csv | sed "s:src/grein/::" | cut -d"_" -f1 | sort | uniq)
-do
-    cp src/grein/${sid}_filtered_metadata.csv src/tmp/grein_meta.txt ; cp src/grein/${sid}_GeneLevel_Raw_data.csv src/tmp/grein_cts.txt
-    Rscript scripts/clean_grein_input.R >& /dev/null
+(cd src/grein/counts && ls -v | cat -n | while read n f; do mv -n "$f" "$n.txt"; done)
+(cd src/grein/metadata && ls -v | cat -n | while read n f; do mv -n "$f" "$n.txt"; done)
+
+for sid in $(ls src/grein/counts/* | sed "s:src/grein/counts/::" | cut -d"." -f1); do
+    cp src/grein/metadata/${sid}.txt src/tmp/grein_meta.txt; cp src/grein/counts/${sid}.txt src/tmp/grein_cts.txt
+
+    # check format input
+    Rscript scripts/process_input.R >& /dev/null
     FILE=src/tmp/clean_cts.txt
     if [ -f "$FILE" ]; then
         :
     else 
-        echo "Sorry, there's an error :(" ; echo "  ${sid} files processed incorrectly from GREIN."
-        echo "  It seems like we can't identify the labels. Please, change the non-tumour samples' metadata labels to say Normal"
+        echo "Error, change the non-tumour samples' metadata labels to --> Normal"
         rm -f src/tmp/clean_* ; rm -f src/tmp/grein_*
         exit 1
     fi
@@ -26,9 +33,10 @@ do
     rm -f src/tmp/clean_* ; rm -f src/tmp/grein_*
 done
 
+
 ## Step 1.2 - match genes
 Rscript scripts/gene_list.R >& /dev/null; mv src/tmp/counts/gene_list.txt src/tmp/gene_list.txt #obtain distinct gene list
-for sid in $(ls src/grein/*.csv | sed "s:src/grein/::" | cut -d"_" -f1 | sort | uniq)
+for sid in $(ls src/grein/counts/* | sed "s:src/grein/counts/::" | cut -d"." -f1)
 do
     cp src/tmp/counts/${sid}_cts.txt src/tmp/cts.txt
     Rscript scripts/gene_matches.R >& /dev/null; cp src/tmp/cts.txt src/tmp/counts/${sid}_cts.txt
@@ -74,6 +82,8 @@ do
         fi
     done
 done; rm -f -r output/means
+
+find . -type f -size 0 -exec rm {} \; #remove empty files
 
 echo '  4/4 - Obtaining metaDEGs'
 Rscript scripts/obtain_ranks.R >& /dev/null; Rscript scripts/degs_names.R  >& /dev/null;  rm -r -f src/tmp # Clean folders

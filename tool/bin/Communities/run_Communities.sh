@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # STEP 0
+
 echo '  0/2 - Preparing environment'
-cd Communities
+mkdir -p bin/Communities/src/genes; mkdir -p bin/Communities/src/networks; cp input/layers/*.gr bin/Communities/src/networks; cp output/metaDEGs/metaDEGs/degs_names.txt bin/Communities/src/genes/input_genes.txt
+
+pushd bin/Communities/ >& /dev/null
 pip install -r scripts/requirements.txt >& /dev/null
 rm -r -f output/*; mkdir -p output/tmp
 
@@ -45,3 +48,6 @@ sed -i 's/\,$//' output/tmp/degs.txt # remove end of line commas
 
 ## Clean result
 mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp
+
+popd >& /dev/null
+mkdir -p output/Communities; mv bin/Communities/output/* output/Communities; rm -r bin/Communities/src/genes; rm -r bin/Communities/src/networks; rm -r bin/Communities/output
