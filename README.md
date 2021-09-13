@@ -1,5 +1,4 @@
 ![Logo](.img/multiAffinty-logo.png)
-## multiAffinity: multi-layer affinity analysis tool.
 
 ## Introduction
 
