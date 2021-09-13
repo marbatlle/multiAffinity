@@ -1,7 +1,10 @@
 ![Logo](.img/multiAffinty-logo.png)
-From GEO counts matrix to node affinity and communities analysis
+
+/n
 
 ## Introduction
+From GEO counts matrix to node affinity and communities analysis
+
 
 ## Workflow overview
 This is a schema of the complete workflow
