@@ -14,6 +14,18 @@ This is a schema of the complete workflow
 
 ## Input Files
 
+### Data
+
+**Counts Matrix:**
+
+**Metadata:**
+
+## Networks Layers
+
+Add one network by file, with each row composed by two gene names representing an edge, as seen in the sample [data](https://github.com/marbatlle/COMMgenes/tree/main/sample_data/networks)
+
+
+
 ## Usage
 
 Execute the run.sh script::
@@ -30,7 +42,7 @@ Obtaining differentially expressed genes after integrating multiple GEO RNAseq d
 
 ### 2. Affinity
 
-### 3. Commpunitites
+### 3. Communitites
 
 ## Case Study 
 

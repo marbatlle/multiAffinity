@@ -17,3 +17,4 @@ for sid in $(ls src/grein/counts/* | sed "s:src/grein/counts/::" | cut -d"." -f1
     cp src/grein/metadata/${sid}.txt src/tmp/grein_meta.txt; cp src/grein/counts/${sid}.txt src/tmp/grein_cts.txt
     Rscript scripts/process_input.R #>& /dev/null
 done
+
