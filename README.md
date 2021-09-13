@@ -1,6 +1,9 @@
 ![Logo](.img/multiAffinty-logo.png)
 
-/n
+
+
+
+
 
 ## Introduction
 From GEO counts matrix to node affinity and communities analysis
