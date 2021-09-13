@@ -1,8 +1,8 @@
-![Logo](../master/.img/multiAffinty-logo.png)
+![Logo](.img/multiAffinty-logo.png)
 
 
 
-![Workflow](../master/.img/multiAffinity_workflow.png)
+![Workflow](.img/multiAffinity_workflow.png)
 
 
 
