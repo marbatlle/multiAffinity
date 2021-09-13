@@ -15,6 +15,12 @@ This is a schema of the complete workflow
 ## Input Files
 
 ### Data
+Consists of the resulting raw RNA-seq outputs from the desired studies. For this tool, the counts matrix and metadata table is required. If using public available datasets from GEO, we recommend the use of [GREIN](http://www.ilincs.org/apps/grein/) to easily match our format. Otherwise, check the [sample_data](tool/input/sample_data). 
+
+Make sure that:
+* both files, counts matrix and metadata share the same identifier.
+* Metadata labels contain the word Normal
+* Counts matrix includes gene names.
 
 **Counts Matrix:**
 
