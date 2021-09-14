@@ -15,8 +15,8 @@ affinity['metaDEGs'] = affinity['metaDEGs'].astype('str')
 #import communities
 comm = pd.read_csv('output/Communities/degs_communities.txt',sep=';', names=['metaDEGs','Communities'])
 comm.Communities = comm.Communities.replace(np.nan,0)
-comm.Communities = comm.Communities.astype(int)
-comm.Communities = comm.Communities.round()
+#comm.Communities = comm.Communities.astype(int)
+#comm.Communities = comm.Communities.round()
 
 # Join metadegs, affinity correlation and communities
 df = pd.merge(pd.merge(degs,affinity,how='left',on='metaDEGs'),comm,how='left',on='metaDEGs')
