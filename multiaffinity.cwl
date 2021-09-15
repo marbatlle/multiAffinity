@@ -38,3 +38,7 @@ outputs:
 hints:
   - class: DockerRequirement
     dockerPull: marbatlle/multiaffinity
+$author:  
+  - class: s:Person
+    s:email: mailto:mar.batlle@bsc.es
+    s:name: Mar Batlle
