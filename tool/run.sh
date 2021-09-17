@@ -2,16 +2,20 @@
 set -euo pipefail
 #pushd tool/ >& /dev/null
 
+pushd $1 >& /dev/null
+
 # inputs
 present() {
         ls "$@" >/dev/null 2>&1
 }
 if ! present *_data.csv && ! present *_metadata.csv && ! present *_layer.csv; then
     echo "All required inputs are not present"; exit 1; else
-    mkdir input; mkdir input/layers; mkdir input/data; mkdir input/data/counts; mkdir input/data/metadata
-    cp *_data.csv input/data/counts; cp *_metadata.csv input/data/metadata/; cp *_layer.csv input/layers/; rm -f reqs.txt
-    for file in input/layers/*.csv; do mv "$file" "${file/.csv/.gr}"; done
+    mkdir layers; mkdir data; mkdir data/counts; mkdir data/metadata
+    cp *_data.csv data/counts; cp *_metadata.csv data/metadata/; cp *_layer.csv layers/; rm -f *.csv
+    for file in layers/*.csv; do mv "$file" "${file/.csv/.gr}"; done
 fi
+
+popd >& /dev/null
 
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh
