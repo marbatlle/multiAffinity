@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y \
 RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # Inputs
-COPY input /tool/
+COPY input /tool/input
 RUN chmod +x run.sh
 
 # The code to run when container is started:
-CMD bash run.sh
+CMD ["/bin/bash", "-c"]

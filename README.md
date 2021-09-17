@@ -83,3 +83,24 @@ Kolde R, Laur S, Adler P, Vilo J. Robust rank aggregation for gene list integrat
 Didier G, Valdeolivas A, Baudot A. Identifying communities from multiplex biological networks by randomized optimization of modularity. F1000Res. 2018 Jul 10;7:1042. doi: 10.12688/f1000research.15486.2. PMID: 30210790; PMCID: PMC6107982.
 
 ![Logo](.img/logos-project.jpg)
+
+
+
+docker run -t -i '/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input' marbatlle/multiaffinity ./run.sh /input
+
+docker run --ti -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" run marbatlle/multiaffinity ./run.sh /input
+
+
+docker run --mount source=/home/mar/Documents/TFM/GitHub/multiAffinity/input,destination=/input marbatlle/multiaffinity ./run.sh /input
+
+
+docker run -it --mount source=/home/mar/Documents/TFM/GitHub/multiAffinity/input,destination=/input ubuntu
+
+
+docker run -ti -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity /bin/bash
+
+docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity /bin/bash
+
+good:
+
+docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity /bin/bash
