@@ -2,7 +2,6 @@
 
 # STEP 1
 echo '  1/5 - Creating environment'
-
 cp -r output/metaDEGs bin/Affinity/src; cp -r input/layers/ bin/Affinity/src
 pushd bin/ >& /dev/null
 rm -r -f Affinity/tmp; mkdir -p Affinity/tmp; rm -r -f Affinity/src/multiplex; mkdir -p Affinity/src/multiplex; rm -r -f Affinity/output/*; mkdir -p Affinity/output
@@ -56,9 +55,7 @@ echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
 python Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt
 
 # remove temp files
-rm -r -f Affinity/tmp
-rm -f Affinity/src/multiplex/*.tsv
-
+rm -r -f Affinity/tmp; rm -f Affinity/src/multiplex/*.tsv; rm -f Affinity/src/seeds.txt; rm -f Affinity/src/config_full.yml
 popd >& /dev/null
-rm -r bin/Affinity/src/metaDEGs; rm -r bin/Affinity/src/layers; mkdir -p output/MultiAffinity; mv bin/Affinity/output/* output/MultiAffinity; rm -f Affinity/src/seeds.txt; rm -f Affinity/src/config_full.yml
+rm -r bin/Affinity/src/metaDEGs; rm -r bin/Affinity/src/layers; mkdir -p output/MultiAffinity; mv bin/Affinity/output/* output/MultiAffinity
 find . -type d -empty -delete
