@@ -5,11 +5,15 @@ echo '  1/5 - Creating environment'
 
 cp -r output/metaDEGs bin/Affinity/src; cp -r input/layers/ bin/Affinity/src
 pushd bin/ >& /dev/null
-pip install -r Affinity/src/requirements.txt >& /dev/null
+pip install -r Affinity/src/requirements.txt #>& /dev/null
 rm -r -f Affinity/tmp; mkdir -p Affinity/tmp; rm -r -f Affinity/src/multiplex; mkdir -p Affinity/src/multiplex; rm -r -f Affinity/output/*; mkdir -p Affinity/output
 # add input layers to src folder
 cp Affinity/src/layers/*.gr Affinity/tmp
 (cd Affinity/tmp && ls -v | cat -n | while read n f; do mv -n "$f" "layer$n.tsv"; done)
+# arguments to variables
+multiXrank_r=$1 
+multiXrank_selfloops=$2
+multiXrank_delta=$3
 
 # STEP 2
 echo '  2/5 - Preparing for running multiXrank'
@@ -23,13 +27,15 @@ mv Affinity/tmp/layer*.tsv Affinity/src/multiplex
 cp Affinity/src/metaDEGs/metaDEGs/degs_names.txt Affinity/tmp
 python Affinity/scripts/degs_to_ids.py
 sed -i '/^$/d' Affinity/tmp/degs_ids.txt # remove empty lines
-# Edit config_minimal.yml
+# Edit config_full.yml
 num_layers=$(ls Affinity/src/multiplex | wc -l)
-printf "multiplex:\n    1:\n        layers:" > Affinity/src/config_minimal.yml
+printf "seed: seeds.txt\n" > Affinity/src/config_full.yml
+printf "r: $multiXrank_r\n" >> Affinity/src/config_full.yml
+printf "self_loops: $multiXrank_selfloops\n" >> Affinity/src/config_full.yml
+printf "multiplex:\n    1:\n        layers:" >> Affinity/src/config_full.yml
 for i in $(seq 1 $num_layers); do 
-    printf "\n            - multiplex/layer$i.tsv" >> Affinity/src/config_minimal.yml; done
-
-printf "\nseed:\n    seeds.txt" >> Affinity/src/config_minimal.yml
+    printf "\n            - multiplex/layer$i.tsv" >> Affinity/src/config_full.yml; done
+printf "\n        delta: $multiXrank_delta" >> Affinity/src/config_full.yml
 
 # STEP 3
 echo '  3/5 - Running multiXrank for each deg as seed'

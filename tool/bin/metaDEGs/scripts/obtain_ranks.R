@@ -4,6 +4,10 @@ Load <- function(packages) {
 }
 Load(c("tidyverse","dplyr","stringr","RobustRankAggreg","data.table"))
 
+# get the input passed from the shell script
+args <- commandArgs(trailingOnly = TRUE)
+RRA_Score=as.numeric(args[1])
+
 # Downregulated
 ##Read DEGs files 
 filenames <- list.files(path="src/tmp/degs", pattern="*down.txt")
@@ -44,7 +48,7 @@ for(i in names){
 glist_up <- Filter(function(x) is(x, "matrix"), mget(ls()))
 r_up = rankMatrix(glist_up, full = TRUE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
-agg_up <- subset(agg_up, agg_up$Score < 0.05)
+agg_up <- subset(agg_up, agg_up$Score < RRA_Score)
 agg_up <- as.data.frame(agg_up)
 
 rm(list = ls(pattern="DEGs_up"))

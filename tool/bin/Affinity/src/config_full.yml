@@ -1,0 +1,9 @@
+seed: seeds.txt
+r: 0.5
+self_loops: 0
+multiplex:
+    1:
+        layers:
+            - multiplex/layer1.tsv
+            - multiplex/layer2.tsv
+        delta: 0.5

@@ -4,6 +4,12 @@ Load <- function(packages) {
 }
 Load(c("tidyverse","DESeq2","IHW","data.table"))
 
+# get the input passed from the shell script
+args <- commandArgs(trailingOnly = TRUE)
+
+DESeq2_padj=as.numeric(args[1])
+DESeq2_LFC=as.numeric(args[2])
+
 # Import data
 ### Count matrix should not be normalized and should be uniquely using hgnc gene symbols.
 
@@ -27,12 +33,12 @@ dds$tissue <- relevel(dds$tissue, ref = "NT")
 dds <- DESeq(dds)
 
 # Find DEGs
-res <- results(dds, alpha=0.05, filterFun=ihw)
+res <- results(dds, alpha=DESeq2_padj, filterFun=ihw)
 
 # Set thresholds
-res <- subset(res, res$padj < 0.05)
+res <- subset(res, res$padj < DESeq2_padj)
 
-res <- subset(res, abs(res$log2FoldChange) > 1)
+res <- subset(res, abs(res$log2FoldChange) > DESeq2_LFC)
 
 ## Order all differentially expressed genes by effect size (the absolute value of log2FoldChange)
 res <- res[order(-abs(res$log2FoldChange)),]
@@ -44,12 +50,12 @@ res_subset <- subset(res,,cols)
 ## Extract genes upregulated
 res_up <- res_subset %>% 
   filter(log2FoldChange > 0)
-write.csv(res_up, "src/tmp/tmp_up.txt", sep=",")
+write.csv(res_up, "src/tmp/tmp_up.txt")
 
 ## Extract genes downregulated
 res_down <- res_subset %>% 
   filter(log2FoldChange < 0)
-write.csv(res_down, "src/tmp/tmp_down.txt", sep=",")
+write.csv(res_down, "src/tmp/tmp_down.txt")
 
 print('num. of upregulated DEGs:')
 print(nrow(res_up))
@@ -73,4 +79,4 @@ levels.list <- as.list(as.data.frame(t(t_coldata)))
 colnames(normalized_counts) <- levels.list$tissue
 
 #save normalized counts table
-write.csv(normalized_counts, "src/tmp/normalized_counts.txt", sep=",")
+write.csv(normalized_counts, "src/tmp/normalized_counts.txt")

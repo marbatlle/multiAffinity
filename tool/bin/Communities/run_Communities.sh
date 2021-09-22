@@ -5,6 +5,10 @@
 echo '  0/2 - Preparing environment'
 mkdir -p bin/Communities/src/genes; mkdir -p bin/Communities/src/networks; cp input/layers/*.gr bin/Communities/src/networks; cp output/metaDEGs/metaDEGs/degs_names.txt bin/Communities/src/genes/input_genes.txt
 
+# arguments to variables
+Molti_modularity=$1 
+Molti_Louvain=$2
+
 pushd bin/Communities/ >& /dev/null
 pip install -r scripts/requirements.txt >& /dev/null
 rm -r -f output/*; mkdir -p output/tmp
@@ -13,14 +17,8 @@ rm -r -f output/*; mkdir -p output/tmp
 echo '  1/2 - Describing communities from multilayer networks'
 
 networks=$(ls src/networks/*.gr)
-num_rands=$1
 
-if [ $# -eq 0 ]
-  then
-    src/MolTi-DREAM-master/src/molti-console -o output/tmp/communities ${networks} >& /dev/null
-  else
-    src/MolTi-DREAM-master/src/molti-console -p ${num_rands} -o output/tmp/communities ${networks} >& /dev/null
-fi
+src/MolTi-DREAM-master/src/molti-console -p ${Molti_modularity} -r ${Molti_Louvain} -o output/tmp/communities ${networks} >& /dev/null
 
 # STEP 2
 echo '  2/2 - Finding genes in COMM'
