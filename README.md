@@ -1,7 +1,7 @@
 <img src=".img/multiAffinty-logo.png" width="500">
 
 
-Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.
+**Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.**
 
 
 ## Workflow overview
