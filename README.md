@@ -4,16 +4,24 @@
 **Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.**
 
 
-## Workflow overview
+## Overview
 This is a schema of the complete workflow
 ![Workflow](.img/multiAffinity_workflow.png)
 
+## Input
+Before running the tool, the input files need to be selected and added to your input file. These consist of:
 
+### RNA-Seq data
+This tool is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=), to be more specific, the raw counts matrix and metadata table are required. 
 
-## Input Files
+![GREIN_tutorial](.img/tutorial_grein.png)
+
+If you are not using public GEO datasets, you should match the following formats.
+
 
 ### Data
 Consists of the resulting raw RNA-seq outputs from the desired studies. For this tool, the counts matrix and metadata table is required. If using public available datasets from GEO, we recommend the use of [GREIN](http://www.ilincs.org/apps/grein/) to easily match our format. Otherwise, check the [sample_data](tool/input/sample_data). 
+
 
 Make sure that:
 * both files, counts matrix and metadata share the same identifier.
