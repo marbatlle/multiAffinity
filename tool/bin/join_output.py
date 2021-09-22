@@ -13,7 +13,7 @@ affinity = affinity.rename(columns={'Genes': 'metaDEGs', 'Corr': 'Affinity Corr'
 affinity['metaDEGs'] = affinity['metaDEGs'].astype('str')
 
 #import communities
-comm = pd.read_csv('output/Communities/degs_communities.txt',sep=';', names=['metaDEGs','Communities'])
+comm = pd.read_csv('output/Communities/degs_communities.txt',sep=';', names=['metaDEGs','Communities'], dtype=str)
 comm.Communities = comm.Communities.replace(np.nan,0)
 #comm.Communities = comm.Communities.astype(int)
 #comm.Communities = comm.Communities.round()
