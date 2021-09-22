@@ -1,19 +1,15 @@
-![Logo](.img/multiAffinty-logo.png)
+#![Logo](.img/multiAffinty-logo.png)
+<img src=".img/multiAffinty-logo.png" width="200">
 
 
-
-
-
-
-## Introduction
-From GEO counts matrix to node affinity and communities analysis
+Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.
 
 
 ## Workflow overview
 This is a schema of the complete workflow
 ![Workflow](.img/multiAffinity_workflow.png)
 
-## Authors
+
 
 ## Input Files
 
@@ -72,6 +68,8 @@ Obtaining differentially expressed genes after integrating multiple GEO RNAseq d
 
 
 ## Output Files
+
+## Authors
 
 ## Citations
 Mahi NA, Najafabadi MF, Pilarczyk M, Kouril M, Medvedovic M. GREIN: An Interactive Web Platform for Re-analyzing GEO RNA-seq Data. Sci Rep. 2019 May 20;9(1):7580. doi: 10.1038/s41598-019-43935-8. PMID: 31110304; PMCID: PMC6527554.
