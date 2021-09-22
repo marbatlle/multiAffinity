@@ -1,7 +1,5 @@
 #!/bin/bash
-
 # STEP 0
-
 echo '  0/2 - Preparing environment'
 mkdir -p bin/Communities/src/genes; mkdir -p bin/Communities/src/networks; cp input/layers/*.gr bin/Communities/src/networks; cp output/metaDEGs/metaDEGs/degs_names.txt bin/Communities/src/genes/input_genes.txt
 
@@ -10,7 +8,6 @@ Molti_modularity=$1
 Molti_Louvain=$2
 
 pushd bin/Communities/ >& /dev/null
-pip install -r scripts/requirements.txt >& /dev/null
 rm -r -f output/*; mkdir -p output/tmp
 
 # STEP 1
@@ -49,3 +46,4 @@ mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities ou
 
 popd >& /dev/null
 mkdir -p output/Communities; mv bin/Communities/output/* output/Communities; rm -r bin/Communities/src/genes; rm -r bin/Communities/src/networks; rm -r bin/Communities/output
+rm -r input/
