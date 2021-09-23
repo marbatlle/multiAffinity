@@ -16,21 +16,29 @@ This tool is designed to work seamlessly with the output created by [GREIN](http
 
 ![GREIN_tutorial](.img/tutorial_grein.png)
 
+
+
 If you are not using public GEO datasets, you should match the following formats.
 
 
 ### Data
 Consists of the resulting raw RNA-seq outputs from the desired studies. For this tool, the counts matrix and metadata table is required. If using public available datasets from GEO, we recommend the use of [GREIN](http://www.ilincs.org/apps/grein/) to easily match our format. Otherwise, check the [sample_data](tool/input/sample_data). 
 
+Once these have been downloaded at your terminal, add them to the folder; [src/grein](https://github.com/marbatlle/metaDEGs/tree/main/src/grein)
 
-Make sure that:
-* both files, counts matrix and metadata share the same identifier.
-* Metadata labels contain the word Normal
-* Counts matrix includes gene names.
+*If your dataset has not been already been processed by GREIN, please, request its processing and check its progress at the Processing Console*
+
+On the other hand, if you want to use datasets not available at GEO, you should make sure that your files format match these requirements:
 
 **Counts Matrix:**
+* The files should be named following: *sampleid*_data.csv
+* Make sure counts matrix includes gene names.
 
 **Metadata:**
+* The files should be named following: *sampleid*_metadata.csv
+* Make sure metadata labels contain the word Normal
+
+An remember, counts matrix and metadata have to share the same identifier.
 
 ## Networks Layers
 
