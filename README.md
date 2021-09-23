@@ -1,8 +1,6 @@
 <img src=".img/multiAffinty-logo.png" width="500">
 
-
 **Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.**
-
 
 ## Overview
 This is a schema of the complete workflow
@@ -16,33 +14,37 @@ This tool is designed to work seamlessly with the output created by [GREIN](http
 
 ![GREIN_tutorial](.img/tutorial_grein.png)
 
-
-
-If you are not using public GEO datasets, you should match the following formats.
-
-
-### Data
-Consists of the resulting raw RNA-seq outputs from the desired studies. For this tool, the counts matrix and metadata table is required. If using public available datasets from GEO, we recommend the use of [GREIN](http://www.ilincs.org/apps/grein/) to easily match our format. Otherwise, check the [sample_data](tool/input/sample_data). 
-
-Once these have been downloaded at your terminal, add them to the folder; [src/grein](https://github.com/marbatlle/metaDEGs/tree/main/src/grein)
-
 *If your dataset has not been already been processed by GREIN, please, request its processing and check its progress at the Processing Console*
 
-On the other hand, if you want to use datasets not available at GEO, you should make sure that your files format match these requirements:
-
-**Counts Matrix:**
-* The files should be named following: *sampleid*_data.csv
-* Make sure counts matrix includes gene names.
+On the other hand, if you want to use datasets not available at GEO, make sure that your files format match these requirements:
 
 **Metadata:**
 * The files should be named following: *sampleid*_metadata.csv
 * Make sure metadata labels contain the word Normal
 
+    Sample file
+    "",tissue type
+    GSM2177840,Normal
+    GSM2177841,Normal
+    GSM2177842,Tumor
+    GSM2177843,Normal
+
+**Counts Matrix:**
+* The files should be named following: *sampleid*_data.csv
+* Make sure counts matrix includes gene names.
+
+    "",gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
+    ENSG00000000003,TSPAN6,2076.6848,1326.8231,457.6652,598.4371
+    ENSG00000000005,TNMD,0,0,0,0,0.9996
+    ENSG00000000419,DPM1,321.7764,228.0737,56.0322,157.092
+    ENSG00000000457,SCYL3,236.4527,176.2254,118.8114,131.656
+
 An remember, counts matrix and metadata have to share the same identifier.
 
-## Networks Layers
 
+## Networks Layers
 Add one network by file, with each row composed by two gene names representing an edge, as seen in the sample [data](https://github.com/marbatlle/COMMgenes/tree/main/sample_data/networks)
+
 
 
 
