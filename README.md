@@ -22,7 +22,8 @@ On the other hand, if you want to use datasets not available at GEO, make sure t
 * The files should be named following: *sampleid*_metadata.csv
 * Make sure metadata labels contain the word Normal
 
-    Sample file
+Sample file:
+
     "",tissue type
     GSM2177840,Normal
     GSM2177841,Normal
@@ -33,13 +34,15 @@ On the other hand, if you want to use datasets not available at GEO, make sure t
 * The files should be named following: *sampleid*_data.csv
 * Make sure counts matrix includes gene names.
 
-    "",gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
-    ENSG00000000003,TSPAN6,2076.6848,1326.8231,457.6652,598.4371
-    ENSG00000000005,TNMD,0,0,0,0,0.9996
-    ENSG00000000419,DPM1,321.7764,228.0737,56.0322,157.092
-    ENSG00000000457,SCYL3,236.4527,176.2254,118.8114,131.656
+Sample file:
 
-An remember, counts matrix and metadata have to share the same identifier.
+    "",gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
+    ENSG00000000003,TSPAN6,2076,1326,457,598
+    ENSG00000000005,TNMD,0,0,0,0,1
+    ENSG00000000419,DPM1,321,228,56,157
+    ENSG00000000457,SCYL3,236,176,118,131
+
+And remember, counts matrix and metadata have to share the same identifier.
 
 
 ## Networks Layers
