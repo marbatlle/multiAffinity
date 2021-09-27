@@ -2,26 +2,53 @@
 set -euo pipefail
 #pushd tool/ >& /dev/null
 
-pushd $1 >& /dev/null
-# inputs
-present() {
-        ls "$@" >/dev/null 2>&1
-}
-if ! present *_data.csv && ! present *_metadata.csv && ! present *_layer.csv; then
-    echo "All required inputs are not present"; exit 1; else
-    mkdir layers; mkdir data; mkdir data/counts; mkdir data/metadata
-    cp *_data.csv data/counts; cp *_metadata.csv data/metadata/; cp *_layer.csv layers/; rm -f *.csv
-    for file in layers/*.csv; do mv "$file" "${file/.csv/.gr}"; done
-fi
+# Defining default values for parameters
+DESeq2_padj=0.05
+DESeq2_LFC=1
+RRA_Score=0.05
+waddR_resolution=0.001
+waddR_permnum=10000
+multiXrank_r=0.5
+multiXrank_selfloops=0
+multiXrank_delta=0.5
+Molti_modularity=1
+Molti_Louvain=0
 
-# setting pipeline arguments as variables
-FILE=arguments
-while read line; do
-    name=$(echo "$line" | cut -d"=" -f1)
-    export "$name=$(echo "$line" | cut -d"=" -f2)"
-done < "$FILE"
+# Classifying input arguments
+while getopts "c:m:n:a:b:d:e:f:g:h:i:j:k:" opt; do
+  case $opt in
+    c) set -f
+       IFS=','
+       counts=($OPTARG)           ;;
+    m) set -f
+       IFS=','
+       metadata=($OPTARG)         ;;
+    n) set -f
+       IFS=','
+       network=($OPTARG)           ;;
+    a) DESeq2_padj=($OPTARG)      ;;
+    b) DESeq2_LFC=($OPTARG)       ;;
+    d) RRA_Score=($OPTARG)        ;;
+    e) waddR_resolution=($OPTARG) ;;
+    f) waddR_permnum=($OPTARG)    ;;
+    g) multiXrank_r=($OPTARG)    ;;
+    h) multiXrank_selfloops=($OPTARG)    ;;
+    i) multiXrank_delta=($OPTARG)    ;;
+    j) Molti_modularity=($OPTARG)    ;;
+    k) Molti_Louvain=($OPTARG)    ;;
+  esac
+done
 
-popd >& /dev/null
+# Defining mandatory arguments
+if [ -z ${counts+x} ]; then echo "-c is obligatory"; exit 1; fi
+if [ -z ${metadata+x} ]; then echo "-m is obligatory"; exit 1; fi
+if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
+
+# Creating input directories and organizing data
+mkdir -p input; mkdir -p input/layers; mkdir -p input/data; mkdir -p input/data/counts; mkdir -p input/data/metadata
+for i in "${counts[@]}"; do mv ${i} input/data/counts; done
+for i in "${metadata[@]}"; do mv ${i} input/data/metadata; done
+for i in "${network[@]}"; do mv ${i} input/layers; done
 
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_resolution $waddR_permnum
