@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
-#pushd tool/ >& /dev/null
 
 # Defining default values for parameters
 DESeq2_padj=0.05
@@ -14,9 +13,20 @@ multiXrank_delta=0.5
 Molti_modularity=1
 Molti_Louvain=0
 
+# Usage function
+usage(){
+echo "usage: multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH"
+echo "                     [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]"
+echo "                     [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]"
+echo "                     [-h multiXrank_selfloops] [-i multiXrank_delta]"
+echo "                     [-j Molti_modularity] [-k Molti_Louvain]"
+exit 0
+} 
+                
 # Classifying input arguments
-while getopts "c:m:n:a:b:d:e:f:g:h:i:j:k:" opt; do
+while getopts ":hc:m:n:a:b:d:e:f:g:h:i:j:k:" opt; do
   case $opt in
+    h) usage               ;;
     c) set -f
        IFS=','
        counts=($OPTARG)           ;;
