@@ -7,7 +7,6 @@ if find -- "input/data/counts" -prune -type d -empty | grep -q '^'; then echo 'A
 if find -- "input/data/metadata" -prune -type d -empty | grep -q '^'; then echo 'Add all required input files' | exit 1;fi
 if find -- "input/layers" -prune -type d -empty | grep -q '^'; then echo 'Add all required input files' | exit 1;fi
 # prepare directories and files
-if [ -d "bin/metaDEGs/src" ]; then rm -Rf $WORKING_DIR; fi; if [ -d "bin/metaDEGs/output" ]; then rm -Rf $WORKING_DIR; fi
 mkdir -p bin/metaDEGs/src; mkdir -p bin/metaDEGs/src/grein; cp -r input/data/* bin/metaDEGs/src/grein/
 # create sample names file
 ls input/data/counts/* | sed "s:input/data/counts/::" | cut -d"_" -f1 > bin/metaDEGs/sample_names.txt

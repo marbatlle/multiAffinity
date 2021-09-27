@@ -8,3 +8,9 @@ multiXrank_selfloops=0
 multiXrank_delta=0.5
 Molti_modularity=1
 Molti_Louvain=0
+
+g) multiXrank_r=($OPTARG)    ;;
+h) multiXrank_selfloops=($OPTARG)    ;;
+i) multiXrank_delta=($OPTARG)    ;;
+j) Molti_modularity=($OPTARG)    ;;
+k) Molti_Louvain=($OPTARG)    ;;

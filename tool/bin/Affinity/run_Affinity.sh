@@ -6,7 +6,7 @@ cp -r output/metaDEGs bin/Affinity/src; cp -r input/layers/ bin/Affinity/src
 pushd bin/ >& /dev/null
 rm -r -f Affinity/tmp; mkdir -p Affinity/tmp; rm -r -f Affinity/src/multiplex; mkdir -p Affinity/src/multiplex; rm -r -f Affinity/output/*; mkdir -p Affinity/output
 # add input layers to src folder
-cp Affinity/src/layers/*.gr Affinity/tmp
+cp Affinity/src/layers/* Affinity/tmp
 (cd Affinity/tmp && ls -v | cat -n | while read n f; do mv -n "$f" "layer$n.tsv"; done)
 # arguments to variables
 multiXrank_r=$1 

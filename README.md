@@ -14,11 +14,9 @@ This tool is designed to work seamlessly with the output created by [GREIN](http
 
 ![GREIN_tutorial](.img/tutorial_grein.png)
 
-*If your dataset has not been already been processed by GREIN, please, request its processing and check its progress at the Processing Console*
+If your dataset has not been already been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match these requirements:
 
-On the other hand, if you want to use datasets not available at GEO, make sure that your files format match these requirements:
-
-**Metadata:**
+#### Metadata:
 * The files should be named following: *sampleid*_metadata.csv
 * Make sure metadata labels contain the word Normal
 
@@ -30,9 +28,10 @@ Sample file:
     GSM2177842,Tumor
     GSM2177843,Normal
 
-**Counts Matrix:**
+#### Counts Matrix
 * The files should be named following: *sampleid*_data.csv
-* Make sure counts matrix includes gene names.
+* Make sure counts matrix includes gene symbols.
+* The series accession identifiers (GSM) should match the ones on the metadata file.
 
 Sample file:
 
@@ -45,8 +44,18 @@ Sample file:
 And remember, counts matrix and metadata have to share the same identifier.
 
 
-## Networks Layers
-Add one network by file, with each row composed by two gene names representing an edge, as seen in the sample [data](https://github.com/marbatlle/COMMgenes/tree/main/sample_data/networks)
+### Network Layers
+The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer should be added as a separate file.
+
+Sample file:
+
+    CNBP HNRNPAB
+    CNBP RPL10A
+    CNBP CENPN
+    CNBP RSL24D1
+    CNBP SMAP
+    CNBP FTSJ3
+    CNBP TRA2B
 
 
 
@@ -56,6 +65,12 @@ Add one network by file, with each row composed by two gene names representing a
 Execute the run.sh script::
 
     bash run.sh
+
+
+
+bash inputs.sh -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv -l input/metabs_layer.csv
+
+
 
 **Arguments**
 

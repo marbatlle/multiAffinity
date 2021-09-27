@@ -1,6 +1,7 @@
 #!/bin/bash
 # STEP 0
 echo '  0/2 - Preparing environment'
+for file in input/layers/*; do mv "$file" "${file/.*/.gr}"; done
 mkdir -p bin/Communities/src/genes; mkdir -p bin/Communities/src/networks; cp input/layers/*.gr bin/Communities/src/networks; cp output/metaDEGs/metaDEGs/degs_names.txt bin/Communities/src/genes/input_genes.txt
 
 # arguments to variables
