@@ -109,7 +109,7 @@ Obtaining differentially expressed genes after integrating multiple GEO RNAseq d
     * Number of nodes: 1786
     * Number of edges: 52077
 
-multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv -l input/metabs_layer.csv
+docker run -v $(pwd):/input -it marbatlle/multiaffinity ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv -n input/metabs_layer.csv
 
 
 ## Output Files
@@ -132,13 +132,6 @@ Didier G, Valdeolivas A, Baudot A. Identifying communities from multiplex biolog
 
 docker build -t marbatlle/multiaffinity .
 
+docker push marbatlle/multiaffinity
 
-docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity ./run.sh input
-
-docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity ./multiAffinity -h
-
-docker run -v /home/mar/Documents/TFM/GitHub/multiAffinity/input:/input -it marbatlle/multiaffinity multiAffinity -h
-
-
-#RUN export PATH="$PATH:."
-#ENV PATH="/opt/gtk/bin:."
+docker run -ti -v $(pwd):/input marbatlle/multiaffinity ./multiAffinity -h
