@@ -32,7 +32,7 @@ Sample file:
     GSM2177842,Tumor
     GSM2177843,Normal
 
-**> Counts Matrix**
+**> Counts Matrix:**
 * The files should be named following: *sampleid*_data.csv
 * Make sure counts matrix includes gene symbols.
 * The series accession identifiers (GSM) should match the ones on the metadata file.
@@ -47,7 +47,7 @@ Sample file:
 
 And remember, counts matrix and metadata have to share the same identifier.
 
-**> Network Layers**
+**> Network Layers:**
 The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer should be added as a separate file.
 
 Sample file:
