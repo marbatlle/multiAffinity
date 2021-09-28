@@ -20,7 +20,7 @@ This tool is designed to work seamlessly with the output created by [GREIN](http
 
 If your dataset has not been already been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match these requirements:
 
-**> Metadata:**
+**> Metadata**
 * The files should be named following: *sampleid*_metadata.csv
 * Make sure metadata labels contain the word Normal
 
@@ -32,7 +32,7 @@ Sample file:
     GSM2177842,Tumor
     GSM2177843,Normal
 
-**> Counts Matrix:**
+**> Counts Matrix**
 * The files should be named following: *sampleid*_data.csv
 * Make sure counts matrix includes gene symbols.
 * The series accession identifiers (GSM) should match the ones on the metadata file.
@@ -47,7 +47,8 @@ Sample file:
 
 And remember, counts matrix and metadata have to share the same identifier.
 
-**> Network Layers:**
+**> Network Layers**
+
 The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer should be added as a separate file.
 
 Sample file:
