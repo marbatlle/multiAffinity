@@ -129,4 +129,16 @@ Didier G, Valdeolivas A, Baudot A. Identifying communities from multiplex biolog
 
 
 
+
+docker build -t marbatlle/multiaffinity .
+
+
 docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity ./run.sh input
+
+docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/input" marbatlle/multiaffinity ./multiAffinity -h
+
+docker run -v /home/mar/Documents/TFM/GitHub/multiAffinity/input:/input -it marbatlle/multiaffinity multiAffinity -h
+
+
+#RUN export PATH="$PATH:."
+#ENV PATH="/opt/gtk/bin:."

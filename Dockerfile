@@ -29,7 +29,11 @@ RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # Inputs
 COPY input /tool/input
-RUN chmod +x run.sh
+RUN chmod +x multiAffinity
+#RUN export PATH="$PATH:."
+#ENV PATH="/opt/gtk/bin:."
 
 # The code to run when container is started:
+EXPOSE 8888
+ENTRYPOINT []
 CMD ["/bin/bash", "-c"]
