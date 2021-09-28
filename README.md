@@ -1,22 +1,26 @@
-<img src=".img/multiAffinty-logo.png" width="500">
+<img src=".img/multiAffinty-logo.png" width="400">
 
-**Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.**
 
-## Overview
-This is a schema of the complete workflow
+-------------------------------------------------------------------------------------------
+# Overview
+Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.
+
+This is a schema of the complete workflow:
 ![Workflow](.img/multiAffinity_workflow.png)
 
-## Input
+-------------------------------------------------------------------------------------------
+
+# Usage
+### Input
 Before running the tool, the input files need to be selected and added to your input file. These consist of:
 
-### RNA-Seq data
 This tool is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=), to be more specific, the raw counts matrix and metadata table are required. 
 
 ![GREIN_tutorial](.img/tutorial_grein.png)
 
 If your dataset has not been already been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match these requirements:
 
-#### Metadata:
+**> Metadata:**
 * The files should be named following: *sampleid*_metadata.csv
 * Make sure metadata labels contain the word Normal
 
@@ -28,7 +32,7 @@ Sample file:
     GSM2177842,Tumor
     GSM2177843,Normal
 
-#### Counts Matrix
+**> Counts Matrix**
 * The files should be named following: *sampleid*_data.csv
 * Make sure counts matrix includes gene symbols.
 * The series accession identifiers (GSM) should match the ones on the metadata file.
@@ -43,8 +47,7 @@ Sample file:
 
 And remember, counts matrix and metadata have to share the same identifier.
 
-
-### Network Layers
+**> Network Layers**
 The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer should be added as a separate file.
 
 Sample file:
@@ -57,17 +60,17 @@ Sample file:
     CNBP FTSJ3
     CNBP TRA2B
 
-## Usage
+### Run the script
 
 Execute the script:
 
-    bash multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
-                       [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
-                       [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]
-                       [-h multiXrank_selfloops] [-i multiXrank_delta]
-                       [-j Molti_modularity] [-k Molti_Louvain]
+    multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
+                  [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
+                  [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]
+                  [-h multiXrank_selfloops] [-i multiXrank_delta]
+                  [-j Molti_modularity] [-k Molti_Louvain]
 
-**Arguments**
+**Arguments:**
 
     -h                          show this help message and exit
     -c COUNTS_PATH              path to counts matrix, single or multiple (-c COUNTS_PATH1,COUNTS_PATH2)
@@ -84,22 +87,45 @@ Execute the script:
     -j Molti_modularity         optional - default value is 1
     -k Molti_Louvain            optional - default value is 0
 
-## Pipeline steps
+### Output Files
+
+-------------------------------------------------------------------------------------------
+# Pipeline steps
 Here you can find a general description of the main steps of the pipeline
 
-### 1. DEGs
-Obtaining differentially expressed genes after integrating multiple GEO RNAseq datasets through a rank aggregation method.
+### 1. Obtaining metaDEGs
 
-### 2. Affinity
+**Screening for DEGs**
+Once the input is defined, the first step that multiAffinity carries out is normalization and differential expression analysis of each study using the DESeq2 R package. 
 
-### 3. Communitites
+**Integration of expression data**
+To identify the most robust genes among the different studies, the Robust Rank Aggregation (RRA) R package is used. The result is filtered out and the integrated upregulated and downregulated metaDEGs lists are saved for subsequent analysis.
 
-## Case Study 
+### 2. Affinity Correlation
 
-### Data
+### 3. Communities Definition
 
-### Networks
+-------------------------------------------------------------------------------------------
 
+# Study Case
+
+**Obtaining metaDEGs**
+
+The GSE133039, GSE89775, GSE104766, GSE151347 and GSE81928 gene expression count matrix and metadata were obtained from the GREIN Interactive Navigator. Each dataset was independently normalized using the DESeq2 R package’s median of rations function.
+
+| **Author(year)**               |  **GEO**  | **Platform** | **T** |  **NT** |
+|--------------------------------|:---------:|:------------:|:-----:|:-------:|
+| Carrillo-Reixach et al. (2020) | GSE133039 |   GPL16791   |   32  | matched |
+| Ranganathan et al. (2016)      |  GSE89775 |   GPL16791   |   10  |    3    |
+| Hooks et al. (2018)            | GSE104766 |   GPL16791   |   25  | matched |
+| Wagner et al. (2020)           | GSE151347 |   GPL11154   |   11  | matched |
+| Valanejad et al. (2018)        |  GSE81928 |   GPL16791   |   23  |    9    |
+
+Differential expression analysis of each dataset was carried out defining an adj p-value < 0.05 and |log fold change (FC)| > 0.5 as the screening criteria. For the GSE81928 dataset, 217 DEGs were identified, 157 for the GSE89775, 1525 for the GSE104766,4699 for the GSE133039 and 2505 for the GSE151347.
+
+After the independent studies were used in RRA analysis, a total of 249 upregulated genes and 179 downregulated genes were identified. The top 5 upregulated genes in tumor tissue were REG3A, SST, LHX1, SHISA6, PGC while SLITRK3, FGF14-IT1, CYP2A7, MYH4 and KRT16P3 where the most significant downregulated.
+
+**Affinity Correlation**
 * **Liver PPI layer**
 
     * Number of nodes: 18726
@@ -109,10 +135,21 @@ Obtaining differentially expressed genes after integrating multiple GEO RNAseq d
     * Number of nodes: 1786
     * Number of edges: 52077
 
-docker run -v $(pwd):/input -it marbatlle/multiaffinity ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv -n input/metabs_layer.csv
+**Communities Definition**
 
 
-## Output Files
+    docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/tool/input" marbatlle/multiaffinity bash
+
+    ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
+
+    docker build -t marbatlle/multiaffinity .
+    docker push marbatlle/multiaffinity
+    docker run -ti -v $(pwd):/input marbatlle/multiaffinity ./multiAffinity -h
+
+
+
+
+
 
 ## Authors
 
@@ -126,12 +163,3 @@ Kolde R, Laur S, Adler P, Vilo J. Robust rank aggregation for gene list integrat
 Didier G, Valdeolivas A, Baudot A. Identifying communities from multiplex biological networks by randomized optimization of modularity. F1000Res. 2018 Jul 10;7:1042. doi: 10.12688/f1000research.15486.2. PMID: 30210790; PMCID: PMC6107982.
 
 ![Logo](.img/logos-project.jpg)
-
-
-
-
-docker build -t marbatlle/multiaffinity .
-
-docker push marbatlle/multiaffinity
-
-docker run -ti -v $(pwd):/input marbatlle/multiaffinity ./multiAffinity -h
