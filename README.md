@@ -139,7 +139,7 @@ After the independent studies were used in RRA analysis, a total of 249 upregula
 **Communities Definition**
 
 
-    docker run -ti --rm -v "/home/mar/Documents/TFM/GitHub/multiAffinity/input:/tool/input" marbatlle/multiaffinity bash
+    docker run -ti --rm -v "$(pwd)/input:/tool/input" marbatlle/multiaffinity bash
 
     ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
 
