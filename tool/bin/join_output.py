@@ -7,7 +7,7 @@ degs = degs.rename(columns={'Name': 'metaDEGs', 'Score': 'RRA Score'})
 degs['metaDEGs'] = degs['metaDEGs'].astype('str')
 
 #import affinity correlation
-affinity = pd.read_csv('output/MultiAffinity/Affinity_Corr.txt',sep=',',usecols=['Genes','Corr'], dtype=str)
+affinity = pd.read_csv('output/Affinity/Affinity_Corr.txt',sep=',',usecols=['Genes','Corr'], dtype=str)
 
 affinity = affinity.rename(columns={'Genes': 'metaDEGs', 'Corr': 'Affinity Corr'})
 #affinity['metaDEGs'] = affinity['metaDEGs'].astype('str')

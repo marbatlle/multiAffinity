@@ -57,5 +57,5 @@ python Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.t
 # remove temp files
 rm -r -f Affinity/tmp; rm -f Affinity/src/multiplex/*.tsv; rm -f Affinity/src/seeds.txt; rm -f Affinity/src/config_full.yml
 popd >& /dev/null
-rm -r bin/Affinity/src/metaDEGs; rm -r bin/Affinity/src/layers; mkdir -p output/MultiAffinity; mv bin/Affinity/output/* output/MultiAffinity
+rm -r bin/Affinity/src/metaDEGs; rm -r bin/Affinity/src/layers; mkdir -p output/MultiAffinity; mv bin/Affinity/output/* output/Affinity
 find . -type d -empty -delete
