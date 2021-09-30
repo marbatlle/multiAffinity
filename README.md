@@ -71,8 +71,7 @@ Execute the script:
                   [-h multiXrank_selfloops] [-i multiXrank_delta]
                   [-j Molti_modularity] [-k Molti_Louvain]
 
-**Arguments:**
-
+Arguments:
     -h                          show this help message and exit
     -c COUNTS_PATH              path to counts matrix, single or multiple (-c COUNTS_PATH1,COUNTS_PATH2)
     -m METADATA_PATH            path to metadata, single or multiple (-c METADATA_PATH1,METADATA_PATH2)
@@ -87,6 +86,17 @@ Execute the script:
     -i multiXrank_delta         optional - default value is 0.05
     -j Molti_modularity         optional - default value is 1
     -k Molti_Louvain            optional - default value is 0
+
+**If you want to run multiAffinity from Image**
+* Pull image
+`docker pull docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0`
+* Run image
+    docker run -ti --rm -v "$(pwd)/input:/tool/input" docker.pkg.github.com/marbatlle/multiaffinity/demo 
+                            ./multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
+                                            [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
+                                            [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]
+                                            [-h multiXrank_selfloops] [-i multiXrank_delta]
+                                            [-j Molti_modularity] [-k Molti_Louvain]
 
 ### Output Files
 
@@ -103,4 +113,16 @@ Execute the script:
     docker run -ti -v $(pwd):/input marbatlle/multiaffinity ./multiAffinity -h
 
 
+
+## github packages
+-- login
+docker login docker.pkg.github.com -u marbatlle -p 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
+-- create image
+docker build -t docker.pkg.github.com/marbatlle/multiaffinity/demo .
+-- tag image
+docker tag docker.pkg.github.com/marbatlle/multiaffinity/demo docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0
+-- push image
+docker push docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0
+-- find repository
+https://github.com/marbatlle/multiAffinity/packages
 <img src=".img/logos-project.jpg" width="500">
