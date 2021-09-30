@@ -155,6 +155,9 @@ After the independent studies were used in RRA analysis, a total of 249 upregula
 ## Authors
 
 ## Citations
+Baptista A, Gonzalez A, Baudot A. Universal Multilayer Network Exploration by Random Wal with Restart. arXiv:2107.04565v1.2021 Jul 9
+
+
 Mahi NA, Najafabadi MF, Pilarczyk M, Kouril M, Medvedovic M. GREIN: An Interactive Web Platform for Re-analyzing GEO RNA-seq Data. Sci Rep. 2019 May 20;9(1):7580. doi: 10.1038/s41598-019-43935-8. PMID: 31110304; PMCID: PMC6527554.
 
 Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biol. 2014;15(12):550. doi: 10.1186/s13059-014-0550-8. PMID: 25516281; PMCID: PMC4302049.
