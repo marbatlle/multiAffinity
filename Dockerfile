@@ -27,9 +27,6 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists*
 RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
-# Inputs
-VOLUME /input
-
 # The code to run when container is started:
 RUN chmod +x multiAffinity
 CMD ["/bin/bash", "-c"]

@@ -100,13 +100,30 @@ Arguments:
 
 ## Authors
 
-    docker run -ti --rm -v "$(pwd)/input:/tool/input" marbatlle/multiaffinity bash
+
+## Quick start
+#works
+docker run -ti --rm -v "$(pwd)/sample_data:/tool/input" marbatlle/multiaffinity ./multiAffinity -c input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv
+
+#doesntwork
+docker run -ti --rm -v "$(pwd)/sample_data:/tool/input" marbatlle/multiaffinity ./multiAffinity -c sample_data/GSE133039_GeneLevel_Raw_data.csv,sample_data/GSE151347_GeneLevel_Raw_data.csv -m sample_data/GSE133039_filtered_metadata.csv,sample_data/GSE151347_filtered_metadata.csv -n sample_data/metabs_layers.csv
+
+#works
+docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity ./multiAffinity -c sample_data/GSE133039_GeneLevel_Raw_data.csv,sample_data/GSE151347_GeneLevel_Raw_data.csv -m sample_data/GSE133039_filtered_metadata.csv,sample_data/GSE151347_filtered_metadata.csv -n sample_data/metabs_layers.csv
+
+
+
+
+
+
+    docker run -ti --rm -v "$(pwd)/input:/tool/input" marbatlle/multiaffinity ./multiAffinity -c input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv
+
 
     ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
 
     docker build -t marbatlle/multiaffinity .
     docker push marbatlle/multiaffinity
-    docker run -ti -v $(pwd):/input marbatlle/multiaffinity ./multiAffinity -h
+    docker run -ti --rm -v "$(pwd)/sample_data:/tool/input" marbatlle/multiaffinity ./multiAffinity -h
 
 
     docker run -ti --rm -v "$(pwd)/input:/tool/input" docker.pkg.github.com/marbatlle/multiaffinity/demo ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
