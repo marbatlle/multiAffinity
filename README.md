@@ -10,11 +10,17 @@ This is a schema of the complete workflow:
 
 -------------------------------------------------------------------------------------------
 
-## Quick start
-docker pull docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0
+## Quick start from Github Packages
 
-docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity ./multiAffinity -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
+    - Pull image
+        docker pull marbatlle/multiAffinity
+        
+    - Run tool
+        docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity <ARGUMENTS>
 
+    - Arguments example
+        -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
+    
 -------------------------------------------------------------------------------------------
 
 # Usage
@@ -95,13 +101,23 @@ Arguments:
     -j Molti_modularity         optional - default value is 1
     -k Molti_Louvain            optional - default value is 0
 
-**If you want to run multiAffinity from Image**
-* Pull image
-`docker pull docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0`
-* Run image
-    docker run -ti --rm -v "$(pwd)/input:/tool/input" docker.pkg.github.com/marbatlle/multiaffinity/demo ./multiAffinity <ARGUMENTS>
+
 
 ### Output Files
+
+| metaDEGs | RRA Score | Affinity Corr | Communities |
+|----------|-----------|---------------|-------------|
+| DHODH    | 0.0437    | 0.19237       | 493         |
+| GSTZ1    | 0.02018   | 0.17259       | 1274        |
+| ACADL    | 0.0027    | 0.16697       | 414         |
+| OXCT1    | 0.03088   | 0.16214       | 439         |
+| ACSL1    | 0.04938   | 0.11963       | 85          |
+| ALAS1    | 0.01359   | 0.1159        | 1276        |
+| ALDOB    | 0.00115   | 0.09933       | 71          |
+| FABP2    | 0.04615   | 0.08055       | 974         |
+| SLC22A12 | 0.00555   | 0.07548       | 12,47       |
+| GNMT     | 0.00527   | 0.07031       | 537         |
+
 
 -------------------------------------------------------------------------------------------
 

@@ -22,5 +22,14 @@ comm.Communities = comm.Communities.replace(np.nan,0)
 df = pd.merge(pd.merge(degs,affinity,how='left',on='metaDEGs'),comm,how='left',on='metaDEGs')
 df = df.replace(np.nan,0)
 
+# Rounds and order data
+df['RRA Score'] = pd.to_numeric(df['RRA Score'])
+df['RRA Score'] = df['RRA Score'].round(5)
+
+
+df['Affinity Corr'] = pd.to_numeric(df['Affinity Corr'])
+df = df.sort_values(by='Affinity Corr', ascending=False)
+df['Affinity Corr'] = df['Affinity Corr'].round(5)
+
 # export final df
 df.to_csv("output/multiAffinity-output.txt",sep = ",", index=None, header=True)
