@@ -29,4 +29,4 @@ RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # The code to run when container is started:
 RUN chmod +x multiAffinity
-CMD ["/bin/bash", "-c"]
+ENTRYPOINT ["/bin/bash", "-c"]

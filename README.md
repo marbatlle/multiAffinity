@@ -127,7 +127,8 @@ Arguments:
 
 
 
-
+    - Run tool
+        docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
 
 
 
@@ -139,15 +140,32 @@ docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaff
 
 
 
+
+
+
+# Temp
+
+## docker hub
+-- create image
+docker build -t marbatlle/multiaffinity .
+-- push image
+docker push marbatlle/multiaffinity
+-- docker create container run image
+docker run -ti -d --rm marbatlle/multiaffinity ./multiAffinity -h
+
+
 ## github packages
 -- login
 docker login docker.pkg.github.com -u marbatlle -p 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
 -- create image
-docker build -t docker.pkg.github.com/marbatlle/multiaffinity/demo .
+docker build -t docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity .
 -- tag image
-docker tag docker.pkg.github.com/marbatlle/multiaffinity/demo docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0
+docker tag docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity:0.0
 -- push image
-docker push docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0
+docker push docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity
 -- find repository
 https://github.com/marbatlle/multiAffinity/packages
+
+
+
 <img src=".img/logos-project.jpg" width="500">
