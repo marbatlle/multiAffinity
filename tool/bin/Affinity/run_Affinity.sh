@@ -11,7 +11,6 @@ cp Affinity/src/layers/* Affinity/tmp
 # arguments to variables
 multiXrank_r=$1 
 multiXrank_selfloops=$2
-multiXrank_delta=$3
 
 # STEP 2
 echo '  2/5 - Preparing for running multiXrank'
@@ -33,7 +32,6 @@ printf "self_loops: $multiXrank_selfloops\n" >> Affinity/src/config_full.yml
 printf "multiplex:\n    1:\n        layers:" >> Affinity/src/config_full.yml
 for i in $(seq 1 $num_layers); do 
     printf "\n            - multiplex/layer$i.tsv" >> Affinity/src/config_full.yml; done
-printf "\n        delta: $multiXrank_delta" >> Affinity/src/config_full.yml
 
 # STEP 3
 echo '  3/5 - Running multiXrank for each deg as seed'
@@ -58,4 +56,3 @@ python Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.t
 rm -r -f Affinity/tmp; rm -f Affinity/src/multiplex/*.tsv; rm -f Affinity/src/seeds.txt; rm -f Affinity/src/config_full.yml
 popd >& /dev/null
 rm -r bin/Affinity/src/metaDEGs; rm -r bin/Affinity/src/layers; mkdir -p output/Affinity; mv bin/Affinity/output/* output/Affinity
-find . -type d -empty -delete
