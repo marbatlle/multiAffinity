@@ -65,13 +65,14 @@ Sample file:
 
 Execute the script:
 
-    multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
-                  [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
-                  [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]
-                  [-h multiXrank_selfloops] [-i multiXrank_delta]
-                  [-j Molti_modularity] [-k Molti_Louvain]
+    ./multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
+                    [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
+                    [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]
+                    [-h multiXrank_selfloops] [-i multiXrank_delta]
+                    [-j Molti_modularity] [-k Molti_Louvain]
 
 Arguments:
+
     -h                          show this help message and exit
     -c COUNTS_PATH              path to counts matrix, single or multiple (-c COUNTS_PATH1,COUNTS_PATH2)
     -m METADATA_PATH            path to metadata, single or multiple (-c METADATA_PATH1,METADATA_PATH2)
@@ -91,12 +92,7 @@ Arguments:
 * Pull image
 `docker pull docker.pkg.github.com/marbatlle/multiaffinity/demo:0.0`
 * Run image
-    docker run -ti --rm -v "$(pwd)/input:/tool/input" docker.pkg.github.com/marbatlle/multiaffinity/demo 
-                            ./multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
-                                            [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
-                                            [-e waddR_resolution] [-f waddR_permnum] [-g multiXrank_r]
-                                            [-h multiXrank_selfloops] [-i multiXrank_delta]
-                                            [-j Molti_modularity] [-k Molti_Louvain]
+    docker run -ti --rm -v "$(pwd)/input:/tool/input" docker.pkg.github.com/marbatlle/multiaffinity/demo ./multiAffinity <ARGUMENTS>
 
 ### Output Files
 
@@ -111,6 +107,9 @@ Arguments:
     docker build -t marbatlle/multiaffinity .
     docker push marbatlle/multiaffinity
     docker run -ti -v $(pwd):/input marbatlle/multiaffinity ./multiAffinity -h
+
+
+    docker run -ti --rm -v "$(pwd)/input:/tool/input" docker.pkg.github.com/marbatlle/multiaffinity/demo ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
 
 
 

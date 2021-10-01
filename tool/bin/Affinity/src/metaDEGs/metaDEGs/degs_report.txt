@@ -1,0 +1,10 @@
+1
+[1] "num. of upregulated DEGs:"
+[1] 3094
+[1] "num. of downregulated DEGs:"
+[1] 1781
+2
+[1] "num. of upregulated DEGs:"
+[1] 1400
+[1] "num. of downregulated DEGs:"
+[1] 1197
