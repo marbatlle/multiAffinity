@@ -3,7 +3,7 @@
 
 -------------------------------------------------------------------------------------------
 # Overview
-Study the community composition and node affinity of the DEGs obtained from one or multiple RNA-Seq studies.
+Study how gene desregulation propagates through a network
 
 This is a schema of the complete workflow:
 ![Workflow](.img/multiAffinity_workflow.png)
