@@ -1,9 +1,9 @@
 <img src=".img/multiAffinty-logo.png" width="400">
 
-
+Analyse how gene desregulation propagates on a network through the study of communities and affinity correlation.
 -------------------------------------------------------------------------------------------
 # Overview
-Study how gene desregulation propagates through a network
+
 
 This is a schema of the complete workflow:
 ![Workflow](.img/multiAffinity_workflow.png)
