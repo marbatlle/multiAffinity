@@ -105,7 +105,7 @@ Arguments:
 
 All output files obtained in this computational study are available in the folder /output. Since there is multiple output files, for convenience, we also provide a spreadsheet file including the key results retrieved from the output files.
 
-**Output Report** can be found at *multiAffinity_report.tsv*
+**Output Report** can be found at *multiAffinity_report.csv*
 
 | metaDEGs | RRA Score | Affinity Corr | Communities |
 |----------|-----------|---------------|-------------|

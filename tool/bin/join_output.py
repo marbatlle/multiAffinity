@@ -32,4 +32,4 @@ df = df.sort_values(by='Affinity Corr', ascending=False)
 df['Affinity Corr'] = df['Affinity Corr'].round(5)
 
 # export final df
-df.to_csv("output/multiAffinity_report.tsv",sep = ",", index=None, header=True)
+df.to_csv("output/multiAffinity_report.csv",sep = ",", index=None, header=True)
