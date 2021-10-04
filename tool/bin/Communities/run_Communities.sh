@@ -35,16 +35,14 @@ done
 for clusterid in $(ls output/tmp/cluster_*.txt | cut -d"_" -f2 | cut -d"." -f1); do
     while read -r match; do
         if [[ $match = *[!\ ]* ]]; then
-            sed -i "/^\"$match/ s/$/$clusterid,/" output/tmp/degs.txt
+            sed -i "/^\"$match/ s/$/$clusterid-/" output/tmp/degs.txt
         fi
     done <output/tmp/cluster_${clusterid}.txt
 done
 
-sed -i 's/\,$//' output/tmp/degs.txt # remove end of line commas
+sed -i 's/\-$//' output/tmp/degs.txt # remove end of line commas
 
 ## Clean result
 mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp
-
 popd >& /dev/null
 mkdir -p output/Communities; mv bin/Communities/output/* output/Communities; rm -r bin/Communities/src/genes; rm -r bin/Communities/src/networks; rm -r bin/Communities/output
-rm -r input/

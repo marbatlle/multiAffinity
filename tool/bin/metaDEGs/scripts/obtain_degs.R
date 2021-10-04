@@ -57,10 +57,8 @@ res_down <- res_subset %>%
   filter(log2FoldChange < 0)
 write.csv(res_down, "src/tmp/tmp_down.txt")
 
-print('num. of upregulated DEGs:')
-print(nrow(res_up))
-print('num. of downregulated DEGs:')
-print(nrow(res_down))
+cat('num. of upregulated DEGs: ', nrow(res_up),'\n')
+cat('num. of downregulated DEGs:', nrow(res_down))
 
 # Obtain normalized matrices
 # Median of ratios Normalization
