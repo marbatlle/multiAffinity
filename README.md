@@ -191,7 +191,7 @@ All output files obtained in this computational study are available in the folde
 ## Authors
 
         - Run tool
-            docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
+            docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
 
         docker run -ti --rm -v "$(pwd)/input:/tool/input" marbatlle/multiaffinity ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
 
@@ -211,7 +211,7 @@ All output files obtained in this computational study are available in the folde
         -- create image
         docker build -t docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity .
         -- tag image
-        docker tag docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity:0.0
+        docker tag docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity
         -- push image
         docker push docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity
         -- find repository

@@ -70,9 +70,9 @@ if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
 
 # Creating input directories and organizing data
 mkdir -p input; mkdir -p input/layers; mkdir -p input/data; mkdir -p input/data/counts; mkdir -p input/data/metadata
-for i in "${counts[@]}"; do mv ${i} input/data/counts; done
-for i in "${metadata[@]}"; do mv ${i} input/data/metadata; done
-for i in "${network[@]}"; do mv ${i} input/layers; done
+for i in "${counts[@]}"; do cp ${i} input/data/counts; done
+for i in "${metadata[@]}"; do cp ${i} input/data/metadata; done
+for i in "${network[@]}"; do cp ${i} input/layers; done
 
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pvaladj $waddR_permnum
@@ -87,6 +87,6 @@ echo 'STEP4 - Defining final output'
 python bin/join_output.py
 mv output/metaDEGs/metaDEGs/degs_report.txt output/metaDEGs/; mv output/metaDEGs/metaDEGs/metaDEGs.txt output/metaDEGs/; rm -r -f output/metaDEGs/normalized_counts; rm -r -f mv output/metaDEGs/metaDEGs/; rm -f output/Affinity/dRWR_matrix.txt
 shopt -s extglob
-rm -f -r input; rm -f -r sample_data; rm -v !("bin"|"output"|"multiAffinity") >& /dev/null
+rm -v !("bin"|"output"|"multiAffinity") >& /dev/null
 shopt -u extglob
 echo 'multiAffinity completed. Check out the output folder'

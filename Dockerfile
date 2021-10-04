@@ -15,7 +15,8 @@ ENV PATH=/opt/conda/envs/multiAffinity/bin/:$PATH
 SHELL ["/bin/bash", "-c"]
 
 ADD tool ./tool
-WORKDIR /tool
+ENV HOME /tool
+WORKDIR ${HOME}
 
 # Install MolTI-DREAM
 ADD tool/bin/Communities/src/MolTi-DREAM-master ./bin/Communities/src/MolTi-DREAM-master
@@ -29,5 +30,6 @@ RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # The code to run when container is started:
 RUN chmod +x multiAffinity
+EXPOSE 8888
 ENTRYPOINT []
 CMD ["/bin/bash"]
