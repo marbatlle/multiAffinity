@@ -94,7 +94,7 @@ Arguments:
     -b DESeq2_LFC               optional - default value is 1
     -d RRA_Score                optional - default value is 0.05
     -e waddR_pvaladj            optional - default value is 0.001
-    -f waddR_permnum            optional - default value is 10000
+    -f waddR_permnum            optional - default value is 100
     -g multiXrank_r             optional - default value is 0.5
     -h multiXrank_selfloops     optional - default value is 0
     -i multiXrank_delta         optional - default value is 0.05

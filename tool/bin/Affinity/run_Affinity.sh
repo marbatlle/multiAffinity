@@ -54,5 +54,5 @@ python Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.t
 
 # remove temp files
 popd >& /dev/null
-mkdir -p output/Affinity; mv bin/Affinity/output/* output/Affinity
+mkdir -p output/Affinity; mv bin/Affinity/output/* output/Affinity; rm -f output/Affinity/dRWR_matrix.txt
 rm -r -f bin/Affinity/output; rm -r -f bin/Affinity/src; rm -r -f bin/Affinity/tmp

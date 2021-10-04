@@ -45,4 +45,4 @@ sed -i 's/\-$//' output/tmp/degs.txt # remove end of line commas
 ## Clean result
 mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/communities.txt; rm -r -f output/tmp
 popd >& /dev/null
-mkdir -p output/Communities; mv bin/Communities/output/* output/Communities; rm -r bin/Communities/src/genes; rm -r bin/Communities/src/networks; rm -r bin/Communities/output
+mkdir -p output/Communities; mv bin/Communities/output/* output/Communities; rm -r -f bin/Communities/src/genes; rm -r -f bin/Communities/src/networks; rm -r -f bin/Communities/output
