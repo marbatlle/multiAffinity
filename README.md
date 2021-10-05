@@ -80,7 +80,7 @@ Execute the script:
 
     ./multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
                     [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
-                    [-e waddR_pvaladj] [-f waddR_permnum] [-g multiXrank_r]
+                    [-e waddR_pval] [-f waddR_permnum] [-g multiXrank_r]
                     [-h multiXrank_selfloops] [-i multiXrank_delta]
                     [-j Molti_modularity] [-k Molti_Louvain]
 
@@ -93,7 +93,7 @@ Arguments:
     -a DESeq2_padj              optional - default value is 0.05
     -b DESeq2_LFC               optional - default value is 1
     -d RRA_Score                optional - default value is 0.05
-    -e waddR_pvaladj            optional - default value is 0.001
+    -e waddR_pval            optional - default value is 0.001
     -f waddR_permnum            optional - default value is 100
     -g multiXrank_r             optional - default value is 0.5
     -h multiXrank_selfloops     optional - default value is 0

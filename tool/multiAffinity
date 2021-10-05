@@ -5,7 +5,7 @@ set -euo pipefail
 DESeq2_padj=0.05
 DESeq2_LFC=1
 RRA_Score=0.05
-waddR_pvaladj=0.001
+waddR_pval=0.001
 waddR_permnum=100
 multiXrank_r=0.5
 multiXrank_selfloops=1
@@ -17,7 +17,7 @@ usage(){
 echo -e '\n'
 echo "usage: multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH"
 echo "                     [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]"
-echo "                     [-e waddR_pvaladj] [-f waddR_permnum] [-g multiXrank_r]"
+echo "                     [-e waddR_pval] [-f waddR_permnum] [-g multiXrank_r]"
 echo "                     [-h multiXrank_selfloops] [-i Molti_modularity] [-j Molti_Louvain]"
 echo -e '\n'
 echo "arguments:"
@@ -28,7 +28,7 @@ echo "    -n NETWORK_PATH             path to network, single or multiple (-c NE
 echo "    -a DESeq2_padj              optional - default value is 0.05"
 echo "    -b DESeq2_LFC               optional - default value is 1"
 echo "    -d RRA_Score                optional - default value is 0.05"
-echo "    -e waddR_pvaladj            optional - default value is 0.001"
+echo "    -e waddR_pval               optional - default value is 0.001"
 echo "    -f waddR_permnum            optional - default value is 100"
 echo "    -g multiXrank_r             optional - default value is 0.5"
 echo "    -h multiXrank_selfloops     optional - default value is 1"
@@ -54,7 +54,7 @@ while getopts ":hc:m:n:a:b:d:e:f:g:h:i:j:k:" opt; do
     a) DESeq2_padj=($OPTARG)             ;;
     b) DESeq2_LFC=($OPTARG)              ;;
     d) RRA_Score=($OPTARG)               ;;
-    e) waddR_pvaladj=($OPTARG)        ;;
+    e) waddR_pval=($OPTARG)        ;;
     f) waddR_permnum=($OPTARG)           ;;
     g) multiXrank_r=($OPTARG)            ;;
     h) multiXrank_selfloops=($OPTARG)    ;;
@@ -75,7 +75,7 @@ for i in "${metadata[@]}"; do cp ${i} input/data/metadata; done
 for i in "${network[@]}"; do cp ${i} input/layers; done
 
 echo 'STEP1 - Finding metaDEGs'
-bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pvaladj $waddR_permnum
+bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
 
 echo 'STEP2 - Perform affinity study'
 bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops
@@ -84,8 +84,8 @@ echo 'STEP3 - Analysing DEGs in network communities'
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain
 
 echo 'STEP4 - Defining final output'
-python bin/join_output.py
 mv output/metaDEGs/metaDEGs/degs_report.txt output/metaDEGs/; mv output/metaDEGs/metaDEGs/metaDEGs.txt output/metaDEGs/; rm -r -f output/metaDEGs/normalized_counts; rm -r -f mv output/metaDEGs/metaDEGs/; rm -f output/Affinity/dRWR_matrix.txt
+python bin/join_output.py
 shopt -s extglob
 rm -v !("bin"|"output"|"multiAffinity") >& /dev/null
 shopt -u extglob

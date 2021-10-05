@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 #import metadegs
-degs = pd.read_csv('output/metaDEGs/metaDEGs/metaDEGs.txt',sep=',')
+degs = pd.read_csv('output/metaDEGs/metaDEGs.txt',sep=',')
 degs = degs.rename(columns={'Name': 'metaDEGs', 'Score': 'RRA Score'})
 degs['metaDEGs'] = degs['metaDEGs'].astype('str')
 
@@ -15,11 +15,11 @@ affinity = affinity.rename(columns={'Genes': 'metaDEGs', 'Corr': 'Affinity Corr'
 #import communities
 comm = pd.read_csv('output/Communities/degs_communities.txt',sep=';', names=['metaDEGs','Communities'], dtype=str)
 comm.Communities = comm.Communities.replace(np.nan,0)
-#comm.Communities = comm.Communities.astype(int)
-#comm.Communities = comm.Communities.round()
 
 # Join metadegs, affinity correlation and communities
-df = pd.merge(pd.merge(degs,affinity,how='left',on='metaDEGs'),comm,how='left',on='metaDEGs')
+df = pd.merge(degs,affinity,how='inner',on='metaDEGs')
+df = pd.merge(df,comm,how='left',on='metaDEGs')
+#df = pd.merge(pd.merge(degs,affinity,how='left',on='metaDEGs'),comm,how='left',on='metaDEGs')
 df = df.replace(np.nan,0)
 
 # Rounds and order data

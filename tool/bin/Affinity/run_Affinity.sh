@@ -22,7 +22,7 @@ python Affinity/scripts/genes_to_ids.py
 mv Affinity/tmp/layer*.tsv Affinity/src/multiplex
 # add degs for seeds
 cp Affinity/src/metaDEGs/metaDEGs/degs_names.txt Affinity/tmp
-python Affinity/scripts/degs_to_ids.py
+python Affinity/scripts/degs_to_ids.py >& /dev/null
 sed -i '/^$/d' Affinity/tmp/degs_ids.txt # remove empty lines
 # Edit config_full.yml
 num_layers=$(ls Affinity/src/multiplex | wc -l)
@@ -39,7 +39,7 @@ while IFS="" read -r p || [ -n "$p" ]
 do
     seed=$p
     echo ${seed} > Affinity/src/seeds.txt;
-    python Affinity/scripts/multiXrank.py;
+    python -W ignore Affinity/scripts/multiXrank.py >& /dev/null;
     mv Affinity/src/output/multiplex_1.tsv Affinity/output/${seed}.tsv
 done < Affinity/tmp/degs_ids.txt
 
