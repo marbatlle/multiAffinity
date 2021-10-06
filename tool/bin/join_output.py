@@ -3,12 +3,14 @@ import numpy as np
 
 #import metadegs
 degs = pd.read_csv('output/metaDEGs/metaDEGs.txt',sep=',')
+degs = degs.groupby(['Name'],as_index=False).Score.mean()
 degs = degs.rename(columns={'Name': 'metaDEGs', 'Score': 'RRA Score'})
+degs.to_csv("output/metaDEGs/metaDEGs.txt'",sep = ",", index=None, header=True)
+
 degs['metaDEGs'] = degs['metaDEGs'].astype('str')
 
 #import affinity correlation
 affinity = pd.read_csv('output/Affinity/Affinity_Corr.txt',sep=',',usecols=['Genes','Corr'], dtype=str)
-
 affinity = affinity.rename(columns={'Genes': 'metaDEGs', 'Corr': 'Affinity Corr'})
 #affinity['metaDEGs'] = affinity['metaDEGs'].astype('str')
 
@@ -28,8 +30,9 @@ df['RRA Score'] = df['RRA Score'].round(5)
 
 
 df['Affinity Corr'] = pd.to_numeric(df['Affinity Corr'])
-df = df.sort_values(by='Affinity Corr', ascending=False)
 df['Affinity Corr'] = df['Affinity Corr'].round(5)
+df['Affinity Corr'] = df['Affinity Corr'].abs()
+df = df.sort_values(by='Affinity Corr', ascending=False)
 
 # export final df
 df.to_csv("output/multiAffinity_report.csv",sep = ",", index=None, header=True)
