@@ -17,6 +17,7 @@ SHELL ["/bin/bash", "-c"]
 ADD tool ./tool
 ENV HOME /tool
 WORKDIR ${HOME}
+RUN mkdir -p output
 
 # Install MolTI-DREAM
 ADD tool/bin/Communities/src/MolTi-DREAM-master ./bin/Communities/src/MolTi-DREAM-master
@@ -29,7 +30,7 @@ RUN apt-get update && apt-get install -y \
 RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # The code to run when container is started:
+ENV PATH="$PATH:."
 RUN chmod +x multiAffinity
 EXPOSE 8888
-ENTRYPOINT []
-CMD ["/bin/bash"]
+CMD ["bash", "multiAffinity", "run"]
