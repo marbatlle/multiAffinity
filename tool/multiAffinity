@@ -74,8 +74,6 @@ for i in "${counts[@]}"; do cp ${i} input/data/counts; done
 for i in "${metadata[@]}"; do cp ${i} input/data/metadata; done
 for i in "${network[@]}"; do cp ${i} input/layers; done
 
-echo $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
-ls
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
 
