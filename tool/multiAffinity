@@ -85,7 +85,7 @@ echo 'STEP3 - Analysing DEGs in network communities'
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain
 
 echo 'STEP4 - Defining final output'
-mv output/metaDEGs/metaDEGs/degs_report.txt output/metaDEGs/; mv output/metaDEGs/metaDEGs/metaDEGs.txt output/metaDEGs/; rm -r -f output/metaDEGs/normalized_counts; rm -r -f mv output/metaDEGs/metaDEGs/; rm -f output/Affinity/dRWR_matrix.txt
+mv output/metaDEGs/metaDEGs/degs_report.txt output/metaDEGs/; mv output/metaDEGs/metaDEGs/metaDEGs.txt output/metaDEGs/; rm -r -f output/metaDEGs/normalized_counts; rm -r -f mv output/metaDEGs/metaDEGs/
 python bin/join_output.py
 shopt -s extglob
 rm -v !("bin"|"output"|"multiAffinity") >& /dev/null
