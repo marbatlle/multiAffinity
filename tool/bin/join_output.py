@@ -5,7 +5,7 @@ import numpy as np
 degs = pd.read_csv('output/metaDEGs/metaDEGs.txt',sep=',')
 degs = degs.groupby(['Name'],as_index=False).Score.mean()
 degs = degs.rename(columns={'Name': 'metaDEGs', 'Score': 'RRA Score'})
-degs.to_csv("output/metaDEGs/metaDEGs.txt'",sep = ",", index=None, header=True)
+degs.to_csv("output/metaDEGs/metaDEGs.txt",sep = ",", index=None, header=True)
 
 degs['metaDEGs'] = degs['metaDEGs'].astype('str')
 
@@ -31,14 +31,11 @@ df['RRA Score'] = df['RRA Score'].round(5)
 #remove duplicates
 df = df.set_index(['metaDEGs']) 
 df = df.groupby(level=0).first()
-print(df.index.is_unique)
 
 df['Affinity Corr'] = pd.to_numeric(df['Affinity Corr'])
 df['Affinity Corr'] = df['Affinity Corr'].round(5)
 df['Affinity Corr'] = df['Affinity Corr'].abs()
 df = df.sort_values(by='Affinity Corr', ascending=False)
-
-
 
 # export final df
 df.to_csv("output/multiAffinity_report.csv",sep = ",", index=True, header=True)
