@@ -33,4 +33,4 @@ RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 ENV PATH="$PATH:."
 ENV PATH="$PATH:/tool/."
 RUN chmod +x multiAffinity
-CMD []
+CMD ["bash", "multiAffinity", "run"]
