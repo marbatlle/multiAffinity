@@ -31,6 +31,7 @@ RUN make -C bin/Communities/src/MolTi-DREAM-master/src
 
 # The code to run when container is started:
 ENV PATH="$PATH:."
+ENV PATH="$PATH:/tool/."
 RUN chmod +x multiAffinity
 EXPOSE 8888
 CMD ["bash", "multiAffinity", "run"]
