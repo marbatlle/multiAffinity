@@ -1,6 +1,10 @@
 <img src=".img/multiAffinty-logo.png" width="400">
 
-Analyse how gene desregulation propagates on a network through the study of communities and affinity correlation.
+<br>
+<br>
+
+**Analyse how gene desregulation propagates on a network through the study of communities and affinity correlation.**
+
 -------------------------------------------------------------------------------------------
 # Overview
 
@@ -18,7 +22,7 @@ This is a schema of the complete workflow:
     - Run tool
         docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity <ARGUMENTS>
 
-    - Arguments example
+    - Arguments e.g.
         -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
     
 -------------------------------------------------------------------------------------------
@@ -185,37 +189,7 @@ All output files obtained in this computational study are available in the folde
         "CST1";1112
 
 
--------------------------------------------------------------------------------------------
-
-## Authors
-
-        - Run tool
-            docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
-
-        docker run -ti --rm -v "$(pwd)/input:/tool/input" marbatlle/multiaffinity ./multiAffinity -c input/GSE81928_GeneLevel_Raw_data.csv,input/GSE89775_GeneLevel_Raw_data.csv,input/GSE104766_GeneLevel_Raw_data.csv,input/GSE133039_GeneLevel_Raw_data.csv,input/GSE151347_GeneLevel_Raw_data.csv -m input/GSE81928_filtered_metadata.csv,input/GSE89775_filtered_metadata.csv,input/GSE104766_filtered_metadata.csv,input/GSE133039_filtered_metadata.csv,input/GSE151347_filtered_metadata.csv -n input/metabs_layers.csv,input/PPI_layers.csv
-
-        # Temp
-
-        ## docker hub
-        -- create image
-        docker build -t marbatlle/multiaffinity .
-        -- push image
-        docker push marbatlle/multiaffinity
-        -- docker create container run image
-        docker run -ti -d --rm marbatlle/multiaffinity ./multiAffinity -h
-
-        ## github packages
-        -- login
-        docker login docker.pkg.github.com -u marbatlle -p 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
-        -- create image
-        docker build -t docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity .
-        -- tag image
-        docker tag docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity
-        -- push image
-        docker push docker.pkg.github.com/marbatlle/multiaffinity/multiaffinity
-        -- find repository
-        https://github.com/marbatlle/multiAffinity/packages
-
+-------------------------------------------------------------------------
 
 
 <img src=".img/logos-project.jpg" width="500">
