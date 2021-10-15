@@ -31,9 +31,9 @@ echo "    -d RRA_Score                optional - default value is 0.05"
 echo "    -e waddR_pval               optional - default value is 0.001"
 echo "    -f waddR_permnum            optional - default value is 100"
 echo "    -g multiXrank_r             optional - default value is 0.5"
-echo "    -h multiXrank_selfloops     optional - default value is 1"
-echo "    -i Molti_modularity         optional - default value is 1"
-echo "    -j Molti_Louvain            optional - default value is 0"
+echo "    -i multiXrank_selfloops     optional - default value is 1"
+echo "    -j Molti_modularity         optional - default value is 1"
+echo "    -k Molti_Louvain            optional - default value is 0"
 echo " "
 exit 0
 } 
@@ -57,9 +57,9 @@ while getopts ":hc:m:n:a:b:d:e:f:g:h:i:j:k:" opt; do
     e) waddR_pval=($OPTARG)        ;;
     f) waddR_permnum=($OPTARG)           ;;
     g) multiXrank_r=($OPTARG)            ;;
-    h) multiXrank_selfloops=($OPTARG)    ;;
-    i) Molti_modularity=($OPTARG)        ;;
-    j) Molti_Louvain=($OPTARG)           ;;
+    i) multiXrank_selfloops=($OPTARG)    ;;
+    j) Molti_modularity=($OPTARG)        ;;
+    k) Molti_Louvain=($OPTARG)           ;;
   esac
 done
 
@@ -76,7 +76,7 @@ for i in "${network[@]}"; do cp ${i} input/layers; done
 
 ls
 echo 'STEP1 - Finding metaDEGs'
-bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
+#bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
 
 echo 'STEP2 - Perform affinity study'
 bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops

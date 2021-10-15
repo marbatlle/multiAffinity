@@ -85,7 +85,7 @@ Execute the script:
     ./multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
                     [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
                     [-e waddR_pval] [-f waddR_permnum] [-g multiXrank_r]
-                    [-h multiXrank_selfloops] [-j Molti_modularity] [-k Molti_Louvain]
+                    [-i multiXrank_selfloops] [-j Molti_modularity] [-k Molti_Louvain]
                     
 
 Arguments:
@@ -100,7 +100,7 @@ Arguments:
     -e waddR_pval               optional - defines p-value used as cutoff for the semi-parametric 2-Wasserstein distance-based test (default is 0.001)
     -f waddR_permnum            optional - sets number of permutations used in the Wasserstein test (default is 100)
     -g multiXrank_r             optional - defines global restart probability for multiXrank, given by float between 0 and 1 (default is 0.5)
-    -h multiXrank_selfloops     optional - defines whether self loops are removed or not, takes values 0 or 1 (default is 0)
+    -i multiXrank_selfloops     optional - defines whether self loops are removed or not, takes values 0 or 1 (default is 0)
     -j Molti_modularity         optional - sets Newman modularity resolution parameter on molTI-DREAM (default is 1)
     -k Molti_Louvain            optional - switches to randomized Louvain on molTI-DREAM and set the number of randomizations (default is 0)
 
