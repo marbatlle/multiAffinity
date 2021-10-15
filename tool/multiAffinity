@@ -76,7 +76,7 @@ for i in "${network[@]}"; do cp ${i} input/layers; done
 
 ls
 echo 'STEP1 - Finding metaDEGs'
-#bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
+bash bin/metaDEGs/run_metaDEGs.sh $DESeq2_padj $DESeq2_LFC $RRA_Score $waddR_pval $waddR_permnum
 
 echo 'STEP2 - Perform affinity study'
 bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops

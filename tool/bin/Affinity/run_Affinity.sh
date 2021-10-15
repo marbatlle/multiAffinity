@@ -50,7 +50,7 @@ python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 # STEP 5 
 echo '  5/5 - Find correlation between node affinity and ranks'
 echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
-python Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt
+python -W ignore Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt
 
 # remove temp files
 popd >& /dev/null

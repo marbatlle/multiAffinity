@@ -21,7 +21,7 @@ expression_genes.drop(expression_genes.loc[expression_genes['expression']==0].in
 
 #Load degs
 degs_path = 'Affinity/src/metaDEGs/metaDEGs/metaDEGs.txt'
-degs = pd.read_csv(degs_path, index_col=0)
+degs = pd.read_csv(degs_path, index_col=0, dtype={"metaDEGs": "string", "RRA Score": float})
 degs_names = degs.index.tolist()
 
 #Load rwr matrix
