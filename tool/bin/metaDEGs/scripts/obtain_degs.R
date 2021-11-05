@@ -25,15 +25,14 @@ coldata$tissue <- factor(coldata$tissue)
 # Create DSeq2 object
 dds <- DESeqDataSetFromMatrix(countData = cts, colData = coldata, design = ~ tissue) %>% DESeq
 
-# Filter out all genes with <5 reads total across all samples
-dds <- dds[rowSums(counts(dds)) >= 5]
-
 # Specify Reference level
 dds$tissue <- relevel(dds$tissue, ref = "NT")
-dds <- DESeq(dds)
+dds <- DESeq(dds, minReplicatesForReplace=Inf)
 
-# Find DEGs
-res <- results(dds, alpha=DESeq2_padj, filterFun=ihw)
+# Obtain deregulation values for all genes
+res <- results(dds)
+write.csv(res, "src/tmp/sample_difexp.txt")
+
 
 # Set thresholds
 res <- subset(res, res$padj < DESeq2_padj)

@@ -8,7 +8,7 @@ Load(c("waddR"))
 args <- commandArgs(trailingOnly = TRUE)
 
 waddR_pval=as.numeric(args[1])
-waddR_permnum=as.numeric(args[2])
+waddR_permnum=as.numeric(100)
 
 # import means
 Study1_df <- read.csv('output/means/Study1_mean.txt')

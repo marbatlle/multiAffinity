@@ -12,5 +12,4 @@ Study_NT.index.names = ['genes']
 Study_NT.drop(Study_NT.loc[Study_NT['Expression']==0].index, inplace=True)
 Study_NT.index = [x for x in range(1, len(Study_NT.values)+1)]
 
-
 Study_NT.to_csv('output/means/mean.txt', sep=',', index=False)
