@@ -94,11 +94,7 @@ Rscript scripts/obtain_ranks.R $RRA_Score >& /dev/null; Rscript scripts/degs_nam
 popd >& /dev/null
 #mkdir -p output; rm -r -f output/metaDEGs; mkdir output/metaDEGs; mv bin/metaDEGs/output/* output/metaDEGs
 
-mkdir -p output; rm -rf output/metaDEGs; mkdir output/metaDEGs
+mkdir -p output; mkdir output/metaDEGs
 
-mv bin/metaDEGs/output/metaDEGs/degs_report.txt bin/metaDEGs/output/
-mv bin/metaDEGs/output/metaDEGs/metaDEGs.txt bin/metaDEGs/output/
-mv bin/metaDEGs/output/metaDEGs/degs_names.txt bin/metaDEGs/output/
-rm -rf bin/metaDEGs/output/metaDEGs/
-rm -rf output/metaDEGs/metaDEGs/
-cp -r bin/metaDEGs/output/* output/metaDEGs
+mv bin/metaDEGs/output/metaDEGs/degs_report.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/metaDEGs.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/degs_names.txt bin/metaDEGs/output/
+rm -rf bin/metaDEGs/output/metaDEGs/; cp -r bin/metaDEGs/output/* output/metaDEGs

@@ -4,23 +4,23 @@ import numpy as np
 from scipy import stats
 from scipy.stats import spearmanr
 
-#Load expression matrices and join
-# load all table files
-path_to_files = 'Affinity/src/metaDEGs/normalized_counts/'
-lst_expmat = []
+#Load diferential expressions and join
+path_to_files = 'Affinity/src/metaDEGs/dif_exp/'
+lst_difexp = []
 for filen in [x for x in os.listdir(path_to_files) if '.txt' in x]:
-    lst_expmat.append(pd.read_csv(path_to_files+filen, delimiter= ","))
-expression_mats = pd.concat(lst_expmat, ignore_index=True)
-expression_mats = expression_mats.groupby(['Unnamed: 0']).mean().reset_index()
-expression_mats = expression_mats.set_index(['Unnamed: 0'])
-expression_mats = expression_mats.loc[:, ~expression_mats.columns.str.startswith('NT')]
-expression_genes = expression_mats.mean(axis=1)
-expression_genes = pd.DataFrame(expression_genes, columns=['expression'])
-expression_genes.index.names = ['genes']
-expression_genes.drop(expression_genes.loc[expression_genes['expression']==0].index, inplace=True)
+    lst_difexp.append(pd.read_csv(path_to_files+filen, delimiter= ",", usecols=['Unnamed: 0','log2FoldChange']))
+difexp_df = pd.concat(lst_difexp, ignore_index=True)
+difexp_df = difexp_df.groupby(['Unnamed: 0']).mean().reset_index()
+difexp_df = difexp_df.set_index(['Unnamed: 0'])
+difexp_df = difexp_df.dropna()
+difexp_genes = difexp_df.mean(axis=1)
+difexp_genes = pd.DataFrame(difexp_genes, columns=['log2FoldChange'])
+difexp_genes.index.names = ['genes']
+
+difexp_genes.to_csv("Affinity/output/difexp.txt",sep = ",", index=True, header=True)
 
 #Load degs
-degs_path = 'Affinity/src/metaDEGs/metaDEGs/metaDEGs.txt'
+degs_path = 'Affinity/src/metaDEGs/metaDEGs.txt'
 degs = pd.read_csv(degs_path, index_col=0, dtype={"metaDEGs": "string", "RRA Score": float})
 degs_names = degs.index.tolist()
 
@@ -36,14 +36,14 @@ matches = list(set(degs_names).intersection(set(mat_names)))
 mat_degs = mat.filter(matches, axis=1) # filter only DEGs in column
 mat_degs.index.names = ['genes']
 
-result = expression_genes.merge(mat_degs, left_index=True, right_index=True)
+result = difexp_genes.merge(mat_degs, left_index=True, right_index=True)
+result = result.apply (pd.to_numeric, errors='coerce')
 
 genes = (result.columns[1:])
 
-corr_list = []
+#calculate Spearman Rank correlation and corresponding p-value
 for i in genes:
-    corr_df = result[['expression',i]]
-    corr_df.corr(method='spearman')
-    corr = spearmanr(corr_df)[0]
-    if spearmanr(corr_df)[1] <= 0.05:
-        print(i+','+str(spearmanr(corr_df)[0])+','+str(spearmanr(corr_df)[1]))
+    corr_df = result[['log2FoldChange',i]]
+    corr_df = corr_df.dropna()
+    rho, p = spearmanr(corr_df['log2FoldChange'], corr_df[i])
+    print(i+','+str(rho)+','+str(p))

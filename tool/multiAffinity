@@ -1,8 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# ./multiAffinity -o outputtest -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layer.csv
-
 # Defining default values for parameters
 padj=0.05
 LFC=1
@@ -10,37 +8,39 @@ multiXrank_r=0.5
 multiXrank_selfloops=1
 Molti_modularity=1
 Molti_Louvain=0
+communities_approach=false
 
 # Usage function
 usage(){
 echo -e '\n'
-echo "usage: multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH"
-echo "                     [-a padj] [-b LFC] [-d RRA_Score]"
-echo "                     [-e waddR_pval] [-f waddR_permnum] [-g multiXrank_r]"
-echo "                     [-h multiXrank_selfloops] [-i Molti_modularity] [-j Molti_Louvain]"
+echo "usage: multiAffinity [-h] [-c] -o OUTPUT_PATH  -d COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH"
+echo "                     [-a padj] [-b LFC] [-e multiXrank_r] [-g multiXrank_selfloops]"
+echo "                     [-i Molti_modularity] [-j Molti_Louvain]"
 echo -e '\n'
 echo "arguments:"
 echo "    -h                          show this help message and exit"
-echo "    -o outp                         output directory"
-echo "    -c counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
+echo "    -c                          optional - use communities distribution to compute affinity"
+echo "    -o output_path              indicate output directory"
+echo "    -d counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
 echo "    -m metadata_path            path to metadata, single or multiple (-c metadata_path1,metadata_path2)"
 echo "    -n network_path             path to network, single or multiple (-c network_path1,network_path2)"
 echo "    -a padj                     optional - default value is 0.05"
 echo "    -b LFC                      optional - default value is 1"
-echo "    -g multiXrank_r             optional - default value is 0.5"
-echo "    -i multiXrank_selfloops     optional - default value is 1"
-echo "    -j Molti_modularity         optional - default value is 1"
-echo "    -k Molti_Louvain            optional - default value is 0"
+echo "    -e multiXrank_r             optional - default value is 0.5"
+echo "    -f multiXrank_selfloops     optional - default value is 1"
+echo "    -g Molti_modularity         optional - default value is 1"
+echo "    -i Molti_Louvain            optional - default value is 0"
 echo " "
 exit 0
 } 
                 
 # Classifying input arguments
-while getopts ":ho:c:m:n:a:b:d:e:f:g:" opt; do
+while getopts ":h:co:m:n:a:b:d:e:f:g:i:" opt; do
   case $opt in
     h) usage                             ;;
+    c) communities_approach=true         ;;
     o) output_dir=($OPTARG)              ;;
-    c) set -f
+    d) set -f
        IFS=','
        counts=($OPTARG)                  ;;
     m) set -f
@@ -49,12 +49,12 @@ while getopts ":ho:c:m:n:a:b:d:e:f:g:" opt; do
     n) set -f
        IFS=','
        network=($OPTARG)                 ;;
-    a) padj=($OPTARG)             ;;
-    b) LFC=($OPTARG)              ;;
-    d) multiXrank_r=($OPTARG)            ;;
-    e) multiXrank_selfloops=($OPTARG)    ;;
-    f) Molti_modularity=($OPTARG)        ;;
-    g) Molti_Louvain=($OPTARG)           ;;
+    a) padj=($OPTARG)                    ;;
+    b) LFC=($OPTARG)                     ;;
+    e) multiXrank_r=($OPTARG)            ;;
+    f) multiXrank_selfloops=($OPTARG)    ;;
+    g) Molti_modularity=($OPTARG)        ;;
+    i) Molti_Louvain=($OPTARG)           ;;
   esac
 done
 
@@ -63,7 +63,7 @@ TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
 
 # Checking for mandatory arguments
 if [ -z ${output_dir+x} ]; then echo "-o is obligatory"; exit 1; fi
-if [ -z ${counts+x} ]; then echo "-c is obligatory"; exit 1; fi
+if [ -z ${counts+x} ]; then echo "-d is obligatory"; exit 1; fi
 if [ -z ${metadata+x} ]; then echo "-m is obligatory"; exit 1; fi
 if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
 
@@ -83,10 +83,10 @@ echo 'STEP2 - Analysing DEGs in network communities'
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
 
 echo 'STEP3 - Perform affinity study'
-#bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops
+bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $communities_approach
 
 echo 'STEP4 - Defining final output'
-#python bin/join_output.py
+python bin/join_output.py
 
 popd >& /dev/null
 mv $TMPFILE/output ./$output_dir; rm -rf $TMPFILE

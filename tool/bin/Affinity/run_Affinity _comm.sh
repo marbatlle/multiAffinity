@@ -37,7 +37,7 @@ printf "multiplex:\n    1:\n        layers:" >> Affinity/src/config_full.yml
 for i in $(seq 1 $num_layers); do 
     printf "\n            - multiplex/layer$i.tsv" >> Affinity/src/config_full.yml; done
 
-# STEP 1
+# STEP 3
 echo '      - Running multiXrank for each deg as seed'
 while IFS="" read -r p || [ -n "$p" ]
 do
@@ -47,23 +47,22 @@ do
     mv Affinity/src/output/multiplex_1.tsv Affinity/output/${seed}.tsv
 done < Affinity/tmp/degs_ids.txt
 
-# Creating dRWR matrix with outputs'
-python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
-
-# STEP 2
-echo '      - Find correlation between node affinity and ranks'
-echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
-
 if [ "$communities_approach" = false ] ; then
-    python -W ignore Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt; else
+    echo 'All genes Approach'; else
     echo 'community approach'
 fi
 
-# STEP 3
-echo '      - Calculate total degree and participation coefficient'
-python Affinity/scripts/part_coefficient.py
+
+# STEP 4
+echo '  4/5 - Creating dRWR matrix with outputs'
+python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
+
+# STEP 5 
+echo '  5/5 - Find correlation between node affinity and ranks'
+echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
+python -W ignore Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt
 
 # remove temp files
 popd >& /dev/null
-mkdir -p output/Affinity; mv bin/Affinity/output/* output/Affinity
+mkdir -p output/Affinity; mv bin/Affinity/output/* output/Affinity; rm -f output/Affinity/dRWR_matrix.txt
 rm -r -f bin/Affinity/output; rm -r -f bin/Affinity/src; rm -r -f bin/Affinity/tmp
