@@ -56,7 +56,16 @@ echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
 
 if [ "$communities_approach" = false ] ; then
     python -W ignore Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt; else
-    echo 'community approach'
+    for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
+        if [[ $(wc -l Affinity/src/clusters/${cluster} | cut -d" " -f1) -le 1 ]]; then
+            continue; else
+            cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
+            python -W ignore Affinity/scripts/difussion_analysis_comm.py >> Affinity/output/Affinity_Corr_$cluster
+            rm -r Affinity/src/clusters/cluster_tmp.txt
+        fi
+    done
+    cat Affinity/output/Affinity_Corr_*.txt >> Affinity/output/Affinity_Corr.txt
+    rm -rf Affinity/output/Affinity_Corr_*.txt
 fi
 
 # STEP 3

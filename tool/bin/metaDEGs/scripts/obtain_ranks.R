@@ -24,7 +24,7 @@ for(i in names){
 ## Aggregate Ranks
 #set.seed(64)
 glist_down <- Filter(function(x) is(x, "matrix"), mget(ls()))
-r_down = rankMatrix(glist_down, full = TRUE)
+r_down = rankMatrix(glist_down, full = FALSE)
 agg_down <- aggregateRanks(rmat = r_down, method = "RRA")
 agg_down <- subset(agg_down, agg_down$Score < RRA_Score)
 agg_down <- as.data.frame(agg_down)
@@ -48,7 +48,7 @@ for(i in names){
 ## Aggregate Ranks
 #set.seed(64)
 glist_up <- Filter(function(x) is(x, "matrix"), mget(ls()))
-r_up = rankMatrix(glist_up, full = TRUE)
+r_up = rankMatrix(glist_up, full = FALSE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
 agg_up <- subset(agg_up, agg_up$Score < RRA_Score)
 agg_up <- as.data.frame(agg_up)
@@ -65,3 +65,12 @@ genes <- genes[order(genes$Score),]
 write.table(agg_down, "output/metaDEGs/MetaDEGs_down.txt",sep=",", row.names=FALSE)
 write.table(agg_up, "output/metaDEGs/MetaDEGs_up.txt", sep=",",row.names=FALSE)
 write.table(genes, "output/metaDEGs/metaDEGs.txt", sep=",", row.names=FALSE)
+
+# import table
+cts_path<- "output/metaDEGs/metaDEGs.txt"
+cts_data <- read.csv(cts_path)
+
+# subset gene names
+gene_names <-  cts_data[, c("Name")]
+
+write.table(gene_names, file="output/metaDEGs/degs_names.txt",sep = ",", row.names = FALSE, col.names=FALSE)

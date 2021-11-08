@@ -4,6 +4,7 @@ set -euo pipefail
 # Defining default values for parameters
 padj=0.05
 LFC=1
+control_id=Normal
 multiXrank_r=0.5
 multiXrank_selfloops=1
 Molti_modularity=1
@@ -14,8 +15,8 @@ communities_approach=false
 usage(){
 echo -e '\n'
 echo "usage: multiAffinity [-h] [-c] -o OUTPUT_PATH  -d COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH"
-echo "                     [-a padj] [-b LFC] [-e multiXrank_r] [-g multiXrank_selfloops]"
-echo "                     [-i Molti_modularity] [-j Molti_Louvain]"
+echo "                     [-a padj] [-b LFC] [-e control_id] [-f multiXrank_r] "
+echo "                     [-g multiXrank_selfloops] [-i Molti_modularity] [-j Molti_Louvain]"
 echo -e '\n'
 echo "arguments:"
 echo "    -h                          show this help message and exit"
@@ -26,16 +27,17 @@ echo "    -m metadata_path            path to metadata, single or multiple (-c m
 echo "    -n network_path             path to network, single or multiple (-c network_path1,network_path2)"
 echo "    -a padj                     optional - default value is 0.05"
 echo "    -b LFC                      optional - default value is 1"
-echo "    -e multiXrank_r             optional - default value is 0.5"
-echo "    -f multiXrank_selfloops     optional - default value is 1"
-echo "    -g Molti_modularity         optional - default value is 1"
-echo "    -i Molti_Louvain            optional - default value is 0"
+echo "    -e LFC                      optional - default value is 1"
+echo "    -f multiXrank_r             optional - default value is 0.5"
+echo "    -g multiXrank_selfloops     optional - default value is 1"
+echo "    -i Molti_modularity         optional - default value is 1"
+echo "    -j Molti_Louvain            optional - default value is 0"
 echo " "
 exit 0
 } 
                 
 # Classifying input arguments
-while getopts ":h:co:m:n:a:b:d:e:f:g:i:" opt; do
+while getopts ":h:co:m:n:a:b:d:e:f:g:i:j:" opt; do
   case $opt in
     h) usage                             ;;
     c) communities_approach=true         ;;
@@ -51,10 +53,11 @@ while getopts ":h:co:m:n:a:b:d:e:f:g:i:" opt; do
        network=($OPTARG)                 ;;
     a) padj=($OPTARG)                    ;;
     b) LFC=($OPTARG)                     ;;
-    e) multiXrank_r=($OPTARG)            ;;
-    f) multiXrank_selfloops=($OPTARG)    ;;
-    g) Molti_modularity=($OPTARG)        ;;
-    i) Molti_Louvain=($OPTARG)           ;;
+    e) control_id=($OPTARG)                     ;;
+    f) multiXrank_r=($OPTARG)            ;;
+    g) multiXrank_selfloops=($OPTARG)    ;;
+    i) Molti_modularity=($OPTARG)        ;;
+    j) Molti_Louvain=($OPTARG)           ;;
   esac
 done
 
@@ -77,7 +80,7 @@ for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/la
 pushd $TMPFILE >& /dev/null
 
 echo 'STEP1 - Finding metaDEGs'
-bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC
+bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
 
 echo 'STEP2 - Analysing DEGs in network communities'
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 

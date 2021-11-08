@@ -8,6 +8,9 @@ Load(c("tidyverse","readr","data.table","stringr"))
 exit <- function() { invokeRestart("abort") }
 
 ### This script cleans and prepares the data input
+args = commandArgs(trailingOnly=TRUE)
+control_id <- as.character(args[1])
+control_id <- tolower(control_id)
 
 # import counts matrix
 cts_path<- "src/tmp/grein_cts.txt"
@@ -29,8 +32,8 @@ filtered_meta <- meta_data
 ### remove column if no normal values
 no_normals <- c()
 for(i in 1:ncol(filtered_meta)) { 
-  meta_list <- filtered_meta[[i]]
-  if (any(grepl('ormal', meta_list)) == FALSE) {
+  meta_list <- tolower(filtered_meta[[i]])
+  if (any(grepl(control_id, meta_list)) == FALSE) {
     no_normals <- c(no_normals, i)}}
 
 if (length(no_normals) != 0) {
@@ -42,24 +45,24 @@ if (ncol(filtered_meta) > 1) {
 
 ### Rename column to "tissue"
 names(filtered_meta)[1] <- "tissue"
+filtered_meta[1] <- tolower(filtered_meta[[1]])
 
-### Transform levels to T and NT
+### Transform levels to sample and control
 if (ncol(filtered_meta) == 1) {
   filtered_meta <- filtered_meta[grepl('tissue', colnames(filtered_meta))] %>% 
     filter(!str_detect(tissue, 'line')) %>% 
     filter(!str_detect(tissue, 'celline'))
-  if (any(filtered_meta$tissue %like% 'ormal') == TRUE) {
-    filtered_meta[filtered_meta$tissue %like% 'ormal',] <- 'NT'
-    filtered_meta[filtered_meta$tissue %like% 'ackground',] <- 'NT'
-    filtered_meta[filtered_meta$tissue != 'NT',] <- 'T'
+  if (any(filtered_meta$tissue %like% control_id) == TRUE) {
+    filtered_meta[filtered_meta$tissue %like% control_id,] <- 'control'
+    filtered_meta[filtered_meta$tissue != 'control',] <- 'sample'
     filtered_meta$tissue <- factor(filtered_meta$tissue)} 
   else {
-    print("Please, change the non-tumour samples' metadata labels to say Normal")
+    print("ERROR. It seems like we can't identify the labels. Please, change the control samples' metadata labels argument")
     exit()}} 
 
 # Last check
 if (ncol(filtered_meta) == 0) {
-  print("ERROR. It seems like we can't identify the labels. Please, change the non-tumour samples' metadata labels to say Normal")
+  print("ERROR. It seems like we can't identify the labels. Please, change the control samples' metadata labels argument")
   exit()
 }
 

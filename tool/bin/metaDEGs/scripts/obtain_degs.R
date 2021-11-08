@@ -4,6 +4,7 @@ Load <- function(packages) {
 }
 Load(c("tidyverse","DESeq2","IHW","data.table"))
 
+
 # get the input passed from the shell script
 args <- commandArgs(trailingOnly = TRUE)
 
@@ -23,26 +24,30 @@ coldata <- read.csv(meta_path, row.names=1)
 coldata$tissue <- factor(coldata$tissue)
 
 # Create DSeq2 object
-dds <- DESeqDataSetFromMatrix(countData = cts, colData = coldata, design = ~ tissue) %>% DESeq
+dds <- DESeqDataSetFromMatrix(countData = cts, colData = coldata, design = ~ tissue) 
+
+# Filter out all genes with <5 reads total across all samples
+dds <- dds[rowSums(counts(dds)) >= 5]
+
+dds <- DESeq(dds)
 
 # Specify Reference level
-dds$tissue <- relevel(dds$tissue, ref = "NT")
-dds <- DESeq(dds, minReplicatesForReplace=Inf)
+dds$tissue <- relevel(dds$tissue, ref = "control")
 
 # Obtain deregulation values for all genes
-res <- results(dds)
+res <- results(dds, alpha=DESeq2_padj)
+
+res <- subset(res, res$padj < DESeq2_padj)
+
 write.csv(res, "src/tmp/sample_difexp.txt")
 
 
-# Set thresholds
-res <- subset(res, res$padj < DESeq2_padj)
-
-res <- subset(res, abs(res$log2FoldChange) > DESeq2_LFC)
-
 ## Order all differentially expressed genes by effect size (the absolute value of log2FoldChange)
 res <- res[order(-abs(res$log2FoldChange)),]
+res <- subset(res, abs(res$log2FoldChange) > DESeq2_LFC)
+
 res <- as.data.frame(res)
-cols<-!(colnames(res) %in% c("baseMean","lfcSE","stat","pvalue"))
+cols<-!(colnames(res) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
 res_subset <- subset(res,,cols)
 
 # Extract data

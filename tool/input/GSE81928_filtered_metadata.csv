@@ -2,12 +2,12 @@
 GSM2177840,Normal liver 1,Normal,2
 GSM2177841,Normal liver 2,Normal,< 1
 GSM2177842,Normal liver 3,Normal,14
-GSM2177843,Background liver 1,Background,1
-GSM2177844,Background liver 2,Background,2
-GSM2177845,Background liver 3,Background,2
-GSM2177846,Background liver 4,Background,Missing
-GSM2177847,Background liver 5,Background,2
-GSM2177848,Background liver 6,Background,Missing
+GSM2177843,Normal Background liver 1,Background,1
+GSM2177844,Normal Background liver 2,Background,2
+GSM2177845,Normal Background liver 3,Background,2
+GSM2177846,Normal Background liver 4,Background,Missing
+GSM2177847,Normal Background liver 5,Background,2
+GSM2177848,Normal Background liver 6,Background,Missing
 GSM2177849,Hepatoblastoma liver 1,Hepatoblastoma,2
 GSM2177850,Hepatoblastoma liver 2,Hepatoblastoma,< 1
 GSM2177851,Hepatoblastoma liver 3,Hepatoblastoma,11

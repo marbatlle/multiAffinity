@@ -49,12 +49,12 @@ if layers_count == 1:
 
     df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
 
-    M = len(df.columns) - 1 # number of layers
+    M = len(df.columns) - 2 # number of layers
     def part_coef(gene_index):
         i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
         k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
         o_i = k_ia.sum() # overlapping degree of node i
-        return (M/(M-1)) * (1 - ((k_ia / o_i)**2).sum()), o_i
+        return 0.0, o_i
 
 elif layers_count == 2:
 
@@ -100,6 +100,7 @@ elif layers_count == 2:
     df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
 
     M = len(df.columns) - 2 # number of layers
+  
     def part_coef(gene_index):
         i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
         k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
@@ -154,7 +155,7 @@ elif layers_count == 3:
 
     df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
 
-    M = len(df.columns) - 3 # number of layers
+    M = len(df.columns) - 2 # number of layers
     def part_coef(gene_index):
         i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
         k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
@@ -214,7 +215,7 @@ elif layers_count == 4:
 
     df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
 
-    M = len(df.columns) - 4 # number of layers
+    M = len(df.columns) - 2 # number of layers
     def part_coef(gene_index):
         i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
         k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
@@ -279,7 +280,7 @@ elif layers_count == 5:
 
     df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
 
-    M = len(df.columns) - 5 # number of layers
+    M = len(df.columns) - 2 # number of layers
     def part_coef(gene_index):
         i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
         k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
@@ -297,7 +298,6 @@ with open('Affinity/tmp/part_coef.tsv', 'w') as f:
     writer = csv.writer(f, delimiter='\t')
     writer.writerow(["Genes", "part_coef", "overlap_degree"])
     writer.writerows(zip(all_genes,[i[0] for i in results],[i[1] for i in results]))
-
 #----# translate participation coefficients to gene symbols ids
 gene_dict = pd.read_csv('Affinity/tmp/gene_dict.txt',sep='\t')
 matrix = gene_dict.set_index('ids')
