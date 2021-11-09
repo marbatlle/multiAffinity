@@ -41,6 +41,14 @@ for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1);
     rm -f src/tmp/clean_* ; rm -f src/tmp/grein_*
 done
 
+## Match genes between studies
+Rscript scripts/gene_list.R >& /dev/null; mv src/tmp/counts/gene_list.txt src/tmp/gene_list.txt #obtain distinct gene list
+for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1); do
+    cp src/tmp/counts/${sid}_cts.txt src/tmp/cts.txt
+    Rscript scripts/gene_matches.R >& /dev/null; cp src/tmp/cts.txt src/tmp/counts/${sid}_cts.txt; done
+rm -f src/tmp/cts.txt; rm -f src/tmp/gene_list.txt
+
+
 echo '      - Obtaining DEGs list for each study'
 
 for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1 | sort -n -t E -k 2); do

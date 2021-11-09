@@ -24,7 +24,7 @@ for(i in names){
 ## Aggregate Ranks
 #set.seed(64)
 glist_down <- Filter(function(x) is(x, "matrix"), mget(ls()))
-r_down = rankMatrix(glist_down, full = FALSE)
+r_down = rankMatrix(glist_down, full = TRUE)
 agg_down <- aggregateRanks(rmat = r_down, method = "RRA")
 agg_down <- subset(agg_down, agg_down$Score < RRA_Score)
 agg_down <- as.data.frame(agg_down)
@@ -48,7 +48,7 @@ for(i in names){
 ## Aggregate Ranks
 #set.seed(64)
 glist_up <- Filter(function(x) is(x, "matrix"), mget(ls()))
-r_up = rankMatrix(glist_up, full = FALSE)
+r_up = rankMatrix(glist_up, full = TRUE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
 agg_up <- subset(agg_up, agg_up$Score < RRA_Score)
 agg_up <- as.data.frame(agg_up)
