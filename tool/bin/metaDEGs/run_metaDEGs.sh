@@ -7,7 +7,7 @@ set -euo pipefail
 mkdir -p bin/metaDEGs/src; cp -r input/data bin/metaDEGs/src/
 
 ## create sample names file
-ls input/data/counts/* | sed "s:input/data/counts/::" | cut -d"_" -f1 > bin/metaDEGs/sample_names.txt | sort
+ls input/data/counts/* | sed "s:input/data/counts/::" | cut -d"_" -f1 | sort -n -t E -k 2 > bin/metaDEGs/sample_names.txt 
 
 ## create tmp and output directories
 pushd bin/metaDEGs/ >& /dev/null
@@ -43,7 +43,7 @@ done
 
 echo '      - Obtaining DEGs list for each study'
 
-for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1 | sort); do
+for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1 | sort -n -t E -k 2); do
     # create temp files
     cp src/tmp/counts/${sid}_cts.txt src/tmp/raw_data.csv; cp src/tmp/metadata/${sid}_meta.txt src/tmp/metadata.csv
     # obtain degs

@@ -3,6 +3,11 @@ import pandas as pd
 import numpy as np
 from scipy import stats
 from scipy.stats import spearmanr
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('padj', type=float)
+args = parser.parse_args()
 
 #Load diferential expressions and join
 path_to_files = 'Affinity/src/metaDEGs/dif_exp/'
@@ -12,9 +17,7 @@ for filen in [x for x in os.listdir(path_to_files) if '.txt' in x]:
 difexp_df = pd.concat(lst_difexp, ignore_index=True)
 difexp_df = difexp_df.groupby(['Unnamed: 0']).mean().reset_index()
 difexp_df = difexp_df.set_index(['Unnamed: 0'])
-difexp_df = difexp_df.dropna()
-difexp_genes = difexp_df.mean(axis=1)
-difexp_genes = pd.DataFrame(difexp_genes, columns=['log2FoldChange'])
+difexp_genes = pd.DataFrame(difexp_df, columns=['log2FoldChange'])
 difexp_genes.index.names = ['genes']
 
 difexp_genes.to_csv("Affinity/output/difexp.txt",sep = ",", index=True, header=True)
@@ -46,4 +49,5 @@ for i in genes:
     corr_df = result[['log2FoldChange',i]]
     corr_df = corr_df.dropna()
     rho, p = spearmanr(corr_df['log2FoldChange'], corr_df[i])
-    print(i+','+str(rho)+','+str(p))
+    if p < args.padj:
+        print(i+','+str(rho)+','+str(p))

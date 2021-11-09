@@ -12,7 +12,9 @@ cp Affinity/src/layers/* Affinity/tmp; (cd Affinity/tmp && ls -v | cat -n | whil
 # arguments to variables
 multiXrank_r=$1 
 multiXrank_selfloops=$2
-communities_approach=$3
+padj=$3
+communities_approach=$4
+
 
 # create dictionary
 python Affinity/scripts/create_dict.py > Affinity/tmp/len_genes.txt
@@ -54,13 +56,15 @@ python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 echo '      - Find correlation between node affinity and ranks'
 echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
 
-if [ "$communities_approach" = false ] ; then
-    python -W ignore Affinity/scripts/difussion_analysis.py >> Affinity/output/Affinity_Corr.txt; else
+if [ "$communities_approach" = 'full' ] ; then
+    echo '      - Following full approach'
+    python -W ignore Affinity/scripts/difussion_analysis.py $padj >> Affinity/output/Affinity_Corr.txt; else
+    echo '      - Following communities approach'
     for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
         if [[ $(wc -l Affinity/src/clusters/${cluster} | cut -d" " -f1) -le 1 ]]; then
             continue; else
             cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
-            python -W ignore Affinity/scripts/difussion_analysis_comm.py >> Affinity/output/Affinity_Corr_$cluster
+            python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster
             rm -r Affinity/src/clusters/cluster_tmp.txt
         fi
     done

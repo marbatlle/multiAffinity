@@ -59,7 +59,7 @@ df = df.set_index(['metaDEGs'])
 df = df.groupby(level=0).first()
 
 #filter results
-df = df[df['Corr adj-p.val'] < 0.05]
+#df = df[df['Corr adj-p.val'] < 0.05]
 #df = df[df['Comm Size'] > 1]
 
 # sort results

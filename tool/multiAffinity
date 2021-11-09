@@ -9,25 +9,25 @@ multiXrank_r=0.5
 multiXrank_selfloops=1
 Molti_modularity=1
 Molti_Louvain=0
-communities_approach=false
+approach=communities
 
 # Usage function
 usage(){
 echo -e '\n'
-echo "usage: multiAffinity [-h] [-c] -o OUTPUT_PATH  -d COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH"
-echo "                     [-a padj] [-b LFC] [-e control_id] [-f multiXrank_r] "
+echo "usage: multiAffinity [-h] [-a approach] -o OUTPUT_PATH  -c COUNTS_PATH -m METADATA_PATH"
+echo "                     -n NETWORK_PATH [-b padj] [-d LFC] [-e control_id] [-f multiXrank_r]"
 echo "                     [-g multiXrank_selfloops] [-i Molti_modularity] [-j Molti_Louvain]"
 echo -e '\n'
 echo "arguments:"
 echo "    -h                          show this help message and exit"
-echo "    -c                          optional - use communities distribution to compute affinity"
+echo "    -a approach                 optional - define the approach as full or communities (default)"
 echo "    -o output_path              indicate output directory"
-echo "    -d counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
+echo "    -c counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
 echo "    -m metadata_path            path to metadata, single or multiple (-c metadata_path1,metadata_path2)"
 echo "    -n network_path             path to network, single or multiple (-c network_path1,network_path2)"
-echo "    -a padj                     optional - default value is 0.05"
-echo "    -b LFC                      optional - default value is 1"
-echo "    -e LFC                      optional - default value is 1"
+echo "    -b padj                     optional - default value is 0.05"
+echo "    -d LFC                      optional - default value is 1"
+echo "    -e control_id               define the metadata label for the control samples, default is Normal"
 echo "    -f multiXrank_r             optional - default value is 0.5"
 echo "    -g multiXrank_selfloops     optional - default value is 1"
 echo "    -i Molti_modularity         optional - default value is 1"
@@ -37,12 +37,12 @@ exit 0
 } 
                 
 # Classifying input arguments
-while getopts ":h:co:m:n:a:b:d:e:f:g:i:j:" opt; do
+while getopts ":h:a:o:c:m:n:b:d:e:f:g:i:j:" opt; do
   case $opt in
     h) usage                             ;;
-    c) communities_approach=true         ;;
+    a) approach=($OPTARG)                ;;
     o) output_dir=($OPTARG)              ;;
-    d) set -f
+    c) set -f
        IFS=','
        counts=($OPTARG)                  ;;
     m) set -f
@@ -51,8 +51,8 @@ while getopts ":h:co:m:n:a:b:d:e:f:g:i:j:" opt; do
     n) set -f
        IFS=','
        network=($OPTARG)                 ;;
-    a) padj=($OPTARG)                    ;;
-    b) LFC=($OPTARG)                     ;;
+    b) padj=($OPTARG)                    ;;
+    d) LFC=($OPTARG)                     ;;
     e) control_id=($OPTARG)                     ;;
     f) multiXrank_r=($OPTARG)            ;;
     g) multiXrank_selfloops=($OPTARG)    ;;
@@ -66,9 +66,12 @@ TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
 
 # Checking for mandatory arguments
 if [ -z ${output_dir+x} ]; then echo "-o is obligatory"; exit 1; fi
-if [ -z ${counts+x} ]; then echo "-d is obligatory"; exit 1; fi
+if [ -z ${counts+x} ]; then echo "-c is obligatory"; exit 1; fi
 if [ -z ${metadata+x} ]; then echo "-m is obligatory"; exit 1; fi
 if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
+
+# Check approach
+if [ $approach = "communities" ] || [ $approach = "full" ]; then : ; else echo "Define approach input as communities or full"; exit 1; fi
 
 # Curating the inputs
 mkdir -p $TMPFILE/input; mkdir -p $TMPFILE/input/layers; mkdir -p $TMPFILE/input/data; mkdir -p $TMPFILE/input/data/counts; mkdir -p $TMPFILE/input/data/metadata; cp -avr bin/ $TMPFILE >& /dev/null
@@ -86,7 +89,7 @@ echo 'STEP2 - Analysing DEGs in network communities'
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
 
 echo 'STEP3 - Perform affinity study'
-bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $communities_approach
+bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
 
 echo 'STEP4 - Defining final output'
 python bin/join_output.py
