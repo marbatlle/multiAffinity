@@ -76,9 +76,9 @@ if [ $approach = "communities" ] || [ $approach = "full" ]; then : ; else echo "
 # Curating the inputs
 mkdir -p $TMPFILE/input; mkdir -p $TMPFILE/input/layers; mkdir -p $TMPFILE/input/data; mkdir -p $TMPFILE/input/data/counts; mkdir -p $TMPFILE/input/data/metadata; cp -avr bin/ $TMPFILE >& /dev/null
 
-for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/counts; else echo "Check that the counts file/s exists, and use ',' as a separator"; exit 1; fi; done
-for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/metadata; else echo "Check that the metadata file/s exists, and use ',' as a separator"; exit 1; fi; done
-for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/layers; else echo "Check that the network file/s exists, and use ',' as a separator"; exit 1; fi; done
+for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/counts; else echo "Check that the counts file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
+for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/metadata; else echo "Check that the metadata file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
+for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/layers; else echo "Check that the network file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
 
 pushd $TMPFILE >& /dev/null
 
