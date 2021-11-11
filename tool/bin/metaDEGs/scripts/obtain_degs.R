@@ -40,8 +40,8 @@ res <- subset(res, res$padj < DESeq2_padj)
 
 ## Order all differentially expressed genes by effect size (the absolute value of log2FoldChange)
 res <- res[order(-abs(res$log2FoldChange)),]
-write.csv(res, "src/tmp/sample_difexp.txt")
 res <- subset(res, abs(res$log2FoldChange) > DESeq2_LFC)
+write.csv(res, "src/tmp/sample_difexp.txt")
 res <- as.data.frame(res)
 
 
