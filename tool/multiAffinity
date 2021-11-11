@@ -37,7 +37,7 @@ exit 0
 } 
                 
 # Classifying input arguments
-while getopts ":h:a:o:c:m:n:b:d:e:f:g:i:j:" opt; do
+while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
   case $opt in
     h) usage                             ;;
     a) approach=($OPTARG)                ;;
