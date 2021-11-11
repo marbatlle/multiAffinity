@@ -20,14 +20,14 @@ WORKDIR ${HOME}
 RUN mkdir -p output
 
 # Install MolTI-DREAM
-ADD tool/bin/Communities/src/MolTi-DREAM-master ./bin/Communities/src/MolTi-DREAM-master
+ADD tool/bin/Communities/src/MolTi-DREAM ./bin/Communities/src/MolTi-DREAM
 
 RUN apt-get update && apt-get install -y \
     build-essential \   
     && apt-get clean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists*
-RUN make -C bin/Communities/src/MolTi-DREAM-master/src
+RUN make -C bin/Communities/src/MolTi-DREAM/src
 
 # The code to run when container is started:
 ENV PATH="$PATH:."
