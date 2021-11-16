@@ -1,4 +1,4 @@
-<img src=".img/multiAffinty-logo.png" width="400">
+<img src=.img/multiAffinty-logo.png width=400>
 
 <br>
 <br>
@@ -20,7 +20,7 @@ This is a schema of the complete workflow:
         docker pull marbatlle/multiAffinity
         
     - Run tool
-        docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  ./multiAffinity <ARGUMENTS>
+        docker run -ti --rm -v $(pwd)/sample_data:/tool/sample_data marbatlle/multiaffinity  ./multiAffinity <ARGUMENTS>
 
     - Arguments e.g.
         -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
@@ -43,7 +43,7 @@ If your dataset has not been already been processed by GREIN, please, request it
 
 Sample file:
 
-    "",tissue type
+    ,tissue type
     GSM2177840,Normal
     GSM2177841,Normal
     GSM2177842,Tumor
@@ -56,7 +56,7 @@ Sample file:
 
 Sample file:
 
-    "",gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
+    ,gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
     ENSG00000000003,TSPAN6,2076,1326,457,598
     ENSG00000000005,TNMD,0,0,0,0,1
     ENSG00000000419,DPM1,321,228,56,157
@@ -81,28 +81,24 @@ Sample file:
 ### Run the script
 
 Execute the script:
+usage: multiAffinity [-h] [-a approach] -o OUTPUT_PATH  -c COUNTS_PATH -m METADATA_PATH
+                     -n NETWORK_PATH [-b padj] [-d LFC] [-e control_id] [-f multiXrank_r]
+                     [-g multiXrank_selfloops] [-i Molti_modularity] [-j Molti_Louvain]
 
-    ./multiAffinity [-h] -c COUNTS_PATH -m METADATA_PATH -n NETWORK_PATH
-                    [-a DESeq2_padj] [-b DESeq2_LFC] [-d RRA_Score]
-                    [-e waddR_pval] [-f waddR_permnum] [-g multiXrank_r]
-                    [-i multiXrank_selfloops] [-j Molti_modularity] [-k Molti_Louvain]
-                    
-
-Arguments:
-
+arguments:
     -h                          show this help message and exit
-    -c COUNTS_PATH              path to counts matrix, single or multiple (-c COUNTS_PATH1,COUNTS_PATH2)
-    -m METADATA_PATH            path to metadata, single or multiple (-c METADATA_PATH1,METADATA_PATH2)
-    -n NETWORK_PATH             path to network, single or multiple (-c NETWORK_PATH1,NETWORK_PATH2)
-    -a DESeq2_padj              optional - sets p-value adjusted for multiple testing used as cutoff in DESeq2 (default is 0.05)
-    -b DESeq2_LFC               optional - defines log2 foldchange used as cutoff in DESeq2 (default value is 1)
-    -d RRA_Score                optional - significance score defined by RobustRankAggreg as a cutoff (default is 0.05)
-    -e waddR_pval               optional - defines p-value used as cutoff for the semi-parametric 2-Wasserstein distance-based test (default is 0.001)
-    -f waddR_permnum            optional - sets number of permutations used in the Wasserstein test (default is 100)
-    -g multiXrank_r             optional - defines global restart probability for multiXrank, given by float between 0 and 1 (default is 0.5)
-    -i multiXrank_selfloops     optional - defines whether self loops are removed or not, takes values 0 or 1 (default is 0)
-    -j Molti_modularity         optional - sets Newman modularity resolution parameter on molTI-DREAM (default is 1)
-    -k Molti_Louvain            optional - switches to randomized Louvain on molTI-DREAM and set the number of randomizations (default is 0)
+    -a approach                 optional - define the approach as full or communities (default)
+    -o output_path              indicate output directory
+    -c counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)
+    -m metadata_path            path to metadata, single or multiple (-c metadata_path1,metadata_path2)
+    -n network_path             path to network, single or multiple (-c network_path1,network_path2)
+    -b padj                     optional - sets p-value adjusted for multiple testing used as cutoff in DESeq2 (default is 0.05)
+    -d LFC                      optional - defines log2 foldchange used as cutoff in DESeq2 (default value is 1)
+    -e control_id               define the metadata label for the control samples, default is Normal
+    -f multiXrank_r             optional - defines global restart probability for multiXrank, given by float between 0 and 1 (default is 0.5)
+    -g multiXrank_selfloops     optional - defines whether self loops are removed or not, takes values 0 or 1 (default is 0)
+    -i Molti_modularity         optional - sets Newman modularity resolution parameter on molTI-DREAM (default is 1)
+    -j Molti_Louvain            optional - switches to randomized Louvain on molTI-DREAM and set the number of randomizations (default is 0)
 
 ### Output Files
 
@@ -137,16 +133,16 @@ All output files obtained in this computational study are available in the folde
 
 - *metaDEGs.txt*: describes all the obtained metaDEGs and the corresponding RRA Score.
 
-        "Name","Score"
-        "REG3A",2.55102040816327e-05
-        "SLITRK3",3.48964865519409e-05
-        "SHISA6",4.09492025142811e-05
-        "HS3ST4",6.53061224489795e-05
-        "FGF14-IT1",7.6293497933928e-05
-        "CST1",8.26530612244898e-05
-        "PLSCR5",0.000110521061888034
-        "LHX1",0.000146938775510204
-        "FGF3",0.000172448979591837
+        Name,Score
+        REG3A,2.55102040816327e-05
+        SLITRK3,3.48964865519409e-05
+        SHISA6,4.09492025142811e-05
+        HS3ST4,6.53061224489795e-05
+        FGF14-IT1,7.6293497933928e-05
+        CST1,8.26530612244898e-05
+        PLSCR5,0.000110521061888034
+        LHX1,0.000146938775510204
+        FGF3,0.000172448979591837
 
 - *wasserstein.txt*: remarks every pair of studies that show a significant difference between their distributions.
 
@@ -182,14 +178,14 @@ All output files obtained in this computational study are available in the folde
 
 - *degs_communities.txt*: presents the metaDEGs obtained in the current study and the corresponding matches in the communities.
 
-        "REG3A";
-        "SLITRK3";
-        "HS3ST4";211
-        "FGF14-IT1";
-        "CST1";1112
+        REG3A;
+        SLITRK3;
+        HS3ST4;211
+        FGF14-IT1;
+        CST1;1112
 
 
 -------------------------------------------------------------------------
 
 
-<img src=".img/logos-project.jpg" width="500">
+<img src=.img/logos-project.jpg width=500>
