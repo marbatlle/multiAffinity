@@ -80,7 +80,11 @@ for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/dat
 for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/metadata; else echo "Check that the metadata file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
 for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/layers; else echo "Check that the network file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
 
+ls
+
 pushd $TMPFILE >& /dev/null
+
+ls
 
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
