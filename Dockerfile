@@ -2,15 +2,15 @@ FROM continuumio/miniconda3 as build_env
 COPY . /tmp
 WORKDIR /tmp
 RUN env \
-    && conda env create --name multiAffinity --file environment.yaml \
+    && conda env create --name multiaffinity --file environment.yaml \
     && conda info \
     && conda clean --all --yes --force-pkgs-dirs 
 RUN conda update -n base conda
 RUN conda install -c anaconda libcurl
 
 FROM ubuntu
-COPY --from=build_env /opt/conda/envs/multiAffinity /opt/conda/envs/multiAffinity
-ENV PATH=/opt/conda/envs/multiAffinity/bin/:$PATH
+COPY --from=build_env /opt/conda/envs/multiaffinity /opt/conda/envs/multiaffinity
+ENV PATH=/opt/conda/envs/multiaffinity/bin/:$PATH
 
 SHELL ["/bin/bash", "-c"]
 
@@ -32,5 +32,6 @@ RUN make -C bin/Communities/src/MolTi-DREAM/src
 # The code to run when container is started:
 ENV PATH="$PATH:."
 ENV PATH="$PATH:/tool/."
-RUN chmod +x multiAffinity
-CMD ["bash", "multiAffinity", "run"]
+ENV PATH="$PATH:/tool/bin/."
+RUN chmod +x multiaffinity
+CMD ["/bin/bash","-c","multiaffinity"]
