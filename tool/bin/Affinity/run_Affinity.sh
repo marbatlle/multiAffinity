@@ -49,7 +49,7 @@ do
     mv Affinity/src/output/multiplex_1.tsv Affinity/output/${seed}.tsv
 done < Affinity/tmp/degs_ids.txt
 
-# Creating dRWR matrix with outputs'
+# Creating RWR matrix with outputs'
 python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 
 # STEP 2

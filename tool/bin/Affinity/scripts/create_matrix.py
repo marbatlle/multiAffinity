@@ -53,4 +53,4 @@ matrix.index.name = None
 os.chdir(glob_dir)
 
 #matrix=matrix.set_index('ids')
-matrix.to_csv('Affinity/output/dRWR_matrix.txt', sep='\t')
+matrix.to_csv('Affinity/output/RWR_matrix.txt', sep='\t')

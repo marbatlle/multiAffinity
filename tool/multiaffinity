@@ -8,7 +8,7 @@ control_id=Normal
 multiXrank_r=0.5
 multiXrank_selfloops=1
 Molti_modularity=1
-Molti_Louvain=0
+Molti_Louvain=5
 approach=communities
 
 # Usage function
@@ -21,7 +21,7 @@ echo -e '\n'
 echo "arguments:"
 echo "    -h                          show this help message and exit"
 echo "    -a approach                 optional - define the approach as full or communities (default)"
-echo "    -o output_path              indicate output directory"
+echo "    -o output_path              indicates output directory"
 echo "    -c counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
 echo "    -m metadata_path            path to metadata, single or multiple (-c metadata_path1,metadata_path2)"
 echo "    -n network_path             path to network, single or multiple (-c network_path1,network_path2)"
@@ -92,7 +92,7 @@ echo 'STEP3 - Perform affinity study'
 bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
 
 echo 'STEP4 - Defining final output'
-python bin/join_output.py
+bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
 mkdir $output_dir

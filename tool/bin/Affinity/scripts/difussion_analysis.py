@@ -28,7 +28,7 @@ degs = pd.read_csv(degs_path, index_col=0, dtype={"metaDEGs": "string", "RRA Sco
 degs_names = degs.index.tolist()
 
 #Load rwr matrix
-mat_path = 'Affinity/output/dRWR_matrix.txt'
+mat_path = 'Affinity/output/RWR_matrix.txt'
 mat = pd.read_csv(mat_path, sep='\t', index_col=0)
 
 #Find gene matches 

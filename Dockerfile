@@ -34,4 +34,4 @@ ENV PATH="$PATH:."
 ENV PATH="$PATH:/tool/."
 ENV PATH="$PATH:/tool/bin/."
 RUN chmod +x multiaffinity
-CMD ["/bin/bash","-c","multiaffinity"]
+CMD ["/bin/bash"]

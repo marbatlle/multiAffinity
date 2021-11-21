@@ -70,9 +70,10 @@ echo "      - Comparing distributions for batch effect"
 # obtain mean values for NT samples for each study
 mkdir -p output/means
 for sid in $(ls output/normalized_counts | cut -d"." -f1); do
-   mv output/normalized_counts/${sid}.txt output/normalized_counts/
+   cp output/normalized_counts/${sid}.txt output/normalized_counts/normalized.txt
    python scripts/cts_to_mean.py
-   mv output/means/mean.txt output/means/${sid}_mean.txt; done
+   mv output/means/mean.txt output/means/${sid}_mean.txt
+   rm -rf output/normalized_counts/normalized.txt; done
 
 # paired Wasserstein tests
 printf "Wasserstein test shows a significant difference in the distributions between:\n" > output/wasserstein.txt
