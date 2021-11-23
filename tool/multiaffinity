@@ -62,7 +62,14 @@ while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
 done
 
 # Create tmp directory
-TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
+WORKDIR=$(pwd) ; TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
+
+
+if [[ "$WORKDIR" =~ tool ]]; then
+  mkdir -p $TMPFILE/tool
+  cp -r bin/ $TMPFILE/tool/; else
+  mkdir -p $TMPFILE/tool/bin
+  cp -r /tool $TMPFILE/; fi
 
 # Checking for mandatory arguments
 if [ -z ${output_dir+x} ]; then echo "-o is obligatory"; exit 1; fi
@@ -74,13 +81,15 @@ if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
 if [ $approach = "communities" ] || [ $approach = "full" ]; then : ; else echo "Define approach input as communities or full"; exit 1; fi
 
 # Curating the inputs
-mkdir -p $TMPFILE/input; mkdir -p $TMPFILE/input/layers; mkdir -p $TMPFILE/input/data; mkdir -p $TMPFILE/input/data/counts; mkdir -p $TMPFILE/input/data/metadata; cp -avr bin/ $TMPFILE >& /dev/null
+mkdir -p $TMPFILE/tool/input; mkdir -p $TMPFILE/tool/input/layers; mkdir -p $TMPFILE/tool/input/data; mkdir -p $TMPFILE/tool/input/data/counts; mkdir -p $TMPFILE/tool/input/data/metadata
 
-for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/counts; else echo "Check that the counts file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
-for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/data/metadata; else echo "Check that the metadata file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
-for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/input/layers; else echo "Check that the network file/s exists, that the format is correct, and use ',' as a separator"; exit 1; fi; done
+for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/data/counts; else echo "Use ',' as a separator in the counts inputs"; exit 1; fi; done
+for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/data/metadata; else echo "Use ',' as a separator in the metadata inputs"; exit 1; fi; done
+for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/layers; else echo "Use ',' as a separator in the layers inputs"; exit 1; fi; done
 
-pushd $TMPFILE >& /dev/null
+
+pushd $TMPFILE >& /dev/null; cd tool/
+
 
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
@@ -95,7 +104,7 @@ echo 'STEP4 - Defining final output'
 bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
-mkdir $output_dir
-mv $TMPFILE/output ./$output_dir; rm -rf $TMPFILE
+mkdir -p $output_dir
+mv $TMPFILE/tool/output ./$output_dir; rm -rf $TMPFILE
 
 echo 'multiAffinity completed. Check out the output folder'
