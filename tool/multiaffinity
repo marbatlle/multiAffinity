@@ -64,7 +64,6 @@ done
 # Create tmp directory
 WORKDIR=$(pwd) ; TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
 
-
 if [[ "$WORKDIR" =~ tool ]]; then
   mkdir -p $TMPFILE/tool
   cp -r bin/ $TMPFILE/tool/; else
@@ -87,9 +86,7 @@ for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/inpu
 for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/data/metadata; else echo "Use ',' as a separator in the metadata inputs"; exit 1; fi; done
 for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/layers; else echo "Use ',' as a separator in the layers inputs"; exit 1; fi; done
 
-
 pushd $TMPFILE >& /dev/null; cd tool/
-
 
 echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
@@ -105,6 +102,6 @@ bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
 mkdir -p $output_dir
-mv $TMPFILE/tool/output ./$output_dir; rm -rf $TMPFILE
+mv $TMPFILE/tool/output/* ./$output_dir/; rm -rf $TMPFILE
 
 echo 'multiAffinity completed. Check out the output folder'
