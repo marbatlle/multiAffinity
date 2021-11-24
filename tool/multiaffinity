@@ -102,6 +102,6 @@ bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
 mkdir -p $output_dir
-mv $TMPFILE/tool/output/* ./$output_dir/; rm -rf $TMPFILE
+mv $TMPFILE/tool/output ./$output_dir; rm -rf $TMPFILE
 
 echo 'multiAffinity completed. Check out the output folder'
