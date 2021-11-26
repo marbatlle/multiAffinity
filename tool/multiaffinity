@@ -92,13 +92,13 @@ echo 'STEP1 - Finding metaDEGs'
 bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
 
 echo 'STEP2 - Analysing DEGs in network communities'
-#bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
+bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
 
 echo 'STEP3 - Perform affinity study'
-#bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
+bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
 
 echo 'STEP4 - Defining final output'
-#bash bin/Conclude/run_output.sh
+bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
 mkdir -p $output_dir

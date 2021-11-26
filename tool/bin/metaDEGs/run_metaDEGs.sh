@@ -86,7 +86,7 @@ for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1); do
             name2=$(sed -n "${Study2}p" sample_names.txt)
             printf "\n" >> output/wasserstein.txt
             echo "$name1 and $name2:" >> output/wasserstein.txt
-            Rscript scripts/wasserstein.R $waddR_pvaladj >> output/wasserstein.txt 2> /dev/null; fi; done; done; #rm -f -r output/means
+            Rscript scripts/wasserstein.R $waddR_pvaladj >> output/wasserstein.txt 2> /dev/null; fi; done; done; rm -f -r output/means
 
 echo '      - Obtaining metaDEGs'
 Rscript scripts/obtain_ranks.R $RRA_Score >& /dev/null; rm -r -f src/tmp
