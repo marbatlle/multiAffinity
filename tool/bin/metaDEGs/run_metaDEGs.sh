@@ -76,18 +76,17 @@ for sid in $(ls output/normalized_counts | cut -d"." -f1); do
    rm -rf output/normalized_counts/normalized.txt; done
 
 # paired Wasserstein tests
-printf "Wasserstein test shows a significant difference in the distributions between:\n" > output/wasserstein.txt
+printf "Statistical tests for detecting differential distributions based on the 2-Wasserstein distance, pval:\n" > output/wasserstein.txt
 for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1); do
     for Study2 in $(ls output/normalized_counts | cut -d"." -f1); do
         if [ "$Study1" != "$Study2" ]; then
             cp output/means/${Study1}_mean.txt output/means/Study1_mean.txt
             cp output/means/${Study2}_mean.txt output/means/Study2_mean.txt
-            Rscript scripts/wasserstein.R $waddR_pvaladj > output/means/wass_out.txt 2> /dev/null
-            if grep -q TRUE "output/means/wass_out.txt"; then
-                name1=$(sed -n "${Study1}p" sample_names.txt)
-                name2=$(sed -n "${Study2}p" sample_names.txt)
-                printf "\n" >> output/wasserstein.txt
-                echo "$name1 and $name2" >> output/wasserstein.txt; fi; fi; done; done; rm -f -r output/means
+            name1=$(sed -n "${Study1}p" sample_names.txt)
+            name2=$(sed -n "${Study2}p" sample_names.txt)
+            printf "\n" >> output/wasserstein.txt
+            echo "$name1 and $name2:" >> output/wasserstein.txt
+            Rscript scripts/wasserstein.R $waddR_pvaladj >> output/wasserstein.txt 2> /dev/null; fi; done; done; #rm -f -r output/means
 
 echo '      - Obtaining metaDEGs'
 Rscript scripts/obtain_ranks.R $RRA_Score >& /dev/null; rm -r -f src/tmp
@@ -98,4 +97,6 @@ popd >& /dev/null
 mkdir -p output; mkdir output/metaDEGs
 mv bin/metaDEGs/output/metaDEGs/degs_report.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/metaDEGs.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/degs_names.txt bin/metaDEGs/output/
 rm -rf bin/metaDEGs/output/metaDEGs/; cp -r bin/metaDEGs/output/* output/metaDEGs
+
+
 
