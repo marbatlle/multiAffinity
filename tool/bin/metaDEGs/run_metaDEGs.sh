@@ -63,6 +63,8 @@ for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1
     cp src/tmp/normalized_counts.txt output/normalized_counts/${sid}.txt; cp src/tmp/tmp_up.txt src/tmp/degs/${sid}_DEGs_up.txt; cp src/tmp/tmp_down.txt src/tmp/degs/${sid}_DEGs_down.txt; cp src/tmp/sample_difexp.txt output/dif_exp/${sid}.txt
 done; wait
 
+
+
 #cat output/metaDEGs/degs_report.txt
 
 echo "      - Comparing distributions for batch effect"
@@ -89,12 +91,14 @@ for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1); do
             Rscript scripts/wasserstein.R $waddR_pvaladj >> output/wasserstein.txt 2> /dev/null; fi; done; done; rm -f -r output/means
 
 echo '      - Obtaining metaDEGs'
-Rscript scripts/obtain_ranks.R $RRA_Score >& /dev/null; rm -r -f src/tmp
+echo "Robust DEGs:" >> output/metaDEGs/degs_report.txt
+Rscript scripts/obtain_ranks.R $RRA_Score >> output/metaDEGs/degs_report.txt 2> /dev/null; rm -r -f src/tmp
 [ "$(ls -A output/)" ] && : || (echo "metaDEGs processes NOT COMPLETED, please check the README.md to find a solution"; exit 1)
 
 # Closing script
 popd >& /dev/null
 mkdir -p output; mkdir output/metaDEGs
+mv bin/metaDEGs/output/metaDEGs/MetaDEGs_*.txt bin/metaDEGs/output/
 mv bin/metaDEGs/output/metaDEGs/degs_report.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/metaDEGs.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/degs_names.txt bin/metaDEGs/output/
 rm -rf bin/metaDEGs/output/metaDEGs/; cp -r bin/metaDEGs/output/* output/metaDEGs
 

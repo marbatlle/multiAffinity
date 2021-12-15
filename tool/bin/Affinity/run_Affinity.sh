@@ -15,7 +15,6 @@ multiXrank_selfloops=$2
 padj=$3
 communities_approach=$4
 
-
 # create dictionary
 python Affinity/scripts/create_dict.py > Affinity/tmp/len_genes.txt
 
@@ -27,7 +26,7 @@ mv Affinity/tmp/layer*.tsv Affinity/src/multiplex
 
 # add degs for seeds
 cp Affinity/src/metaDEGs/degs_names.txt Affinity/tmp
-python Affinity/scripts/degs_to_ids.py >& /dev/null
+python Affinity/scripts/degs_to_ids.py #>& /dev/null
 sed -i '/^$/d' Affinity/tmp/degs_ids.txt # remove empty lines
 
 # Edit config_full.yml
@@ -54,17 +53,16 @@ python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 
 # STEP 2
 echo '      - Find correlation between node affinity and ranks'
-echo 'Genes,Corr,Adj. p-val' > Affinity/output/Affinity_Corr.txt
 
 if [ "$communities_approach" = 'full' ] ; then
-    echo '      - Following full approach'
-    python -W ignore Affinity/scripts/difussion_analysis.py $padj >> Affinity/output/Affinity_Corr.txt; else
-    echo '      - Following communities approach'
+    echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val' > Affinity/output/Affinity_Corr.txt
+    python -W ignore Affinity/scripts/difussion_analysis.py $padj >> Affinity/output/Affinity_Corr.txt 2> /dev/null; else
+    echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val,Community Size' > Affinity/output/Affinity_Corr.txt
     for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
         if [[ $(wc -l Affinity/src/clusters/${cluster} | cut -d" " -f1) -le 1 ]]; then
             continue; else
             cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
-            python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster
+            python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster 2> /dev/null
             rm -r Affinity/src/clusters/cluster_tmp.txt
         fi
     done

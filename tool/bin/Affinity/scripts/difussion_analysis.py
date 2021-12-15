@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 from scipy import stats
-from scipy.stats import spearmanr
+from scipy.stats import pearsonr
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -38,16 +38,17 @@ matches = list(set(degs_names).intersection(set(mat_names)))
 # create joined matrix
 mat_degs = mat.filter(matches, axis=1) # filter only DEGs in column
 mat_degs.index.names = ['genes']
-
 result = difexp_genes.merge(mat_degs, left_index=True, right_index=True)
 result = result.apply (pd.to_numeric, errors='coerce')
-
 genes = (result.columns[1:])
+path = 'Affinity/output/'
 
 #calculate Spearman Rank correlation and corresponding p-value
 for i in genes:
     corr_df = result[['log2FoldChange',i]]
     corr_df = corr_df.dropna()
-    rho, p = spearmanr(corr_df['log2FoldChange'], corr_df[i])
+    export_path = os.path.join(path, i + 'corr.csv')
+    #corr_df.to_csv(export_path,sep = ",", index=True, header=True)
+    rho, p = pearsonr(corr_df['log2FoldChange'], corr_df[i])
     if p < args.padj:
         print(i+','+str(rho)+','+str(p))

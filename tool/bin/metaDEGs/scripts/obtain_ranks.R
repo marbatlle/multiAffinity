@@ -46,12 +46,21 @@ for(i in names){
 }
 
 ## Aggregate Ranks
-#set.seed(64)
+set.seed(64)
 glist_up <- Filter(function(x) is(x, "matrix"), mget(ls()))
 r_up = rankMatrix(glist_up, full = TRUE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
 agg_up <- subset(agg_up, agg_up$Score < RRA_Score)
 agg_up <- as.data.frame(agg_up)
+
+## remove duplicates
+names_down  <- as.list(agg_down[['Name']])
+names_up  <- as.list(agg_up[['Name']])
+names_intersect <- intersect(names_up, names_down)
+agg_down <- agg_down[ ! agg_down$Name %in% names_intersect, ]
+agg_up <- agg_up[ ! agg_up$Name %in% names_intersect, ]
+
+## if in both delete
 
 rm(list = ls(pattern="DEGs_up"))
 rm(list = ls(pattern="r_up"))
@@ -60,6 +69,13 @@ rm(list = ls(pattern="r_up"))
 genes <- rbind(agg_down,agg_up)
 colnames(genes) <- c("Name","Score")
 genes <- genes[order(genes$Score),]
+
+# Save num. of DEGs for report
+paste("num. of upregulated DEGs: ", collapse = '\n') %>% cat()
+paste(nrow(agg_up), collapse = '\n') %>% cat()
+paste("\n", collapse = '\n') %>% cat()
+paste("num. of downregulated DEGs: ", collapse = '\n') %>% cat()
+paste(nrow(agg_down), collapse = '\n') %>% cat()
 
 # Convert results into csv files
 write.table(agg_down, "output/metaDEGs/MetaDEGs_down.txt",sep=",", row.names=FALSE)

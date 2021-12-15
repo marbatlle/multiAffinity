@@ -9,8 +9,8 @@ def multimetrics(data):
         # plot
         sns.set_context("talk", font_scale=1)
         plt.figure(figsize=(10,7))
-        fig = sns.scatterplot(data=df, y='Overlap Degree', x='Participation Coefficient', size='Corr', sizes =(20,500), alpha = 0.5, color='#345488')
-        fig.legend(loc='upper left', frameon=False)
+        fig = sns.scatterplot(data=df, y='Overlap Degree', x='Participation Coefficient', size='Corr', sizes =(100,500), alpha = 0.7, color='#3C5488B2')
+        fig.legend(loc='center left', bbox_to_anchor=(1, 1), frameon=False)
         #define structure
         fig.set_xlim([-0.05, 1.05])
         fig.set_ylim([-1.5, max_value+max_value/10])
@@ -50,12 +50,12 @@ def multimetrics(data):
         plt.axvline(x=0.66, color = 'black', linewidth = 1, linestyle = 'dashed')
         plt.axhline(y=0, color = 'black', linewidth = 1, linestyle = 'dashed')
         # export plot
-        fig.figure.savefig("output/Affinity/participation_plot.png")
+        fig.figure.savefig("output/Affinity/participation_plot.png", bbox_inches="tight")
 
 # import dataframe
 df = pd.read_csv('output/multiAffinity_report.csv', index_col=0)
 df['Overlap Degree'] = stats.zscore(df['Overlap Degree']) #transform to z score
-df = df.rename(columns={'DifExp-Aff Corr': 'Corr'})
+df = df.rename(columns={'AS-DE Corr': 'Corr'})
 df.apply(pd.to_numeric)
 df['Corr'] = df['Corr'].abs()
 multimetrics(df)

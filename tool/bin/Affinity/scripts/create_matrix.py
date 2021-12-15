@@ -49,8 +49,12 @@ column_names = df['Genes'].tolist()
 matrix.columns = column_names
 matrix.index.name = None
 
+matrix = pd.DataFrame(matrix)
+
+#matrix=((matrix-matrix.mean())/matrix.std())
+
 # Change the directory
 os.chdir(glob_dir)
+print(matrix)
 
-#matrix=matrix.set_index('ids')
 matrix.to_csv('Affinity/output/RWR_matrix.txt', sep='\t')

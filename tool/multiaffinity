@@ -8,7 +8,7 @@ control_id=Normal
 multiXrank_r=0.5
 multiXrank_selfloops=1
 Molti_modularity=1
-Molti_Louvain=5
+Molti_Louvain=0
 approach=communities
 
 # Usage function
