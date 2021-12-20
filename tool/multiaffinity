@@ -5,11 +5,11 @@ set -euo pipefail
 padj=0.05
 LFC=1
 control_id=Normal
-multiXrank_r=0.5
+multiXrank_r=0.15
 multiXrank_selfloops=1
 Molti_modularity=1
-Molti_Louvain=0
-approach=communities
+Molti_Louvain=5
+approach=local
 
 # Usage function
 usage(){
@@ -20,7 +20,7 @@ echo "                     [-g multiXrank_selfloops] [-i Molti_modularity] [-j M
 echo -e '\n'
 echo "arguments:"
 echo "    -h                          show this help message and exit"
-echo "    -a approach                 optional - define the approach as full or communities (default)"
+echo "    -a approach                 optional - use a local (community based) or global approach (default is local)"
 echo "    -o output_path              indicates output directory"
 echo "    -c counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
 echo "    -m metadata_path            path to metadata, single or multiple (-c metadata_path1,metadata_path2)"
@@ -77,7 +77,7 @@ if [ -z ${metadata+x} ]; then echo "-m is obligatory"; exit 1; fi
 if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
 
 # Check approach
-if [ $approach = "communities" ] || [ $approach = "full" ]; then : ; else echo "Define approach input as communities or full"; exit 1; fi
+if [ $approach = "local" ] || [ $approach = "global" ]; then : ; else echo "Define approach input as local or global"; exit 1; fi
 
 # Curating the inputs
 mkdir -p $TMPFILE/tool/input; mkdir -p $TMPFILE/tool/input/layers; mkdir -p $TMPFILE/tool/input/data; mkdir -p $TMPFILE/tool/input/data/counts; mkdir -p $TMPFILE/tool/input/data/metadata

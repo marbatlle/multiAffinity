@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 from scipy import stats
-from scipy.stats import spearmanr
+from scipy.stats import pearsonr
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -53,7 +53,7 @@ path = 'Affinity/output/'
 from sklearn.preprocessing import MinMaxScaler
 scaler=MinMaxScaler(feature_range=(0,1))
 
-#calculate spearman Rank correlation and corresponding p-value
+#calculate pearson Rank correlation and corresponding p-value
 for i in genes:
     corr_df = result[['log2FoldChange',i]]
     corr_df = corr_df.dropna()
@@ -62,12 +62,12 @@ for i in genes:
     mean = np.mean(AS_array)
     outlier = abs(AS_array - mean) > 1.5 * np.std(AS_array)
     outliers = AS_array[outlier].tolist()
-    #corr_df = corr_df[~corr_df[i].isin(outliers)]
+    corr_df = corr_df[~corr_df[i].isin(outliers)]
     corr_df[i]=scaler.fit_transform(corr_df[[i]])
     export_path = os.path.join(path, i + '_matrix.csv')
     corr_df.to_csv(export_path,sep = ",", index=True, header=True)
     com_size = len(corr_df)
-    rho, p = spearmanr(corr_df['log2FoldChange'], corr_df[i])
+    rho, p = pearsonr(corr_df['log2FoldChange'], corr_df[i])
     if p < args.padj:
         if com_size > 6:
             print(i+','+str(rho)+','+str(p)+','+str(com_size))
