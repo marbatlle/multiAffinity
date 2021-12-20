@@ -55,6 +55,5 @@ matrix = pd.DataFrame(matrix)
 
 # Change the directory
 os.chdir(glob_dir)
-print(matrix)
 
 matrix.to_csv('Affinity/output/RWR_matrix.txt', sep='\t')

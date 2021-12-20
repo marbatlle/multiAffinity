@@ -2,7 +2,7 @@ Load <- function(packages) {
   for(package_name in packages)
   {suppressMessages(suppressWarnings(library(package_name,character.only=TRUE, quietly = TRUE)));}
 }
-Load(c("tidyverse","DESeq2","IHW","data.table"))
+Load(c("tidyverse","DESeq2","IHW","data.table","ashr"))
 
 
 # get the input passed from the shell script
@@ -35,15 +35,18 @@ dds <- DESeq(dds)
 dds$tissue <- relevel(dds$tissue, ref = "control")
 
 # Obtain deregulation values for all genes
-res <- results(dds, alpha=DESeq2_padj, cooksCutoff=FALSE)
+res <- results(dds)
+#res <- lfcShrink(dds, res=res,type = "ashr", lfcThreshold = 0.5)old #for visualizing
+res <- as.data.frame(res)
 res <- subset(res, res$padj < DESeq2_padj)
+
+write.csv(res, "src/tmp/sample_difexp.txt")
 
 ## Order all differentially expressed genes by effect size (the absolute value of log2FoldChange)
 res <- res[order(-abs(res$log2FoldChange)),]
 res <- subset(res, abs(res$log2FoldChange) > DESeq2_LFC)
-write.csv(res, "src/tmp/sample_difexp.txt")
-res <- as.data.frame(res)
 
+res <- as.data.frame(res)
 
 cols<-!(colnames(res) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
 res_subset <- subset(res,,cols)
