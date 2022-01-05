@@ -2,6 +2,8 @@
 
 ![Logo](img/multiaffinity-logo.png)
 
+<br>
+
 # Overview
 
 Study how gene desregulation propagates on a (multilayer) network. This is the framework of the complete workflow:
