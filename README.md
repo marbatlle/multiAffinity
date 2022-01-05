@@ -1,4 +1,4 @@
-<img src=.img/multiAffinty-logo.png width=600>
+<img src=docs/img/multiAffinty-logo.png width=600>
 
 <br>
 
@@ -44,7 +44,7 @@ Before running the multiAffinity, the input files need to be curated to fit the 
 
 Respect the first two file types, the is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=). This is how:
 
-![GREIN_tutorial](.img/tutorial_grein.png)
+![GREIN_tutorial](docs/img/tutorial_grein.png)
 
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements:
 
@@ -149,4 +149,4 @@ All output files obtained in this computational study are available in the folde
 -------------------------------------------------------------------------
 
 <br>
-<img src=.img/logos-project.jpg width=500>
+<img src=docs/img/logos-project.jpg width=500>
