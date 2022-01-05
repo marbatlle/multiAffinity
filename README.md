@@ -99,10 +99,10 @@ Sample file:
 
 Execute the script:
 
-    usage: multiAffinity [-h] [-a Approach] -o OUTPUT_PATH  -c COUNTS_PATH 
-                        -m METADATA_PATH -n NETWORK_PATH [-b padj] [-d LFC] 
-                        [-e control_id] [-f multiXrank_r] [-g multiXrank_selfloops]
-                        [-i Molti_modularity] [-j Molti_Louvain]
+    usage: multiAffinity [-h] [-a Approach] -o Output Path  -c Counts Path -m Metadata Path
+                         -n Network Path [-b Adjusted p-value] [-d DESeq2 - LFC cutoff]
+                         [-e Control ID] [-f multiXrank - R value] [-g multiXrank - Selfloops]
+                         [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]
 
     arguments:
         -h                          show this help message and exit
