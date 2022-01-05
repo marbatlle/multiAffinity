@@ -43,12 +43,22 @@ result = result.apply (pd.to_numeric, errors='coerce')
 genes = (result.columns[1:])
 path = 'Affinity/output/'
 
+from sklearn.preprocessing import MinMaxScaler
+scaler=MinMaxScaler(feature_range=(0,1))
+
 #calculate Spearman Rank correlation and corresponding p-value
 for i in genes:
     corr_df = result[['log2FoldChange',i]]
     corr_df = corr_df.dropna()
-    export_path = os.path.join(path, i + 'corr.csv')
-    #corr_df.to_csv(export_path,sep = ",", index=True, header=True)
+    corr_df = corr_df[~corr_df.index.isin(genes)]
+    AS_array = corr_df[[i]].to_numpy()
+    mean = np.mean(AS_array)
+    outlier = abs(AS_array - mean) > 1.5 * np.std(AS_array)
+    outliers = AS_array[outlier].tolist()
+    corr_df = corr_df[~corr_df[i].isin(outliers)]
+    corr_df[i]=scaler.fit_transform(corr_df[[i]])
+    export_path = os.path.join(path, i + '_matrix.csv')
+    corr_df.to_csv(export_path,sep = ",", index=True, header=True)
     rho, p = pearsonr(corr_df['log2FoldChange'], corr_df[i])
     if p < args.padj:
         print(i+','+str(rho)+','+str(p))

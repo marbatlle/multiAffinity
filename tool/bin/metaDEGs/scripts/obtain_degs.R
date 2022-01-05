@@ -2,7 +2,7 @@ Load <- function(packages) {
   for(package_name in packages)
   {suppressMessages(suppressWarnings(library(package_name,character.only=TRUE, quietly = TRUE)));}
 }
-Load(c("tidyverse","DESeq2","IHW","data.table","ashr"))
+Load(c("tidyverse","DESeq2","IHW","data.table"))
 
 
 # get the input passed from the shell script

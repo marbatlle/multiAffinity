@@ -52,11 +52,13 @@ done < Affinity/tmp/degs_ids.txt
 python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 
 # STEP 2
-echo '      - Find correlation between node affinity and ranks'
 
-if [ "$communities_approach" = 'full' ] ; then
+
+if [ "$communities_approach" = 'global' ] ; then
+    echo '      - Find global correlation between node affinity and ranks'
     echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val' > Affinity/output/Affinity_Corr.txt
     python -W ignore Affinity/scripts/difussion_analysis.py $padj >> Affinity/output/Affinity_Corr.txt 2> /dev/null; else
+    echo '      - Find local correlation between node affinity and ranks'
     echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val,Community Size' > Affinity/output/Affinity_Corr.txt
     for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
         if [[ $(wc -l Affinity/src/clusters/${cluster} | cut -d" " -f1) -le 1 ]]; then
