@@ -99,25 +99,25 @@ Sample file:
 
 Execute the script:
 
-    usage: multiAffinity [-h] [-a approach] -o OUTPUT_PATH  -c COUNTS_PATH 
+    usage: multiAffinity [-h] [-a Approach] -o OUTPUT_PATH  -c COUNTS_PATH 
                         -m METADATA_PATH -n NETWORK_PATH [-b padj] [-d LFC] 
                         [-e control_id] [-f multiXrank_r] [-g multiXrank_selfloops]
                         [-i Molti_modularity] [-j Molti_Louvain]
 
     arguments:
         -h                          show this help message and exit
-        -a approach                 opt - use all genes (full) or use community structure (communities)(default)
-        -o output_path              name output directory
-        -c counts_path              path to counts matrix, use sep ',' (-c counts_path1,counts_path2)
-        -m metadata_path            path to metadata, use sep ',' (-c metadata_path1,metadata_path2)
-        -n network_path             path to network, use sep ',' (-c network_path1,network_path2)
-        -b padj                     opt - sets significance value for DESeq2, RRA, Spearman's Corr (default is 0.05)
-        -d LFC                      opt - defines log2FC Cutoff value for DESeq2 (default value is 1)
-        -e control_id               define metadata label for the control samples (default is Normal)
-        -f multiXrank_r             opt - global restart probability for multiXrank, given by float between 0 and 1 (default is 0.5)
-        -g multiXrank_selfloops     opt - defines whether self loops are removed or not, takes values 0 or 1 (default is 0)
-        -i Molti_modularity         opt - sets Newman modularity resolution parameter on molTI-DREAM (default is 1)
-        -j Molti_Louvain            opt - switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 0)
+        -a Approach                 computes correlation on each community or respect all genes, *local* or *global* approach [opt]
+        -o Output Path              defines name for output directory
+        -c Counts Path              path to counts matrix, use sep ','
+        -m Metadata Path            path to metadata, use sep ','
+        -n Network Path             path to network, use sep ','
+        -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr (default is 0.05)[opt]
+        -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 (default is 1) [opt]
+        -e Control ID               defines metadata label for the control samples (default is Normal) [opt]
+        -f multiXrank - R value     lobal restart probability for multiXrank, given by float between 0 and 1 (default is 0.5) [opt]
+        -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 (default is 0) [opt]
+        -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM (default is 1) [opt]
+        -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 5) [opt]
 <br>
 
 ## Output Files
