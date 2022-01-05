@@ -1,4 +1,4 @@
-<img src=.img/multiAffinty-logo.png width=600>
+<img src=.img/multiAffinty-logo.PNG width=600>
 
 <br>
 
