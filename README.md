@@ -1,6 +1,6 @@
 <br>
 
-<img src=docs/img/multiAffinty-logo.png width=400>
+<img src=docs/img/multiaffinity-logo.png>
 
 # Overview
 
