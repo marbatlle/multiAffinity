@@ -1,13 +1,10 @@
-<img src=.img/multiAffinty-logo.png width=400>
+<img src=.img/multiAffinty-logo.png width=600>
 
-<br>
-
-## Study how gene desregulation propagates on a multilayer network
 <br>
 
 # Overview
 
-This is the framework of the complete workflow:
+Study how gene desregulation propagates on a (multilayer) network. This is the framework of the complete workflow:
 <br>
 
 ![Workflow](.img/multiAffinity_workflow.png)
