@@ -7,7 +7,7 @@
 Study how gene desregulation propagates on a (multilayer) network. This is the framework of the complete workflow:
 <br>
 
-![Workflow](.img/multiAffinity_workflow.png)
+![Workflow](docs/img/multiAffinity_workflow.png)
 
 <br>
 <br>
