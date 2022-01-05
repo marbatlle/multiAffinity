@@ -6,7 +6,7 @@
 
 # Overview
 
-Study how gene desregulation propagates on a (multilayer) network, following the approach detailed in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s). This is the simplified framework of this bioinformatics analysis:
+Study how gene dysregulation propagates on a (multilayer) network, following the approach detailed in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s). This is the simplified framework of this bioinformatics analysis:
 <br>
 
 ![Workflow](img/multiAffinity_workflow.png)
