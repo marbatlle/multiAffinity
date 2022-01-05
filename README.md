@@ -23,20 +23,20 @@ This is the framework of the complete workflow:
         docker pull marbatlle/multiAffinity
         
     - Run tool
-        docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  multiAffinity <ARGUMENTS>
+        docker run -ti -v "$(pwd)/sample_data:/tool/sample_data" -v "$(pwd)/output:/tool/output" marbatlle/multiaffinity multiaffinity <ARGUMENTS>
 
     - Arguments e.g.
-        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
+        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv
 ## from Github Packages
 
     - Pull image
         docker pull marbatlle/multiAffinity
         
     - Run tool
-        docker run -ti --rm -v "$(pwd)/sample_data:/tool/sample_data" marbatlle/multiaffinity  multiAffinity <ARGUMENTS>
+        docker run -ti -v "$(pwd)/sample_data:/tool/sample_data" -v "$(pwd)/output:/tool/output" marbatlle/multiaffinity multiaffinity <ARGUMENTS>
 
     - Arguments e.g.
-        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample_layers.csv
+        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv
     
 <br>
 <br>
@@ -126,24 +126,11 @@ All output files obtained in this computational study are available in the folde
 
 **Output Report:** found at *multiAffinity_report.csv*
 
-!!UPDATE TABLE
+|metaDEGs|AS-DE Corr|Community Size|Community ID|log2FC |Participation Coefficient|Overlap Degree|
+|--------|----------|--------------|------------|-------|-------------------------|--------------|
+|ADH1C   |-0.6715   |11            |11          |-4.7742|0.1038                   |75            |
 
-| metaDEGs | RRA Score | Affinity Corr | Communities |
-|----------|-----------|---------------|-------------|
-| DHODH    | 0.0437    | 0.19237       | 493         |
-| GSTZ1    | 0.02018   | 0.17259       | 1274        |
-| ACADL    | 0.0027    | 0.16697       | 414         |
-| OXCT1    | 0.03088   | 0.16214       | 439         |
-| ACSL1    | 0.04938   | 0.11963       | 85          |
-| ALAS1    | 0.01359   | 0.1159        | 1276        |
-| ALDOB    | 0.00115   | 0.09933       | 71          |
-| FABP2    | 0.04615   | 0.08055       | 974         |
-| SLC22A12 | 0.00555   | 0.07548       | 12-47       |
-| GNMT     | 0.00527   | 0.07031       | 537         |
-
-**Multilayer Metrics Plot:** found at *output/multilayer_metrics_plot.png*
-
-!!ADD PLOT
+**Multilayer Metrics Plot:** found at *output/multilayer_metrics_plot.png*, if output consists of more than one result
 
 #### Additional results folder
 
@@ -154,12 +141,13 @@ All output files obtained in this computational study are available in the folde
 
 **Affinity**
 
-- *Affinity_Corr.txt*: presents the Spearman's correlation value and the corresponding p-value.
+- *RWR_matrix.txt*: output of random walks
+
 
 **Communities**
 
-- *communities.txt*: lays out the different communities defined by Molti-DREAM.
-- *degs_communities.txt*: presents the metaDEGs obtained in the current study and the corresponding matches in the communities.
+- *molti_output.txt*: lays out the different communities defined by Molti-DREAM.
+- *size_communities.txt*: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
 <br>
 
