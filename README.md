@@ -106,18 +106,18 @@ Execute the script:
 
     arguments:
         -h                          show this help message and exit
-        -a Approach                 computes correlation on each community or respect all genes, *local* or *global* approach [opt]
+        -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
         -o Output Path              defines name for output directory
         -c Counts Path              path to counts matrix, use sep ','
         -m Metadata Path            path to metadata, use sep ','
         -n Network Path             path to network, use sep ','
-        -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr (default is 0.05)[opt]
-        -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 (default is 1) [opt]
-        -e Control ID               defines metadata label for the control samples (default is Normal) [opt]
-        -f multiXrank - R value     lobal restart probability for multiXrank, given by float between 0 and 1 (default is 0.5) [opt]
-        -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 (default is 0) [opt]
-        -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM (default is 1) [opt]
-        -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 5) [opt]
+        -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*[opt]
+        -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
+        -e Control ID               defines metadata label for the control samples *(default is Normal)* [opt]
+        -f multiXrank - R value     lobal restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
+        -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
+        -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]
+        -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)* [opt]
 <br>
 
 ## Output Files

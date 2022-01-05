@@ -14,25 +14,25 @@ approach=local
 # Usage function
 usage(){
 echo -e '\n'
-echo "usage: multiAffinity [-h] [-a approach] -o OUTPUT_PATH  -c COUNTS_PATH -m METADATA_PATH"
-echo "                     -n NETWORK_PATH [-b padj] [-d LFC] [-e control_id] [-f multiXrank_r]"
-echo "                     [-g multiXrank_selfloops] [-i Molti_modularity] [-j Molti_Louvain]"
+echo "usage: multiAffinity [-h] [-a Approach] -o Output Path  -c Counts Path -m Metadata Path"
+echo "                     -n Network Path [-b Adjusted p-value] [-d DESeq2 - LFC cutoff]"
+echo "                     [-e Control ID] [-f multiXrank - R value] [-g multiXrank - Selfloops]"
+echo "                     [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]"
 echo -e '\n'
 echo "arguments:"
-echo "    -h                          show this help message and exit"
-echo "    -a approach                 optional - use a local (community based) or global approach (default is local)"
-echo "    -o output_path              indicates output directory"
-echo "    -c counts_path              path to counts matrix, single or multiple (-c counts_path1,counts_path2)"
-echo "    -m metadata_path            path to metadata, single or multiple (-c metadata_path1,metadata_path2)"
-echo "    -n network_path             path to network, single or multiple (-c network_path1,network_path2)"
-echo "    -b padj                     optional - sets p-value adjusted for multiple testing used as cutoff in DESeq2 (default is 0.05)"
-echo "    -d LFC                      optional - defines log2 foldchange used as cutoff in DESeq2 (default value is 1)"
-echo "    -e control_id               define the metadata label for the control samples, default is Normal"
-echo "    -f multiXrank_r             optional - defines global restart probability for multiXrank, given by float between 0 and 1 (default is 0.5)"
-echo "    -g multiXrank_selfloops     optional - defines whether self loops are removed or not, takes values 0 or 1 (default is 0)"
-echo "    -i Molti_modularity         optional - sets Newman modularity resolution parameter on molTI-DREAM (default is 1)"
-echo "    -j Molti_Louvain            optional - switches to randomized Louvain on molTI-DREAM and set the number of randomizations (default is 0)"
-echo " "
+echo "  -h                          show this help message and exit"
+echo "  -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]"
+echo "  -o Output Path              defines name for output directory"
+echo "  -c Counts Path              path to counts matrix, use sep ','"
+echo "  -m Metadata Path            path to metadata, use sep ','"
+echo "  -n Network Path             path to network, use sep ','"
+echo "  -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*[opt]"
+echo "  -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]"
+echo "  -e Control ID               defines metadata label for the control samples *(default is Normal)* [opt]"
+echo "  -f multiXrank - R value     lobal restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]"
+echo "  -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]"
+echo "  -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]"
+echo "  -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)* [opt]"
 exit 0
 } 
                 
