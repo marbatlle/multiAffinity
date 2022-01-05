@@ -1,6 +1,6 @@
 <br>
 
-<img src=docs/img/multiaffinity-logo.png>
+![Logo](docs/img/multiaffinity-logo.png)
 
 # Overview
 
@@ -149,4 +149,5 @@ All output files obtained in this computational study are available in the folde
 -------------------------------------------------------------------------
 
 <br>
-<img src=docs/img/logos-project.jpg width=500>
+
+![Other-logos](docs/img/logos-project.jpg)
