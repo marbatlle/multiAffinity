@@ -39,8 +39,6 @@ Study how gene desregulation propagates on a (multilayer) network. This is the f
 <br>
 
 # Usage
-<br>
-
 ## Input
 Before running the multiAffinity, the input files need to be curated to fit the tool's template. These consist of: **counts matrix**, **metadata** and **network layers**.
 
