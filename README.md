@@ -109,7 +109,7 @@ Execute the script:
         -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*[opt]
         -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
         -e Control ID               defines metadata label for the control samples *(default is Normal)* [opt]
-        -f multiXrank - R value     lobal restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
+        -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
         -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
         -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]
         -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)* [opt]
