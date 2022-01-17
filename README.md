@@ -28,6 +28,7 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
     - Arguments e.g.
         -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv
+        
 ## from Github Packages
 
     - Pull image
@@ -142,13 +143,15 @@ All output files obtained in this computational study are available in the folde
 
 - *RWR_matrix.txt*: output of random walks
 
-
 **Communities**
 
 - *molti_output.txt*: lays out the different communities defined by Molti-DREAM.
 - *size_communities.txt*: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
 <br>
+
+## iPC-VRE
+This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s)
 
 -------------------------------------------------------------------------
 
