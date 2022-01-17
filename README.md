@@ -148,10 +148,10 @@ All output files obtained in this computational study are available in the folde
 - *molti_output.txt*: lays out the different communities defined by Molti-DREAM.
 - *size_communities.txt*: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
-<br>
-
 ## iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s)
+
+<br>
 
 -------------------------------------------------------------------------
 
