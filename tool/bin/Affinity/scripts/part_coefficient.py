@@ -286,9 +286,237 @@ elif layers_count == 5:
         k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
         o_i = k_ia.sum() # overlapping degree of node i
         return (M/(M-1)) * (1 - ((k_ia / o_i)**2).sum()), o_i
+    
+elif layers_count == 6:
+    
+    #----# layers processing
 
+    net1 = 'Affinity/src/multiplex/layer1.tsv'
+    net2 = 'Affinity/src/multiplex/layer2.tsv'
+    net3 = 'Affinity/src/multiplex/layer3.tsv'
+    net4 = 'Affinity/src/multiplex/layer4.tsv'
+    net5 = 'Affinity/src/multiplex/layer5.tsv'
+    net6 = 'Affinity/src/multiplex/layer6.tsv'
+
+    l = [genes(net1),genes(net2),genes(net3),genes(net4),genes(net5),genes(net6)]
+    all_genes = list(frozenset().union(*l))
+
+    df_net1 = pd.read_csv(net1, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net2 = pd.read_csv(net2, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net3 = pd.read_csv(net3, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net4 = pd.read_csv(net4, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net5 = pd.read_csv(net5, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net6 = pd.read_csv(net6, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+
+    el_net1 = [ tuple(sorted(i)) for i in zip(df_net1.gene1,df_net1.gene2) ]
+    el_net2 = [ tuple(sorted(i)) for i in zip(df_net2.gene1,df_net2.gene2) ]
+    el_net3 = [ tuple(sorted(i)) for i in zip(df_net3.gene1,df_net3.gene2) ]
+    el_net4 = [ tuple(sorted(i)) for i in zip(df_net4.gene1,df_net4.gene2) ]
+    el_net5 = [ tuple(sorted(i)) for i in zip(df_net5.gene1,df_net5.gene2) ]
+    el_net6 = [ tuple(sorted(i)) for i in zip(df_net6.gene1,df_net6.gene2) ]
+
+    k = el_net1 + el_net2 + el_net3 + el_net4 + el_net5 + el_net6
+    k_uniq = [x for x in set(tuple(x) for x in k)]
+
+    #----# generate multilayer file
+
+    el_net1 = set(el_net1)
+    el_net2 = set(el_net2)
+    el_net3 = set(el_net3)
+    el_net4 = set(el_net4)
+    el_net5 = set(el_net5)
+    el_net6 = set(el_net6)
+
+    def check_layers(edge):
+        l = [ edge in x for x in [el_net1, el_net2, el_net3, el_net4, el_net5, el_net6] ]
+        return [int(i) for i in l]
+
+    inputs = []
+    for idx,edge in enumerate(k_uniq):
+        inputs.append(check_layers(edge))
+
+    with open('Affinity/tmp/multilayer.tsv', 'w') as f:
+        writer = csv.writer(f, delimiter='\t')
+        writer.writerow(["gene1", "gene2", "net1", "net2", "net3", "net4", "net5", "net6"])
+        writer.writerows([list(k_uniq[i])+x for i,x in enumerate(inputs)])
+
+    #----# compute participation coefficients
+
+    df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
+
+    M = len(df.columns) - 2 # number of layers
+    def part_coef(gene_index):
+        i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
+        k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
+        o_i = k_ia.sum() # overlapping degree of node i
+        return (M/(M-1)) * (1 - ((k_ia / o_i)**2).sum()), o_i
+
+elif layers_count == 7:
+    
+    #----# layers processing
+
+    net1 = 'Affinity/src/multiplex/layer1.tsv'
+    net2 = 'Affinity/src/multiplex/layer2.tsv'
+    net3 = 'Affinity/src/multiplex/layer3.tsv'
+    net4 = 'Affinity/src/multiplex/layer4.tsv'
+    net5 = 'Affinity/src/multiplex/layer5.tsv'
+    net6 = 'Affinity/src/multiplex/layer6.tsv'
+    net7 = 'Affinity/src/multiplex/layer7.tsv'
+    
+
+    l = [genes(net1),genes(net2),genes(net3),genes(net4),genes(net5),genes(net6),genes(net7)]
+    all_genes = list(frozenset().union(*l))
+
+    df_net1 = pd.read_csv(net1, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net2 = pd.read_csv(net2, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net3 = pd.read_csv(net3, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net4 = pd.read_csv(net4, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net5 = pd.read_csv(net5, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net6 = pd.read_csv(net6, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net7 = pd.read_csv(net7, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+
+    el_net1 = [ tuple(sorted(i)) for i in zip(df_net1.gene1,df_net1.gene2) ]
+    el_net2 = [ tuple(sorted(i)) for i in zip(df_net2.gene1,df_net2.gene2) ]
+    el_net3 = [ tuple(sorted(i)) for i in zip(df_net3.gene1,df_net3.gene2) ]
+    el_net4 = [ tuple(sorted(i)) for i in zip(df_net4.gene1,df_net4.gene2) ]
+    el_net5 = [ tuple(sorted(i)) for i in zip(df_net5.gene1,df_net5.gene2) ]
+    el_net6 = [ tuple(sorted(i)) for i in zip(df_net6.gene1,df_net6.gene2) ]
+    el_net7 = [ tuple(sorted(i)) for i in zip(df_net7.gene1,df_net7.gene2) ]
+    
+    k = el_net1 + el_net2 + el_net3 + el_net4 + el_net5 + el_net6 + el_net8
+    k_uniq = [x for x in set(tuple(x) for x in k)]
+
+    #----# generate multilayer file
+
+    el_net1 = set(el_net1)
+    el_net2 = set(el_net2)
+    el_net3 = set(el_net3)
+    el_net4 = set(el_net4)
+    el_net5 = set(el_net5)
+    el_net6 = set(el_net6)
+    el_net7 = set(el_net7)
+
+    def check_layers(edge):
+        l = [ edge in x for x in [el_net1, el_net2, el_net3, el_net4, el_net5, el_net6, el_net7] ]
+        return [int(i) for i in l]
+
+    inputs = []
+    for idx,edge in enumerate(k_uniq):
+        inputs.append(check_layers(edge))
+
+    with open('Affinity/tmp/multilayer.tsv', 'w') as f:
+        writer = csv.writer(f, delimiter='\t')
+        writer.writerow(["gene1", "gene2", "net1", "net2", "net3", "net4", "net5", "net6", "net7"])
+        writer.writerows([list(k_uniq[i])+x for i,x in enumerate(inputs)])
+
+    #----# compute participation coefficients
+
+    df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
+
+    M = len(df.columns) - 2 # number of layers
+    def part_coef(gene_index):
+        i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
+        k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
+        o_i = k_ia.sum() # overlapping degree of node i
+        return (M/(M-1)) * (1 - ((k_ia / o_i)**2).sum()), o_i
+
+elif layers_count == 8:
+    
+    #----# layers processing
+
+    net1 = 'Affinity/src/multiplex/layer1.tsv'
+    net2 = 'Affinity/src/multiplex/layer2.tsv'
+    net3 = 'Affinity/src/multiplex/layer3.tsv'
+    net4 = 'Affinity/src/multiplex/layer4.tsv'
+    net5 = 'Affinity/src/multiplex/layer5.tsv'
+    net6 = 'Affinity/src/multiplex/layer6.tsv'
+    net7 = 'Affinity/src/multiplex/layer7.tsv'
+    net8 = 'Affinity/src/multiplex/layer8.tsv'
+
+    l = [genes(net1),genes(net2),genes(net3),genes(net4),genes(net5),genes(net6),genes(net7),genes(net8)]
+    all_genes = list(frozenset().union(*l))
+
+    df_net1 = pd.read_csv(net1, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net2 = pd.read_csv(net2, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net3 = pd.read_csv(net3, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net4 = pd.read_csv(net4, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net5 = pd.read_csv(net5, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net6 = pd.read_csv(net6, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net7 = pd.read_csv(net7, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    df_net8 = pd.read_csv(net8, sep='\s+', header=None, names=['gene1', 'gene2', 'attribute'], dtype={'gene1':int, 'gene2':int,
+    'attribute':str})
+    
+
+    el_net1 = [ tuple(sorted(i)) for i in zip(df_net1.gene1,df_net1.gene2) ]
+    el_net2 = [ tuple(sorted(i)) for i in zip(df_net2.gene1,df_net2.gene2) ]
+    el_net3 = [ tuple(sorted(i)) for i in zip(df_net3.gene1,df_net3.gene2) ]
+    el_net4 = [ tuple(sorted(i)) for i in zip(df_net4.gene1,df_net4.gene2) ]
+    el_net5 = [ tuple(sorted(i)) for i in zip(df_net5.gene1,df_net5.gene2) ]
+    el_net6 = [ tuple(sorted(i)) for i in zip(df_net6.gene1,df_net6.gene2) ]
+    el_net7 = [ tuple(sorted(i)) for i in zip(df_net7.gene1,df_net7.gene2) ]
+    el_net8 = [ tuple(sorted(i)) for i in zip(df_net8.gene1,df_net8.gene2) ]
+    
+    k = el_net1 + el_net2 + el_net3 + el_net4 + el_net5 + el_net6 + el_net7 + el_net8
+    k_uniq = [x for x in set(tuple(x) for x in k)]
+
+    #----# generate multilayer file
+
+    el_net1 = set(el_net1)
+    el_net2 = set(el_net2)
+    el_net3 = set(el_net3)
+    el_net4 = set(el_net4)
+    el_net5 = set(el_net5)
+    el_net6 = set(el_net6)
+    el_net7 = set(el_net7)
+    el_net8 = set(el_net8)
+    
+    def check_layers(edge):
+        l = [ edge in x for x in [el_net1, el_net2, el_net3, el_net4, el_net5, el_net6, el_net7, el_net8] ]
+        return [int(i) for i in l]
+
+    inputs = []
+    for idx,edge in enumerate(k_uniq):
+        inputs.append(check_layers(edge))
+
+    with open('Affinity/tmp/multilayer.tsv', 'w') as f:
+        writer = csv.writer(f, delimiter='\t')
+        writer.writerow(["gene1", "gene2", "net1", "net2", "net3", "net4", "net5", "net6", "net7", "net8"])
+        writer.writerows([list(k_uniq[i])+x for i,x in enumerate(inputs)])
+
+    #----# compute participation coefficients
+
+    df = pd.read_csv("Affinity/tmp/multilayer.tsv", sep='\s+', header=0)
+
+    M = len(df.columns) - 2 # number of layers
+    def part_coef(gene_index):
+        i = df[df.gene1.isin([all_genes[gene_index]])|df.gene2.isin([all_genes[gene_index]])]
+        k_ia = i.iloc[:,2:len(df.columns)].sum() # in-layer degree of node i
+        o_i = k_ia.sum() # overlapping degree of node i
+        return (M/(M-1)) * (1 - ((k_ia / o_i)**2).sum()), o_i
+     
+    
 else:
-    print("Add 1 to 5 layers")
+    print("Add 1 to 8 layers")
 
 inputs = range(len(all_genes))
 num_cores = multiprocessing.cpu_count()
