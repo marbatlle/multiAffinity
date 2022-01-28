@@ -15,9 +15,9 @@ echo '      - Defining Communities'
 networks=$(ls src/networks/*.gr)
 
 if [ $Molti_modularity = 1 ] && [ $Molti_Louvain = 0 ]; then
-   ./src/MolTi-DREAM/src/molti-console -o output/tmp/communities ${networks} >& /dev/null
+   ./src/MolTi-DREAM/src/molti-console -o output/tmp/communities ${networks} #>& /dev/null
 else
-  ./src/MolTi-DREAM/src/molti-console -p ${Molti_modularity} -r ${Molti_Louvain} -o output/tmp/communities ${networks} >& /dev/null
+  ./src/MolTi-DREAM/src/molti-console -p ${Molti_modularity} -r ${Molti_Louvain} -o output/tmp/communities ${networks} #>& /dev/null
 fi
 
 
