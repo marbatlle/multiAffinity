@@ -7,7 +7,7 @@ LFC=1
 control_id=Normal
 multiXrank_r=0.15
 multiXrank_selfloops=1
-Molti_modularity=1
+Molti_modularity=8
 Molti_Louvain=5
 approach=local
 

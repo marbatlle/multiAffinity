@@ -1,13 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-# Create output report
-python bin/Conclude/output.py
-
-# Create output plot
-mapfile -n 3 < output/multiAffinity_report.csv
-if ((${#MAPFILE[@]}>2)); then
-    python bin/Conclude/plot_participation.py
+if [ -f "Affinity/src/clusters/*.txt" ]; then
+    # Create output report
+    python bin/Conclude/output.py
+    # Create output plot
+    mapfile -n 3 < output/multiAffinity_report.csv
+    if ((${#MAPFILE[@]}>2)); then
+        python bin/Conclude/plot_participation.py
+    fi
+else
+    echo 'No significantly correlated genes' >> output/multiAffinity_report.csv
 fi
 
 # Organize output files

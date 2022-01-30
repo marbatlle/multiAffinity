@@ -47,13 +47,10 @@ do
     python -W ignore Affinity/scripts/multiXrank.py >& /dev/null;
     mv Affinity/src/output/multiplex_1.tsv Affinity/output/${seed}.tsv
 done < Affinity/tmp/degs_ids.txt
-
 # Creating RWR matrix with outputs'
 python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 
 # STEP 2
-
-
 if [ "$communities_approach" = 'global' ] ; then
     echo '      - Find global correlation between node affinity and ranks'
     echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val' > Affinity/output/Affinity_Corr.txt
@@ -62,14 +59,20 @@ if [ "$communities_approach" = 'global' ] ; then
     echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val,Community Size' > Affinity/output/Affinity_Corr.txt
     for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
         if [[ $(wc -l Affinity/src/clusters/${cluster} | cut -d" " -f1) -le 1 ]]; then
-            continue; else
+            rm -r Affinity/src/clusters/${cluster}
+        fi
+    done
+    if [ -f "Affinity/src/clusters/*.txt" ]; then
+        for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
             cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
             python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster 2> /dev/null
             rm -r Affinity/src/clusters/cluster_tmp.txt
-        fi
-    done
-    cat Affinity/output/Affinity_Corr_*.txt >> Affinity/output/Affinity_Corr.txt
-    rm -rf Affinity/output/Affinity_Corr_*.txt
+        done
+        cat Affinity/output/Affinity_Corr_*.txt >> Affinity/output/Affinity_Corr.txt
+        rm -rf Affinity/output/Affinity_Corr_*.txt
+    else
+        echo 'No significant clusters, try modifying the Molti-Dream parameters'
+    fi
 fi
 
 # STEP 3
