@@ -62,16 +62,17 @@ if [ "$communities_approach" = 'global' ] ; then
             rm -r Affinity/src/clusters/${cluster}
         fi
     done
-    if [ -f "Affinity/src/clusters/*.txt" ]; then
+    if ls Affinity/src/clusters/*.txt > /dev/null
+    then
         for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
-            cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
-            python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster 2> /dev/null
-            rm -r Affinity/src/clusters/cluster_tmp.txt
+           cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
+           python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster 2> /dev/null
+           rm -r Affinity/src/clusters/cluster_tmp.txt
         done
         cat Affinity/output/Affinity_Corr_*.txt >> Affinity/output/Affinity_Corr.txt
         rm -rf Affinity/output/Affinity_Corr_*.txt
     else
-        echo 'No significant clusters, try modifying the Molti-Dream parameters'
+        echo  'No significant clusters, try modifying the Molti-Dream parameters'
     fi
 fi
 

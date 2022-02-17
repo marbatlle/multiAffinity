@@ -41,6 +41,7 @@ for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1);
     rm -f src/tmp/clean_* ; rm -f src/tmp/grein_*
 done
 
+
 ## Match genes between studies
 Rscript scripts/gene_list.R >& /dev/null; mv src/tmp/counts/gene_list.txt src/tmp/gene_list.txt #obtain distinct gene list
 for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1); do
