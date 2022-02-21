@@ -4,8 +4,6 @@
 
 <br>
 
-## Overview
-
 Study how gene dysregulation propagates on a (multilayer) network, following the approach detailed in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t). This is the simplified framework of this bioinformatics analysis:
 <br>
 
@@ -13,9 +11,9 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 <br>
 
-## Quick start 
+# Quick start 
 
-### from Docker
+## from Docker
 
     - Pull image
         docker pull marbatlle/multiAffinity
@@ -28,16 +26,16 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 <br>
 
-## Usage
-### Input
+# Usage
+## Input
 Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from other sources.
 
-#### Obtain inputs from GREIN
+### Obtain inputs from GREIN
 This workflow is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=). This is how:
 
 ![GREIN_tutorial](img/tutorial_grein.png)
 
-#### Obtain inputs from other sources
+### Obtain inputs from other sources
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements, and remember, counts matrix and metadata have to share the same *sampleid* identifier.
 
     *Metadata*
@@ -63,7 +61,7 @@ If your desired dataset/s have not been processed by GREIN, please, request its 
                 ENSG00000000419,DPM1,321,228,56,157
                 ENSG00000000457,SCYL3,236,176,118,131
 
-### Run the script
+## Run the script
 
 Execute the script:
 
@@ -85,7 +83,7 @@ Execute the script:
         -f multiXrank - R value     default is 0.15
         -g multiXrank - Selfloops   default is 1
 
-### Output Files
+## Output Files
 
 All output files obtained in this computational study are available in the folder /output. Since there is multiple output files, for convenience, we also provide a spreadsheet file including the key results retrieved from the output files.
 
@@ -111,11 +109,11 @@ All output files obtained in this computational study are available in the folde
     - molti_output.txt: lays out the different communities defined by Molti-DREAM.
     - size_communities.txt: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
-### iPC-VRE
+## iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s).
 
-### Advanced User Arguments
-#### Network Layers
+## Advanced User Arguments
+### Network Layers
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
     Sample Argument:
@@ -129,26 +127,27 @@ Instead of using a general biological data multilayer, the user can use gene-gen
         CNBP,FTSJ3
         CNBP,TRA2B
 
-#### Study Significance
+### Study Significance
 The user can modify the adjusted p-value and LFC threshold set throughout the workflow
 
     -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*
     -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
 
 
-#### Analysis Approach 
+### Analysis Approach 
 The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the propagation towards all the genes in the multilayer network of study.
 
     -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
 
-#### MolTI-DREAM Arguments 
+### MolTI-DREAM Arguments 
 We implemented the use of the [MolTI-DREAM](https://github.com/gilles-didier/MolTi-DREAM/tree/master/src) tool into our workflow to define communities within our multilayer network, to optimize the results, the user can define an alternative **Modularity resolution parameter** and **number of Louvain randomizations**.
 
     -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]
     -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)* [opt]
 
 If you are unsure of which Modularity value to set for your chosen network layers of study, you may be able to find the optimal value by using https://github.com/marbatlle/Optimize-Mod-Resolution.
-#### MultiXrank Arguments 
+
+### MultiXrank Arguments 
 For this pipeline, we also implemented [multiXrank](https://github.com/anthbapt/multixrank), in this case, to perform a RWR computation, to optimize your values, you can modify parameters such as the **R value** and **Selfloops**. You can find more information at https://multixrank-doc.readthedocs.io/en/latest/.
 
         -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
