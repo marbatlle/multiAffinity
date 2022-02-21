@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+printf '\n\n              ***************************************************************' 
+printf '\n              ************************ MULTIAFFINITY ************************' 
+printf '\n              ***************************************************************\n' 
+
 # Defining default values for parameters
 padj=0.05
 LFC=1
@@ -14,11 +18,23 @@ approach=local
 # Usage function
 usage(){
 echo -e '\n'
-echo "usage: multiAffinity [-h] [-a Approach] -o Output Path  -c Counts Path -m Metadata Path"
+echo "BASIC USER:"
+echo "usage: multiaffinity [-h]  -o Output Path  -c Counts Path  -m Metadata Path  -n Network Path"
+echo "                     [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]"
+echo "arguments:"
+echo "  -h                          show this help message and exit"
+echo "  -o Output Path              defines name for output directory"
+echo "  -c Counts Path              path to counts matrix, use sep ','"
+echo "  -m Metadata Path            path to metadata, use sep ','"
+echo "  -n Network Path             path to network, use sep ','"
+echo "  -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM (default is 1) [opt]"
+echo "  -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 5) [opt]"
+echo -e '\n'
+echo "EXPERT USER:"
+echo "usage: multiaffinity [-h] [-a Approach] -o Output Path  -c Counts Path -m Metadata Path"
 echo "                     -n Network Path [-b Adjusted p-value] [-d DESeq2 - LFC cutoff]"
 echo "                     [-e Control ID] [-f multiXrank - R value] [-g multiXrank - Selfloops]"
 echo "                     [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]"
-echo -e '\n'
 echo "arguments:"
 echo "  -h                          show this help message and exit"
 echo "  -a Approach                 computes correlation on each community or respect all genes, local or global approach (default is local)[opt]"
@@ -33,6 +49,9 @@ echo "  -f multiXrank - R value     global restart probability for multiXrank, g
 echo "  -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 (default is 1) [opt]"
 echo "  -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM (default is 1) [opt]"
 echo "  -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 5) [opt]"
+echo ' '
+printf '\nfind more info at https://github.com/marbatlle/multiAffinity :)\n'
+echo -e '\n'
 exit 0
 } 
                 
@@ -105,3 +124,5 @@ mkdir -p $output_dir
 cp -a $TMPFILE/tool/output/. ./$output_dir; rm -rf $TMPFILE
 
 echo 'multiAffinity completed. Check out the output folder'
+
+printf '\n              find more info at https://github.com/marbatlle/multiAffinity :)\n'
