@@ -118,7 +118,7 @@ int main(int argc, char **argv) {
 		ctmp = strchr(outputFileName, '.');
 		if(ctmp != NULL)
 			ctmp[0] = '\0';
-		sprintf(outputFileName, "%s_fixed.tsva", outputFileName);
+		sprintf(outputFileName, "%s_fixed.gra", outputFileName);
 	}
 	if((fi1 = fopen(inputFileNameGraph, "r")) && (fi2 = fopen(inputFileNameList, "r")) && (fo = fopen(outputFileName, "w"))) {
 		TypeGraph *g, *r;

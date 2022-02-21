@@ -1,9 +1,9 @@
 ClustNSeeToDream.o: ClustNSeeToDream.c Utils.h Partition.h
 Compute.o: Compute.c Utils.h Graph.h Partition.h Louvain.h \
  EdgesComposition.h
-ERMG.o: ERMG.c ERMG.h Graph.h Utils.h Partition.h
 EdgesComposition.o: EdgesComposition.c EdgesComposition.h Partition.h \
  Graph.h Utils.h
+ERMG.o: ERMG.c ERMG.h Graph.h Utils.h Partition.h
 ExtractPartition.o: ExtractPartition.c Utils.h Partition.h
 ExtractSubGraph.o: ExtractSubGraph.c Utils.h Graph.h Partition.h
 FilterGraph.o: FilterGraph.c Utils.h Graph.h Partition.h
