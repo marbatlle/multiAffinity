@@ -34,17 +34,19 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 # Usage
 ## Input
-Before running the multiAffinity, the input files need to be curated to fit the tool's template. These consist of: **counts matrix**, **metadata** and **network layers**.
+Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from another sources.
 
-Respect the first two file types, the is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=). This is how:
+### Obtain inputs from GREIN
+This workflow is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=). This is how:
 
 ![GREIN_tutorial](img/tutorial_grein.png)
 
+### Ontain inputs from other sources
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements:
 
-### -- Metadata
+#### -- Metadata
 * The files must be named following -- *sampleid*_metadata.csv
-* Make sure metadata labels contain the word Normal
+* The metadata labels should be 'Tumor' vs 'Normal', as shown in the example.
 
 Sample file:
 
@@ -54,9 +56,9 @@ Sample file:
     GSM2177842,Tumor
     GSM2177843,Normal
 
-### -- Counts Matrix
+#### -- Counts Matrix
 * The files must be named following -- *sampleid*_data.csv
-* Make sure counts matrix includes gene symbols.
+* Make sure counts matrix include the gene symbols.
 * The series accession identifiers (GSM) must match the ones on the metadata file.
 
 Sample file:
@@ -69,37 +71,23 @@ Sample file:
 
 Remember, counts matrix and metadata have to share the same *sampleid* identifier.
 
-### -- Network Layers
-
-The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a separate file.
-
-Sample file:
-
-    CNBP,HNRNPAB
-    CNBP,RPL10A
-    CNBP,CENPN
-    CNBP,RSL24D1
-    CNBP,SMAP
-    CNBP,FTSJ3
-    CNBP,TRA2B
 <br>
 
 ## Run the script
 
 Execute the script:
 
-    usage: multiAffinity [-h] [-a Approach] -o Output Path  -c Counts Path -m Metadata Path
-                         -n Network Path [-b Adjusted p-value] [-d DESeq2 - LFC cutoff]
-                         [-e Control ID] [-f multiXrank - R value] [-g multiXrank - Selfloops]
-                         [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]
-
-    arguments:
-        -h                          show this help message and exit
-        -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
+    usage: multiaffinity [<files>] [<options>]
+    
+    files:
         -o Output Path              defines name for output directory
         -c Counts Path              path to counts matrix, use sep ','
         -m Metadata Path            path to metadata, use sep ','
+
+    options:
+        -h                          show this help message and exit
         -n Network Path             path to network, use sep ','
+        -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
         -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*[opt]
         -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
         -e Control ID               defines metadata label for the control samples *(default is Normal)* [opt]
@@ -139,6 +127,23 @@ All output files obtained in this computational study are available in the folde
 
 ## iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s)
+
+
+
+# advanced users
+### -- Network Layers
+
+The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a separate file.
+
+Sample file:
+
+    CNBP,HNRNPAB
+    CNBP,RPL10A
+    CNBP,CENPN
+    CNBP,RSL24D1
+    CNBP,SMAP
+    CNBP,FTSJ3
+    CNBP,TRA2B
 
 <br>
 
