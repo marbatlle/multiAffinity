@@ -40,7 +40,7 @@ This workflow is designed to work seamlessly with the output created by [GREIN](
 #### Obtain inputs from other sources
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements, and remember, counts matrix and metadata have to share the same *sampleid* identifier.
 
-##### Metadata
+**Metadata**
 * The files must be named following -- *sampleid*_metadata.csv
 * The metadata labels should be 'Tumor' vs 'Normal', as shown in the example.
 
@@ -51,7 +51,7 @@ If your desired dataset/s have not been processed by GREIN, please, request its 
         GSM2177842,Tumor
         GSM2177843,Normal
 
-##### Counts Matrix
+**Counts Matrix**
 * The files must be named following -- *sampleid*_data.csv
 * Make sure counts matrix include the gene symbols.
 * The series accession identifiers (GSM) must match the ones on the metadata file.
