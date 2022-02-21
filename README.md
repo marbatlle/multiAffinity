@@ -41,7 +41,7 @@ This workflow is designed to work seamlessly with the output created by [GREIN](
 
 ![GREIN_tutorial](img/tutorial_grein.png)
 
-### Ontain inputs from other sources
+### Obtain inputs from other sources
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements:
 
 #### -- Metadata
@@ -128,12 +128,13 @@ All output files obtained in this computational study are available in the folde
 ## iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s)
 
-
-
-# advanced users
+## Advanced users options
 ### -- Network Layers
+Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
-The last input required is a gene-gene network consisting of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a separate file.
+Sample Argument:
+
+-n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv  
 
 Sample file:
 
