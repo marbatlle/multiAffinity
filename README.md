@@ -11,7 +11,7 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 <br>
 
-# Quick start 
+# 1. Quick start 
 
 ### from Docker
 
@@ -26,8 +26,8 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 <br>
 
-# Usage
-## Input
+# 2. Usage
+## 2.1. Input
 Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from other sources.
 
 ### Obtain inputs from GREIN
@@ -63,7 +63,7 @@ If your desired dataset/s have not been processed by GREIN, please, request its 
 
 
 
-## Run the script
+## 2.2. Run the script
 
 Execute the script:
 
@@ -85,7 +85,7 @@ Execute the script:
         -f multiXrank - R value     default is 0.15
         -g multiXrank - Selfloops   default is 1
 
-## Output Files
+## 2.3. Output Files
 
 All output files obtained in this computational study are available in the folder /output. Since there is multiple output files, for convenience, we also provide a spreadsheet file including the key results retrieved from the output files.
 
@@ -111,10 +111,10 @@ All output files obtained in this computational study are available in the folde
     - molti_output.txt: lays out the different communities defined by Molti-DREAM.
     - size_communities.txt: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
-## iPC-VRE
+## 2.4. iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s).
 
-## Advanced User Arguments
+## 2.5. Advanced User Arguments
 ### Network Layers
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
