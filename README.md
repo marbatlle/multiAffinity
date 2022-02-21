@@ -128,7 +128,7 @@ All output files obtained in this computational study are available in the folde
 ## iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s)
 
-## Advanced users options
+## Advanced User Arguments
 ### -- Network Layers
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
