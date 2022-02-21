@@ -24,11 +24,11 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
         docker pull marbatlle/multiAffinity
         
     - Run tool
-        docker run -ti -v "$(pwd)/sample_data:/tool/sample_data" -v "$(pwd)/output:/tool/output" marbatlle/multiaffinity multiaffinity <ARGUMENTS>
-
-    - Arguments e.g.
-        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
+        docker run -ti -v "$(pwd)/sample_data:/tool/sample_data" -v "$(pwd)/output:/tool/output" marbatlle/multiaffinity multiaffinity <FILES> <OPTIONS>
         
+    - Files e.g.
+        -o result -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
+
 <br>
 <br>
 
@@ -77,14 +77,14 @@ Remember, counts matrix and metadata have to share the same *sampleid* identifie
 
 Execute the script:
 
-    usage: multiaffinity [<files>] [<options>]
+    usage: multiaffinity [<files>] [<arguments>]
     
     files:
         -o Output Path              defines name for output directory
         -c Counts Path              path to counts matrix, use sep ','
         -m Metadata Path            path to metadata, use sep ','
 
-    options:
+    optional arguments:
         -h                          show this help message and exit
         -n Network Path             path to network, use sep ','
         -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
