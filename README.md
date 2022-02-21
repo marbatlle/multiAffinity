@@ -38,36 +38,30 @@ This workflow is designed to work seamlessly with the output created by [GREIN](
 ![GREIN_tutorial](img/tutorial_grein.png)
 
 #### Obtain inputs from other sources
-If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements:
+If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements, and remember, counts matrix and metadata have to share the same *sampleid* identifier.
 
 ##### Metadata
 * The files must be named following -- *sampleid*_metadata.csv
 * The metadata labels should be 'Tumor' vs 'Normal', as shown in the example.
 
-Sample file:
-
-    ,tissue type
-    GSM2177840,Normal
-    GSM2177841,Normal
-    GSM2177842,Tumor
-    GSM2177843,Normal
+    Sample file:
+        ,tissue type
+        GSM2177840,Normal
+        GSM2177841,Normal
+        GSM2177842,Tumor
+        GSM2177843,Normal
 
 ##### Counts Matrix
 * The files must be named following -- *sampleid*_data.csv
 * Make sure counts matrix include the gene symbols.
 * The series accession identifiers (GSM) must match the ones on the metadata file.
 
-Sample file:
-
-    ,gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
-    ENSG00000000003,TSPAN6,2076,1326,457,598
-    ENSG00000000005,TNMD,0,0,0,0,1
-    ENSG00000000419,DPM1,321,228,56,157
-    ENSG00000000457,SCYL3,236,176,118,131
-
-Remember, counts matrix and metadata have to share the same *sampleid* identifier.
-
-<br>
+    Sample file:
+        ,gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
+        ENSG00000000003,TSPAN6,2076,1326,457,598
+        ENSG00000000005,TNMD,0,0,0,0,1
+        ENSG00000000419,DPM1,321,228,56,157
+        ENSG00000000457,SCYL3,236,176,118,131
 
 ### Run the script
 
@@ -91,8 +85,6 @@ Execute the script:
         -f multiXrank - R value     default is 0.15
         -g multiXrank - Selfloops   default is 1
 
-<br>
-
 ### Output Files
 
 All output files obtained in this computational study are available in the folder /output. Since there is multiple output files, for convenience, we also provide a spreadsheet file including the key results retrieved from the output files.
@@ -105,21 +97,19 @@ All output files obtained in this computational study are available in the folde
 
 **Multilayer Metrics Plot:** found at *output/multilayer_metrics_plot.png*, if output consists of more than one result
 
-##### Additional results folder
+**Additional results folder**
 
-**metaDEGs/**
-- *degs_report.txt*: displays the number of upregulated and downregulated DEGs obtained individually from each study.
-- *metaDEGs.txt*: describes all the obtained metaDEGs and the corresponding RRA Score.
-- *wasserstein.txt*: remarks every pair of studies that show a significant difference between their distributions.
+    metaDEGs/
+    - degs_report.txt: displays the number of upregulated and downregulated DEGs obtained individually from each study.
+    - metaDEGs.txt: describes all the obtained metaDEGs and the corresponding RRA Score.
+    - wasserstein.txt: remarks every pair of studies that show a significant difference between their distributions.
 
-**Affinity**
+    Affinity/
+    - RWR_matrix.txt: output of random walks
 
-- *RWR_matrix.txt*: output of random walks
-
-**Communities**
-
-- *molti_output.txt*: lays out the different communities defined by Molti-DREAM.
-- *size_communities.txt*: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
+    Communities/
+    - molti_output.txt: lays out the different communities defined by Molti-DREAM.
+    - size_communities.txt: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
 ### iPC-VRE
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s).
