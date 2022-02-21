@@ -38,6 +38,9 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
     
     - Files e.g.
         -o result -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
+        
+### from the iPC-VRE
+This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s).
 <br>
 
 # 2. Usage
@@ -125,10 +128,9 @@ All output files obtained in this computational study are available in the folde
     - molti_output.txt: lays out the different communities defined by Molti-DREAM.
     - size_communities.txt: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
 
-## 2.4. iPC-VRE
-This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s).
 
-## 2.5. Advanced User Arguments
+
+## 2.4. Advanced User Arguments
 #### Network Layers
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
