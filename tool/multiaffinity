@@ -20,14 +20,14 @@ approach=local
 
 # Usage function
 help(){
-echo 'usage: multiaffinity [<files>] [<options>]'
+echo 'usage: multiaffinity [<files>] [<arguments>]'
 echo ''
 echo 'select the files of study:'
 echo "  -o Output Path                  defines name for output directory"
 echo "  -c Counts Path                  path to counts matrix, use sep ','"
 echo "  -m Metadata Path                path to metadata, use sep ','"
 echo ''
-echo 'the following optional commands are available:'
+echo 'the following optional arguments are available:'
 echo "  -h help"
 echo "  -n Network Path                 path to network, use sep ','"
 echo "  -i MolTI-DREAM - Modularity     default is 1"
