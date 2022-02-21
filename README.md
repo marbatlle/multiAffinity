@@ -24,7 +24,7 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
     - Files e.g.
         -o result -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
         
-### from Docker
+### from Github
 
     - Clone repository
         git clone https://github.com/marbatlle/multiAffinity
