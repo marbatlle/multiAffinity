@@ -13,7 +13,7 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 # Quick start 
 
-## from Docker
+### from Docker
 
     - Pull image
         docker pull marbatlle/multiAffinity
