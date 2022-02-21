@@ -30,12 +30,11 @@ echo ''
 echo 'the following optional arguments are available:'
 echo "  -h help"
 echo "  -n Network Path                 path to network, use sep ','"
-echo "  -i MolTI-DREAM - Modularity     default is 1"
-echo "  -j MolTI-DREAM - Louvain        default is 5"
 echo "  -a Approach                     default is local"
 echo "  -b Adjusted p-value             default is 0.05"
 echo "  -d DESeq2 - LFC cutoff          default is 1"
-echo "  -e Control ID                   default is Normal"
+echo "  -i MolTI-DREAM - Modularity     default is 1"
+echo "  -j MolTI-DREAM - Louvain        default is 5"
 echo "  -f multiXrank - R value         default is 0.15"
 echo "  -g multiXrank - Selfloops       default is 1"
 echo -e '\n'
