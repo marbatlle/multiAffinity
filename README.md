@@ -34,7 +34,7 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 # Usage
 ## Input
-Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from another sources.
+Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from other sources.
 
 ### Obtain inputs from GREIN
 This workflow is designed to work seamlessly with the output created by [GREIN](http://www.ilincs.org/apps/grein/?gse=). This is how:
