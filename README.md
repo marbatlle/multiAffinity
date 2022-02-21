@@ -115,7 +115,7 @@ All output files obtained in this computational study are available in the folde
 This approach can also be computed through the individualized Paediatric Cure - Virtual Research Environment as demonstrated in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s).
 
 ## 2.5. Advanced User Arguments
-### Network Layers
+#### Network Layers
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
     Sample Argument:
@@ -129,19 +129,19 @@ Instead of using a general biological data multilayer, the user can use gene-gen
         CNBP,FTSJ3
         CNBP,TRA2B
 
-### Study Significance
+#### Study Significance
 The user can modify the adjusted p-value and LFC threshold set throughout the workflow
 
     -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*
     -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
 
 
-### Analysis Approach 
+#### Analysis Approach 
 The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the propagation towards all the genes in the multilayer network of study.
 
     -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
 
-### MolTI-DREAM Arguments 
+#### MolTI-DREAM Arguments 
 We implemented the use of the [MolTI-DREAM](https://github.com/gilles-didier/MolTi-DREAM/tree/master/src) tool into our workflow to define communities within our multilayer network, to optimize the results, the user can define an alternative **Modularity resolution parameter** and **number of Louvain randomizations**.
 
     -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]
@@ -149,7 +149,7 @@ We implemented the use of the [MolTI-DREAM](https://github.com/gilles-didier/Mol
 
 If you are unsure of which Modularity value to set for your chosen network layers of study, you may be able to find the optimal value by using https://github.com/marbatlle/Optimize-Mod-Resolution.
 
-### MultiXrank Arguments 
+#### MultiXrank Arguments 
 For this pipeline, we also implemented [multiXrank](https://github.com/anthbapt/multixrank), in this case, to perform a RWR computation, to optimize your values, you can modify parameters such as the **R value** and **Selfloops**. You can find more information at https://multixrank-doc.readthedocs.io/en/latest/.
 
         -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
