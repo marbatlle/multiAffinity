@@ -11,9 +11,6 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
 
 ![Workflow](img/multiAffinity_workflow.png)
 
-
-
-<br>
 <br>
 
 # Quick start 
@@ -29,7 +26,6 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
     - Files e.g.
         -o result -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
 
-<br>
 <br>
 
 # Usage
@@ -169,7 +165,6 @@ For this pipeline, we also implemented [multiXrank](https://github.com/anthbapt/
 
         -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
         -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
-
 
 <br>
 
