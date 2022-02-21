@@ -129,6 +129,7 @@ This approach can also be computed through the individualized Paediatric Cure - 
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
 Sample Argument:
+
 -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv  
 
 Sample file:
