@@ -28,12 +28,10 @@ echo "  -c Counts Path                  path to counts matrix, use sep ','"
 echo "  -m Metadata Path                path to metadata, use sep ','"
 echo ''
 echo 'the following optional commands are available:'
-echo "  -h help                     "
+echo "  -h help"
+echo "  -n Network Path                 path to network, use sep ','"
 echo "  -i MolTI-DREAM - Modularity     default is 1"
 echo "  -j MolTI-DREAM - Louvain        default is 5"
-echo ''
-echo 'additional expert user commands:'
-echo "  -n Network Path                 path to network, use sep ','"
 echo "  -a Approach                     default is local"
 echo "  -b Adjusted p-value             default is 0.05"
 echo "  -d DESeq2 - LFC cutoff          default is 1"
