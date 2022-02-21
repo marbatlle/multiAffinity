@@ -40,30 +40,28 @@ This workflow is designed to work seamlessly with the output created by [GREIN](
 #### Obtain inputs from other sources
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements, and remember, counts matrix and metadata have to share the same *sampleid* identifier.
 
-*Metadata*
+    *Metadata*
+        - The files must be named following -- sampleid_metadata.csv
+        - The metadata labels should be 'Tumor' vs 'Normal', as shown in the example.
 
-    - The files must be named following -- sampleid_metadata.csv
-    - The metadata labels should be 'Tumor' vs 'Normal', as shown in the example.
+            Sample file:
+                ,tissue type
+                GSM2177840,Normal
+                GSM2177841,Normal
+                GSM2177842,Tumor
+                GSM2177843,Normal
 
-        Sample file:
-            ,tissue type
-            GSM2177840,Normal
-            GSM2177841,Normal
-            GSM2177842,Tumor
-            GSM2177843,Normal
+    *Counts Matrix*
+        - The files must be named following -- sampleid_data.csv
+        - Make sure counts matrix include the gene symbols.
+        - The series accession identifiers (GSM) must match the ones on the metadata file.
 
-*Counts Matrix*
-
-    - The files must be named following -- sampleid_data.csv
-    - Make sure counts matrix include the gene symbols.
-    - The series accession identifiers (GSM) must match the ones on the metadata file.
-
-        Sample file:
-            ,gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
-            ENSG00000000003,TSPAN6,2076,1326,457,598
-            ENSG00000000005,TNMD,0,0,0,0,1
-            ENSG00000000419,DPM1,321,228,56,157
-            ENSG00000000457,SCYL3,236,176,118,131
+            Sample file:
+                ,gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
+                ENSG00000000003,TSPAN6,2076,1326,457,598
+                ENSG00000000005,TNMD,0,0,0,0,1
+                ENSG00000000419,DPM1,321,228,56,157
+                ENSG00000000457,SCYL3,236,176,118,131
 
 ### Run the script
 
