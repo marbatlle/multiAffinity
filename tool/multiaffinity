@@ -26,7 +26,6 @@ echo 'select the files of study:'
 echo "  -o Output Path                  defines name for output directory"
 echo "  -c Counts Path                  path to counts matrix, use sep ','"
 echo "  -m Metadata Path                path to metadata, use sep ','"
-echo "  -n Network Path                 path to network, use sep ','"
 echo ''
 echo 'the following optional commands are available:'
 echo "  -h help                     "
@@ -34,6 +33,7 @@ echo "  -i MolTI-DREAM - Modularity     default is 1"
 echo "  -j MolTI-DREAM - Louvain        default is 5"
 echo ''
 echo 'additional expert user commands:'
+echo "  -n Network Path                 path to network, use sep ','"
 echo "  -a Approach                     default is local"
 echo "  -b Adjusted p-value             default is 0.05"
 echo "  -d DESeq2 - LFC cutoff          default is 1"
@@ -45,7 +45,7 @@ exit 0
 } 
                 
 # Classifying input arguments
-while getopts ":ha:o:c:m:n:lb:d:e:f:g:i:j:" opt; do
+while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
   case $opt in
     h) help                              ;;
     a) approach=($OPTARG)                ;;
@@ -59,7 +59,6 @@ while getopts ":ha:o:c:m:n:lb:d:e:f:g:i:j:" opt; do
     n) set -f
        IFS=','
        network=($OPTARG)                 ;;
-    l) general_network=1                 ;;
     b) padj=($OPTARG)                    ;;
     d) LFC=($OPTARG)                     ;;
     e) control_id=($OPTARG)              ;;
@@ -102,7 +101,7 @@ for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/in
 if [ -z ${network+x} ]; then 
   cp -a $TMPFILE/tool/bin/Communities/sample_network/. $TMPFILE/tool/input/layers/
 else
-    for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/layers; else echo "Use ',' as a separator in the layers inputs"; exit 1; fi; done;fi
+  for i in "${network[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/layers; else echo "Use ',' as a separator in the layers inputs"; exit 1; fi; done;fi
 
 pushd $TMPFILE >& /dev/null; cd tool/
 
