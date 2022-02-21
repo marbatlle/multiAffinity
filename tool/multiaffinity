@@ -1,9 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-printf '\n\n              ***************************************************************' 
-printf '\n              ************************ MULTIAFFINITY ************************' 
-printf '\n              ***************************************************************\n' 
+printf '\n\n***************************************************************' 
+printf '\n*********************** MULTIAFFINITY *************************' 
+printf '\n**************************************************************\n' 
+
+echo 'more information at github.com/marbatlle/multiAffinity'
 
 # Defining default values for parameters
 padj=0.05
@@ -16,41 +18,28 @@ Molti_Louvain=5
 approach=local
 
 # Usage function
-usage(){
+help(){
 echo -e '\n'
-echo "BASIC USER:"
-echo "usage: multiaffinity [-h]  -o Output Path  -c Counts Path  -m Metadata Path  -n Network Path"
-echo "                     [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]"
-echo "arguments:"
-echo "  -h                          show this help message and exit"
-echo "  -o Output Path              defines name for output directory"
-echo "  -c Counts Path              path to counts matrix, use sep ','"
-echo "  -m Metadata Path            path to metadata, use sep ','"
-echo "  -n Network Path             path to network, use sep ','"
-echo "  -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM (default is 1) [opt]"
-echo "  -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 5) [opt]"
-echo -e '\n'
-echo "EXPERT USER:"
-echo "usage: multiaffinity [-h] [-a Approach] -o Output Path  -c Counts Path -m Metadata Path"
-echo "                     -n Network Path [-b Adjusted p-value] [-d DESeq2 - LFC cutoff]"
-echo "                     [-e Control ID] [-f multiXrank - R value] [-g multiXrank - Selfloops]"
-echo "                     [-i MolTI-DREAM - Modularity] [-j MolTI-DREAM - Louvain]"
-echo "arguments:"
-echo "  -h                          show this help message and exit"
-echo "  -a Approach                 computes correlation on each community or respect all genes, local or global approach (default is local)[opt]"
-echo "  -o Output Path              defines name for output directory"
-echo "  -c Counts Path              path to counts matrix, use sep ','"
-echo "  -m Metadata Path            path to metadata, use sep ','"
-echo "  -n Network Path             path to network, use sep ','"
-echo "  -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr (default is 0.05)[opt]"
-echo "  -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 (default is 1) [opt]"
-echo "  -e Control ID               defines metadata label for the control samples (default is Normal) [opt]"
-echo "  -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 (default is 0.15) [opt]"
-echo "  -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 (default is 1) [opt]"
-echo "  -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM (default is 1) [opt]"
-echo "  -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations (default is 5) [opt]"
-echo ' '
-printf '\nfind more info at https://github.com/marbatlle/multiAffinity :)\n'
+echo 'usage: multiaffinity [<files>] [<options>]'
+echo ''
+echo 'select the files of study:'
+echo "  -o Output Path                  defines name for output directory"
+echo "  -c Counts Path                  path to counts matrix, use sep ','"
+echo "  -m Metadata Path                path to metadata, use sep ','"
+echo "  -n Network Path                 path to network, use sep ','"
+echo ''
+echo 'the following optional commands are available:'
+echo "  -h help                     "
+echo "  -i MolTI-DREAM - Modularity     default is 1"
+echo "  -j MolTI-DREAM - Louvain        default is 5"
+echo ''
+echo 'additional expert user commands:'
+echo "  -a Approach                     default is local"
+echo "  -b Adjusted p-value             default is 0.05"
+echo "  -d DESeq2 - LFC cutoff          default is 1"
+echo "  -e Control ID                   default is Normal"
+echo "  -f multiXrank - R value         default is 0.15"
+echo "  -g multiXrank - Selfloops       default is 1"
 echo -e '\n'
 exit 0
 } 
@@ -58,7 +47,7 @@ exit 0
 # Classifying input arguments
 while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
   case $opt in
-    h) usage                             ;;
+    h) help                             ;;
     a) approach=($OPTARG)                ;;
     o) output_dir=($OPTARG)              ;;
     c) set -f
@@ -124,5 +113,3 @@ mkdir -p $output_dir
 cp -a $TMPFILE/tool/output/. ./$output_dir; rm -rf $TMPFILE
 
 echo 'multiAffinity completed. Check out the output folder'
-
-printf '\n              find more info at https://github.com/marbatlle/multiAffinity :)\n'
