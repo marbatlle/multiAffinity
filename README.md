@@ -23,7 +23,21 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
         
     - Files e.g.
         -o result -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
+        
+### from Docker
 
+    - Clone repository
+        git clone https://github.com/marbatlle/multiAffinity
+        
+    - Activate environment
+        conda env create --name multiaffinity --file environment.yaml
+        conda activate multiaffinity
+    
+    - Run tool 
+        bash tool/multiaffinity <FILES> <OPTIONS>
+    
+    - Files e.g.
+        -o result -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
 <br>
 
 # 2. Usage
