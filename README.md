@@ -87,14 +87,14 @@ Execute the script:
     optional arguments:
         -h                          show this help message and exit
         -n Network Path             path to network, use sep ','
-        -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
-        -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*[opt]
-        -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
-        -e Control ID               defines metadata label for the control samples *(default is Normal)* [opt]
-        -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
-        -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
-        -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]
-        -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)* [opt]
+        -a Approach                 default is local
+        -b Adjusted p-value         default is 0.05
+        -d DESeq2 - LFC cutoff      default is 1
+        -i MolTI-DREAM - Modularity default is 1
+        -j MolTI-DREAM - Louvain    default is 5
+        -f multiXrank - R value     default is 0.15
+        -g multiXrank - Selfloops   default is 1
+
 <br>
 
 ## Output Files
@@ -133,7 +133,6 @@ This approach can also be computed through the individualized Paediatric Cure - 
 Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  *csv* file.
 
 Sample Argument:
-
 -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv  
 
 Sample file:
@@ -145,6 +144,32 @@ Sample file:
     CNBP,SMAP
     CNBP,FTSJ3
     CNBP,TRA2B
+
+### -- Study Significance
+The user can modify the adjusted p-value and LFC threshold set throughout the workflow
+
+    -b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*
+    -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
+
+
+### -- Analysis Approach 
+The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the propagation towards all the genes in the multilayer network of study.
+
+    -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*[opt]
+
+### -- MolTI-DREAM Arguments 
+We implemented the use of the [MolTI-DREAM](https://github.com/gilles-didier/MolTi-DREAM/tree/master/src) tool into our workflow to define communities within our multilayer network, to optimize the results, the user can define an alternative **Modularity resolution parameter** and **number of Louvain randomizations**.
+
+    -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)* [opt]
+    -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)* [opt]
+
+If you are unsure of which Modularity value to set for your chosen network layers of study, you may be able to find the optimal value by using https://github.com/marbatlle/Optimize-Mod-Resolution.
+### -- MultiXrank Arguments 
+For this pipeline, we also implemented [multiXrank](https://github.com/anthbapt/multixrank), in this case, to perform a RWR computation, to optimize your values, you can modify parameters such as the **R value** and **Selfloops**. You can find more information at https://multixrank-doc.readthedocs.io/en/latest/.
+
+        -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* [opt]
+        -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)* [opt]
+
 
 <br>
 
