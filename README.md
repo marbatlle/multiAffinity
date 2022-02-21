@@ -130,7 +130,7 @@ Instead of using a general biological data multilayer, the user can use gene-gen
 
 Sample Argument:
 
--n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv  
+    -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv  
 
 Sample file:
 
