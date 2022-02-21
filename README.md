@@ -6,7 +6,7 @@
 
 # Overview
 
-Study how gene dysregulation propagates on a (multilayer) network, following the approach detailed in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t=10s). This is the simplified framework of this bioinformatics analysis:
+Study how gene dysregulation propagates on a (multilayer) network, following the approach detailed in this this [video](https://www.youtube.com/watch?v=1tcwczu47aI&t). This is the simplified framework of this bioinformatics analysis:
 <br>
 
 ![Workflow](img/multiAffinity_workflow.png)
@@ -27,7 +27,7 @@ Study how gene dysregulation propagates on a (multilayer) network, following the
         docker run -ti -v "$(pwd)/sample_data:/tool/sample_data" -v "$(pwd)/output:/tool/output" marbatlle/multiaffinity multiaffinity <ARGUMENTS>
 
     - Arguments e.g.
-        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv
+        -o output -c sample_data/sample1_data.csv,sample_data/sample2_data.csv -m sample_data/sample1_metadata.csv,sample_data/sample2_metadata.csv
         
 <br>
 <br>
