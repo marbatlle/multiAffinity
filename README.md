@@ -108,13 +108,19 @@ All output files obtained in this computational study are available in the folde
 
 **Output Report:** found at *multiAffinity_report.csv*
 
-|metaDEGs|AS-DE Corr|Community Size|Community ID|log2FC |Participation Coefficient|Overlap Degree|
-|--------|----------|--------------|------------|-------|-------------------------|--------------|
-|ADH1C   |-0.6715   |11            |11          |-4.7742|0.1038                   |75            |
+| metaDEGs | AS-DE Corr | Community Size | Community ID | log2FC   | Participation Coefficient | Overlap Degree |
+| -------- | ---------- | -------------- | ------------ | -------- | ------------------------- | -------------- |
+| MOGAT2   | \-0.6893   | 34             | 199          | \-2.5312 | 0.64                      | 60             |
+| REG3A    | \-0.6733   | 9              | 448          | 7.7495   | 0                         | 39             |
+| PRSS2    | \-0.6733   | 9              | 448          | 4.8704   | 0                         | 584            |
+| REG3G    | \-0.6733   | 9              | 448          | 4.9092   | 0                         | 39             |
+| CHGA     | \-0.6733   | 9              | 448          | 4.6099   | 0                         | 39             |
+| MFSD2A   | \-0.4762   | 32             | 199          | \-3.053  | 0                         | 27             |
+| CYP2C8   | \-0.4747   | 39             | 430          | \-3.2187 | 0.553                     | 175            |
+| CYP2C19  | \-0.4743   | 39             | 430          | \-3.7028 | 0.6024                    | 157            |
+| UGT1A9   | \-0.4625   | 37             | 430          | \-3.7398 | 0.9837                    | 243            |
 
-**Multilayer Metrics Plot:** found at *output/multilayer_metrics_plot.png*, if output consists of more than one result
-
-**Additional results folder**
+**Additional results**
 
     metaDEGs/
     - degs_report.txt: displays the number of upregulated and downregulated DEGs obtained individually from each study.
@@ -122,7 +128,8 @@ All output files obtained in this computational study are available in the folde
     - wasserstein.txt: remarks every pair of studies that show a significant difference between their distributions.
 
     Affinity/
-    - RWR_matrix.txt: output of random walks
+    - Participation Plot: understand the multilayer participation of the genes (if output consists of more than one result).
+    - RWR_matrix.txt: output of random walks.
 
     Communities/
     - molti_output.txt: lays out the different communities defined by Molti-DREAM.
