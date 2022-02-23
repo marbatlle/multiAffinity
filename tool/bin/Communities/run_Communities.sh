@@ -1,17 +1,15 @@
 #!/bin/bash
 
-# STEP 0
-echo '      - Preparing environment'
+# STEP 0. Preparing environment'
 for file in input/layers/*; do sed -i 's/,/ /g' $file ; mv "$file" "${file/.*/.gr}"; done
 mkdir -p bin/Communities/src/genes; mkdir -p bin/Communities/src/networks; cp input/layers/*.gr bin/Communities/src/networks; cp output/metaDEGs/degs_names.txt bin/Communities/src/genes/input_genes.txt
-# arguments to variables
+## arguments to variables
 Molti_modularity=$1 
 Molti_Louvain=$2
 pushd bin/Communities/ >& /dev/null
 rm -r -f output/*; mkdir -p output/tmp
 
-# STEP 1
-echo '      - Defining Communities'
+# STEP 1. Defining Communities'
 networks=$(ls src/networks/*.gr)
 
 if [ $Molti_modularity = 1 ] && [ $Molti_Louvain = 0 ]; then
@@ -20,15 +18,12 @@ else
   ./src/MolTi-DREAM/src/molti-console -p ${Molti_modularity} -r ${Molti_Louvain} -o output/tmp/communities ${networks} >& /dev/null
 fi
 
-
-# Check if molti runned correctly
+## Result check for step 1
 if [[ ! -f output/tmp/communities ]] ; then
-    echo 'Problem found when running MolTi, please, check documentation.'
-    exit 1
+    echo -e "      ☒ error"; echo "        >> Could not run MolTi-DREAM"; exit 1
 fi
 
-# STEP 2
-echo '      - Analysing gene distribution in communities'
+# STEP 2. Analysing gene distribution in communities'
 ## check genes input name
 cp src/genes/input_genes.txt output/tmp/degs.txt; sed -i 's/$/;/g' output/tmp/degs.txt
 ## Obtain matches
@@ -44,9 +39,12 @@ for clusterid in $(ls output/tmp/cluster_*.txt | cut -d"_" -f2 | cut -d"." -f1);
     done <output/tmp/cluster_${clusterid}.txt
 done
 
+## Removing small communities
 sed -ri 's/.* ClusterID: (.*)/\1/' output/tmp/communities_effectif.csv
 
 ## Clean result
 mv output/tmp/degs.txt output/degs_communities.txt; mv output/tmp/communities output/molti_output.txt; mv output/tmp/communities_effectif.csv output/size_communities.txt ;mkdir -p output/clusters; mv output/tmp/cluster_*.txt output/clusters/ ; rm -r -f output/tmp
 popd >& /dev/null
 mkdir -p output/Communities; mv bin/Communities/output/* output/Communities
+
+echo -e "         ☑ done"

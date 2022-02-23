@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Preparing environment
+# STEP 0. Preparing environment
 
 ## prepare directories and files
 mkdir -p bin/metaDEGs/src; cp -r input/data bin/metaDEGs/src/
@@ -21,7 +21,10 @@ RRA_Score=$1
 waddR_pvaladj=$1
 control_id=$3
 
-echo '      - Processing input files'
+# $ echo -e '☑ done\n☒ fail\n☐ to do'
+
+
+# STEP 1. Processing input files
 
 # input names to number
 (cd src/data/counts && ls -v | cat -n | while read n f; do mv -n "$f" "$n.txt"; done)
@@ -41,7 +44,6 @@ for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1);
     rm -f src/tmp/clean_* ; rm -f src/tmp/grein_*
 done
 
-
 ## Match genes between studies
 Rscript scripts/gene_list.R >& /dev/null; mv src/tmp/counts/gene_list.txt src/tmp/gene_list.txt #obtain distinct gene list
 for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1); do
@@ -49,8 +51,12 @@ for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1);
     Rscript scripts/gene_matches.R >& /dev/null; cp src/tmp/cts.txt src/tmp/counts/${sid}_cts.txt; done
 rm -f src/tmp/cts.txt; rm -f src/tmp/gene_list.txt
 
+## Result check for step 1
+if  ! ls src/tmp/counts/*_cts.txt > /dev/null; then
+    echo -e "      ☒ error"; echo "        >> Check the input format requirements"; exit 1
+fi
 
-echo '      - Obtaining DEGs list for each study'
+# STEP 2.  Obtaining DEGs list for each study
 
 for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1 | sort -n -t E -k 2); do
     # create temp files
@@ -60,15 +66,16 @@ for sid in $(ls src/tmp/counts/*.txt | sed "s:src/tmp/counts/::" | cut -d"_" -f1
     echo "$name" >> output/metaDEGs/degs_report.txt
     Rscript scripts/obtain_degs.R $DESeq2_padj $DESeq2_LFC >> output/metaDEGs/degs_report.txt 2> /dev/null
     printf "\n" >> output/metaDEGs/degs_report.txt
+    ## Result check for step 2
+    if  ! ls src/tmp/normalized_counts.txt > /dev/null; then
+        echo -e "      ☒ error"; echo "        >> We could not define DEGs for one of the studies"; exit 1
+    fi
     # move outputs to permanent location
-    cp src/tmp/normalized_counts.txt output/normalized_counts/${sid}.txt; cp src/tmp/tmp_up.txt src/tmp/degs/${sid}_DEGs_up.txt; cp src/tmp/tmp_down.txt src/tmp/degs/${sid}_DEGs_down.txt; cp src/tmp/sample_difexp.txt output/dif_exp/${sid}.txt
+    mv src/tmp/normalized_counts.txt output/normalized_counts/${sid}.txt; cp src/tmp/tmp_up.txt src/tmp/degs/${sid}_DEGs_up.txt; cp src/tmp/tmp_down.txt src/tmp/degs/${sid}_DEGs_down.txt; cp src/tmp/sample_difexp.txt output/dif_exp/${sid}.txt
 done; wait
 
 
-
-#cat output/metaDEGs/degs_report.txt
-
-echo "      - Comparing distributions for batch effect"
+# STEP 3. Comparing distributions for batch effect"
 
 # obtain mean values for NT samples for each study
 mkdir -p output/means
@@ -91,10 +98,20 @@ for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1); do
             echo "$name1 and $name2:" >> output/wasserstein.txt
             Rscript scripts/wasserstein.R $waddR_pvaladj >> output/wasserstein.txt 2> /dev/null; fi; done; done; rm -f -r output/means
 
-echo '      - Obtaining metaDEGs'
+## Result check for step 3
+if  ! ls output/wasserstein.txt > /dev/null; then
+    printf "\n        error. Could not run the Wasserstein test"
+fi
+
+#  STEP 4. Obtaining metaDEGs'
 echo "Robust DEGs:" >> output/metaDEGs/degs_report.txt
 Rscript scripts/obtain_ranks.R $RRA_Score >> output/metaDEGs/degs_report.txt 2> /dev/null; rm -r -f src/tmp
 [ "$(ls -A output/)" ] && : || (echo "metaDEGs processes NOT COMPLETED, please check the README.md to find a solution"; exit 1)
+
+## Result check for step 4
+if  ! ls output/metaDEGs/metaDEGs.txt > /dev/null; then
+    echo -e "      ☒ error"; echo "        >> Could not perform DEGs meta-analysis"; exit 1
+fi
 
 # Closing script
 popd >& /dev/null
@@ -103,5 +120,5 @@ mv bin/metaDEGs/output/metaDEGs/MetaDEGs_*.txt bin/metaDEGs/output/
 mv bin/metaDEGs/output/metaDEGs/degs_report.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/metaDEGs.txt bin/metaDEGs/output/; mv bin/metaDEGs/output/metaDEGs/degs_names.txt bin/metaDEGs/output/
 rm -rf bin/metaDEGs/output/metaDEGs/; cp -r bin/metaDEGs/output/* output/metaDEGs
 
-
+echo -e "         ☑ done"
 

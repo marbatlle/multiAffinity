@@ -102,20 +102,20 @@ else
 
 pushd $TMPFILE >& /dev/null; cd tool/
 
-echo 'STEP1 - Finding metaDEGs'
+printf 'STEP1 - Determining the metaDEGs'      
 bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
 
-echo 'STEP2 - Analysing DEGs in network communities'
+echo 'STEP2 - Defining the community structure'
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
 
-echo 'STEP3 - Perform affinity study'
+echo 'STEP3 - Performing the affinity study'
 bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
 
-echo 'STEP4 - Defining final output'
+echo 'STEP4 - Defining the final output'
 bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
 mkdir -p $output_dir
 cp -a $TMPFILE/tool/output/. ./$output_dir; rm -rf $TMPFILE
 
-echo 'multiAffinity completed. Check out the output folder'
+echo 'multiAffinity completed. Check out the output folder.'
