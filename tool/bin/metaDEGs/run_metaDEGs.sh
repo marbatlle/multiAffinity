@@ -21,9 +21,6 @@ RRA_Score=$1
 waddR_pvaladj=$1
 control_id=$3
 
-# $ echo -e '☑ done\n☒ fail\n☐ to do'
-
-
 # STEP 1. Processing input files
 
 # input names to number

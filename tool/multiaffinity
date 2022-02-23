@@ -14,7 +14,7 @@ LFC=1
 control_id=Normal
 multiXrank_r=0.15
 multiXrank_selfloops=1
-Molti_modularity=1
+Molti_modularity=8
 Molti_Louvain=5
 approach=local
 
@@ -102,16 +102,16 @@ else
 
 pushd $TMPFILE >& /dev/null; cd tool/
 
-printf 'STEP1 - Determining the metaDEGs'      
+printf 'STEP1 - Determining the metaDEGs           '      
 bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
 
-echo 'STEP2 - Defining the community structure'
+printf 'STEP2 - Uncovering the community structure '
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
 
-echo 'STEP3 - Performing the affinity study'
+printf 'STEP3 - Performing the affinity study      '
 bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
 
-echo 'STEP4 - Defining the final output'
+printf 'STEP4 - Defining the final output          '
 bash bin/Conclude/run_output.sh
 
 popd >& /dev/null
