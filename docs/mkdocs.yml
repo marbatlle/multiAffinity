@@ -2,8 +2,7 @@ site_name: Documentación de Biblioteca
 
 nav:
   - Inicio: 'index.md'
-  - 'Guía de Usuario':
-    - 'Sistema de Autenticación': 'authenticated.md'
-  - Acerca de: 'about.md'
+  - Quick Start: 'about.md'
+  - User Guide: 'usage.md'
 
 theme: readthedocs
