@@ -1,8 +1,0 @@
-site_name: MultiAffinity Documentation
-
-nav: 
-  - About: 'about.md'
-  - Quick Start: 'quickstart.md'
-  - Usage: 'usage.md'
-
-theme: readthedocs
