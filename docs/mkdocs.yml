@@ -1,8 +1,0 @@
-site_name: MultiAffinity Documentation
-
-nav:
-  - Inicio: 'index.md'
-  - 'Guía de Usuario':
-    - 'Sistema de Autenticación': 'authenticated.md'
-
-theme: readthedocs
