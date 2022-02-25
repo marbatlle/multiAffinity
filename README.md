@@ -1,6 +1,6 @@
 <br>
 
-<img src="docs/img/multiAffinty-logo.png" alt="drawing" width="800"/>
+<img src="docs/img/multiAffinty-logo.png" alt="drawing" width="400"/>
 
 <br>
 
@@ -23,5 +23,5 @@ MultiAffinity enables the study of how gene dysregulation propagates on a multil
 
 <br>
 
-<img src="docs/img/logos-project.jpg" alt="drawing" width="400"/>
+<img src="docs/img/logos-project.jpg" alt="drawing" width="800"/>
 
