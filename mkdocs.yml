@@ -1,0 +1,31 @@
+site_name: 
+ 
+nav:
+  - Home: 'index.md'
+  - User Guide: 'usage.md'
+
+theme: readthedocs
+
+
+# Project information
+site_name: 'MultiAffinity Documentation'
+site_author: 'Mar Batlle'
+
+# Repository
+repo_name: 'readthedocs'
+repo_url: 'https://github.com/marbatlle/multiAffinitys'
+
+# Copyright
+copyright: 'Copyright &copy; 2022 Mar Batlle'
+
+# Configuration
+theme:
+  name: 'readthedocs'
+  language: 'en'
+  highlightjs: true
+  logo: docs/img/multiAffinty-logo.png
+
+# Pages
+nav:
+- Home: index.md
+- User Guide: usage.md
