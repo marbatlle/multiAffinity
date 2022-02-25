@@ -9,5 +9,5 @@ DOCUMENTACIÓN DE BIBLIOTECA
 .. toctree::
     :caption: Guía de Usuario
 
-    authenticated
-    about
+    quickstart
+    usage

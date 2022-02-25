@@ -34,4 +34,5 @@ class Login(FormView):
     docs/
         index.md  # The documentation homepage.
         quickstart.md
+        usage.md
         ...       # Other markdown pages, images and other files.
