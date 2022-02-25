@@ -1,0 +1,8 @@
+site_name: MultiAffinity Documentation
+
+
+nav:
+  - Index: 'index.md'
+  - About: 'about.md'
+
+theme: readthedocs
