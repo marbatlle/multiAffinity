@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Mar Batlle">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>User Guide - MultiAffinity Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "User Guide";
+    var mkdocs_page_input_path = "usage.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> MultiAffinity Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">User Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-input">1. Input</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#obtain-inputs-from-grein">Obtain inputs from GREIN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#obtain-inputs-from-other-sources">Obtain inputs from other sources</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-run-the-script">2. Run the script</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-output-files">3. Output Files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-advanced-user-arguments">4. Advanced User Arguments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#network-layers">Network Layers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#study-significance">Study Significance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#analysis-approach">Analysis Approach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#molti-dream-arguments">MolTI-DREAM Arguments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multixrank-arguments">MultiXrank Arguments</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">MultiAffinity Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>User Guide</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/marbatlle/multiAffinitys/edit/master/docs/usage.md"> Edit on readthedocs</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="user-guide">User Guide</h1>
+<h2 id="1-input">1. Input</h2>
+<p>Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: <strong>counts matrix</strong> and <strong>metadata</strong>. These files can be obtained from <a href="http://www.ilincs.org/apps/grein/?gse=">GREIN</a> or from other sources.</p>
+<h3 id="obtain-inputs-from-grein">Obtain inputs from GREIN</h3>
+<p>This workflow is designed to work seamlessly with the output created by GREIN, as shown in this tutorial <a href="https://github.com/marbatlle/multiAffinity/blob/main/.img/tutorial_grein.png">GREIN_tutorial</a>.</p>
+<h3 id="obtain-inputs-from-other-sources">Obtain inputs from other sources</h3>
+<p>If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements, and remember, counts matrix and metadata have to share the same <em>sampleid</em> identifier.</p>
+<pre><code>*Counts Matrices*
+    - The files must be named following -- sampleid_data.csv
+    - Make sure counts matrix include the gene symbols.
+    - The series accession identifiers (GSM) must match the ones on the metadata file.
+
+        Sample file:
+            ,gene_symbol,GSM2177840,GSM2177841,GSM2177842,GSM2177843
+            ENSG00000000003,TSPAN6,2076,1326,457,598
+            ENSG00000000005,TNMD,0,0,0,0,1
+            ENSG00000000419,DPM1,321,228,56,157
+            ENSG00000000457,SCYL3,236,176,118,131
+
+*Metadata Files*
+    - The files must be named following -- sampleid_metadata.csv
+    - The metadata labels should be 'Tumor' vs 'Normal', as shown in the example.
+
+        Sample file:
+            ,tissue type
+            GSM2177840,Normal
+            GSM2177841,Normal
+            GSM2177842,Tumor
+            GSM2177843,Normal
+</code></pre>
+<h2 id="2-run-the-script">2. Run the script</h2>
+<p>Execute the script:</p>
+<pre><code>usage: multiaffinity [&lt;files&gt;] [&lt;arguments&gt;]
+
+files:
+    -o Output Path              defines name for output directory
+    -c Counts Path              path to counts matrix, use sep ','
+    -m Metadata Path            path to metadata, use sep ','
+
+optional arguments:
+    -h                          show this help message and exit
+    -n Network Path             path to network, use sep ','
+    -a Approach                 default is local
+    -b Adjusted p-value         default is 0.05
+    -d DESeq2 - LFC cutoff      default is 1
+    -i MolTI-DREAM - Modularity default is 1
+    -j MolTI-DREAM - Louvain    default is 5
+    -f multiXrank - R value     default is 0.15
+    -g multiXrank - Selfloops   default is 1
+</code></pre>
+<h2 id="3-output-files">3. Output Files</h2>
+<p>All output files obtained in this computational study are available in the folder /output. Since there is multiple output files, for convenience, we also provide a spreadsheet file including the key results retrieved from the output files.</p>
+<p><strong>Output Report:</strong> found at <em>multiAffinity_report.csv</em></p>
+<table>
+<thead>
+<tr>
+<th>metaDEGs</th>
+<th>AS-DE Corr</th>
+<th>Community Size</th>
+<th>Community ID</th>
+<th>log2FC</th>
+<th>Participation Coefficient</th>
+<th>Overlap Degree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MOGAT2</td>
+<td>-0.6893</td>
+<td>34</td>
+<td>199</td>
+<td>-2.5312</td>
+<td>0.64</td>
+<td>60</td>
+</tr>
+<tr>
+<td>REG3A</td>
+<td>-0.6733</td>
+<td>9</td>
+<td>448</td>
+<td>7.7495</td>
+<td>0</td>
+<td>39</td>
+</tr>
+<tr>
+<td>PRSS2</td>
+<td>-0.6733</td>
+<td>9</td>
+<td>448</td>
+<td>4.8704</td>
+<td>0</td>
+<td>584</td>
+</tr>
+<tr>
+<td>REG3G</td>
+<td>-0.6733</td>
+<td>9</td>
+<td>448</td>
+<td>4.9092</td>
+<td>0</td>
+<td>39</td>
+</tr>
+<tr>
+<td>CHGA</td>
+<td>-0.6733</td>
+<td>9</td>
+<td>448</td>
+<td>4.6099</td>
+<td>0</td>
+<td>39</td>
+</tr>
+<tr>
+<td>MFSD2A</td>
+<td>-0.4762</td>
+<td>32</td>
+<td>199</td>
+<td>-3.053</td>
+<td>0</td>
+<td>27</td>
+</tr>
+<tr>
+<td>CYP2C8</td>
+<td>-0.4747</td>
+<td>39</td>
+<td>430</td>
+<td>-3.2187</td>
+<td>0.553</td>
+<td>175</td>
+</tr>
+<tr>
+<td>CYP2C19</td>
+<td>-0.4743</td>
+<td>39</td>
+<td>430</td>
+<td>-3.7028</td>
+<td>0.6024</td>
+<td>157</td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>-0.4625</td>
+<td>37</td>
+<td>430</td>
+<td>-3.7398</td>
+<td>0.9837</td>
+<td>243</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional results</strong></p>
+<pre><code>metaDEGs/
+- degs_report.txt: displays the number of upregulated and downregulated DEGs obtained individually from each study.
+- metaDEGs.txt: describes all the obtained metaDEGs and the corresponding RRA Score.
+- wasserstein.txt: remarks every pair of studies that show a significant difference between their distributions.
+
+Affinity/
+- Participation Plot: understand the multilayer participation of the genes (if output consists of more than one result).
+- RWR_matrix.txt: output of random walks.
+
+Communities/
+- molti_output.txt: lays out the different communities defined by Molti-DREAM.
+- size_communities.txt: presents the secondary output obtained by Molti-DREAM, indicating the sizes of each community by layer
+</code></pre>
+<h2 id="4-advanced-user-arguments">4. Advanced User Arguments</h2>
+<h4 id="network-layers">Network Layers</h4>
+<p>Instead of using a general biological data multilayer, the user can use gene-gene network from a different source, this input should consist of one or multiple layers in which nodes represent genes and edges represent different types of associations. Note that each layer has to be added as a different comma-separated  <em>csv</em> file.</p>
+<pre><code>Sample Argument:
+    -n sample_data/sample1_layer.csv,sample_data/sample2_layer.csv  
+Sample file:
+    CNBP,HNRNPAB
+    CNBP,RPL10A
+    CNBP,CENPN
+    CNBP,RSL24D1
+    CNBP,SMAP
+    CNBP,FTSJ3
+    CNBP,TRA2B
+</code></pre>
+<h4 id="study-significance">Study Significance</h4>
+<p>The user can modify the adjusted p-value and LFC threshold set throughout the workflow</p>
+<pre><code>-b Adjusted p-value         sets significance value for DESeq2, RRA, and Spearman's Corr *(default is 0.05)*
+-d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
+</code></pre>
+<h4 id="analysis-approach">Analysis Approach</h4>
+<p>The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the propagation towards all the genes in the multilayer network of study.</p>
+<pre><code>-a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*
+</code></pre>
+<h4 id="molti-dream-arguments">MolTI-DREAM Arguments</h4>
+<p>We implemented the use of the <a href="https://github.com/gilles-didier/MolTi-DREAM/tree/master/src">MolTI-DREAM</a> tool into our workflow to define communities within our multilayer network, to optimize the results, the user can define an alternative <strong>Modularity resolution parameter</strong> and <strong>number of Louvain randomizations</strong>.</p>
+<pre><code>-i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)*
+-j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)*
+</code></pre>
+<p>If you are unsure of which Modularity value to set for your chosen network layers of study, you may be able to find the optimal value by using https://github.com/marbatlle/Optimize-Mod-Resolution.</p>
+<h4 id="multixrank-arguments">MultiXrank Arguments</h4>
+<p>For this pipeline, we also implemented <a href="https://github.com/anthbapt/multixrank">multiXrank</a>, in this case, to perform a RWR computation, to optimize your values, you can modify parameters such as the <strong>R value</strong> and <strong>Selfloops</strong>. You can find more information at https://multixrank-doc.readthedocs.io/en/latest/.</p>
+<pre><code>    -f multiXrank - R value     global restart probability for multiXrank, given by float between 0 and 1 *(default is 0.15)* 
+    -g multiXrank - Selfloops   defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2022 Mar Batlle</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
