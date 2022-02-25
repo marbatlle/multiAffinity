@@ -4,6 +4,5 @@ nav:
   - Inicio: 'index.md'
   - 'Guía de Usuario':
     - 'Sistema de Autenticación': 'authenticated.md'
-  - Acerca de: 'about.md'
 
 theme: readthedocs
