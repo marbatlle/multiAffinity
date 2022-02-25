@@ -1,4 +1,4 @@
-# DOCUMENTACIÓN DE BIBLIOTECA
+# MULTIAFFINITY DOCUMENTATION
 
 Esta es una documentación de prueba creada dentro del Curso de Django utilizando la librería
 MKDOCS para publicarlo en **ReadTheDocs**
