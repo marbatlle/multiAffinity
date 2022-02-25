@@ -23,4 +23,5 @@ MultiAffinity enables the study of how gene dysregulation propagates on a multil
 
 <br>
 
-![Other-logos](docs/img/logos-project.jpg)
+<img src="docs/img/logos-project.jpg" alt="drawing" width="400"/>
+
