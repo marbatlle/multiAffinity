@@ -1,4 +1,4 @@
-# DOCUMENTACIÓN DE BIBLIOTECA
+# MULTIAFFINITY DOCUMENTATION
 
 Esta es una documentación de prueba creada dentro del Curso de Django utilizando la librería
 MKDOCS para publicarlo en **ReadTheDocs**
@@ -33,4 +33,5 @@ class Login(FormView):
     mkdocs.yml    # The configuration file.
     docs/
         index.md  # The documentation homepage.
+        quickstart.md
         ...       # Other markdown pages, images and other files.

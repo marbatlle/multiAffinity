@@ -1,8 +1,8 @@
-site_name: Documentación de Biblioteca
+site_name: MultiAffinity Documentation
 
 nav:
   - Inicio: 'index.md'
-  - Quick Start: 'about.md'
+  - Quick Start: 'quickstart.md'
   - User Guide: 'usage.md'
 
 theme: readthedocs
