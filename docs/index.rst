@@ -7,7 +7,7 @@ DOCUMENTACIÓN DE BIBLIOTECA
     introduction
 
 .. toctree::
-    :caption: Guía de Usuario
+    :caption: User Guide
 
     quickstart
     usage
