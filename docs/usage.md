@@ -3,7 +3,7 @@
 Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from other sources.
 
 ### Obtain inputs from GREIN
-This workflow is designed to work seamlessly with the output created by GREIN, as shown in this tutorial [GREIN_tutorial](https://github.com/marbatlle/multiAffinity/blob/main/.img/tutorial_grein.png).
+This workflow is designed to work seamlessly with the output created by GREIN, as shown in this tutorial [GREIN_tutorial](https://github.com/marbatlle/multiAffinity/blob/main/docs/img/tutorial_grein.png).
 
 ### Obtain inputs from other sources
 If your desired dataset/s have not been processed by GREIN, please, request its processing and check its progress at the Processing Console. On the other hand, if you want to use datasets not available at GEO, make sure that your files format match the following requirements, and remember, counts matrix and metadata have to share the same *sampleid* identifier.
