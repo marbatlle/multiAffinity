@@ -19,4 +19,4 @@ theme:
 nav:
 - Home: index.md
 - User Guide: usage.md
-- 'The tool': 'https://github.com/marbatlle/multiAffinity'
+- 'Back to the repo': 'https://github.com/marbatlle/multiAffinity'
