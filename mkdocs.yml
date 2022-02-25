@@ -13,7 +13,7 @@ copyright: 'Copyright &copy; 2022 Mar Batlle'
 theme:
   name: 'readthedocs'
   language: 'en'
-  logo: docs/img/multiAffinty-logo.png
+  logo: 'docs/img/multiAffinty-logo.png'
 
 # Pages
 nav:
