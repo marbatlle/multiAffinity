@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: MultiAffinity Documentation
+
+nav: 
+  - Home: 'index.md'
+
+theme: readthedocs
