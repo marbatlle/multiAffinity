@@ -1,4 +1,4 @@
-site_name: Documentación de Biblioteca
+site_name: MultiAffinity Documentation
 
 nav:
   - Inicio: 'index.md'
