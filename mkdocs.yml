@@ -18,5 +18,6 @@ theme:
 # Pages
 nav:
 - Home: index.md
+- Quick Start: quickstart.md
 - User Guide: usage.md
 - 'Back to the repo': 'https://github.com/marbatlle/multiAffinity'
