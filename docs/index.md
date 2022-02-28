@@ -5,9 +5,9 @@ This is the documentation for [multiAffinity](https://github.com/marbatlle/multi
 
 ![](img/multiAffinity_workflow.png)
 <br>
+<br>
 
--------------------------------------------------------------------------
-# Quick Start
+## Quick Start
 ### from Docker
 
     - Pull image
