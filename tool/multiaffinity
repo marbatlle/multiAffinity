@@ -66,7 +66,25 @@ while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
   esac
 done
 
-# Create tmp directory
+# Check user parameters, if not value, default value is employed
+## padj
+dec='^[0-9]+([.][0-9]+)?$'
+int='^[0-9]+$'
+if ! [[ $padj =~ $dec ]]; then $padj = '0.05'; fi
+## LFC
+if ! [[ $LFC =~ $int ]]; then $LFC = '1'; fi
+## multiXrank_r
+if ! [[ $multiXrank_r =~ $dec ]]; then $multiXrank_r = '0.15'; fi
+## multiXrank_selfloops
+if [ $multiXrank_selfloops = "1" ] || [ $multiXrank_selfloops = "0" ]; then : ; else $multiXrank_selfloops = '1'; fi
+## Molti_modularity
+if ! [[ $Molti_modularity =~ $int ]]; then $Molti_modularity = '8'; fi
+## Molti_Louvain
+if ! [[ $Molti_Louvain =~ $int ]]; then $Molti_Louvain = '5'; fi
+## approach
+if [ $approach = "local" ] || [ $approach = "global" ]; then : ; else $approach = "local"; fi
+
+# Creating tmp directory
 WORKDIR=$(pwd) ; TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
 
 if [[ "$WORKDIR" =~ tool ]]; then
@@ -75,25 +93,16 @@ if [[ "$WORKDIR" =~ tool ]]; then
   mkdir -p $TMPFILE/tool/bin
   cp -r /tool $TMPFILE/; fi
 
-#if [ -z ${network+x} ]; then echo "-n is obligatory"; exit 1; fi
-
-# Check approach
-if [ $approach = "local" ] || [ $approach = "global" ]; then : ; else echo "Define approach input as local or global"; exit 1; fi
-
 # Curating the inputs
 mkdir -p $TMPFILE/tool/input; mkdir -p $TMPFILE/tool/input/layers; mkdir -p $TMPFILE/tool/input/data; mkdir -p $TMPFILE/tool/input/data/counts; mkdir -p $TMPFILE/tool/input/data/metadata
-
 ## Output directory
 if [ -z ${output_dir+x} ]; then echo "-o is obligatory"; exit 1; fi
-
 ## Counts files
 if [ -z ${counts+x} ]; then echo "-c is obligatory"; exit 1; fi
 for i in "${counts[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/data/counts; else echo "Use ',' as a separator in the counts inputs"; exit 1; fi; done
-
 ## Metadata files
 if [ -z ${metadata+x} ]; then echo "-m is obligatory"; exit 1; fi
 for i in "${metadata[@]}"; do if grep -q "," ${i}; then cp ${i} $TMPFILE/tool/input/data/metadata; else echo "Use ',' as a separator in the metadata inputs"; exit 1; fi; done
-
 ## Network files
 if [ -z ${network+x} ]; then 
   cp -a $TMPFILE/tool/bin/Communities/sample_network/. $TMPFILE/tool/input/layers/
@@ -114,6 +123,7 @@ bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $app
 printf 'STEP4 - Defining the final output          '
 bash bin/Conclude/run_output.sh
 
+# Curating the output
 popd >& /dev/null
 mkdir -p $output_dir
 cp -a $TMPFILE/tool/output/. ./$output_dir; rm -rf $TMPFILE
