@@ -49,11 +49,16 @@ for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1);
   ) &
 done; wait
 
+## Result check for DESeq
+if  ! ls output/normalized_counts/1.txt > /dev/null; then
+    echo -e "      ☒ error"; echo "        >> Could not run DESeq2"; exit 1
+fi
+
 
 # 2. Comparing distributions with paired Wasserstein tests
 ## Perform Wasserstein between sample pairs if > 1
 files_counts=$(ls output/normalized_counts | cut -d"." -f1 | head -n 1)
-if [ $files_counts -gt 1 ]; then
+if [ $files_counts" -gt "1" ]; then
     printf "Wassersetin test - pval:\n" > output/wasserstein.txt
     for Study1 in $files_counts; do
         for Study2 in $files_counts; do
