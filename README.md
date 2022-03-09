@@ -4,7 +4,7 @@
 
 <br>
 
-MultiAffinity enables the study of how gene dysregulation propagates on a multilayer network on a disease of interest, uncovering key genes. Find the detailed documentation for the tool [here](https://marbatlle.github.io/multiAffinity//).
+MultiAffinity enables the study of how gene dysregulation propagates on a multilayer network, uncovering key genes on a disease of interest. See the full documentation[documentation](https://marbatlle.github.io/multiAffinity//) for more details and a test example. o.
 
 ## Quick start 
 
