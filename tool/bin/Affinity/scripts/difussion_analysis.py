@@ -1,3 +1,5 @@
+## FROM STEP 3.2. Find correlation between node affinity and ranks
+
 import os
 import pandas as pd
 import numpy as np

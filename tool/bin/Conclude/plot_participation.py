@@ -1,3 +1,5 @@
+## FROM STEP 4.1. Create output plot
+
 import pandas as pd
 import seaborn as sns
 import numpy as np

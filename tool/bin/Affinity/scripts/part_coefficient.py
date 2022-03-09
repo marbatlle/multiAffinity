@@ -1,3 +1,5 @@
+## FROM STEP 3.3. Calculate total degree and participation coefficient
+
 from __future__ import division
 import pandas as pd
 import csv, os

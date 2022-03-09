@@ -17,6 +17,7 @@ multiXrank_selfloops=1
 Molti_modularity=8
 Molti_Louvain=5
 approach=local
+min_nodes=7
 
 # Usage function
 help(){
@@ -35,6 +36,7 @@ echo "  -b Adjusted p-value             default is 0.05"
 echo "  -d DESeq2 - LFC cutoff          default is 1"
 echo "  -i MolTI-DREAM - Modularity     default is 1"
 echo "  -j MolTI-DREAM - Louvain        default is 5"
+echo "  -k Minimal community nodes      default is 7"
 echo "  -f multiXrank - R value         default is 0.15"
 echo "  -g multiXrank - Selfloops       default is 1"
 echo -e '\n'
@@ -42,7 +44,7 @@ exit 0
 } 
                 
 # Classifying input arguments
-while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
+while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:k:" opt; do
   case $opt in
     h) help                              ;;
     a) approach=($OPTARG)                ;;
@@ -63,6 +65,7 @@ while getopts ":ha:o:c:m:n:b:d:e:f:g:i:j:" opt; do
     g) multiXrank_selfloops=($OPTARG)    ;;
     i) Molti_modularity=($OPTARG)        ;;
     j) Molti_Louvain=($OPTARG)           ;;
+    k) min_nodes=($OPTARG)              ;;
   esac
 done
 
@@ -81,6 +84,8 @@ if [ $multiXrank_selfloops = "1" ] || [ $multiXrank_selfloops = "0" ]; then : ; 
 if ! [[ $Molti_modularity =~ $int ]]; then $Molti_modularity = '8'; fi
 ## Molti_Louvain
 if ! [[ $Molti_Louvain =~ $int ]]; then $Molti_Louvain = '5'; fi
+## min_nodes
+if ! [[ $min_nodes =~ $int ]]; then $min_nodes = '7'; fi
 ## approach
 if [ $approach = "local" ] || [ $approach = "global" ]; then : ; else $approach = "local"; fi
 
@@ -117,8 +122,9 @@ bash bin/metaDEGs/run_metaDEGs.sh $padj $LFC $control_id
 printf 'STEP2 - Uncovering the community structure '
 bash bin/Communities/run_Communities.sh $Molti_modularity $Molti_Louvain 
 
+
 printf 'STEP3 - Performing the affinity study      '
-bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach
+bash bin/Affinity/run_Affinity.sh $multiXrank_r $multiXrank_selfloops $padj $approach $min_nodes
 
 printf 'STEP4 - Defining the final output          '
 bash bin/Conclude/run_output.sh

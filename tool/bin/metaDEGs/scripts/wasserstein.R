@@ -1,19 +1,25 @@
+## FROM STEP 1.2. Run paired Wasserstein test
+
 Load <- function(packages) {
   for(package_name in packages)
   {suppressMessages(suppressWarnings(library(package_name,character.only=TRUE, quietly = TRUE)));}
 }
 Load(c("waddR","dplyr"))
 
-# get the input passed from the shell script
+# Set Arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-waddR_pval=as.numeric(args[1])
+waddR_pval <- as.numeric(args[1])
+study1=as.character(args[2])
+study2 <- as.character(args[3])
 
-# import means
-Study1_df <- read.csv('output/means/Study1_mean.txt')
-Study2_df <- read.csv('output/means/Study2_mean.txt')
+# Import means
+Study1_path <- file.path("output/means", paste(study1,"_mean.txt", sep = ""))
+Study1_df <- read.csv(Study1_path)
+Study2_path <- file.path("output/means", paste(study2,"_mean.txt", sep = ""))
+Study2_df <- read.csv(Study2_path)
 
-# transform to arrays
+# Transform to arrays
 Study1 <- unlist(Study1_df$Expression)
 set.seed(64)
 Study1 <- sample(Study1, 500, replace=TRUE)
@@ -26,4 +32,6 @@ spec.output<-c("pval")
 res <- as.data.frame(wasserstein.test(Study1,Study2,method="SP",permnum=100)[spec.output])
 res <- round(res,2)
 paste(res, collapse = '\n') %>% cat()
+
+print('check')
 

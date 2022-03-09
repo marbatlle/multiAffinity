@@ -1,10 +1,12 @@
+## FROM STEP 1.3. Run RobustRankAggreg
+
 Load <- function(packages) {
   for(package_name in packages)
   {suppressMessages(suppressWarnings(library(package_name,character.only=TRUE, quietly = TRUE)));}
 }
 Load(c("tidyverse","dplyr","stringr","RobustRankAggreg","data.table"))
 
-# get the input passed from the shell script
+# Set Arguments
 args <- commandArgs(trailingOnly = TRUE)
 RRA_Score=as.numeric(args[1])
 
@@ -22,7 +24,6 @@ for(i in names){
 }
 
 ## Aggregate Ranks
-#set.seed(64)
 glist_down <- Filter(function(x) is(x, "matrix"), mget(ls()))
 r_down = rankMatrix(glist_down, full = TRUE)
 agg_down <- aggregateRanks(rmat = r_down, method = "RRA")
@@ -33,7 +34,7 @@ rm(list = ls(pattern="DEGs_down"))
 rm(list = ls(pattern="r_down"))
 
 # Upregulated
-##Read DEGs files 
+## ead DEGs files 
 filenames <- list.files(path="src/tmp/degs", pattern="*up.txt")
 
 ## Create list of data frame names without the ".txt" part 
@@ -46,14 +47,13 @@ for(i in names){
 }
 
 ## Aggregate Ranks
-set.seed(64)
 glist_up <- Filter(function(x) is(x, "matrix"), mget(ls()))
 r_up = rankMatrix(glist_up, full = TRUE)
 agg_up <- aggregateRanks(rmat = r_up, method = "RRA")
 agg_up <- subset(agg_up, agg_up$Score < RRA_Score)
 agg_up <- as.data.frame(agg_up)
 
-## remove duplicates
+## Remove duplicates
 names_down  <- as.list(agg_down[['Name']])
 names_up  <- as.list(agg_up[['Name']])
 names_intersect <- intersect(names_up, names_down)
@@ -61,7 +61,6 @@ agg_down <- agg_down[ ! agg_down$Name %in% names_intersect, ]
 agg_up <- agg_up[ ! agg_up$Name %in% names_intersect, ]
 
 ## if in both delete
-
 rm(list = ls(pattern="DEGs_up"))
 rm(list = ls(pattern="r_up"))
 
@@ -78,15 +77,9 @@ paste("num. of downregulated DEGs: ", collapse = '\n') %>% cat()
 paste(nrow(agg_down), collapse = '\n') %>% cat()
 
 # Convert results into csv files
-write.table(agg_down, "output/metaDEGs/MetaDEGs_down.txt",sep=",", row.names=FALSE)
-write.table(agg_up, "output/metaDEGs/MetaDEGs_up.txt", sep=",",row.names=FALSE)
 write.table(genes, "output/metaDEGs/metaDEGs.txt", sep=",", row.names=FALSE)
 
-# import table
-cts_path<- "output/metaDEGs/metaDEGs.txt"
-cts_data <- read.csv(cts_path)
-
 # subset gene names
-gene_names <-  cts_data[, c("Name")]
+gene_names <-  genes[, c("Name")]
 
 write.table(gene_names, file="output/metaDEGs/degs_names.txt",sep = ",", row.names = FALSE, col.names=FALSE)

@@ -1,10 +1,14 @@
 #!/bin/bash
+set -euo pipefail
 
-# STEP 0. Preparing environment and data'
+
+#### multiAffinity - STEP3 - Performing the affinity study 
+
+# 0. Preparing environment and data
 mkdir -p bin/Affinity/src; cp -r output/metaDEGs bin/Affinity/src; cp -r output/Communities/clusters bin/Affinity/src
 cp -r input/layers/ bin/Affinity/src
-pushd bin/ >& /dev/null
 
+pushd bin/ >& /dev/null
 rm -rf Affinity/tmp; mkdir -p Affinity/tmp; rm -rf Affinity/src/multiplex; mkdir -p Affinity/src/multiplex; rm -rf Affinity/output; mkdir -p Affinity/output
 cp Affinity/src/layers/* Affinity/tmp; (cd Affinity/tmp && ls -v | cat -n | while read n f; do mv -n "$f" "layer$n.tsv"; done)
 
@@ -13,22 +17,28 @@ multiXrank_r=$1
 multiXrank_selfloops=$2
 padj=$3
 communities_approach=$4
+min_nodes=$5
 
-## create dictionary
-python Affinity/scripts/create_dict.py > Affinity/tmp/len_genes.txt
-
-## translate gene names to numbers ids
-python Affinity/scripts/genes_to_ids.py
-
-## add input layers to src folder
-mv Affinity/tmp/layer*.tsv Affinity/src/multiplex
-
-## add degs for seeds
+## Prepare degs as seeds
+### remove small communities if following community approach
 cp Affinity/src/metaDEGs/degs_names.txt Affinity/tmp
-python Affinity/scripts/degs_to_ids.py #>& /dev/null
+if [ "$communities_approach" = 'local' ] ; then
+    for clusterid in $(ls Affinity/src/clusters/cluster_*.txt | cut -d"_" -f2 | cut -d"." -f1); do
+        num_genes=$(cat Affinity/src/clusters/cluster_${clusterid}.txt | wc -l)
+        if [ "$num_genes" -lt "$min_nodes" ]; then
+            while read gene_symbol; do
+                sed -i "/$gene_symbol/d" "Affinity/tmp/degs_names.txt"
+                done < Affinity/src/clusters/cluster_${clusterid}.txt 
+        fi; done; fi
+
+## Create dictionary and translate gene names to numbers ids
+python Affinity/scripts/dict_gene_id.py > Affinity/tmp/len_genes.txt
 sed -i '/^$/d' Affinity/tmp/degs_ids.txt # remove empty lines
 
-## Edit config_full.yml
+## Prepare files for multiXrank
+### add input layers to src folder
+mv Affinity/tmp/layer*.tsv Affinity/src/multiplex
+### Edit config_full.yml
 num_layers=$(ls Affinity/src/multiplex | wc -l)
 printf "seed: seeds.txt\n" > Affinity/src/config_full.yml
 printf "r: $multiXrank_r\n" >> Affinity/src/config_full.yml
@@ -37,25 +47,39 @@ printf "multiplex:\n    1:\n        layers:" >> Affinity/src/config_full.yml
 for i in $(seq 1 $num_layers); do 
     printf "\n            - multiplex/layer$i.tsv" >> Affinity/src/config_full.yml; done
 
-# STEP 1. Running multiXrank for each deg as seed'
-while IFS="" read -r p || [ -n "$p" ]
-do
-    seed=$p
-    echo ${seed} > Affinity/src/seeds.txt;
-    python -W ignore Affinity/scripts/multiXrank.py >& /dev/null;
-    mv Affinity/src/output/multiplex_1.tsv Affinity/output/${seed}.tsv
-done < Affinity/tmp/degs_ids.txt
 
-## Creating RWR matrix with outputs'
+# 1. Run multiXrank
+## Create function
+run_multiXrank () {
+  echo $1 > Affinity/src/seeds_$1.txt 
+  sed "s/seeds.txt/seeds_${1}.txt/g" Affinity/src/config_full.yml > Affinity/src/config_full_${1}.yml
+  python -W ignore Affinity/scripts/multiXrank.py $1 >& /dev/null 
+  mv Affinity/src/output_$1/multiplex_1.tsv Affinity/output/$1.tsv
+}
+
+## Run multiXrank for each gene
+max_jobs=3
+declare -A cur_jobs=( ) # build an associative array w/ PIDs of jobs we started
+for seed in $(cat Affinity/tmp/degs_ids.txt); do
+  if (( ${#cur_jobs[@]} >= max_jobs )); then
+    wait -n # wait for at least one job to exit
+    # ...and then remove any jobs that aren't running from the table
+    for pid in "${!cur_jobs[@]}"; do
+      kill -0 "$pid" 2>/dev/null && unset cur_jobs[$pid]
+    done; fi
+  run_multiXrank $seed & cur_jobs[$!]=1
+done; wait
+
+## Creating RWR matrix with outputs
 python Affinity/scripts/create_matrix.py; rm Affinity/output/*.tsv
 
 ## Result check for step 1
-
 if  ! ls Affinity/output/RWR_matrix.txt > /dev/null; then
     echo -e "      ☒ error"; echo "        >> While performing the RWR analysis"; exit 1
 fi
 
-# STEP 2. Find correlation between node affinity and ranks
+
+# 2. Find correlation between node affinity and ranks
 if [ "$communities_approach" = 'global' ] ; then
     echo 'metaDEGs,DifExp-Aff Corr,Corr adj-p.val' > Affinity/output/Affinity_Corr.txt
     python -W ignore Affinity/scripts/difussion_analysis.py $padj >> Affinity/output/Affinity_Corr.txt 2> /dev/null; else
@@ -69,24 +93,24 @@ if [ "$communities_approach" = 'global' ] ; then
     then
         for cluster in $(ls Affinity/src/clusters/*.txt | cut -d"/" -f4); do
            cp Affinity/src/clusters/${cluster} Affinity/src/clusters/cluster_tmp.txt
-           python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj >> Affinity/output/Affinity_Corr_$cluster 2> /dev/null
+           python -W ignore Affinity/scripts/difussion_analysis_comm.py $padj $min_nodes >> Affinity/output/Affinity_Corr_$cluster 2> /dev/null
            rm -r Affinity/src/clusters/cluster_tmp.txt
         done
         cat Affinity/output/Affinity_Corr_*.txt >> Affinity/output/Affinity_Corr.txt
         rm -rf Affinity/output/Affinity_Corr_*.txt
     else
         echo -e "      ☒ error"; echo "        >> WNo significant clusters, try modifying the Molti-Dream parameters"; exit 1
-    fi
-fi
+    fi; fi
 
-# STEP 3. Calculate total degree and participation coefficient'
+
+# 3. Calculate total degree and participation coefficient
 python Affinity/scripts/part_coefficient.py
-
 if  ! ls Affinity/output/part_coef.txt > /dev/null; then
     printf "\n        error. Could not define the participation coefficient"
 fi
 
-## remove temp files
+
+# 4. Organize output files
 popd >& /dev/null
 mkdir -p output/Affinity; mv bin/Affinity/output/* output/Affinity
 rm -r -f bin/Affinity/output; rm -r -f bin/Affinity/src; rm -r -f bin/Affinity/tmp

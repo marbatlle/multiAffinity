@@ -1,3 +1,5 @@
+## FROM STEP 3.1. Creating RWR matrix with outputs
+
 import pandas as pd
 import numpy as np
 import os

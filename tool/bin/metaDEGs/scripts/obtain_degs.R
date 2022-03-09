@@ -1,53 +1,50 @@
+## FROM STEP 1.1. Run DESeq2 to obtain DEGs
+
 Load <- function(packages) {
   for(package_name in packages)
   {suppressMessages(suppressWarnings(library(package_name,character.only=TRUE, quietly = TRUE)));}
 }
 Load(c("tidyverse","DESeq2","IHW","data.table"))
 
-
-# get the input passed from the shell script
+# Set Arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-DESeq2_padj=as.numeric(args[1])
-DESeq2_LFC=as.numeric(args[2])
+DESeq2_padj <- as.numeric(args[1])
+DESeq2_LFC <- as.numeric(args[2])
+sid <- as.character(args[3])
 
-# Import data
-### Count matrix should not be normalized and should be uniquely using hgnc gene symbols.
-
+# Import data - Count matrix should not be normalized and should be uniquely using hgnc gene symbols.
 ## Import Raw counts matrix
-cts_path <- "src/tmp/raw_data.csv"
+cts_path <- file.path("src/tmp/counts", paste(sid,"_cts.txt", sep = ""))
 cts <- read.csv(cts_path, row.names=1)
 
 ## Import Metadata
-meta_path <- 'src/tmp/metadata.csv'
+meta_path <- file.path("src/tmp/metadata", paste(sid,"_meta.txt", sep = ""))
 coldata <- read.csv(meta_path, row.names=1)
 coldata$tissue <- factor(coldata$tissue)
 
-# Create DSeq2 object
+# Run DESeq2
+## Create DSeq2 object
 dds <- DESeqDataSetFromMatrix(countData = cts, colData = coldata, design = ~ tissue) 
 
-# Filter out all genes with <5 reads total across all samples
+## Filter out all genes with <5 reads total across all samples
 dds <- dds[rowSums(counts(dds)) >= 5]
-
 dds <- DESeq(dds)
 
-# Specify Reference level
+## Specify Reference level
 dds$tissue <- relevel(dds$tissue, ref = "control")
 
-# Obtain deregulation values for all genes
+## Obtain deregulation values for all genes
 res <- results(dds)
-#res <- lfcShrink(dds, res=res,type = "ashr", lfcThreshold = 0.5)old #for visualizing
 res <- as.data.frame(res)
 res <- subset(res, res$padj < DESeq2_padj)
 
-write.csv(res, "src/tmp/sample_difexp.txt")
+write.table(res,paste("output/dif_exp/",sid,".txt", sep = ""), sep = ",", row.names = TRUE, col.names=TRUE)
 
 ## Order all differentially expressed genes by effect size (the absolute value of log2FoldChange)
 res <- res[order(-abs(res$log2FoldChange)),]
 res <- subset(res, abs(res$log2FoldChange) > DESeq2_LFC)
-
 res <- as.data.frame(res)
-
 cols<-!(colnames(res) %in% c("baseMean","lfcSE","stat","pvalue","padj"))
 res_subset <- subset(res,,cols)
 
@@ -55,31 +52,27 @@ res_subset <- subset(res,,cols)
 ## Extract genes upregulated
 res_up <- res_subset %>% 
   filter(log2FoldChange > 0)
-write.csv(res_up, "src/tmp/tmp_up.txt")
+write.table(res_up,paste("src/tmp/degs/",sid,"_DEGs_up.txt", sep = ""), sep = ",", row.names = TRUE, col.names=TRUE)
 
 ## Extract genes downregulated
 res_down <- res_subset %>% 
   filter(log2FoldChange < 0)
-write.csv(res_down, "src/tmp/tmp_down.txt")
-
+write.table(res_down,paste("src/tmp/degs/",sid,"_DEGs_down.txt", sep = ""), sep = ",", row.names = TRUE, col.names=TRUE)
 cat('num. of upregulated DEGs: ', nrow(res_up),'\n')
 cat('num. of downregulated DEGs:', nrow(res_down))
 
-# Obtain normalized matrices
-# Median of ratios Normalization
+## Extract normalized matrices
+### Median of ratios Normalization
 normalized_counts <- estimateSizeFactors(dds)
 normalized_counts <- counts(normalized_counts, normalized=TRUE)
-
-# transpose coldata
+### Transpose coldata
 t_coldata <- transpose(coldata)
-## get row and colnames in order
+### Get row and colnames in order
 colnames(t_coldata) <- rownames(coldata)
 rownames(t_coldata) <- colnames(coldata)
-# to list
+### To list
 levels.list <- as.list(as.data.frame(t(t_coldata)))
-
-# rename columns
+### Rename columns
 colnames(normalized_counts) <- levels.list$tissue
-
-#save normalized counts table
-write.csv(normalized_counts, "src/tmp/normalized_counts.txt")
+### Save normalized counts table
+write.table(normalized_counts,paste("output/normalized_counts/",sid,".txt", sep = ""), sep = ",", row.names = TRUE, col.names=TRUE)
