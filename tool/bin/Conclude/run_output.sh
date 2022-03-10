@@ -3,7 +3,6 @@ set -euo pipefail
 
 
 #### multiAffinity - STEP4 - Defining the final output 
-
 # 0. Create output report
 if ls output/Affinity/Affinity_Corr.txt > /dev/null; then python bin/Conclude/output.py; fi
 
@@ -16,6 +15,6 @@ fi
 
 # 2. Organize output files
 cd output
-rm -rf metaDEGs/normalized_counts; rm -f metaDEGs/degs_names.txt ; rm -rf Communities/clusters; rm -f Communities/degs_communities.txt ; rm -f  Affinity/part_coef.txt ; rm -f Affinity/Affinity_Corr.txt ; rm -f Affinity/*_matrix.csv; rm -r -f metaDEGs/dif_exp; rm -f metaDEGs/MetaDEGs_*.txt; rm -f Affinity/difexp.txt
+rm -rf metaDEGs/normalized_counts; rm -f metaDEGs/degs_names.txt ; rm -r -f Communities/clusters; rm -f Communities/degs_communities.txt ; rm -f  Affinity/part_coef.txt ; rm -f Affinity/Affinity_Corr.txt ; rm -f Affinity/*_matrix.csv; rm -r -f metaDEGs/dif_exp; rm -f metaDEGs/MetaDEGs_*.txt; rm -f Affinity/difexp.txt
 
 echo -e "         ☑ done"
