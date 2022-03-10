@@ -41,13 +41,15 @@ for sid in $(ls src/data/counts/* | sed "s:src/data/counts/::" | cut -d"." -f1);
     echo "$name" >> output/metaDEGs/degs_report_${sid}.txt;
 
     ## Obtain DEGs
-    Rscript scripts/obtain_degs.R $DESeq2_padj $DESeq2_LFC $sid >> output/metaDEGs/degs_report.txt 2> /dev/null;
-    printf "\n" >> output/metaDEGs/degs_report.txt;
+    Rscript scripts/obtain_degs.R $DESeq2_padj $DESeq2_LFC $sid >> output/metaDEGs/degs_report_${sid}.txt 2> /dev/null;
+    printf "\n" >> output/metaDEGs/degs_report_${sid}.txt;
 
     ## Obtain mean values for NT samples for each study
     python scripts/cts_to_mean.py ${sid}
   ) &
 done; wait
+
+cat output/metaDEGs/degs_report_*.txt > output/metaDEGs/degs_report.txt; rm -f output/metaDEGs/degs_report_*.txt
 
 ## Result check for DESeq
 if  ! ls output/normalized_counts/1.txt > /dev/null; then
@@ -58,18 +60,16 @@ fi
 # 2. Comparing distributions with paired Wasserstein tests
 ## Perform Wasserstein between sample pairs if > 1
 files_counts=$(ls output/normalized_counts | cut -d"." -f1 | head -n 1)
-if [ "$files_counts" -gt "1" ]; then
-    printf "Wassersetin test - pval:\n" > output/wasserstein.txt
-    for Study1 in $files_counts; do
-        for Study2 in $files_counts; do
+if [ "$(ls output/normalized_counts | wc -l)" -gt "1" ]; then
+    printf "Wasserstein test - pval:\n" > output/wasserstein.txt
+    for Study1 in $(ls output/normalized_counts | cut -d"." -f1 | head -n 1); do
+        for Study2 in $(ls output/normalized_counts | cut -d"." -f1); do
             if [ "$Study1" != "$Study2" ]; then
                 name1=$(sed -n "${Study1}p" sample_names.txt)
                 name2=$(sed -n "${Study2}p" sample_names.txt)
-                printf "\n" >> output/wasserstein.txt
-                echo "$name1 and $name2:" >> output/wasserstein.txt
-                Rscript scripts/wasserstein.R $waddR_pvaladj $Study1 $Study2 >> output/wasserstein.txt 2> /dev/null; fi; done; done; rm -f -r output/means
-fi
-   
+                printf "\n$name1 and $name2: " >> output/wasserstein.txt
+                Rscript scripts/wasserstein.R $waddR_pvaladj $Study1 $Study2 >> output/wasserstein.txt 2> /dev/null
+            fi; done; done; fi; rm -f -r output/means/
    
 # 3. Obtaining metaDEGs
 # Perform RRA 

@@ -33,5 +33,4 @@ res <- as.data.frame(wasserstein.test(Study1,Study2,method="SP",permnum=100)[spe
 res <- round(res,2)
 paste(res, collapse = '\n') %>% cat()
 
-print('check')
 
