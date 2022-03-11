@@ -18,13 +18,14 @@ Molti_modularity=8
 Molti_Louvain=5
 approach=local
 min_nodes=7
+output_dir=output
 
 # Usage function
 help(){
 echo 'usage: multiaffinity [<files>] [<arguments>]'
 echo ''
 echo 'select the files of study:'
-echo "  -o Output Path                  defines name for output directory"
+#echo "  -o Output Path                  defines name for output directory"
 echo "  -c Counts Path                  path to counts matrix, use sep ','"
 echo "  -m Metadata Path                path to metadata, use sep ','"
 echo ''
