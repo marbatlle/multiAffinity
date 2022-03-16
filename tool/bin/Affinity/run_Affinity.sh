@@ -58,7 +58,7 @@ run_multiXrank () {
 }
 
 ## Run multiXrank for each gene
-max_jobs=3
+max_jobs=2
 declare -A cur_jobs=( ) # build an associative array w/ PIDs of jobs we started
 for seed in $(cat Affinity/tmp/degs_ids.txt); do
   if (( ${#cur_jobs[@]} >= max_jobs )); then
