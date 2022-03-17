@@ -94,9 +94,12 @@ WORKDIR=$(pwd) ; TMPFILE=`mktemp -d /tmp/tempdir.XXXXXXXXXX` || exit 1
 
 if [[ "$WORKDIR" =~ tool ]]; then
   mkdir -p $TMPFILE/tool
-  cp -r bin/ $TMPFILE/tool/; else
+  cp -r bin/ $TMPFILE/tool/
+elif [[ -d /tool ]]; then
   mkdir -p $TMPFILE/tool/bin
-  cp -r tool $TMPFILE/; fi
+  cp -r /tool $TMPFILE/; else
+  mkdir -p $TMPFILE/tool/bin
+  cp -r tool $TMPFILE/;fi
 
 # Curating the inputs
 mkdir -p $TMPFILE/tool/input; mkdir -p $TMPFILE/tool/input/layers; mkdir -p $TMPFILE/tool/input/data; mkdir -p $TMPFILE/tool/input/data/counts; mkdir -p $TMPFILE/tool/input/data/metadata
