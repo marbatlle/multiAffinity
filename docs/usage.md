@@ -117,6 +117,7 @@ We implemented the use of the [MolTI-DREAM](https://github.com/gilles-didier/Mol
 
     -i MolTI-DREAM - Modularity sets Newman modularity resolution parameter on molTI-DREAM *(default is 1)*
     -j MolTI-DREAM - Louvain    switches to randomized Louvain on molTI-DREAM and sets num. of randomizations *(default is 5)*
+    -m Minimal community nodes  minimum number of nodes required to describe a community *(default is 7)*
 
 If you are unsure of which Modularity value to set for your chosen network layers of study, you may be able to find the optimal value by using https://github.com/marbatlle/Optimize-Mod-Resolution.
 
