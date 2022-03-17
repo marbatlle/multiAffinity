@@ -75,7 +75,7 @@ dec='^[0-9]+([.][0-9]+)?$'
 int='^[0-9]+$'
 if ! [[ $padj =~ $dec ]]; then $padj = '0.05'; fi
 ## LFC
-if ! [[ $LFC =~ $int ]]; then $LFC = '1'; fi
+if ! [[ $LFC =~ $dec ]]; then $LFC = '1'; fi
 ## multiXrank_r
 if ! [[ $multiXrank_r =~ $dec ]]; then $multiXrank_r = '0.15'; fi
 ## multiXrank_selfloops
