@@ -50,6 +50,7 @@ Execute the script:
         -d DESeq2 - LFC cutoff      default is 1
         -i MolTI-DREAM - Modularity default is 1
         -j MolTI-DREAM - Louvain    default is 5
+        -k Min. Comm. Nodes         default is 7
         -f multiXrank - R value     default is 0.15
         -g multiXrank - Selfloops   default is 1
 
