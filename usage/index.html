@@ -128,7 +128,7 @@
               
                 <h1 id="user-guide">User Guide</h1>
 <h2 id="1-input">1. Input</h2>
-<p>Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: <strong>counts matrix</strong> and <strong>metadata</strong>. These files can be obtained from <a href="http://www.ilincs.org/apps/grein/?gse=">GREIN</a> or from other sources.</p>
+<p>Before running the multiAffinity, the input files need to be curated to fit the tool's template. The RNA-Seq Case Control files consist of: <strong>counts matrix</strong> and <strong>metadata</strong>. These can be obtained from <a href="http://www.ilincs.org/apps/grein/?gse=">GREIN</a> or from other sources.</p>
 <h3 id="obtain-inputs-from-grein">Obtain inputs from GREIN</h3>
 <p>This workflow is designed to work seamlessly with the output created by GREIN, as shown in this tutorial <a href="https://github.com/marbatlle/multiAffinity/blob/main/docs/img/tutorial_grein.png">GREIN_tutorial</a>.</p>
 <h3 id="obtain-inputs-from-other-sources">Obtain inputs from other sources</h3>
@@ -310,7 +310,7 @@ Sample file:
 -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
 </code></pre>
 <h4 id="analysis-approach">Analysis Approach</h4>
-<p>The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the propagation towards all the genes in the multilayer network of study.</p>
+<p>The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the spreading towards all the genes in the multilayer network of study.</p>
 <pre><code>-a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*
 </code></pre>
 <h4 id="molti-dream-arguments">MolTI-DREAM Arguments</h4>
