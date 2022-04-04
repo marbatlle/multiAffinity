@@ -1,6 +1,6 @@
 # User Guide
 ## 1. Input
-Before running the multiAffinity, the input files need to be curated to fit the tool's template, consist of: **counts matrix** and **metadata**. These files can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from other sources.
+Before running the multiAffinity, the input files need to be curated to fit the tool's template. The RNA-Seq Case Control files consist of: **counts matrix** and **metadata**. These can be obtained from [GREIN](http://www.ilincs.org/apps/grein/?gse=) or from other sources.
 
 ### Obtain inputs from GREIN
 This workflow is designed to work seamlessly with the output created by GREIN, as shown in this tutorial [GREIN_tutorial](https://github.com/marbatlle/multiAffinity/blob/main/docs/img/tutorial_grein.png).
@@ -109,7 +109,7 @@ The user can modify the adjusted p-value and LFC threshold set throughout the wo
     -d DESeq2 - LFC cutoff      defines whether self loops are removed or not, takes values 0 or 1 *(default is 1)*
 
 #### Analysis Approach 
-The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the propagation towards all the genes in the multilayer network of study.
+The study follows a local approach to compute the study the spread of dysregulation within the nodes that fall in the same commnities, nonetheless, the user can choose to pursue a global approach, and study the spreading towards all the genes in the multilayer network of study.
 
     -a Approach                 computes correlation on each community or respect all genes, local or global approach *(default is local)*
 
